@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: -  PhotoItemTableViewCell
 final class PhotoItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
@@ -25,8 +26,13 @@ final class PhotoItemTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = String(describing: PhotoItemTableViewCell.self)
     
+}
+
+// MARK: -  Functions
+extension PhotoItemTableViewCell {
+    
     func configure() {
-        
+        selectionStyle = .none
         photoImageView.clipsToBounds = true
         photoImageView.layer.cornerRadius = 8
         
@@ -38,9 +44,6 @@ final class PhotoItemTableViewCell: UITableViewCell {
             
             updateLikesInfo()
         }
-        
-        selectionStyle = .none
-        
     }
     
     func updateLikesInfo() {

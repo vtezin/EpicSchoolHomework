@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: -  PhotoItem
 struct PhotoItem {
     let image: UIImage
     let autor: String
@@ -23,7 +24,6 @@ struct PhotoItem {
     }
     
     var likesCountDescription: String {
-        
         var likesString: String
         
         if 11...14 ~= likesCount {
@@ -43,18 +43,20 @@ struct PhotoItem {
     }
 }
 
+// MARK: -  Functions
 extension PhotoItem {
     mutating func likedToggle() {
         liked.toggle()
     }
 }
 
+// MARK: -  Test data
 extension PhotoItem {
     static var testData: [PhotoItem] {
         let testItems = (1...10).map{
             PhotoItem(image: UIImage(named: String($0))!,
-                      autor: "autor of photo \($0)",
-                      description: "bird \($0)",
+                      autor: "автор фото \($0)",
+                      description: "птичка \($0)",
                       likesCount: (1...100).randomElement()!,
                       liked: Bool.random())
         }
