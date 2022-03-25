@@ -18,6 +18,9 @@
 		C499F66B27E4472E00DB2F9B /* EpicSchoolHomeworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F66A27E4472E00DB2F9B /* EpicSchoolHomeworkTests.swift */; };
 		C499F67527E4472E00DB2F9B /* EpicSchoolHomeworkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F67427E4472E00DB2F9B /* EpicSchoolHomeworkUITests.swift */; };
 		C499F67727E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F67627E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift */; };
+		C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */; };
+		C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE027EDCECE00F3B30A /* Int.swift */; };
+		C4BD2FE327EDCF0600F3B30A /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE227EDCF0600F3B30A /* HeartButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		C499F67027E4472E00DB2F9B /* EpicSchoolHomeworkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpicSchoolHomeworkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C499F67427E4472E00DB2F9B /* EpicSchoolHomeworkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpicSchoolHomeworkUITests.swift; sourceTree = "<group>"; };
 		C499F67627E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpicSchoolHomeworkUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
+		C4BD2FE027EDCECE00F3B30A /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		C4BD2FE227EDCF0600F3B30A /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,8 @@
 		C499F65227E4472D00DB2F9B /* EpicSchoolHomework */ = {
 			isa = PBXGroup;
 			children = (
+				C4BD2FDD27EDCE3800F3B30A /* Extensions */,
+				C4BD2FDC27EDCDEF00F3B30A /* CustomViews */,
 				C40A229B27EB06ED0007994C /* TableView */,
 				C40A229827EB02ED0007994C /* Model */,
 				C499F65327E4472D00DB2F9B /* AppDelegate.swift */,
@@ -155,6 +163,23 @@
 				C499F67627E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift */,
 			);
 			path = EpicSchoolHomeworkUITests;
+			sourceTree = "<group>";
+		};
+		C4BD2FDC27EDCDEF00F3B30A /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				C4BD2FE227EDCF0600F3B30A /* HeartButton.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		C4BD2FDD27EDCE3800F3B30A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */,
+				C4BD2FE027EDCECE00F3B30A /* Int.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +316,9 @@
 				C499F65827E4472D00DB2F9B /* ViewController.swift in Sources */,
 				C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */,
 				C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */,
+				C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */,
+				C4BD2FE327EDCF0600F3B30A /* HeartButton.swift in Sources */,
+				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,
 				C40A229D27EB07050007994C /* TableViewController.swift in Sources */,
 			);

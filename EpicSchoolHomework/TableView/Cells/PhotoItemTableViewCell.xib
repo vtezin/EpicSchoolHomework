@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,13 +41,13 @@
                         <color key="textColor" systemColor="secondaryLabelColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6P-zb-j7E" userLabel="Like Button">
-                        <rect key="frame" x="465.5" y="251" width="21.5" height="19.5"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6P-zb-j7E" userLabel="Like Button" customClass="HeartButton" customModule="EpicSchoolHomework" customModuleProvider="target">
+                        <rect key="frame" x="457" y="251" width="30" height="30"/>
+                        <color key="tintColor" systemColor="systemPinkColor"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal">
-                            <color key="titleColor" systemColor="systemPinkColor"/>
-                            <imageReference key="image" image="heart.fill" catalog="system" renderingMode="original"/>
-                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="likeButtonTapped:" destination="rvE-zY-Kya" eventType="touchUpInside" id="ciT-6H-paK"/>
                         </connections>
@@ -80,9 +79,13 @@
             <point key="canvasLocation" x="152.89855072463769" y="182.14285714285714"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="p6P-zb-j7E">
+            <size key="intrinsicContentSize" width="30" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="1" width="264" height="191"/>
-        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
