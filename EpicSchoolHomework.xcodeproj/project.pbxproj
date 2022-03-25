@@ -12,7 +12,6 @@
 		C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */; };
 		C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A22A127EB0BE70007994C /* PhotoItemTableViewCell.swift */; };
 		C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F65327E4472D00DB2F9B /* AppDelegate.swift */; };
-		C499F65827E4472D00DB2F9B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F65727E4472D00DB2F9B /* ViewController.swift */; };
 		C499F65D27E4472E00DB2F9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C499F65C27E4472E00DB2F9B /* Assets.xcassets */; };
 		C499F66027E4472E00DB2F9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */; };
 		C499F66B27E4472E00DB2F9B /* EpicSchoolHomeworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F66A27E4472E00DB2F9B /* EpicSchoolHomeworkTests.swift */; };
@@ -20,7 +19,6 @@
 		C499F67727E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F67627E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift */; };
 		C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */; };
 		C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE027EDCECE00F3B30A /* Int.swift */; };
-		C4BD2FE327EDCF0600F3B30A /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE227EDCF0600F3B30A /* HeartButton.swift */; };
 		C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +46,6 @@
 		C40A22A127EB0BE70007994C /* PhotoItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemTableViewCell.swift; sourceTree = "<group>"; };
 		C499F65027E4472D00DB2F9B /* EpicSchoolHomework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpicSchoolHomework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C499F65327E4472D00DB2F9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C499F65727E4472D00DB2F9B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C499F65C27E4472E00DB2F9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C499F65F27E4472E00DB2F9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C499F66127E4472E00DB2F9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,7 +56,6 @@
 		C499F67627E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpicSchoolHomeworkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 		C4BD2FE027EDCECE00F3B30A /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
-		C4BD2FE227EDCF0600F3B30A /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
 		C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBezierView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,7 +138,6 @@
 				C40A229B27EB06ED0007994C /* TableView */,
 				C40A229827EB02ED0007994C /* Model */,
 				C499F65327E4472D00DB2F9B /* AppDelegate.swift */,
-				C499F65727E4472D00DB2F9B /* ViewController.swift */,
 				C499F65C27E4472E00DB2F9B /* Assets.xcassets */,
 				C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */,
 				C499F66127E4472E00DB2F9B /* Info.plist */,
@@ -170,7 +165,6 @@
 		C4BD2FDC27EDCDEF00F3B30A /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				C4BD2FE227EDCF0600F3B30A /* HeartButton.swift */,
 				C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */,
 			);
 			path = CustomViews;
@@ -316,11 +310,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C499F65827E4472D00DB2F9B /* ViewController.swift in Sources */,
 				C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */,
 				C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */,
 				C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */,
-				C4BD2FE327EDCF0600F3B30A /* HeartButton.swift in Sources */,
 				C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */,
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,

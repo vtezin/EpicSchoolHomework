@@ -41,10 +41,15 @@
                         <color key="textColor" systemColor="secondaryLabelColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6P-zb-j7E" userLabel="Like Button" customClass="HeartButton" customModule="EpicSchoolHomework" customModuleProvider="target">
-                        <rect key="frame" x="457" y="251" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6P-zb-j7E" userLabel="Like Button">
+                        <rect key="frame" x="437" y="251" width="50" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="8f4-tM-c31"/>
+                            <constraint firstAttribute="height" constant="30" id="oQk-aY-Mit"/>
+                        </constraints>
                         <color key="tintColor" systemColor="systemPinkColor"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="heart.fill" catalog="system"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="YES"/>
                         </userDefinedRuntimeAttributes>
@@ -100,11 +105,12 @@
     </objects>
     <designables>
         <designable name="p6P-zb-j7E">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="20.5" height="22"/>
         </designable>
     </designables>
     <resources>
         <image name="1" width="264" height="191"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

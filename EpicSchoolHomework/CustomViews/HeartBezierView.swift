@@ -8,8 +8,8 @@
 import UIKit
 
 @IBDesignable class HeartBezierView: UIView {
-    @IBInspectable var filled: Bool = true
-    @IBInspectable var strokeWidth: CGFloat = 2.0
+    @IBInspectable private var filled: Bool = true
+    @IBInspectable private var strokeWidth: CGFloat = 2.0
     
     @IBInspectable var strokeColor: UIColor?
     

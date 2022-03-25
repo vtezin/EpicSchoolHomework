@@ -19,8 +19,7 @@ final class PhotoItemTableViewCell: UITableViewCell {
     @IBOutlet private weak var heartView: HeartBezierView!
     
     @IBAction func likeButtonTapped(_ sender: Any) {
-        photoItem?.likedToggle()
-        updateLikesInfo()
+        likedToggle()
     }
     
     var photoItem: PhotoItem?
@@ -32,7 +31,7 @@ final class PhotoItemTableViewCell: UITableViewCell {
 // MARK: -  Functions
 extension PhotoItemTableViewCell {
     
-    func configure() {
+    func configureCell() {
         selectionStyle = .none
         photoImageView.clipsToBounds = true
         photoImageView.layer.cornerRadius = 8
@@ -55,8 +54,20 @@ extension PhotoItemTableViewCell {
         
     }
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
+        likedToggle()
+    }
+    
+    private func updateLikesInfo() {
+        if let photoItem = photoItem {
+            likesCountLabel.text = photoItem.likesCountDescription
+            likeButton.alpha = photoItem.liked ? 1 : 0.3
+        }
+    }
+    
+    private func likedToggle() {
+        
         heartView.alpha = 1
 
         PhotoItemTableViewCell.animate(withDuration: 1.0) {
@@ -65,13 +76,6 @@ extension PhotoItemTableViewCell {
         
         photoItem?.likedToggle()
         updateLikesInfo()
-    }
-    
-    func updateLikesInfo() {
-        if let photoItem = photoItem {
-            likesCountLabel.text = photoItem.likesCountDescription
-            likeButton.alpha = photoItem.liked ? 1 : 0.3
-        }
     }
     
 }

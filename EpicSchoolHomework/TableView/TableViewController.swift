@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: -  UITableViewController
 class TableViewController: UITableViewController {
-    let photoItems = PhotoItem.testData
+    private let photoItems = PhotoItem.testData
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ extension TableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoItemTableViewCell.reuseIdentifier, for: indexPath) as! PhotoItemTableViewCell
         cell.photoItem = photoItem
-        cell.configure()
+        cell.configureCell()
         
         return cell
     }
