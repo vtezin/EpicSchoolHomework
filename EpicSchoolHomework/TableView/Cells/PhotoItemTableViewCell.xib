@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="497" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-06-TJ6" userLabel="Photo">
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-06-TJ6" userLabel="Photo">
                         <rect key="frame" x="10" y="10" width="477" height="200"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="200" id="B8S-N8-QG8"/>
@@ -52,6 +52,22 @@
                             <action selector="likeButtonTapped:" destination="rvE-zY-Kya" eventType="touchUpInside" id="ciT-6H-paK"/>
                         </connections>
                     </button>
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pe4-IE-LK3" customClass="HeartBezierView" customModule="EpicSchoolHomework" customModuleProvider="target">
+                        <rect key="frame" x="198.5" y="50" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="Jfs-Hs-BLl"/>
+                            <constraint firstAttribute="width" constant="100" id="q9d-bD-FCc"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="NO"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                <color key="value" systemColor="systemPinkColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="p6P-zb-j7E" secondAttribute="trailing" constant="10" id="28V-de-pKG"/>
@@ -65,6 +81,8 @@
                     <constraint firstItem="z0h-06-TJ6" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" constant="10" id="Ryr-18-vZb"/>
                     <constraint firstAttribute="trailing" secondItem="E0d-fa-h89" secondAttribute="trailing" constant="10" id="d9K-EU-EfU"/>
                     <constraint firstItem="D9N-Lx-b8d" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" constant="10" id="dcH-iH-v89"/>
+                    <constraint firstItem="pe4-IE-LK3" firstAttribute="centerX" secondItem="bdf-bY-Ml0" secondAttribute="centerX" id="hjE-Pm-2pP"/>
+                    <constraint firstItem="pe4-IE-LK3" firstAttribute="top" secondItem="bdf-bY-Ml0" secondAttribute="top" constant="50" id="kMP-jU-wGq"/>
                     <constraint firstItem="E0d-fa-h89" firstAttribute="top" secondItem="z0h-06-TJ6" secondAttribute="bottom" constant="10" id="sef-Xx-fyG"/>
                     <constraint firstAttribute="trailing" secondItem="z0h-06-TJ6" secondAttribute="trailing" constant="10" id="z7H-wX-AFK"/>
                 </constraints>
@@ -72,6 +90,7 @@
             <connections>
                 <outlet property="authorLabel" destination="gTe-Fm-lKg" id="OEX-6i-fsQ"/>
                 <outlet property="descriptionLabel" destination="E0d-fa-h89" id="UFT-1D-r4m"/>
+                <outlet property="heartView" destination="pe4-IE-LK3" id="Oyw-Bw-8mG"/>
                 <outlet property="likeButton" destination="p6P-zb-j7E" id="hUP-cU-CC8"/>
                 <outlet property="likesCountLabel" destination="D9N-Lx-b8d" id="1gW-Hc-QhK"/>
                 <outlet property="photoImageView" destination="z0h-06-TJ6" id="ed0-LH-Ywm"/>

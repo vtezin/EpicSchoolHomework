@@ -1,5 +1,5 @@
 //
-//  HeartButton.swift
+//  HeartImage.swift
 //  EpicSchoolHomework
 //
 //  Created by Vladimir Tezin on 25.03.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-@IBDesignable class HeartButton: UIButton {    
+@IBDesignable class HeartBezierView: UIView {
     @IBInspectable var filled: Bool = true
     @IBInspectable var strokeWidth: CGFloat = 2.0
     
@@ -29,5 +29,7 @@ import UIKit
             self.tintColor.setFill()
             bezierPath.fill()
         }
+        
     }
+    
 }

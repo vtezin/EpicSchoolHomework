@@ -10,12 +10,13 @@ import UIKit
 // MARK: -  PhotoItemTableViewCell
 final class PhotoItemTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet private weak var photoImageView: UIImageView!
     
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var likesCountLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet private weak var authorLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var likesCountLabel: UILabel!
+    @IBOutlet private weak var likeButton: UIButton!
+    @IBOutlet private weak var heartView: HeartBezierView!
     
     @IBAction func likeButtonTapped(_ sender: Any) {
         photoItem?.likedToggle()
@@ -35,6 +36,7 @@ extension PhotoItemTableViewCell {
         selectionStyle = .none
         photoImageView.clipsToBounds = true
         photoImageView.layer.cornerRadius = 8
+        self.heartView.alpha = 0
         
         if let photoItem = photoItem {
             photoImageView.image = photoItem.image
@@ -44,6 +46,25 @@ extension PhotoItemTableViewCell {
             
             updateLikesInfo()
         }
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        tapGestureRecognizer.numberOfTapsRequired = 2
+        
+        photoImageView.isUserInteractionEnabled = true
+        photoImageView.addGestureRecognizer(tapGestureRecognizer)
+        
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        heartView.alpha = 1
+
+        PhotoItemTableViewCell.animate(withDuration: 1.0) {
+            self.heartView.alpha = 0
+        }
+        
+        photoItem?.likedToggle()
+        updateLikesInfo()
     }
     
     func updateLikesInfo() {

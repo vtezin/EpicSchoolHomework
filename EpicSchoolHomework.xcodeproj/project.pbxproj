@@ -21,6 +21,7 @@
 		C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */; };
 		C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE027EDCECE00F3B30A /* Int.swift */; };
 		C4BD2FE327EDCF0600F3B30A /* HeartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE227EDCF0600F3B30A /* HeartButton.swift */; };
+		C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 		C4BD2FE027EDCECE00F3B30A /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		C4BD2FE227EDCF0600F3B30A /* HeartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButton.swift; sourceTree = "<group>"; };
+		C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBezierView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				C4BD2FE227EDCF0600F3B30A /* HeartButton.swift */,
+				C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */,
 				C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */,
 				C4BD2FE327EDCF0600F3B30A /* HeartButton.swift in Sources */,
+				C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */,
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,
 				C40A229D27EB07050007994C /* TableViewController.swift in Sources */,
