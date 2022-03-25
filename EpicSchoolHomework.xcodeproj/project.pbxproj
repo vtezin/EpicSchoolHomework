@@ -20,6 +20,7 @@
 		C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */; };
 		C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE027EDCECE00F3B30A /* Int.swift */; };
 		C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */; };
+		C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 		C4BD2FE027EDCECE00F3B30A /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBezierView.swift; sourceTree = "<group>"; };
+		C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				C499F65C27E4472E00DB2F9B /* Assets.xcassets */,
 				C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */,
 				C499F66127E4472E00DB2F9B /* Info.plist */,
+				C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */,
 			);
 			path = EpicSchoolHomework;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C499F66027E4472E00DB2F9B /* LaunchScreen.storyboard in Resources */,
+				C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */,
 				C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */,
 				C499F65D27E4472E00DB2F9B /* Assets.xcassets in Resources */,
 			);

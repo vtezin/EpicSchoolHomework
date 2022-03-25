@@ -23,23 +23,11 @@ struct PhotoItem {
         }
     }
     
-    var likesCountDescription: String {
-        var likesString: String
-        
-        if 11...14 ~= likesCount {
-            likesString = "Лайков"
-        } else {
-            switch likesCount % 10{
-            case 1:
-                likesString = "Лайк"
-            case 2...4:
-                likesString = "Лайка"
-            default:
-                likesString = "Лайков"
-            }
-        }
-        
-        return "\(likesCount) \(likesString)"
+    var likesFormattedString: String {        
+        let formatString : String = NSLocalizedString("likes count",
+                                                              comment: "Likes count string format to be found in Localized.stringsdict")
+        let resultString : String = String.localizedStringWithFormat(formatString, likesCount)
+        return resultString;
     }
 }
 

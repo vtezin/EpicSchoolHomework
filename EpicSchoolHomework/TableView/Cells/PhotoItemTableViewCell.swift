@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: -  PhotoItemTableViewCell
-final class PhotoItemTableViewCell: UITableViewCell {
+final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
     
     @IBOutlet private weak var photoImageView: UIImageView!
     
@@ -17,6 +17,7 @@ final class PhotoItemTableViewCell: UITableViewCell {
     @IBOutlet private weak var likesCountLabel: UILabel!
     @IBOutlet private weak var likeButton: UIButton!
     @IBOutlet private weak var heartView: HeartBezierView!
+    @IBOutlet weak var photoScrollView: UIScrollView!
     
     @IBAction func likeButtonTapped(_ sender: Any) {
         likedToggle()
@@ -52,6 +53,14 @@ extension PhotoItemTableViewCell {
         photoImageView.isUserInteractionEnabled = true
         photoImageView.addGestureRecognizer(tapGestureRecognizer)
         
+        photoScrollView.delegate = self
+        photoScrollView.minimumZoomScale = 1.0
+        photoScrollView.maximumZoomScale = 10.0
+        
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return photoImageView
     }
     
     @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
@@ -61,7 +70,7 @@ extension PhotoItemTableViewCell {
     
     private func updateLikesInfo() {
         if let photoItem = photoItem {
-            likesCountLabel.text = photoItem.likesCountDescription
+            likesCountLabel.text = photoItem.likesFormattedString
             likeButton.alpha = photoItem.liked ? 1 : 0.3
         }
     }
