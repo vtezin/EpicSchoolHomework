@@ -11,6 +11,7 @@
 		C40A229D27EB07050007994C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A229C27EB07050007994C /* TableViewController.swift */; };
 		C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */; };
 		C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A22A127EB0BE70007994C /* PhotoItemTableViewCell.swift */; };
+		C416046527F3A6850074FE36 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C416046427F3A6850074FE36 /* NetworkController.swift */; };
 		C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F65327E4472D00DB2F9B /* AppDelegate.swift */; };
 		C499F65D27E4472E00DB2F9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C499F65C27E4472E00DB2F9B /* Assets.xcassets */; };
 		C499F66027E4472E00DB2F9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */; };
@@ -45,6 +46,7 @@
 		C40A229C27EB07050007994C /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoItemTableViewCell.xib; sourceTree = "<group>"; };
 		C40A22A127EB0BE70007994C /* PhotoItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemTableViewCell.swift; sourceTree = "<group>"; };
+		C416046427F3A6850074FE36 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		C499F65027E4472D00DB2F9B /* EpicSchoolHomework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpicSchoolHomework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C499F65327E4472D00DB2F9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C499F65C27E4472E00DB2F9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +114,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		C416046327F3A6640074FE36 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C416046427F3A6850074FE36 /* NetworkController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		C499F64727E4472D00DB2F9B = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +145,7 @@
 		C499F65227E4472D00DB2F9B /* EpicSchoolHomework */ = {
 			isa = PBXGroup;
 			children = (
+				C416046327F3A6640074FE36 /* Controllers */,
 				C4BD2FDD27EDCE3800F3B30A /* Extensions */,
 				C4BD2FDC27EDCDEF00F3B30A /* CustomViews */,
 				C40A229B27EB06ED0007994C /* TableView */,
@@ -314,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C416046527F3A6850074FE36 /* NetworkController.swift in Sources */,
 				C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */,
 				C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */,
 				C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */,

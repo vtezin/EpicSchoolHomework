@@ -10,7 +10,7 @@ import UIKit
 // MARK: -  PhotoItem
 struct PhotoItem {
     let image: UIImage
-    let autor: String
+    let author: String
     let description: String
     var likesCount: Int
     var liked: Bool {
@@ -22,8 +22,12 @@ struct PhotoItem {
             }
         }
     }
-    
-    var likesFormattedString: String {        
+}
+
+// MARK: -  computed props
+
+extension PhotoItem {
+    var likesFormattedString: String {
         let formatString : String = NSLocalizedString("likes count",
                                                               comment: "Likes count string format to be found in Localized.stringsdict")
         let resultString : String = String.localizedStringWithFormat(formatString, likesCount)
@@ -43,7 +47,7 @@ extension PhotoItem {
     static var testData: [PhotoItem] {
         let testItems = (1...10).map{
             PhotoItem(image: UIImage(named: String($0))!,
-                      autor: "автор фото \($0)",
+                      author: "автор фото \($0)",
                       description: "птичка \($0)",
                       likesCount: (1...100).randomElement()!,
                       liked: Bool.random())
@@ -51,4 +55,61 @@ extension PhotoItem {
         
         return testItems
     }
+}
+
+// MARK: -  fetching data from web
+extension PhotoItem {
+    
+    private struct PhotoItemFromWeb: Codable {
+        let url: String
+        let author: String
+    }
+    
+    static func fetchDataFromWeb(handler: @escaping (Data) -> Void) {
+        NetworkController.fetchData(handler: handler)
+    }
+    
+    static func fecthDataFromWebHandler(data: Data) {
+        let photoItems = decodeDataToPhotoItems(data: data)
+        print("handler: \(photoItems ?? [PhotoItem]())")
+    }
+    
+    private static func decodeDataToPhotoItems(data: Data) -> [PhotoItem]? {
+        do {
+            let photoItemsFromWeb = try JSONDecoder().decode([PhotoItem.PhotoItemFromWeb].self, from: data)
+            
+            //convert PhotoItemFromWeb to PhotoItem
+            var photoItems = [PhotoItem]()
+            
+            for photoItemFromWeb in photoItemsFromWeb {
+                
+                var uiImage = UIImage()
+                
+                if let url = URL(string: photoItemFromWeb.url), let data = try? Data(contentsOf: url) {
+                    if let image = UIImage(data: data) {
+                        uiImage = image
+                    }
+                }
+                
+                let photoItem = PhotoItem(image: uiImage,
+                                          author: photoItemFromWeb.author,
+                                          description: photoItemFromWeb.url,
+                                          likesCount: Int.random(in: 1...100),
+                                          liked: Bool.random())
+                photoItems.append(photoItem)
+                
+            }
+            return photoItems
+        } catch {
+            print("Data error: \(error)")
+        }
+        return nil
+    }
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case author = "author"
+        case description = "url"
+    }
+    
 }

@@ -41,7 +41,7 @@ extension PhotoItemTableViewCell {
         if let photoItem = photoItem {
             photoImageView.image = photoItem.image
             
-            authorLabel.text = photoItem.autor
+            authorLabel.text = photoItem.author
             descriptionLabel.text = photoItem.description
             
             updateLikesInfo()
