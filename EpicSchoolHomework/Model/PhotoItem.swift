@@ -62,6 +62,7 @@ extension PhotoItem {
     
     private struct PhotoItemFromWeb: Codable {
         let url: String
+        let download_url: String
         let author: String
     }
     
@@ -69,12 +70,7 @@ extension PhotoItem {
         NetworkController.fetchData(handler: handler)
     }
     
-    static func fecthDataFromWebHandler(data: Data) {
-        let photoItems = decodeDataToPhotoItems(data: data)
-        print("handler: \(photoItems ?? [PhotoItem]())")
-    }
-    
-    private static func decodeDataToPhotoItems(data: Data) -> [PhotoItem]? {
+    static func decodeDataToPhotoItems(data: Data) -> [PhotoItem]? {
         do {
             let photoItemsFromWeb = try JSONDecoder().decode([PhotoItem.PhotoItemFromWeb].self, from: data)
             
@@ -85,7 +81,7 @@ extension PhotoItem {
                 
                 var uiImage = UIImage()
                 
-                if let url = URL(string: photoItemFromWeb.url), let data = try? Data(contentsOf: url) {
+                if let url = URL(string: photoItemFromWeb.download_url), let data = try? Data(contentsOf: url) {
                     if let image = UIImage(data: data) {
                         uiImage = image
                     }
@@ -93,7 +89,7 @@ extension PhotoItem {
                 
                 let photoItem = PhotoItem(image: uiImage,
                                           author: photoItemFromWeb.author,
-                                          description: photoItemFromWeb.url,
+                                          description: "the best photo of \(photoItemFromWeb.author)",
                                           likesCount: Int.random(in: 1...100),
                                           liked: Bool.random())
                 photoItems.append(photoItem)

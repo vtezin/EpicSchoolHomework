@@ -9,11 +9,21 @@ import UIKit
 
 // MARK: -  UITableViewController
 class TableViewController: UITableViewController {
-    private let photoItems = PhotoItem.testData
+    private var photoItems = [PhotoItem]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        PhotoItem.fetchDataFromWeb(handler: decodeData)
+    }
+    
+    func decodeData(data: Data) {
+        if let photoItems = PhotoItem.decodeDataToPhotoItems(data: data) {
+            self.photoItems = photoItems
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     private func setupTableView() {
@@ -27,9 +37,8 @@ class TableViewController: UITableViewController {
 
 // MARK: -  UITableViewDelegate
 extension TableViewController {
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        300
+        350
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +54,5 @@ extension TableViewController {
         cell.configureCell()
         
         return cell
-    }
-    
+    }    
 }
