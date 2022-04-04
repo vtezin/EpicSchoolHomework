@@ -65,6 +65,10 @@ extension PhotoItemTableViewCell {
     
     @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
+        heartView.alpha = 1
+        PhotoItemTableViewCell.animate(withDuration: 1.0) {
+            self.heartView.alpha = 0
+        }
         likedToggle()
     }
     
@@ -76,13 +80,6 @@ extension PhotoItemTableViewCell {
     }
     
     private func likedToggle() {
-        
-        heartView.alpha = 1
-
-        PhotoItemTableViewCell.animate(withDuration: 1.0) {
-            self.heartView.alpha = 0
-        }
-        
         photoItem?.likedToggle()
         updateLikesInfo()
     }
