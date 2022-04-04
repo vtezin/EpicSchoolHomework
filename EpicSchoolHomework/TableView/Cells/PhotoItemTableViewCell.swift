@@ -34,8 +34,8 @@ extension PhotoItemTableViewCell {
     
     func configureCell() {
         selectionStyle = .none
-        photoImageView.clipsToBounds = true
-        photoImageView.layer.cornerRadius = 8
+        photoScrollView.clipsToBounds = true
+        photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
         
         if let photoItem = photoItem {
