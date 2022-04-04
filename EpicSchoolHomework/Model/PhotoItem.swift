@@ -9,7 +9,8 @@ import UIKit
 
 // MARK: -  PhotoItem
 struct PhotoItem {
-    let image: UIImage
+    let image: UIImage?
+    let imageURL: String
     let author: String
     let description: String
     var likesCount: Int
@@ -47,6 +48,7 @@ extension PhotoItem {
     static var testData: [PhotoItem] {
         let testItems = (1...10).map{
             PhotoItem(image: UIImage(named: String($0))!,
+                      imageURL: "",
                       author: "автор фото \($0)",
                       description: "птичка \($0)",
                       likesCount: (1...100).randomElement()!,
@@ -79,15 +81,8 @@ extension PhotoItem {
             
             for photoItemFromWeb in photoItemsFromWeb {
                 
-                var uiImage = UIImage()
-                
-                if let url = URL(string: photoItemFromWeb.download_url), let data = try? Data(contentsOf: url) {
-                    if let image = UIImage(data: data) {
-                        uiImage = image
-                    }
-                }
-                
-                let photoItem = PhotoItem(image: uiImage,
+                let photoItem = PhotoItem(image: nil,
+                                          imageURL: photoItemFromWeb.download_url,
                                           author: photoItemFromWeb.author,
                                           description: "the best photo of \(photoItemFromWeb.author)",
                                           likesCount: Int.random(in: 1...100),

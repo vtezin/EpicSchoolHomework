@@ -24,6 +24,7 @@ final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
     }
     
     var photoItem: PhotoItem?
+    var isConfigured = false
     
     static let reuseIdentifier = String(describing: PhotoItemTableViewCell.self)
     
@@ -32,14 +33,29 @@ final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
 // MARK: -  Functions
 extension PhotoItemTableViewCell {
     
+    func setImageToCell(uiImage: UIImage?) {
+        if let uiImage = uiImage{
+            photoImageView.image = uiImage
+        }
+    }
+    
     func configureCell() {
+        
+        guard !isConfigured else {return}
+        
         selectionStyle = .none
         photoScrollView.clipsToBounds = true
         photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
         
         if let photoItem = photoItem {
-            photoImageView.image = photoItem.image
+            
+            if let image = photoItem.image{
+                photoImageView.image = image
+            } else {
+                NetworkController.getImage(with: photoItem.imageURL,
+                                           completion: setImageToCell)
+            }
             
             authorLabel.text = photoItem.author
             descriptionLabel.text = photoItem.description
@@ -56,6 +72,8 @@ extension PhotoItemTableViewCell {
         photoScrollView.delegate = self
         photoScrollView.minimumZoomScale = 1.0
         photoScrollView.maximumZoomScale = 10.0
+        
+        isConfigured = true
         
     }
     
