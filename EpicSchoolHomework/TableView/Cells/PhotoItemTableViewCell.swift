@@ -11,7 +11,6 @@ import UIKit
 final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
     
     @IBOutlet private weak var photoImageView: UIImageView!
-    
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var likesCountLabel: UILabel!
@@ -24,11 +23,21 @@ final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
     }
     
     var photoItem: PhotoItem?
-    var isConfigured = false
     
     static let reuseIdentifier = String(describing: PhotoItemTableViewCell.self)
     
 }
+
+// MARK: -  UITableViewCell
+extension PhotoItemTableViewCell {
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photoImageView.image = nil
+    }
+    
+}
+
 
 // MARK: -  Functions
 extension PhotoItemTableViewCell {
@@ -36,12 +45,11 @@ extension PhotoItemTableViewCell {
     func setImageToCell(uiImage: UIImage?) {
         if let uiImage = uiImage{
             photoImageView.image = uiImage
+            photoItem?.image = uiImage
         }
     }
     
     func configureCell() {
-        
-        guard !isConfigured else {return}
         
         selectionStyle = .none
         photoScrollView.clipsToBounds = true
@@ -50,12 +58,8 @@ extension PhotoItemTableViewCell {
         
         if let photoItem = photoItem {
             
-            if let image = photoItem.image{
-                photoImageView.image = image
-            } else {
-                NetworkController.getImage(with: photoItem.imageURL,
-                                           completion: setImageToCell)
-            }
+            NetworkController.getImage(with: photoItem.imageURL,
+                                       completion: setImageToCell)
             
             authorLabel.text = photoItem.author
             descriptionLabel.text = photoItem.description
@@ -72,8 +76,6 @@ extension PhotoItemTableViewCell {
         photoScrollView.delegate = self
         photoScrollView.minimumZoomScale = 1.0
         photoScrollView.maximumZoomScale = 10.0
-        
-        isConfigured = true
         
     }
     

@@ -53,8 +53,6 @@ extension TableViewController {
         cell.photoItem = photoItem
         cell.configureCell()
         
-        print("cellForRowAt \(indexPath.row) - \(photoItem.author)")
-        
         return cell
     }    
 }

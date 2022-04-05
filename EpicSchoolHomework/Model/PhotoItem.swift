@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: -  PhotoItem
 struct PhotoItem {
-    let image: UIImage?
+    var image: UIImage?
     let imageURL: String
     let author: String
     let description: String
