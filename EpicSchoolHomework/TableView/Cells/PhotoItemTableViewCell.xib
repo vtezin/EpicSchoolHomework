@@ -23,9 +23,14 @@
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-06-TJ6" userLabel="Photo">
                                 <rect key="frame" x="0.0" y="0.0" width="457" height="200"/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nuK-J3-K9C">
+                                <rect key="frame" x="218.5" y="90" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="nuK-J3-K9C" firstAttribute="centerY" secondItem="ThM-iM-jkB" secondAttribute="centerY" id="ATn-2k-Fpr"/>
                             <constraint firstItem="LUb-GN-XfT" firstAttribute="trailing" secondItem="z0h-06-TJ6" secondAttribute="trailing" id="HW0-Dk-7Ao"/>
+                            <constraint firstItem="nuK-J3-K9C" firstAttribute="centerX" secondItem="ThM-iM-jkB" secondAttribute="centerX" id="L8v-r0-Lym"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="top" secondItem="LUb-GN-XfT" secondAttribute="top" id="blf-Af-i4h"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="leading" secondItem="LUb-GN-XfT" secondAttribute="leading" id="fdS-YL-YHP"/>
                             <constraint firstItem="LUb-GN-XfT" firstAttribute="bottom" secondItem="z0h-06-TJ6" secondAttribute="bottom" id="wG1-1v-LcI"/>
@@ -110,6 +115,7 @@
                 <outlet property="heartView" destination="pe4-IE-LK3" id="Oyw-Bw-8mG"/>
                 <outlet property="likeButton" destination="p6P-zb-j7E" id="hUP-cU-CC8"/>
                 <outlet property="likesCountLabel" destination="D9N-Lx-b8d" id="1gW-Hc-QhK"/>
+                <outlet property="loadingActivityIndicator" destination="nuK-J3-K9C" id="dhN-dI-ppO"/>
                 <outlet property="photoImageView" destination="z0h-06-TJ6" id="ed0-LH-Ywm"/>
                 <outlet property="photoScrollView" destination="ThM-iM-jkB" id="gGv-dH-f6v"/>
             </connections>

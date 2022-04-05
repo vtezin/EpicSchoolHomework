@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C4092F9827FC144B0087B8F9 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4092F9727FC144B0087B8F9 /* SpinnerViewController.swift */; };
 		C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A229927EB030E0007994C /* PhotoItem.swift */; };
 		C40A229D27EB07050007994C /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A229C27EB07050007994C /* TableViewController.swift */; };
 		C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */; };
@@ -43,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C4092F9727FC144B0087B8F9 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		C40A229927EB030E0007994C /* PhotoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItem.swift; sourceTree = "<group>"; };
 		C40A229C27EB07050007994C /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 			children = (
 				C40A229C27EB07050007994C /* TableViewController.swift */,
 				C40A229E27EB08750007994C /* Cells */,
-				C4092F9727FC144B0087B8F9 /* SpinnerViewController.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -335,7 +332,6 @@
 				C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */,
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,
-				C4092F9827FC144B0087B8F9 /* SpinnerViewController.swift in Sources */,
 				C40A229D27EB07050007994C /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

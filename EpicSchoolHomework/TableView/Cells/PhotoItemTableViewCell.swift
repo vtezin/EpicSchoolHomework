@@ -10,6 +10,7 @@ import UIKit
 // MARK: -  PhotoItemTableViewCell
 final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
     
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
@@ -45,7 +46,7 @@ extension PhotoItemTableViewCell {
     func setImageToCell(uiImage: UIImage?) {
         if let uiImage = uiImage{
             photoImageView.image = uiImage
-            photoItem?.image = uiImage
+            loadingActivityIndicator.isHidden = true
         }
     }
     
