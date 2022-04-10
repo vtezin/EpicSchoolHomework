@@ -9,6 +9,7 @@ import UIKit
 
 // MARK: -  PhotoItem
 struct PhotoItem {
+    let id = UUID()
     var image: UIImage?
     let imageURL: String
     let author: String
@@ -23,6 +24,15 @@ struct PhotoItem {
             }
         }
     }
+    
+    var comments = [Comment]()
+    
+    struct Comment {
+        let id = UUID()
+        let author: String
+        var text: String
+    }
+    
 }
 
 // MARK: -  computed props
@@ -68,8 +78,9 @@ extension PhotoItem {
         let author: String
     }
     
-    static func fetchDataFromWeb(handler: @escaping (Data) -> Void) {
-        NetworkController.fetchData(handler: handler)
+    static func fetchDataFromWeb(numberOfItems: Int,
+                                 handler: @escaping (Data) -> Void) {
+        NetworkController.fetchData(numberOfItems: numberOfItems, handler: handler)
     }
     
     static func decodeDataToPhotoItems(data: Data) -> [PhotoItem]? {
@@ -81,12 +92,13 @@ extension PhotoItem {
             
             for photoItemFromWeb in photoItemsFromWeb {
                 
-                let photoItem = PhotoItem(image: nil,
+                var photoItem = PhotoItem(image: nil,
                                           imageURL: photoItemFromWeb.download_url,
                                           author: photoItemFromWeb.author,
                                           description: "the best photo of \(photoItemFromWeb.author)",
                                           likesCount: Int.random(in: 1...100),
                                           liked: Bool.random())
+                photoItem.comments.append(PhotoItem.Comment(author: photoItem.author, text: "This is my best photo!"))
                 photoItems.append(photoItem)
                 
             }
@@ -103,4 +115,8 @@ extension PhotoItem {
         case description = "url"
     }
     
+}
+
+protocol canUpdatePhotoItemInArray {
+    func updatePhotoItemInArray(photoItem: PhotoItem, index: Int)
 }

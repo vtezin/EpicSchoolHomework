@@ -39,6 +39,19 @@ extension PhotoItemTableViewCell {
     
 }
 
+// MARK: -  UIScrollViewDelegate
+extension PhotoItemTableViewCell{
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return photoImageView
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        scrollView.zoomScale = 1.0
+    }
+    
+}
+
 
 // MARK: -  Functions
 extension PhotoItemTableViewCell {
@@ -78,10 +91,6 @@ extension PhotoItemTableViewCell {
         photoScrollView.minimumZoomScale = 1.0
         photoScrollView.maximumZoomScale = 10.0
         
-    }
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return photoImageView
     }
     
     @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)

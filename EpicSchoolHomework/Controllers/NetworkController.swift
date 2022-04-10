@@ -10,9 +10,10 @@ import UIKit
 
 class NetworkController {
     
-    static func fetchData(handler: @escaping (Data) -> Void) {
+    static func fetchData(numberOfItems: Int,
+                          handler: @escaping (Data) -> Void) {
         let session = URLSession.shared
-        let url = URL(string: "https://picsum.photos/v2/list?page=2&limit=5")!
+        let url = URL(string: "https://picsum.photos/v2/list?page=2&limit=\(numberOfItems)")!
         
         let task = session.dataTask(with: url) { data, response, error in
             

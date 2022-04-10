@@ -1,0 +1,93 @@
+//
+//  CommentsListViewController.swift
+//  EpicSchoolHomework
+//
+//  Created by Vladimir Tezin on 07.04.2022.
+//
+
+import UIKit
+
+final class CommentsListViewController: UIViewController {
+ 
+    @IBOutlet weak var commentText: UITextView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func buttonAddCommenttapped(_ sender: Any) {
+        photoItem.comments.append(PhotoItem.Comment(author: "Me",
+                                          text: commentText.text))
+        commentText.text = ""
+        tableView.reloadData()
+    }
+        
+    var photoItem: PhotoItem
+    let indexPhotoItemInArray: Int
+    let delegate: canUpdatePhotoItemInArray
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(photoItem: PhotoItem,
+         indexPhotoItemInArray: Int,
+         delegate: canUpdatePhotoItemInArray) {
+        self.photoItem = photoItem
+        self.indexPhotoItemInArray = indexPhotoItemInArray
+        self.delegate = delegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupTableView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        delegate.updatePhotoItemInArray(photoItem: photoItem,
+                                        index: indexPhotoItemInArray)
+    }
+    
+    private func setupTableView() {
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.tableFooterView = UIView()
+        tableView.allowsSelection = false
+        
+        let nib = UINib(nibName: CommentCellView.reuseIdentifier, bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: CommentCellView.reuseIdentifier)
+        
+        navigationItem.title = photoItem.description
+        
+        commentText.layer.borderWidth = 0.5;
+        commentText.layer.borderColor = UIColor.gray.cgColor;
+        commentText.layer.cornerRadius = 5;
+        commentText.clipsToBounds = true;
+        
+        commentText.text = ""
+        
+    }
+    
+}
+
+// MARK: -  UITableViewDelegate, UITableViewDataSource
+extension CommentsListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return photoItem.comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let comment = photoItem.comments[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: CommentCellView.reuseIdentifier, for: indexPath) as! CommentCellView
+        cell.comment = comment
+        cell.configureCell()
+        
+        return cell
+    }
+    
+    
+}
