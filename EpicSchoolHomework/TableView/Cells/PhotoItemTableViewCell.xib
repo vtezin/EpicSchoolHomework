@@ -57,7 +57,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="PCb-sN-pAp">
-                        <rect key="frame" x="20" y="268" width="91" height="22"/>
+                        <rect key="frame" x="20" y="258" width="91" height="22"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9N-Lx-b8d" userLabel="Likes count label">
                                 <rect key="frame" x="0.0" y="0.0" width="63.5" height="22"/>
@@ -95,10 +95,12 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM8-hv-y61">
-                        <rect key="frame" x="383" y="259" width="94" height="31"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM8-hv-y61">
+                        <rect key="frame" x="374" y="246.5" width="103" height="33.5"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Comments"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Comments">
+                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                        </buttonConfiguration>
                         <connections>
                             <action selector="commentsButtonTapped:" destination="rvE-zY-Kya" eventType="touchUpInside" id="EyZ-uA-lQ8"/>
                         </connections>
@@ -107,12 +109,12 @@
                 <constraints>
                     <constraint firstItem="gTe-Fm-lKg" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" constant="20" id="NI0-O4-Bdo"/>
                     <constraint firstItem="ThM-iM-jkB" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" constant="20" id="PEN-sc-OCW"/>
-                    <constraint firstAttribute="bottom" secondItem="PCb-sN-pAp" secondAttribute="bottom" constant="10" id="RtP-SH-EYJ"/>
+                    <constraint firstAttribute="bottom" secondItem="PCb-sN-pAp" secondAttribute="bottom" constant="20" id="RtP-SH-EYJ"/>
                     <constraint firstItem="E0d-fa-h89" firstAttribute="top" secondItem="ThM-iM-jkB" secondAttribute="bottom" constant="10" id="TVu-W0-FPL"/>
                     <constraint firstAttribute="trailing" secondItem="IM8-hv-y61" secondAttribute="trailing" constant="20" id="WhP-2n-K4b"/>
                     <constraint firstAttribute="trailing" secondItem="ThM-iM-jkB" secondAttribute="trailing" constant="20" id="cJe-sq-cL2"/>
                     <constraint firstAttribute="trailing" secondItem="E0d-fa-h89" secondAttribute="trailing" constant="20" id="d9K-EU-EfU"/>
-                    <constraint firstAttribute="bottom" secondItem="IM8-hv-y61" secondAttribute="bottom" constant="10" id="fo7-fM-Big"/>
+                    <constraint firstAttribute="bottom" secondItem="IM8-hv-y61" secondAttribute="bottom" constant="20" id="fo7-fM-Big"/>
                     <constraint firstItem="pe4-IE-LK3" firstAttribute="centerX" secondItem="bdf-bY-Ml0" secondAttribute="centerX" id="hjE-Pm-2pP"/>
                     <constraint firstItem="pe4-IE-LK3" firstAttribute="top" secondItem="bdf-bY-Ml0" secondAttribute="top" constant="50" id="kMP-jU-wGq"/>
                     <constraint firstItem="gTe-Fm-lKg" firstAttribute="top" secondItem="ThM-iM-jkB" secondAttribute="bottom" constant="10" id="o7i-ou-Bhy"/>

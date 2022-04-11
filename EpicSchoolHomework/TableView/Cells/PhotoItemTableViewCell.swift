@@ -81,7 +81,7 @@ extension PhotoItemTableViewCell {
         
         authorLabel.text = photoItem!.author
         descriptionLabel.text = photoItem!.description
-        commentsButton.setTitle("Comments (\(photoItem!.comments.count))", for: .normal)
+        commentsButton.setTitle("Комментарии (\(photoItem!.comments.count))", for: .normal)
         
         updateLikesInfo()
         

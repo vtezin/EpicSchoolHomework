@@ -18,7 +18,7 @@ final class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        refreshLabel.text = "Loading data..."
+        refreshLabel.text = "Загрузка..."
         PhotoItem.fetchDataFromWeb(numberOfItems: 5, handler: decodeData)
     }
     
@@ -48,7 +48,7 @@ final class MainScreenViewController: UIViewController {
         let nib = UINib(nibName: PhotoItemTableViewCell.reuseIdentifier, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: PhotoItemTableViewCell.reuseIdentifier)
         
-        navigationItem.title = "Photos"
+        navigationItem.title = "Фотки"
         
     }
     
