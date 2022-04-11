@@ -42,7 +42,7 @@ final class MainScreenViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.tableFooterView = UIView()
-        //tableView.allowsSelection = false
+        tableView.allowsSelection = false
         tableView.separatorColor = .clear
         
         let nib = UINib(nibName: PhotoItemTableViewCell.reuseIdentifier, bundle: nil)
@@ -82,22 +82,21 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoItemTableViewCell.reuseIdentifier, for: indexPath) as! PhotoItemTableViewCell
         cell.photoItem = photoItem
+        cell.cellIndex = indexPath.row
+        cell.navigationHandler = navigateToComments
         cell.configureCell()
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let photoItem = photoItems[indexPath.row]
-        navigateToComments(photoItem: photoItem, cellIndex: indexPath.row)
-    }
-    
 }
 
+// MARK: -  canUpdatePhotoItemInArray
 extension MainScreenViewController: canUpdatePhotoItemInArray {
     func updatePhotoItemInArray(photoItem: PhotoItem, index: Int) {
         if 0...photoItems.count - 1 ~= index {
             photoItems[index] = photoItem
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         }
     }
 }

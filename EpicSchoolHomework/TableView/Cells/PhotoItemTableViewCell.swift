@@ -19,11 +19,17 @@ final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
     @IBOutlet private weak var heartView: HeartBezierView!
     @IBOutlet weak var photoScrollView: UIScrollView!
     
+    @IBOutlet weak var commentsButton: UIButton!
     @IBAction func likeButtonTapped(_ sender: Any) {
         likedToggle()
     }
+    @IBAction func commentsButtonTapped(_ sender: Any) {
+        navigationHandler!(photoItem!, cellIndex)
+    }
     
     var photoItem: PhotoItem?
+    var cellIndex: Int = 0
+    var navigationHandler: ((PhotoItem, Int) -> Void)? = nil
     
     static let reuseIdentifier = String(describing: PhotoItemTableViewCell.self)
     
@@ -69,17 +75,15 @@ extension PhotoItemTableViewCell {
         photoScrollView.clipsToBounds = true
         photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
+                    
+        NetworkController.getImage(with: photoItem!.imageURL,
+                                   completion: setImageToCell)
         
-        if let photoItem = photoItem {
-            
-            NetworkController.getImage(with: photoItem.imageURL,
-                                       completion: setImageToCell)
-            
-            authorLabel.text = photoItem.author
-            descriptionLabel.text = photoItem.description
-            
-            updateLikesInfo()
-        }
+        authorLabel.text = photoItem!.author
+        descriptionLabel.text = photoItem!.description
+        commentsButton.setTitle("Comments (\(photoItem!.comments.count))", for: .normal)
+        
+        updateLikesInfo()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         tapGestureRecognizer.numberOfTapsRequired = 2
@@ -103,14 +107,12 @@ extension PhotoItemTableViewCell {
     }
     
     private func updateLikesInfo() {
-        if let photoItem = photoItem {
-            likesCountLabel.text = photoItem.likesFormattedString
-            likeButton.alpha = photoItem.liked ? 1 : 0.3
-        }
+        likesCountLabel.text = photoItem!.likesFormattedString
+        likeButton.alpha = photoItem!.liked ? 1 : 0.3
     }
     
     private func likedToggle() {
-        photoItem?.likedToggle()
+        photoItem!.likedToggle()
         updateLikesInfo()
     }
     
