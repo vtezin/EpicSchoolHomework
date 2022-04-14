@@ -43,7 +43,6 @@ class NetworkController {
     }
     
     static func getImage(with stringUrl: String?, completion: @escaping (UIImage?) -> Void) {
-        
         if let stringUrl = stringUrl,
            let loadedImage = loadedImages[stringUrl] {
             DispatchQueue.main.async {
