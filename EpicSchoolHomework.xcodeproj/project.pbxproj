@@ -126,14 +126,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C40A229B27EB06ED0007994C /* TableView */ = {
+		C40A229B27EB06ED0007994C /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				C40A229E27EB08750007994C /* Cells */,
 				C4092FAB27FEAA400087B8F9 /* MainScreen */,
 				C4092FAC27FEAA690087B8F9 /* Comments */,
 			);
-			path = TableView;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C40A229E27EB08750007994C /* Cells */ = {
@@ -179,7 +179,7 @@
 				C416046327F3A6640074FE36 /* Controllers */,
 				C4BD2FDD27EDCE3800F3B30A /* Extensions */,
 				C4BD2FDC27EDCDEF00F3B30A /* CustomViews */,
-				C40A229B27EB06ED0007994C /* TableView */,
+				C40A229B27EB06ED0007994C /* Views */,
 				C40A229827EB02ED0007994C /* Model */,
 				C499F65327E4472D00DB2F9B /* AppDelegate.swift */,
 				C499F65C27E4472E00DB2F9B /* Assets.xcassets */,

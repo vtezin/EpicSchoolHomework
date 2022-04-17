@@ -39,11 +39,11 @@
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06p-NV-RZ4">
                             <rect key="frame" x="339" y="0.0" width="55" height="53"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="" subtitle=" ">
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="">
                                 <imageReference key="image" image="arrow.up.circle" catalog="system" symbolScale="large"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
-                            </buttonConfiguration>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                            </state>
                             <connections>
                                 <action selector="buttonAddCommenttapped:" destination="-1" eventType="touchUpInside" id="ses-xC-Q4v"/>
                             </connections>
