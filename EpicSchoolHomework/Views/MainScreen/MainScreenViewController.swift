@@ -19,20 +19,18 @@ final class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         refreshLabel.text = "Загрузка..."
-        PhotoItem.fetchDataFromWeb(numberOfItems: 5, handler: decodeData)
+        PhotoItem.fetchDataFromFirebase(handler: photoItemsFetched)
     }
     
-    func decodeData(data: Data) {
-        if let photoItems = PhotoItem.decodeDataToPhotoItems(data: data) {
-            self.photoItems.insert(contentsOf: photoItems, at: 0)
-            DispatchQueue.main.async {
-                self.tableView.refreshControl?.endRefreshing()
-                self.refreshLabel.isHidden = true
-                self.loadingActivityController.isHidden = true
-                self.tableView.reloadData()
-                self.tableView.refreshControl = UIRefreshControl()
-                self.tableView.refreshControl?.addTarget(self, action: #selector(self.callPullToRefresh), for: .valueChanged)
-            }
+    func photoItemsFetched(photoItems: [PhotoItem]) {
+        self.photoItems.insert(contentsOf: photoItems, at: 0)
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+            self.refreshLabel.isHidden = true
+            self.loadingActivityController.isHidden = true
+            self.tableView.reloadData()
+            self.tableView.refreshControl = UIRefreshControl()
+            self.tableView.refreshControl?.addTarget(self, action: #selector(self.callPullToRefresh), for: .valueChanged)
         }
     }
     
@@ -53,7 +51,7 @@ final class MainScreenViewController: UIViewController {
     }
     
     @objc func callPullToRefresh(){
-        PhotoItem.fetchDataFromWeb(numberOfItems: 1, handler: decodeData)
+        PhotoItem.fetchDataFromFirebase(handler: photoItemsFetched)
     }
     
     func navigateToComments(photoItem: PhotoItem, cellIndex: Int) {

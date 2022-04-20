@@ -76,7 +76,7 @@ extension PhotoItemTableViewCell {
         photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
                     
-        NetworkController.getImage(with: photoItem!.imageURL,
+        WebImagesProvider.getImage(with: photoItem!.imageURL,
                                    completion: setImageToCell)
         
         authorLabel.text = photoItem!.author
@@ -113,6 +113,7 @@ extension PhotoItemTableViewCell {
     
     private func likedToggle() {
         photoItem!.likedToggle()
+        
         updateLikesInfo()
     }
     

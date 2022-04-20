@@ -15,11 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        FirebaseApp.configure()
+        
         window = .init(frame: UIScreen.main.bounds)
         window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
         
-        FirebaseApp.configure()
         
         return true
     }

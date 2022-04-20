@@ -32,8 +32,17 @@ final class NewUserViewController: UIViewController {
         
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+
+}
+
+// MARK: -  Functions
+extension NewUserViewController {
+    
     private func login(email: String, password: String) {
-        
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
           
@@ -44,7 +53,6 @@ final class NewUserViewController: UIViewController {
             strongSelf.updateResultText("Вход выполнен")
             
         }
-        
     }
     
     private func registerNewUser(email: String, password: String) {
@@ -62,9 +70,4 @@ final class NewUserViewController: UIViewController {
         self.resultTextField.textColor = withError ? .red : .green
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-
 }

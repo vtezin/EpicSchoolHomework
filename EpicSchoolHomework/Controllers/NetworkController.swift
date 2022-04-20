@@ -10,8 +10,8 @@ import UIKit
 
 class NetworkController {
     
-    static func fetchData(numberOfItems: Int,
-                          handler: @escaping (Data) -> Void) {
+    static func fetchPhotoItems(numberOfItems: Int,
+                          handler: @escaping ([PhotoItem]) -> Void) {
         let session = URLSession.shared
         let url = URL(string: "https://picsum.photos/v2/list?page=2&limit=\(numberOfItems)")!
         
@@ -32,8 +32,9 @@ class NetworkController {
                 return
             }
             
-            if let data = data {
-                handler(data)
+            if let data = data,
+               let photoItems = PhotoItem.decodeDataToPhotoItems(data: data) {
+                handler(photoItems)
             } else {
                 print("No data")
             }
@@ -41,45 +42,5 @@ class NetworkController {
         
         task.resume()
     }
-    
-    static func getImage(with stringUrl: String?, completion: @escaping (UIImage?) -> Void) {
-        
-        if let stringUrl = stringUrl,
-           let loadedImage = loadedImages[stringUrl] {
-            DispatchQueue.main.async {
-                completion(loadedImage)
-            }
-        }
-        
-        guard
-            let stringUrl = stringUrl,
-            let url = URL(string: stringUrl)
-        else {
-            completion(nil)
-            return
-        }
-        
-        // здесь мы заставляем загружать нашу картинку в фоновом потоке,
-        // тем самым не блокируем UI
-        DispatchQueue.global(qos: .background).async {
-            let result: UIImage?
-            
-            if let imageData = try? Data(contentsOf: url) {
-                result = UIImage(data: imageData)
-                NetworkController.loadedImages[stringUrl] = result
-            } else {
-                result = nil
-            }
-            
-            // по окончанию загрузки здесь мы указываем, что хотим передать результат
-            // с картинкой в UI-потоке (только в этом потоке мы можем корректно изменять
-            // свойства наших View)
-            DispatchQueue.main.async {
-                completion(result)
-            }
-        }
-    }
-    
-    static var loadedImages = [String: UIImage]()
     
 }

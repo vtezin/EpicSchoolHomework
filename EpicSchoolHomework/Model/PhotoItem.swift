@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: -  PhotoItem
 struct PhotoItem {
-    let id = UUID()
+    let id: String
     var image: UIImage?
     let imageURL: String
     let author: String
@@ -22,6 +22,7 @@ struct PhotoItem {
             } else {
                 likesCount -= 1
             }
+            FireBaseDataProvider.shared.updateLikesInfo(photoItem: self)
         }
     }
     
@@ -57,7 +58,8 @@ extension PhotoItem {
 extension PhotoItem {
     static var testData: [PhotoItem] {
         let testItems = (1...10).map{
-            PhotoItem(image: UIImage(named: String($0))!,
+            PhotoItem(id: String($0),
+                      image: UIImage(named: String($0))!,
                       imageURL: "",
                       author: "автор фото \($0)",
                       description: "птичка \($0)",
@@ -67,6 +69,15 @@ extension PhotoItem {
         
         return testItems
     }
+}
+
+// MARK: -  fetching data from Firebase
+extension PhotoItem {
+    
+    static func fetchDataFromFirebase(handler: @escaping ([PhotoItem]) -> Void) {
+        FireBaseDataProvider.shared.fetchPhotoItems(handler: handler)
+    }
+    
 }
 
 // MARK: -  fetching data from web
@@ -79,8 +90,8 @@ extension PhotoItem {
     }
     
     static func fetchDataFromWeb(numberOfItems: Int,
-                                 handler: @escaping (Data) -> Void) {
-        NetworkController.fetchData(numberOfItems: numberOfItems, handler: handler)
+                                 handler: @escaping ([PhotoItem]) -> Void) {
+        NetworkController.fetchPhotoItems(numberOfItems: numberOfItems, handler: handler)
     }
     
     static func decodeDataToPhotoItems(data: Data) -> [PhotoItem]? {
@@ -92,7 +103,8 @@ extension PhotoItem {
             
             for photoItemFromWeb in photoItemsFromWeb {
                 
-                var photoItem = PhotoItem(image: nil,
+                var photoItem = PhotoItem(id: photoItemFromWeb.download_url,
+                                          image: nil,
                                           imageURL: photoItemFromWeb.download_url,
                                           author: photoItemFromWeb.author,
                                           description: "the best photo of \(photoItemFromWeb.author)",
