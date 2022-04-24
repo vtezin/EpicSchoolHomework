@@ -14,8 +14,26 @@ final class NewUserViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var resultTextField: UILabel!
     @IBOutlet weak var createNewUser: UISwitch!
+    @IBOutlet weak var userDetailsStackView: UIStackView!
+    @IBOutlet weak var logInOutButton: UIButton!
+    @IBOutlet weak var currentUserEmailLabel: UILabel!
+    @IBOutlet weak var currentUserInfoStackView: UIStackView!
+    
+    var handle: AuthStateDidChangeListenerHandle?
+    var userLoggedIn = false {
+        didSet{
+            logInOutButton.setTitle(userLoggedIn ? "Выйти" : "Войти", for: .normal)
+            userDetailsStackView.isHidden = userLoggedIn
+            currentUserInfoStackView.isHidden = !userLoggedIn
+        }
+    }
     
     @IBAction func enterButtonTapped(_ sender: Any) {
+        
+        if userLoggedIn {
+            logoutUser()
+            return
+        }
         
         guard let email = emailTextField.text,
               let password = passwordTextField.text,
@@ -32,9 +50,21 @@ final class NewUserViewController: UIViewController {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        handle = Auth.auth().addStateDidChangeListener { auth, user in
+            if let user = user {
+                self.currentUserEmailLabel.text = user.email
+                self.userLoggedIn = true
+            } else {
+                self.userLoggedIn = false
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
 
 }
@@ -63,6 +93,11 @@ extension NewUserViewController {
             }
             self.updateResultText("Пользователь зарегистрирован")
         }
+    }
+    
+    private func logoutUser() {
+        do { try Auth.auth().signOut() }
+        catch { print("already logged out") }
     }
     
     private func updateResultText(_ text: String, withError: Bool = false) {

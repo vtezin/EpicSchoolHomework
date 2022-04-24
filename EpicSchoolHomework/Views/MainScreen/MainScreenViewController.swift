@@ -47,7 +47,6 @@ final class MainScreenViewController: UIViewController {
         tableView.register(nib, forCellReuseIdentifier: PhotoItemTableViewCell.reuseIdentifier)
         
         navigationItem.title = "Фотки"
-        
     }
     
     @objc func callPullToRefresh(){

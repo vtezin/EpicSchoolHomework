@@ -32,8 +32,7 @@ struct PhotoItem {
         let id = UUID()
         let author: String
         var text: String
-    }
-    
+    }    
 }
 
 // MARK: -  computed props

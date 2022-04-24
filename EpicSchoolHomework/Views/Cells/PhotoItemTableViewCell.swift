@@ -37,17 +37,14 @@ final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
 
 // MARK: -  UITableViewCell
 extension PhotoItemTableViewCell {
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         photoImageView.image = nil
     }
-    
 }
 
 // MARK: -  UIScrollViewDelegate
 extension PhotoItemTableViewCell{
-    
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return photoImageView
     }
@@ -55,7 +52,6 @@ extension PhotoItemTableViewCell{
     func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
         scrollView.zoomScale = 1.0
     }
-    
 }
 
 
@@ -113,7 +109,6 @@ extension PhotoItemTableViewCell {
     
     private func likedToggle() {
         photoItem!.likedToggle()
-        
         updateLikesInfo()
     }
     
