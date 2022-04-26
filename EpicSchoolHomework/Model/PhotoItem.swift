@@ -70,15 +70,6 @@ extension PhotoItem {
     }
 }
 
-// MARK: -  fetching data from Firebase
-extension PhotoItem {
-    
-    static func fetchDataFromFirebase(handler: @escaping ([PhotoItem]) -> Void) {
-        FireBaseDataProvider.shared.fetchPhotoItems(handler: handler)
-    }
-    
-}
-
 // MARK: -  fetching data from web
 extension PhotoItem {
     
@@ -86,11 +77,6 @@ extension PhotoItem {
         let url: String
         let download_url: String
         let author: String
-    }
-    
-    static func fetchDataFromWeb(numberOfItems: Int,
-                                 handler: @escaping ([PhotoItem]) -> Void) {
-        NetworkController.fetchPhotoItems(numberOfItems: numberOfItems, handler: handler)
     }
     
     static func decodeDataToPhotoItems(data: Data) -> [PhotoItem]? {

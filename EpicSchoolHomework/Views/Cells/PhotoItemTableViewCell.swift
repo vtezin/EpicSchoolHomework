@@ -71,9 +71,9 @@ extension PhotoItemTableViewCell {
         photoScrollView.clipsToBounds = true
         photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
-                    
-        WebImagesProvider.getImage(with: photoItem!.imageURL,
-                                   completion: setImageToCell)
+        
+        FireBaseDataProvider.getImage(imageName: photoItem!.imageURL,
+                                      completion: setImageToCell)
         
         authorLabel.text = photoItem!.author
         descriptionLabel.text = photoItem!.description

@@ -8,10 +8,13 @@
 import Foundation
 import Firebase
 import FirebaseDatabase
+import FirebaseStorage
+import UIKit
 
 class FireBaseDataProvider {
     
     static let shared = FireBaseDataProvider()
+    static var loadedImages = [String: UIImage]()
     
     func fetchPhotoItems(handler: @escaping ([PhotoItem]) -> Void) {
         var photoItems = [PhotoItem]()
@@ -30,10 +33,11 @@ class FireBaseDataProvider {
                 
                 var comments = [PhotoItem.Comment]()
                 
-                let commentsValueArray = photoValue["comments"] as! NSArray
+                //let commentsValueArray = photoValue["comments"] as! NSArray
+                let commentsValueArray = photoValue["comments"] as! NSDictionary
                 
                 for comment in commentsValueArray {
-                    if let comment = comment as? NSDictionary {
+                    if let comment = comment.value as? NSDictionary {
                         comments.append(PhotoItem.Comment(author: comment["author"] as! String,
                                                           text: comment["text"] as! String))
                     }
@@ -58,6 +62,34 @@ class FireBaseDataProvider {
         
     }
     
+    static func getImage(imageName: String, completion: @escaping (UIImage?) -> Void) {
+        
+        if let loadedImage = loadedImages[imageName] {
+            DispatchQueue.main.async {
+                completion(loadedImage)
+            }
+        }
+        
+        let storageRef = Storage.storage().reference()
+        let imageRef = storageRef.child(imageName)
+        
+        imageRef.getData(maxSize: 1000 * 1024 * 1024) { data, error in
+            if let error = error {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            } else {
+                let result = UIImage(data: data!)
+                loadedImages[imageName] = result
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+        }
+    }
+
+    
     func updateLikesInfo(photoItem: PhotoItem) {
         let ref = Database.database().reference()
         let childUpdates = ["/photos/\(photoItem.id)/liked": photoItem.liked,
@@ -65,4 +97,14 @@ class FireBaseDataProvider {
         ref.updateChildValues(childUpdates)
     }
     
+    func addComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
+        let ref = Database.database().reference()
+        guard let key = ref.child("/photos/\(photoItem.id)/comments").childByAutoId().key else {
+            return
+        }
+        let post = ["author": comment.author,
+                    "text": comment.text]
+        let childUpdates = ["/photos/\(photoItem.id)/comments/\(key)": post]
+        ref.updateChildValues(childUpdates)
+    }
 }

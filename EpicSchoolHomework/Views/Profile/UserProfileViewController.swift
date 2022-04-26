@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-final class NewUserViewController: UIViewController {
+final class UserProfileViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -18,18 +18,20 @@ final class NewUserViewController: UIViewController {
     @IBOutlet weak var logInOutButton: UIButton!
     @IBOutlet weak var currentUserEmailLabel: UILabel!
     @IBOutlet weak var currentUserInfoStackView: UIStackView!
+    @IBOutlet weak var navigateToPhotoListButton: UIButton!
     
     var handle: AuthStateDidChangeListenerHandle?
     var userLoggedIn = false {
         didSet{
-            logInOutButton.setTitle(userLoggedIn ? "Выйти" : "Войти", for: .normal)
-            userDetailsStackView.isHidden = userLoggedIn
-            currentUserInfoStackView.isHidden = !userLoggedIn
+            loginStateDidChanged()
         }
     }
     
+    @IBAction func navigateToPhotoListTapped(_ sender: Any) {
+        navigateToPhotoList()
+    }
+    
     @IBAction func enterButtonTapped(_ sender: Any) {
-        
         if userLoggedIn {
             logoutUser()
             return
@@ -47,7 +49,6 @@ final class NewUserViewController: UIViewController {
         } else {
             login(email: email, password: password)
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,10 +68,15 @@ final class NewUserViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle!)
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = "Профиль"
+    }
+    
 }
 
 // MARK: -  Functions
-extension NewUserViewController {
+extension UserProfileViewController {
     
     private func login(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
@@ -82,6 +88,7 @@ extension NewUserViewController {
             }
             strongSelf.updateResultText("Вход выполнен")
             
+            self?.navigateToPhotoList()
         }
     }
     
@@ -105,4 +112,15 @@ extension NewUserViewController {
         self.resultTextField.textColor = withError ? .red : .green
     }
     
+    private func navigateToPhotoList() {
+        let vc = MainScreenViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func loginStateDidChanged() {
+        logInOutButton.setTitle(userLoggedIn ? "Выйти" : "Войти", for: .normal)
+        userDetailsStackView.isHidden = userLoggedIn
+        currentUserInfoStackView.isHidden = !userLoggedIn
+        navigateToPhotoListButton.isHidden = !userLoggedIn
+    }
 }

@@ -12,18 +12,24 @@ final class CommentsListViewController: UIViewController {
     @IBOutlet weak var commentText: UITextView!
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func buttonAddCommenttapped(_ sender: Any) {
-        photoItem.comments.append(PhotoItem.Comment(author: "Me",
-                                          text: commentText.text))
-        commentText.text = ""
-        tableView.reloadData()
-        commentText.endEditing(true)
-    }
-        
     var photoItem: PhotoItem
     let indexPhotoItemInArray: Int
     let delegate: canUpdatePhotoItemInArray
     
+    @IBAction func buttonAddCommenttapped(_ sender: Any) {
+        let newComment = PhotoItem.Comment(author: "Me",
+                                           text: commentText.text)
+                
+        photoItem.comments.append(newComment)
+        FireBaseDataProvider.shared.addComment(photoItem: photoItem,
+                                               comment: newComment)
+        
+        commentText.text = ""
+        tableView.reloadData()
+        commentText.endEditing(true)
+        
+    }
+        
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -50,7 +56,6 @@ final class CommentsListViewController: UIViewController {
     }
     
     private func setupTableView() {
-        
         tableView.delegate = self
         tableView.dataSource = self
         

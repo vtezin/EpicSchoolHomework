@@ -13,7 +13,7 @@ final class TabBarController: UITabBarController {
         super.viewDidLoad()
         configureApperance()
         
-        viewControllers = [createNavController(for: NewUserViewController(), title: NSLocalizedString("Профиль", comment: ""), imageName: "person"),
+        viewControllers = [createNavController(for: UserProfileViewController(), title: NSLocalizedString("Профиль", comment: ""), imageName: "person"),
             createNavController(for: MainScreenViewController(), title: NSLocalizedString("Фотки", comment: ""), imageName: "text.below.photo")
         ]
         

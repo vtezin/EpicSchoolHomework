@@ -19,11 +19,11 @@ final class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         refreshLabel.text = "Загрузка..."
-        PhotoItem.fetchDataFromFirebase(handler: photoItemsFetched)
+        FireBaseDataProvider.shared.fetchPhotoItems(handler: photoItemsFetched)
     }
     
     func photoItemsFetched(photoItems: [PhotoItem]) {
-        self.photoItems.insert(contentsOf: photoItems, at: 0)
+        self.photoItems = photoItems
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
             self.refreshLabel.isHidden = true
@@ -50,7 +50,7 @@ final class MainScreenViewController: UIViewController {
     }
     
     @objc func callPullToRefresh(){
-        PhotoItem.fetchDataFromFirebase(handler: photoItemsFetched)
+        FireBaseDataProvider.shared.fetchPhotoItems(handler: photoItemsFetched)
     }
     
     func navigateToComments(photoItem: PhotoItem, cellIndex: Int) {
