@@ -53,24 +53,7 @@ extension PhotoItem {
     }
 }
 
-// MARK: -  Test data
-extension PhotoItem {
-    static var testData: [PhotoItem] {
-        let testItems = (1...10).map{
-            PhotoItem(id: String($0),
-                      image: UIImage(named: String($0))!,
-                      imageURL: "",
-                      author: "автор фото \($0)",
-                      description: "птичка \($0)",
-                      likesCount: (1...100).randomElement()!,
-                      liked: Bool.random())
-        }
-        
-        return testItems
-    }
-}
-
-// MARK: -  fetching data from web
+// MARK: -  decoding data from web
 extension PhotoItem {
     
     private struct PhotoItemFromWeb: Codable {
