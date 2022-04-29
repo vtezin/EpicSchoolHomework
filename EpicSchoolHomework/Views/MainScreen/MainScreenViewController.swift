@@ -17,9 +17,15 @@ final class MainScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         setupTableView()
         refreshLabel.text = "Загрузка..."
-        FireBaseDataProvider.shared.fetchPhotoItems(handler: photoItemsFetched)
+        FireBaseDataProvider.fetchPhotoItems(handler: photoItemsFetched)
+    }
+    
+    @objc func addTapped() {
+        let vc = EditItemViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func photoItemsFetched(photoItems: [PhotoItem]) {
@@ -50,7 +56,7 @@ final class MainScreenViewController: UIViewController {
     }
     
     @objc func callPullToRefresh(){
-        FireBaseDataProvider.shared.fetchPhotoItems(handler: photoItemsFetched)
+        FireBaseDataProvider.fetchPhotoItems(handler: photoItemsFetched)
     }
     
     func navigateToComments(photoItem: PhotoItem, cellIndex: Int) {

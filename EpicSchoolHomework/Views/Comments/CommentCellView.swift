@@ -7,8 +7,7 @@
 
 import UIKit
 
-class CommentCellView: UITableViewCell {
-    
+final class CommentCellView: UITableViewCell {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
@@ -21,6 +20,5 @@ class CommentCellView: UITableViewCell {
         
         authorLabel.text = comment?.author
         commentLabel.text = comment?.text
-    }
-    
+    }    
 }

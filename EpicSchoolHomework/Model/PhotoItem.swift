@@ -14,15 +14,15 @@ struct PhotoItem {
     let imageURL: String
     let author: String
     let description: String
-    var likesCount: Int
-    var liked: Bool {
+    var likesCount: Int = 0
+    var liked: Bool = false {
         didSet{
             if liked {
                 likesCount += 1
             } else {
                 likesCount -= 1
             }
-            FireBaseDataProvider.shared.updateLikesInfo(photoItem: self)
+            FireBaseDataProvider.updateLikesInfo(photoItem: self)
         }
     }
     

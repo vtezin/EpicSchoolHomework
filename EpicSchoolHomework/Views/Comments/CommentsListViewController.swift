@@ -8,7 +8,6 @@
 import UIKit
 
 final class CommentsListViewController: UIViewController {
- 
     @IBOutlet weak var commentText: UITextView!
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,17 +16,7 @@ final class CommentsListViewController: UIViewController {
     let delegate: canUpdatePhotoItemInArray
     
     @IBAction func buttonAddCommenttapped(_ sender: Any) {
-        let newComment = PhotoItem.Comment(author: "Me",
-                                           text: commentText.text)
-                
-        photoItem.comments.append(newComment)
-        FireBaseDataProvider.shared.addComment(photoItem: photoItem,
-                                               comment: newComment)
-        
-        commentText.text = ""
-        tableView.reloadData()
-        commentText.endEditing(true)
-        
+        addComment()
     }
         
     required init?(coder: NSCoder) {
@@ -54,6 +43,22 @@ final class CommentsListViewController: UIViewController {
         delegate.updatePhotoItemInArray(photoItem: photoItem,
                                         index: indexPhotoItemInArray)
     }
+}
+
+// MARK: -  Functions
+extension CommentsListViewController {
+    private func addComment() {
+        let newComment = PhotoItem.Comment(author: FireBaseDataProvider.currentUserName,
+                                           text: commentText.text)
+                
+        photoItem.comments.append(newComment)
+        FireBaseDataProvider.addComment(photoItem: photoItem,
+                                               comment: newComment)
+                
+        commentText.text = ""
+        tableView.reloadData()
+        commentText.endEditing(true)
+    }
     
     private func setupTableView() {
         tableView.delegate = self
@@ -73,14 +78,11 @@ final class CommentsListViewController: UIViewController {
         commentText.clipsToBounds = true;
         
         commentText.text = ""
-        
     }
-    
 }
 
 // MARK: -  UITableViewDelegate, UITableViewDataSource
 extension CommentsListViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photoItem.comments.count
     }
@@ -95,14 +97,11 @@ extension CommentsListViewController: UITableViewDelegate, UITableViewDataSource
         
         return cell
     }
-    
 }
 
 // MARK: -  keyboard support
-
 extension CommentsListViewController {
-    
-    func addKeyboardNotifications() {
+    private func addKeyboardNotifications() {
         // call the 'keyboardWillShow' function when the view controller receive notification that keyboard is going to be shown
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -110,7 +109,7 @@ extension CommentsListViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
+    @objc private func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
            // if keyboard size is not available for some reason, dont do anything
            return
@@ -120,9 +119,8 @@ extension CommentsListViewController {
       self.view.frame.origin.y = 0 - keyboardSize.height
     }
     
-    @objc func keyboardWillHide(notification: NSNotification) {
+    @objc private func keyboardWillHide(notification: NSNotification) {
         // move back the root view origin to zero
         self.view.frame.origin.y = 0
     }
-    
 }

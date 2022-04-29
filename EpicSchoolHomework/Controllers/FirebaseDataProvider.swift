@@ -12,11 +12,16 @@ import FirebaseStorage
 import UIKit
 
 class FireBaseDataProvider {
+    static var loadedImagesCash = [String: UIImage]()
+    static var currentUserName: String {
+        if let curUser = Auth.auth().currentUser {
+            return curUser.email ?? "??"
+        } else {
+           return "??"
+        }
+    }
     
-    static let shared = FireBaseDataProvider()
-    static var loadedImages = [String: UIImage]()
-    
-    func fetchPhotoItems(handler: @escaping ([PhotoItem]) -> Void) {
+    static func fetchPhotoItems(handler: @escaping ([PhotoItem]) -> Void) {
         var photoItems = [PhotoItem]()
         
         let ref = Database.database().reference()
@@ -33,13 +38,12 @@ class FireBaseDataProvider {
                 
                 var comments = [PhotoItem.Comment]()
                 
-                //let commentsValueArray = photoValue["comments"] as! NSArray
-                let commentsValueArray = photoValue["comments"] as! NSDictionary
-                
-                for comment in commentsValueArray {
-                    if let comment = comment.value as? NSDictionary {
-                        comments.append(PhotoItem.Comment(author: comment["author"] as! String,
-                                                          text: comment["text"] as! String))
+                if let commentsValueArray = photoValue["comments"] as? NSDictionary {
+                    for comment in commentsValueArray {
+                        if let comment = comment.value as? NSDictionary {
+                            comments.append(PhotoItem.Comment(author: comment["author"] as! String,
+                                                              text: comment["text"] as! String))
+                        }
                     }
                 }
                 
@@ -59,12 +63,10 @@ class FireBaseDataProvider {
         }) { error in
             print(error.localizedDescription)
         }
-        
     }
     
-    static func getImage(imageName: String, completion: @escaping (UIImage?) -> Void) {
-        
-        if let loadedImage = loadedImages[imageName] {
+    static func getImageAsync(imageName: String, completion: @escaping (UIImage?) -> Void) {
+        if let loadedImage = loadedImagesCash[imageName] {
             DispatchQueue.main.async {
                 completion(loadedImage)
             }
@@ -81,7 +83,7 @@ class FireBaseDataProvider {
                 }
             } else {
                 let result = UIImage(data: data!)
-                loadedImages[imageName] = result
+                loadedImagesCash[imageName] = result
                 DispatchQueue.main.async {
                     completion(result)
                 }
@@ -89,15 +91,14 @@ class FireBaseDataProvider {
         }
     }
 
-    
-    func updateLikesInfo(photoItem: PhotoItem) {
+    static func updateLikesInfo(photoItem: PhotoItem) {
         let ref = Database.database().reference()
         let childUpdates = ["/photos/\(photoItem.id)/liked": photoItem.liked,
                             "/photos/\(photoItem.id)/likesCount": photoItem.likesCount] as [String : Any]
         ref.updateChildValues(childUpdates)
     }
     
-    func addComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
+    static func addComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
         let ref = Database.database().reference()
         guard let key = ref.child("/photos/\(photoItem.id)/comments").childByAutoId().key else {
             return
@@ -106,5 +107,40 @@ class FireBaseDataProvider {
                     "text": comment.text]
         let childUpdates = ["/photos/\(photoItem.id)/comments/\(key)": post]
         ref.updateChildValues(childUpdates)
+    }
+    
+    static func postItem(image: UIImage, description: String) {
+        
+        guard let data = image.jpegData(compressionQuality: 1),
+                !description.isEmpty else {
+            return
+        }
+
+        let imageURL = UUID().uuidString + ".jpg"
+        
+        let photoRef = Storage.storage().reference().child(imageURL)
+
+        let uploadTask = photoRef.putData(data, metadata: nil) { (metadata, error) in
+            
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            let ref = Database.database().reference()
+            guard let key = ref.child("/photos").childByAutoId().key else {
+                print("Upload error")
+                return
+            }
+            let post = ["author": FireBaseDataProvider.currentUserName,
+                        "text": description,
+                        "imageURL": imageURL,
+                        "liked": false,
+                        "likesCount": 0] as [String : Any]
+            let childUpdates = ["/photos/\(key)": post]
+            ref.updateChildValues(childUpdates)
+            
+        }            
+        
     }
 }
