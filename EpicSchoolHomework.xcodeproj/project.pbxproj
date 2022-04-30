@@ -46,6 +46,7 @@
 		C4EA32D12818E5FA0068282A /* EditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */; };
 		C4EA32D4281A2B800068282A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D3281A2B800068282A /* Realm */; };
 		C4EA32D6281A2B800068282A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D5281A2B800068282A /* RealmSwift */; };
+		C4EA32D8281BB2BD0068282A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32D7281BB2BD0068282A /* Date.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemViewController.xib; sourceTree = "<group>"; };
+		C4EA32D7281BB2BD0068282A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */,
+				C4EA32D7281BB2BD0068282A /* Date.swift */,
 				C4BD2FE027EDCECE00F3B30A /* Int.swift */,
 			);
 			path = Extensions;
@@ -444,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4BACD24280C746600A8D7C6 /* UserProfileViewController.swift in Sources */,
+				C4EA32D8281BB2BD0068282A /* Date.swift in Sources */,
 				C4EA32D02818E5FA0068282A /* EditItemViewController.swift in Sources */,
 				C4092FAA27FEAA2C0087B8F9 /* CommentsListViewController.swift in Sources */,
 				C4BACD12280C581D00A8D7C6 /* TabBarController.swift in Sources */,

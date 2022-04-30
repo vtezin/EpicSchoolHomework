@@ -14,6 +14,7 @@ struct PhotoItem {
     let imageURL: String
     let author: String
     let description: String
+    let addingDate: Date
     var likesCount: Int = 0
     var liked: Bool = false {
         didSet{
@@ -51,50 +52,6 @@ extension PhotoItem {
     mutating func likedToggle() {
         liked.toggle()
     }
-}
-
-// MARK: -  decoding data from web
-extension PhotoItem {
-    
-    private struct PhotoItemFromWeb: Codable {
-        let url: String
-        let download_url: String
-        let author: String
-    }
-    
-    static func decodeDataToPhotoItems(data: Data) -> [PhotoItem]? {
-        do {
-            let photoItemsFromWeb = try JSONDecoder().decode([PhotoItem.PhotoItemFromWeb].self, from: data)
-            
-            //convert PhotoItemFromWeb to PhotoItem
-            var photoItems = [PhotoItem]()
-            
-            for photoItemFromWeb in photoItemsFromWeb {
-                
-                var photoItem = PhotoItem(id: photoItemFromWeb.download_url,
-                                          image: nil,
-                                          imageURL: photoItemFromWeb.download_url,
-                                          author: photoItemFromWeb.author,
-                                          description: "the best photo of \(photoItemFromWeb.author)",
-                                          likesCount: Int.random(in: 1...100),
-                                          liked: Bool.random())
-                photoItem.comments.append(PhotoItem.Comment(author: photoItem.author, text: "This is my best photo!"))
-                photoItems.append(photoItem)
-                
-            }
-            return photoItems
-        } catch {
-            print("Data error: \(error)")
-        }
-        return nil
-    }
-    
-    
-    enum CodingKeys: String, CodingKey {
-        case author = "author"
-        case description = "url"
-    }
-    
 }
 
 protocol canUpdatePhotoItemInArray {

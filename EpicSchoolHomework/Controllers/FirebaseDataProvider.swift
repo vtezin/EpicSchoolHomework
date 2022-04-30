@@ -26,12 +26,18 @@ class FireBaseDataProvider {
         
         let ref = Database.database().reference()
         ref.child("photos").observeSingleEvent(of: .value, with: { snapshot in
-            let photos = snapshot.value as! NSDictionary
+            
+            guard let photos = snapshot.value as? NSDictionary else {
+                handler(photoItems)
+                return
+            }
+            
             for photo in photos {
                 let photoValue = photo.value as! NSDictionary
                 
                 let author = photoValue["author"] as? String ?? ""
                 let description = photoValue["description"] as? String ?? ""
+                let addedDateString = photoValue["addedDate"] as? String ?? Date().toString
                 let imageURL = photoValue["imageURL"] as? String ?? ""
                 let likesCount = photoValue["likesCount"] as? Int ?? 0
                 let liked = photoValue["liked"] as! Bool
@@ -52,12 +58,16 @@ class FireBaseDataProvider {
                                           imageURL: imageURL,
                                           author: author,
                                           description: description,
+                                          addingDate: Date.fromString(addedDateString),
                                           likesCount: likesCount,
                                           liked: liked,
                                           comments: comments)
                 
                 
                 photoItems.append(photoItem)
+            }
+            photoItems.sort{ item1, item2 in
+                item1.addingDate > item2.addingDate
             }
             handler(photoItems)
         }) { error in
@@ -133,7 +143,8 @@ class FireBaseDataProvider {
                 return
             }
             let post = ["author": FireBaseDataProvider.currentUserName,
-                        "text": description,
+                        "description": description,
+                        "addedDate": Date().toString,
                         "imageURL": imageURL,
                         "liked": false,
                         "likesCount": 0] as [String : Any]

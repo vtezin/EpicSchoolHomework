@@ -67,8 +67,7 @@ extension EditItemViewController {
     }
     
     private func configurePostButton() {
-        postItemButton.isEnabled = photoImageView.image != nil
-        && descriptionTextField.text != nil
+        postItemButton.isEnabled = photoImageView.image != nil && !(descriptionTextField.text?.isEmpty ?? false)
     }
     
     @objc private func textFieldDidChange() {
