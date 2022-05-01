@@ -40,7 +40,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHL-gM-QLl">
                             <rect key="frame" x="0.0" y="0.0" width="119.5" height="24"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal">
+                            <state key="normal" title=" Камера">
                                 <imageReference key="image" image="camera" catalog="system" symbolScale="default"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </state>
@@ -51,7 +51,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9on-E9-abE">
                             <rect key="frame" x="254.5" y="0.0" width="119.5" height="24"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="photo" catalog="system">
+                            <state key="normal" title=" Галерея" image="photo" catalog="system">
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </state>
                             <connections>

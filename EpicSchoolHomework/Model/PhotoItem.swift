@@ -23,7 +23,7 @@ struct PhotoItem {
             } else {
                 likesCount -= 1
             }
-            FireBaseDataProvider.updateLikesInfo(photoItem: self)
+            FireBaseController.updateLikesInfo(photoItem: self)
         }
     }
     

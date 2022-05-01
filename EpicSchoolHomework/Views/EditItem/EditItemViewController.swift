@@ -62,12 +62,19 @@ extension EditItemViewController {
             return
         }
 
-        FireBaseDataProvider.postItem(image: uiImage, description: description)
+        FireBaseController.postItem(image: uiImage, description: description)
         _ = navigationController?.popViewController(animated: true)
     }
     
     private func configurePostButton() {
         postItemButton.isEnabled = photoImageView.image != nil && !(descriptionTextField.text?.isEmpty ?? false)
+        
+        if postItemButton.isEnabled {
+            postItemButton.setTitle("Опубликовать", for: .normal)
+        } else {
+            postItemButton.setTitle("Выберите фото и введите описание", for: .normal)
+        }
+        
     }
     
     @objc private func textFieldDidChange() {

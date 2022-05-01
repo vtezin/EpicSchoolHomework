@@ -48,11 +48,11 @@ final class CommentsListViewController: UIViewController {
 // MARK: -  Functions
 extension CommentsListViewController {
     private func addComment() {
-        let newComment = PhotoItem.Comment(author: FireBaseDataProvider.currentUserName,
+        let newComment = PhotoItem.Comment(author: FireBaseController.currentUserName,
                                            text: commentText.text)
                 
         photoItem.comments.append(newComment)
-        FireBaseDataProvider.addComment(photoItem: photoItem,
+        FireBaseController.addComment(photoItem: photoItem,
                                                comment: newComment)
                 
         commentText.text = ""

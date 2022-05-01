@@ -1,5 +1,5 @@
 //
-//  FirebaseDataProvider.swift
+//  FireBaseController.swift
 //  EpicSchoolHomework
 //
 //  Created by Vladimir Tezin on 18.04.2022.
@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import UIKit
 
-class FireBaseDataProvider {
+class FireBaseController {
     static var loadedImagesCash = [String: UIImage]()
     static var currentUserName: String {
         if let curUser = Auth.auth().currentUser {
@@ -142,7 +142,7 @@ class FireBaseDataProvider {
                 print("Upload error")
                 return
             }
-            let post = ["author": FireBaseDataProvider.currentUserName,
+            let post = ["author": FireBaseController.currentUserName,
                         "description": description,
                         "addedDate": Date().toString,
                         "imageURL": imageURL,

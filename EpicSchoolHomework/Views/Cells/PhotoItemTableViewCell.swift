@@ -8,8 +8,7 @@
 import UIKit
 
 // MARK: -  PhotoItemTableViewCell
-final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
-    
+final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {    
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var authorLabel: UILabel!
@@ -32,7 +31,6 @@ final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
     var navigationHandler: ((PhotoItem, Int) -> Void)? = nil
     
     static let reuseIdentifier = String(describing: PhotoItemTableViewCell.self)
-    
 }
 
 // MARK: -  UITableViewCell
@@ -60,19 +58,20 @@ extension PhotoItemTableViewCell {
     
     func setImageToCell(uiImage: UIImage?) {
         if let uiImage = uiImage{
+            photoItem?.image = uiImage
             photoImageView.image = uiImage
             loadingActivityIndicator.isHidden = true
+            RealmController.saveItem(photoItem: self.photoItem!)
         }
     }
     
     func configureCell() {
-        
         selectionStyle = .none
         photoScrollView.clipsToBounds = true
         photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
         
-        FireBaseDataProvider.getImageAsync(imageName: photoItem!.imageURL,
+        FireBaseController.getImageAsync(imageName: photoItem!.imageURL,
                                       completion: setImageToCell)
         
         authorLabel.text = photoItem!.author

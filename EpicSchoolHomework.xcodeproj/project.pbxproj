@@ -27,7 +27,7 @@
 		C4BACD20280C731000A8D7C6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD1F280C731000A8D7C6 /* FirebaseAuth */; };
 		C4BACD24280C746600A8D7C6 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */; };
 		C4BACD25280C746600A8D7C6 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BACD23280C746600A8D7C6 /* UserProfileViewController.xib */; };
-		C4BACD27280D245200A8D7C6 /* FirebaseDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD26280D245200A8D7C6 /* FirebaseDataProvider.swift */; };
+		C4BACD27280D245200A8D7C6 /* FireBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD26280D245200A8D7C6 /* FireBaseController.swift */; };
 		C4BACD29280D269300A8D7C6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD28280D269300A8D7C6 /* DataProvider.swift */; };
 		C4BACD2E280E84E300A8D7C6 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD2D280E84E300A8D7C6 /* FirebaseDatabase */; };
 		C4BACD30280E84E300A8D7C6 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD2F280E84E300A8D7C6 /* FirebaseDatabaseSwift */; };
@@ -47,6 +47,7 @@
 		C4EA32D4281A2B800068282A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D3281A2B800068282A /* Realm */; };
 		C4EA32D6281A2B800068282A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D5281A2B800068282A /* RealmSwift */; };
 		C4EA32D8281BB2BD0068282A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32D7281BB2BD0068282A /* Date.swift */; };
+		C4EA32DA281DBE9B0068282A /* RealmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32D9281DBE9B0068282A /* RealmController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +91,7 @@
 		C4BACD1C280C6C5E00A8D7C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		C4BACD23280C746600A8D7C6 /* UserProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
-		C4BACD26280D245200A8D7C6 /* FirebaseDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataProvider.swift; sourceTree = "<group>"; };
+		C4BACD26280D245200A8D7C6 /* FireBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseController.swift; sourceTree = "<group>"; };
 		C4BACD28280D269300A8D7C6 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 		C4BD2FE027EDCECE00F3B30A /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemViewController.xib; sourceTree = "<group>"; };
 		C4EA32D7281BB2BD0068282A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		C4EA32D9281DBE9B0068282A /* RealmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,8 +193,9 @@
 		C416046327F3A6640074FE36 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C4BACD26280D245200A8D7C6 /* FirebaseDataProvider.swift */,
+				C4BACD26280D245200A8D7C6 /* FireBaseController.swift */,
 				C4BACD28280D269300A8D7C6 /* DataProvider.swift */,
+				C4EA32D9281DBE9B0068282A /* RealmController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -451,7 +454,8 @@
 				C4EA32D02818E5FA0068282A /* EditItemViewController.swift in Sources */,
 				C4092FAA27FEAA2C0087B8F9 /* CommentsListViewController.swift in Sources */,
 				C4BACD12280C581D00A8D7C6 /* TabBarController.swift in Sources */,
-				C4BACD27280D245200A8D7C6 /* FirebaseDataProvider.swift in Sources */,
+				C4EA32DA281DBE9B0068282A /* RealmController.swift in Sources */,
+				C4BACD27280D245200A8D7C6 /* FireBaseController.swift in Sources */,
 				C4092FB027FEAF4A0087B8F9 /* CommentCellView.swift in Sources */,
 				C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */,
 				C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */,
