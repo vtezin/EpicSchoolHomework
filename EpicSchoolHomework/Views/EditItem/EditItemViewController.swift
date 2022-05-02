@@ -74,7 +74,6 @@ extension EditItemViewController {
         } else {
             postItemButton.setTitle("Выберите фото и введите описание", for: .normal)
         }
-        
     }
     
     @objc private func textFieldDidChange() {

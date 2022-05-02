@@ -29,7 +29,5 @@ import UIKit
             self.tintColor.setFill()
             bezierPath.fill()
         }
-        
-    }
-    
+    }    
 }

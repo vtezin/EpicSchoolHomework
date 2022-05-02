@@ -74,7 +74,7 @@ extension MainScreenViewController {
         navigationItem.title = "Фотки"
     }
     
-    @objc func callPullToRefresh(){
+    @objc private func callPullToRefresh(){
         DataController.fetchPhotoItems(handler: photoItemsFetched)
     }
     
@@ -89,7 +89,6 @@ extension MainScreenViewController {
 // MARK: -  UITableViewDelegate, UITableViewDataSource
 
 extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         photoItems.count
     }
@@ -108,8 +107,7 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configureCell()
         
         return cell
-    }
-    
+    }    
 }
 
 // MARK: -  canUpdatePhotoItemInArray

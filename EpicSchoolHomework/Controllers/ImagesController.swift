@@ -14,7 +14,7 @@ class ImagesController {
     static func fetchImageForPhotoItem(photoItem: PhotoItem, completion: @escaping (UIImage?) -> Void) {
         var foundedImage: UIImage? = nil
         
-        //1. try get image from item and from cash
+        //1. try get image from item and from item cash
         if let image = photoItem.image {
             foundedImage = image
         } else if let image = ImagesController.loadedImagesCash[photoItem.imageURL] {

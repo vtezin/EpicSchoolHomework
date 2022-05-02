@@ -10,7 +10,6 @@ import Firebase
 import RealmSwift
 
 final class UserProfileViewController: UIViewController {
-
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var resultTextField: UILabel!
@@ -78,8 +77,7 @@ final class UserProfileViewController: UIViewController {
 }
 
 // MARK: -  Functions
-extension UserProfileViewController {
-    
+extension UserProfileViewController {    
     private func login(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
           guard let strongSelf = self else { return }

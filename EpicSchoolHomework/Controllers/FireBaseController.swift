@@ -92,7 +92,6 @@ class FireBaseController {
     }
 
     static func getImage(imageName: String, completion: @escaping (UIImage?) -> Void) {
-        
         let storageRef = Storage.storage().reference()
         let imageRef = storageRef.child(imageName)
         
@@ -130,7 +129,6 @@ class FireBaseController {
     }
     
     static func postItem(image: UIImage, description: String) {
-        
         guard let data = image.jpegData(compressionQuality: 1),
                 !description.isEmpty else {
             return
@@ -160,6 +158,5 @@ class FireBaseController {
             let childUpdates = ["/photos/\(key)": post]
             ref.updateChildValues(childUpdates)
         }            
-        
     }
 }

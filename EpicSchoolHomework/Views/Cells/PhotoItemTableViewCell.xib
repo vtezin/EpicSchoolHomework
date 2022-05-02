@@ -42,8 +42,8 @@
                         <viewLayoutGuide key="frameLayoutGuide" id="LUb-GN-XfT"/>
                     </scrollView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birdman" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTe-Fm-lKg" userLabel="Author label">
-                        <rect key="frame" x="20" y="230" width="68.5" height="20.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <rect key="frame" x="20" y="230" width="63.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -52,7 +52,7 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="200" id="HzB-XO-7ZI"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>

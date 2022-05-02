@@ -22,7 +22,6 @@
 		C499F66B27E4472E00DB2F9B /* EpicSchoolHomeworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F66A27E4472E00DB2F9B /* EpicSchoolHomeworkTests.swift */; };
 		C499F67527E4472E00DB2F9B /* EpicSchoolHomeworkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F67427E4472E00DB2F9B /* EpicSchoolHomeworkUITests.swift */; };
 		C499F67727E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F67627E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift */; };
-		C4BACD12280C581D00A8D7C6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD11280C581D00A8D7C6 /* TabBarController.swift */; };
 		C4BACD1D280C6C5E00A8D7C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4BACD1C280C6C5E00A8D7C6 /* GoogleService-Info.plist */; };
 		C4BACD20280C731000A8D7C6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD1F280C731000A8D7C6 /* FirebaseAuth */; };
 		C4BACD24280C746600A8D7C6 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */; };
@@ -89,7 +88,6 @@
 		C499F67027E4472E00DB2F9B /* EpicSchoolHomeworkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpicSchoolHomeworkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C499F67427E4472E00DB2F9B /* EpicSchoolHomeworkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpicSchoolHomeworkUITests.swift; sourceTree = "<group>"; };
 		C499F67627E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpicSchoolHomeworkUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C4BACD11280C581D00A8D7C6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C4BACD1C280C6C5E00A8D7C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		C4BACD23280C746600A8D7C6 /* UserProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 				C40A229E27EB08750007994C /* Cells */,
 				C4092FAB27FEAA400087B8F9 /* MainScreen */,
 				C4092FAC27FEAA690087B8F9 /* Comments */,
-				C4BACD11280C581D00A8D7C6 /* TabBarController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -459,7 +456,6 @@
 				C4EA32D8281BB2BD0068282A /* Date.swift in Sources */,
 				C4EA32D02818E5FA0068282A /* EditItemViewController.swift in Sources */,
 				C4092FAA27FEAA2C0087B8F9 /* CommentsListViewController.swift in Sources */,
-				C4BACD12280C581D00A8D7C6 /* TabBarController.swift in Sources */,
 				C4EA32DA281DBE9B0068282A /* RealmController.swift in Sources */,
 				C4BACD27280D245200A8D7C6 /* FireBaseController.swift in Sources */,
 				C4092FB027FEAF4A0087B8F9 /* CommentCellView.swift in Sources */,
