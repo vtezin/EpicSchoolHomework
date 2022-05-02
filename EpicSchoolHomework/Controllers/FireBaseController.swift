@@ -86,13 +86,8 @@ class FireBaseController {
             return
         }
     }
-    
-    static func getImageAsync(imageName: String, completion: @escaping (UIImage?) -> Void) {
-        if let loadedImage = loadedImagesCash[imageName] {
-            DispatchQueue.main.async {
-                completion(loadedImage)
-            }
-        }
+
+    static func getImage(imageName: String, completion: @escaping (UIImage?) -> Void) {
         
         let storageRef = Storage.storage().reference()
         let imageRef = storageRef.child(imageName)
@@ -105,14 +100,14 @@ class FireBaseController {
                 }
             } else {
                 let result = UIImage(data: data!)
-                loadedImagesCash[imageName] = result
+                ImagesController.loadedImagesCash[imageName] = result
                 DispatchQueue.main.async {
                     completion(result)
                 }
             }
         }
     }
-
+    
     static func updateLikesInfo(photoItem: PhotoItem) {
         let ref = Database.database().reference()
         let childUpdates = ["/photos/\(photoItem.id)/liked": photoItem.liked,

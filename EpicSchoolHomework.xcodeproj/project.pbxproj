@@ -42,6 +42,7 @@
 		C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE027EDCECE00F3B30A /* Int.swift */; };
 		C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */; };
 		C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */; };
+		C4C7DA96281F91860088FA4F /* ImagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA95281F91860088FA4F /* ImagesController.swift */; };
 		C4EA32D02818E5FA0068282A /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */; };
 		C4EA32D12818E5FA0068282A /* EditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */; };
 		C4EA32D4281A2B800068282A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D3281A2B800068282A /* Realm */; };
@@ -97,6 +98,7 @@
 		C4BD2FE027EDCECE00F3B30A /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBezierView.swift; sourceTree = "<group>"; };
 		C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
+		C4C7DA95281F91860088FA4F /* ImagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesController.swift; sourceTree = "<group>"; };
 		C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemViewController.xib; sourceTree = "<group>"; };
 		C4EA32D7281BB2BD0068282A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				C4BACD26280D245200A8D7C6 /* FireBaseController.swift */,
 				C4BACD28280D269300A8D7C6 /* DataProvider.swift */,
 				C4EA32D9281DBE9B0068282A /* RealmController.swift */,
+				C4C7DA95281F91860088FA4F /* ImagesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,
 				C4092FA627FD5EAB0087B8F9 /* MainScreenViewController.swift in Sources */,
+				C4C7DA96281F91860088FA4F /* ImagesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

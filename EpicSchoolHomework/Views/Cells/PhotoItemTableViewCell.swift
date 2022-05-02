@@ -71,7 +71,7 @@ extension PhotoItemTableViewCell {
         photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
         
-        FireBaseController.getImageAsync(imageName: photoItem!.imageURL,
+        ImagesController.fetchImageForPhotoItem(photoItem: photoItem!,
                                       completion: setImageToCell)
         
         authorLabel.text = photoItem!.author
