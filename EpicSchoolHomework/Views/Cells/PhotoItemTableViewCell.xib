@@ -42,8 +42,8 @@
                         <viewLayoutGuide key="frameLayoutGuide" id="LUb-GN-XfT"/>
                     </scrollView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birdman" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTe-Fm-lKg" userLabel="Author label">
-                        <rect key="frame" x="20" y="230" width="63.5" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="20" y="230" width="47" height="14.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -98,7 +98,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM8-hv-y61">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM8-hv-y61">
                         <rect key="frame" x="374" y="250" width="103" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="IM4-xY-x0V"/>

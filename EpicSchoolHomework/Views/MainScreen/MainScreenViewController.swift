@@ -87,14 +87,13 @@ extension MainScreenViewController {
 }
 
 // MARK: -  UITableViewDelegate, UITableViewDataSource
-
 extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         photoItems.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        350
+        300
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
