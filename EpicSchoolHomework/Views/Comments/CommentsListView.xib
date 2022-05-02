@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentsListViewController" customModule="EpicSchoolHomework" customModuleProvider="target">
             <connections>
+                <outlet property="addCommentStackView" destination="lTI-mt-JCQ" id="Vj4-eF-R4q"/>
                 <outlet property="commentText" destination="QFu-nn-8nN" id="mA9-q0-CyC"/>
                 <outlet property="tableView" destination="grQ-mD-lAe" id="JV3-y0-gvK"/>
                 <outlet property="view" destination="AZd-nc-eM7" id="44M-Rs-7XY"/>

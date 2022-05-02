@@ -55,7 +55,6 @@ extension PhotoItemTableViewCell{
 
 // MARK: -  Functions
 extension PhotoItemTableViewCell {
-    
     func setImageToCell(uiImage: UIImage?) {
         if let uiImage = uiImage{
             photoItem?.image = uiImage

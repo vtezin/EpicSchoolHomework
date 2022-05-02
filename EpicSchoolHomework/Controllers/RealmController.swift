@@ -112,5 +112,4 @@ final class RealmController {
         }
         return photoItems
     }
-    
 }

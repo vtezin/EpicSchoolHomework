@@ -25,9 +25,11 @@ final class MainScreenViewController: UIViewController {
           if snapshot.value as? Bool ?? false {
               self.refreshLabel.text = "Онлайн"
               self.refreshLabel.textColor = .green
+              self.navigationItem.rightBarButtonItem?.isEnabled = true
           } else {
               self.refreshLabel.text = "Оффлайн"
               self.refreshLabel.textColor = .red
+              self.navigationItem.rightBarButtonItem?.isEnabled = false
           }
             DataController.fetchPhotoItems(handler: self.photoItemsFetched)
         })

@@ -7,8 +7,7 @@
 
 import Foundation
 
-extension Date {
-    
+extension Date {    
     static var dateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy/MM/dd/hh/mm/ss"
@@ -16,10 +15,18 @@ extension Date {
     }
     
     static func fromString(_ string: String) -> Date {
-        return dateFormatter.date(from: string) ?? Date()
+        return Date.dateFormatter.date(from: string) ?? Date()
     }
     
     var toString: String {
         return Date.dateFormatter.string(from: self)
+    }
+    
+    var stringDescription: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = true
+        return formatter.string(from: self)        
     }
 }
