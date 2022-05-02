@@ -61,7 +61,7 @@ extension EditItemViewController {
         let description = descriptionTextField.text else {
             return
         }
-
+        
         FireBaseController.postItem(image: uiImage, description: description)
         _ = navigationController?.popViewController(animated: true)
     }

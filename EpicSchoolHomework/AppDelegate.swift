@@ -17,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+          if snapshot.value as? Bool ?? false {
+              FireBaseController.isConnected = true
+          } else {
+              FireBaseController.isConnected = false
+          }
+        })
+        
         window = .init(frame: UIScreen.main.bounds)
         //window?.rootViewController = TabBarController()
         

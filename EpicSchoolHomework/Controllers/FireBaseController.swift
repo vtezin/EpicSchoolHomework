@@ -20,9 +20,13 @@ class FireBaseController {
            return "??"
         }
     }
+    static var isConnected = false {
+        didSet{
+            print("isConnected = \(isConnected)")
+        }
+    }
     
-    static func fetchPhotoItems(handler: @escaping ([PhotoItem]) -> Void) {
-        
+    static func fetchPhotoItems(handler: @escaping ([PhotoItem]) -> Void) {        
         var photoItems = [PhotoItem]()
         
         let ref = Database.database().reference()
@@ -117,9 +121,7 @@ class FireBaseController {
     
     static func addComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
         let ref = Database.database().reference()
-        guard let key = ref.child("/photos/\(photoItem.id)/comments").childByAutoId().key else {
-            return
-        }
+        let key = comment.id
         let post = ["author": comment.author,
                     "text": comment.text,
                     "date": Date().toString]

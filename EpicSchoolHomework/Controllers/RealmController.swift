@@ -40,8 +40,8 @@ final class RealmController {
     static let config = Realm.Configuration(schemaVersion: 1)
     
     static func saveItem(photoItem: PhotoItem) {
-        //return
         let realm = try! Realm(configuration: config)
+        
         try! realm.write {
             let newItem = PhotoItemRealm()
             
@@ -55,15 +55,29 @@ final class RealmController {
             newItem.liked = photoItem.liked
             
             realm.add(newItem, update: .all)
-            
-            for comment in photoItem.comments {
-                let newComment = PhotoItemRealmComment()
-                newComment.id = comment.id
-                newComment.author = comment.author
-                newComment.text = comment.text
-                newComment.item = newItem
-                realm.add(newComment, update: .all)
-            }
+        }
+        
+        for comment in photoItem.comments{
+            saveComment(photoItem: photoItem, comment: comment)
+        }
+    }
+    
+    static func saveComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
+        let realm = try! Realm(configuration: config)
+        
+        let items = try! Realm(configuration: config).objects(PhotoItemRealm.self).where{
+            $0.id == photoItem.id
+        }
+        
+        guard let item = items.first else {return}
+        
+        try! realm.write {
+            let newComment = PhotoItemRealmComment()
+            newComment.id = comment.id
+            newComment.author = comment.author
+            newComment.text = comment.text
+            newComment.item = item
+            realm.add(newComment, update: .all)
         }
     }
     

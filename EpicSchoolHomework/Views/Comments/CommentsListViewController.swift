@@ -56,7 +56,7 @@ extension CommentsListViewController {
                 
         photoItem.comments.append(newComment)
         FireBaseController.addComment(photoItem: photoItem,
-                                               comment: newComment)
+                                      comment: newComment)
                 
         commentText.text = ""
         tableView.reloadData()

@@ -6,9 +6,9 @@
 //
 
 import UIKit
+import Firebase
 
-final class MainScreenViewController: UIViewController {
-    
+final class MainScreenViewController: UIViewController {    
     @IBOutlet weak var refreshLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingActivityController: UIActivityIndicatorView!
@@ -19,14 +19,28 @@ final class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         setupTableView()
+        
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+          if snapshot.value as? Bool ?? false {
+              self.refreshLabel.text = "Онлайн"
+              self.refreshLabel.textColor = .green
+          } else {
+              self.refreshLabel.text = "Оффлайн"
+              self.refreshLabel.textColor = .red
+          }
+            DataController.fetchPhotoItems(handler: self.photoItemsFetched)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshLabel.text = "Загрузка..."
-        FireBaseController.fetchPhotoItems(handler: photoItemsFetched)
+        DataController.fetchPhotoItems(handler: photoItemsFetched)
     }
-    
+}
+
+// MARK: -  Functions
+extension MainScreenViewController {
     @objc func addTapped() {
         let vc = EditItemViewController()
         navigationController?.pushViewController(vc, animated: true)
@@ -36,14 +50,13 @@ final class MainScreenViewController: UIViewController {
         self.photoItems = photoItems
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
-            self.refreshLabel.isHidden = true
+            //self.refreshLabel.isHidden = true
             self.loadingActivityController.isHidden = true
             self.tableView.reloadData()
             self.tableView.refreshControl = UIRefreshControl()
             self.tableView.refreshControl?.addTarget(self, action: #selector(self.callPullToRefresh), for: .valueChanged)
         }
     }
-    
     
     private func setupTableView() {
         tableView.delegate = self
@@ -60,16 +73,15 @@ final class MainScreenViewController: UIViewController {
     }
     
     @objc func callPullToRefresh(){
-        FireBaseController.fetchPhotoItems(handler: photoItemsFetched)
+        DataController.fetchPhotoItems(handler: photoItemsFetched)
     }
     
-    func navigateToComments(photoItem: PhotoItem, cellIndex: Int) {
+    private func navigateToComments(photoItem: PhotoItem, cellIndex: Int) {
         let vc = CommentsListViewController(photoItem: photoItem,
                                             indexPhotoItemInArray: cellIndex,
                                             delegate: self)
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 
 // MARK: -  UITableViewDelegate, UITableViewDataSource

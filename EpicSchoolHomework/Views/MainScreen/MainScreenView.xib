@@ -29,24 +29,24 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KM0-cN-hC5">
-                    <rect key="frame" x="10" y="115" width="394" height="737"/>
+                    <rect key="frame" x="10" y="90" width="394" height="752"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ovA-QD-lsI">
-                    <rect key="frame" x="197" y="85" width="20" height="20"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ovA-QD-lsI">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                 </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="cLh-5j-02S"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="nov-zS-2qY" firstAttribute="leading" secondItem="cLh-5j-02S" secondAttribute="leading" constant="10" id="1Ck-zF-6ow"/>
-                <constraint firstItem="ovA-QD-lsI" firstAttribute="top" secondItem="nov-zS-2qY" secondAttribute="bottom" constant="10" id="7VH-ZJ-exP"/>
+                <constraint firstItem="cLh-5j-02S" firstAttribute="bottom" secondItem="KM0-cN-hC5" secondAttribute="bottom" constant="20" id="43g-Rc-BF9"/>
                 <constraint firstItem="ovA-QD-lsI" firstAttribute="centerX" secondItem="lTJ-0s-SIb" secondAttribute="centerX" id="NET-Ya-bBH"/>
                 <constraint firstItem="cLh-5j-02S" firstAttribute="trailing" secondItem="KM0-cN-hC5" secondAttribute="trailing" constant="10" id="NQg-L6-hfg"/>
                 <constraint firstItem="nov-zS-2qY" firstAttribute="top" secondItem="cLh-5j-02S" secondAttribute="top" constant="10" id="Ysa-GO-NTD"/>
                 <constraint firstItem="cLh-5j-02S" firstAttribute="trailing" secondItem="nov-zS-2qY" secondAttribute="trailing" constant="10" id="cKk-pX-mNR"/>
-                <constraint firstItem="cLh-5j-02S" firstAttribute="bottom" secondItem="KM0-cN-hC5" secondAttribute="bottom" constant="10" id="ilZ-KE-7OS"/>
-                <constraint firstItem="KM0-cN-hC5" firstAttribute="top" secondItem="ovA-QD-lsI" secondAttribute="bottom" constant="10" id="pCL-6U-mPy"/>
+                <constraint firstItem="ovA-QD-lsI" firstAttribute="centerY" secondItem="lTJ-0s-SIb" secondAttribute="centerY" id="nfT-hX-UsO"/>
+                <constraint firstItem="KM0-cN-hC5" firstAttribute="top" secondItem="nov-zS-2qY" secondAttribute="bottom" constant="15" id="oyR-SJ-fMs"/>
                 <constraint firstItem="KM0-cN-hC5" firstAttribute="leading" secondItem="cLh-5j-02S" secondAttribute="leading" constant="10" id="tHg-wq-CXa"/>
             </constraints>
             <point key="canvasLocation" x="-589.85507246376812" y="40.848214285714285"/>
