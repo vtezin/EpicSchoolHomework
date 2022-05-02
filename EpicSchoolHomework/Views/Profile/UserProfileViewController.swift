@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 final class UserProfileViewController: UIViewController {
 
@@ -71,6 +72,7 @@ final class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Профиль"
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
 }

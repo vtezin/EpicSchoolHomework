@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 final class CommentsListViewController: UIViewController {
     @IBOutlet weak var commentText: UITextView!
@@ -48,8 +49,10 @@ final class CommentsListViewController: UIViewController {
 // MARK: -  Functions
 extension CommentsListViewController {
     private func addComment() {
-        let newComment = PhotoItem.Comment(author: FireBaseController.currentUserName,
-                                           text: commentText.text)
+        let newComment = PhotoItem.Comment(id: UUID().uuidString,
+                                           author: FireBaseController.currentUserName,
+                                           text: commentText.text,
+                                           date: Date())
                 
         photoItem.comments.append(newComment)
         FireBaseController.addComment(photoItem: photoItem,

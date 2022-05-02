@@ -30,9 +30,10 @@ struct PhotoItem {
     var comments = [Comment]()
     
     struct Comment {
-        let id = UUID()
+        let id: String
         let author: String
         var text: String
+        let date: Date
     }    
 }
 

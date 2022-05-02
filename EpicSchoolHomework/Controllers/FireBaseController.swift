@@ -46,12 +46,24 @@ class FireBaseController {
                 
                 if let commentsValueArray = photoValue["comments"] as? NSDictionary {
                     for comment in commentsValueArray {
-                        if let comment = comment.value as? NSDictionary {
-                            comments.append(PhotoItem.Comment(author: comment["author"] as! String,
-                                                              text: comment["text"] as! String))
+                        let commentID = comment.key as! String
+                        
+                        if let commentValue = comment.value as? NSDictionary {
+                            let commentAutor = commentValue["author"] as? String ?? "??"
+                            let commentDateString = commentValue["date"] as? String ?? Date().toString
+                            let commentText = commentValue["text"] as? String ?? "??"
+                            
+                            let photoItemComment = PhotoItem.Comment(id: commentID,
+                                                                     author: commentAutor,
+                                                                     text: commentText,
+                                                                     date: Date.fromString(commentDateString))
+                            
+                            comments.append(photoItemComment)
                         }
                     }
                 }
+                
+                comments.sort{$0.date < $1.date}
                 
                 let photoItem = PhotoItem(id: photo.key as! String,
                                           image: nil,
@@ -63,12 +75,9 @@ class FireBaseController {
                                           liked: liked,
                                           comments: comments)
                 
-                
                 photoItems.append(photoItem)
             }
-            photoItems.sort{ item1, item2 in
-                item1.addingDate > item2.addingDate
-            }
+            photoItems.sort{$0.addingDate > $1.addingDate}
             handler(photoItems)
         }) { error in
             print(error.localizedDescription)
@@ -114,7 +123,8 @@ class FireBaseController {
             return
         }
         let post = ["author": comment.author,
-                    "text": comment.text]
+                    "text": comment.text,
+                    "date": Date().toString]
         let childUpdates = ["/photos/\(photoItem.id)/comments/\(key)": post]
         ref.updateChildValues(childUpdates)
     }
@@ -131,7 +141,6 @@ class FireBaseController {
         let photoRef = Storage.storage().reference().child(imageURL)
 
         let uploadTask = photoRef.putData(data, metadata: nil) { (metadata, error) in
-            
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -150,7 +159,6 @@ class FireBaseController {
                         "likesCount": 0] as [String : Any]
             let childUpdates = ["/photos/\(key)": post]
             ref.updateChildValues(childUpdates)
-            
         }            
         
     }

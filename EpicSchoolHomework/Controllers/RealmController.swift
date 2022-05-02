@@ -22,18 +22,26 @@ final class PhotoItemRealm: Object {
     override static func primaryKey() -> String? {
       return "id"
     }
+}
+
+final class PhotoItemRealmComment: Object {
+    @objc dynamic var id: String = ""
+    @objc dynamic var item: PhotoItemRealm!
+    @objc dynamic var author: String = ""
+    @objc dynamic var text: String = ""
+    @objc dynamic var date: Date = Date()
     
-    class PhotoItemRealmComment: Object {
-        @objc dynamic var item: PhotoItemRealm!
-        @objc dynamic var author: String = ""
-        @objc dynamic var text: String = ""
+    override static func primaryKey() -> String? {
+      return "id"
     }
 }
 
-
 final class RealmController {
+    static let config = Realm.Configuration(schemaVersion: 1)
+    
     static func saveItem(photoItem: PhotoItem) {
-        let realm = try! Realm()
+        //return
+        let realm = try! Realm(configuration: config)
         try! realm.write {
             let newItem = PhotoItemRealm()
             
@@ -46,13 +54,14 @@ final class RealmController {
             newItem.likesCount = photoItem.likesCount
             newItem.liked = photoItem.liked
             
-            realm.add(newItem)
+            realm.add(newItem, update: .all)
             
             for comment in photoItem.comments {
-                let newComment = PhotoItemRealm.PhotoItemRealmComment()
+                let newComment = PhotoItemRealmComment()
+                newComment.id = comment.id
                 newComment.author = comment.author
                 newComment.text = comment.text
-                realm.add(newComment)
+                realm.add(newComment, update: .all)
             }
         }
     }
@@ -60,7 +69,7 @@ final class RealmController {
     static func fetchItems() -> [PhotoItem] {
         var photoItems = [PhotoItem]()
         
-        let items = try! Realm().objects(PhotoItemRealm.self).sorted(byKeyPath: "addingDate", ascending: false)
+        let items = try! Realm(configuration: config).objects(PhotoItemRealm.self).sorted(byKeyPath: "addingDate", ascending: false)
         
         for item in items {
             var photoItem = PhotoItem(id: item.id,
@@ -72,13 +81,16 @@ final class RealmController {
                                       likesCount: item.likesCount,
                                       liked: item.liked,
                                       comments: [PhotoItem.Comment]())
-            let comments = try! Realm().objects(PhotoItemRealm.PhotoItemRealmComment.self).where{
+            let comments = try! Realm().objects(PhotoItemRealmComment.self).sorted(byKeyPath: "date", ascending: true).where{
                 $0.item == item
             }
             
             for comment in comments {
-                photoItem.comments.append(PhotoItem.Comment(author: comment.author,
-                                                            text: comment.text))
+                photoItem.comments.append(PhotoItem.Comment(
+                    id: comment.id,
+                    author: comment.author,
+                    text: comment.text,
+                    date: comment.date))
             }
             photoItems.append(photoItem)
             
