@@ -61,6 +61,7 @@ final class RealmController {
                 newComment.id = comment.id
                 newComment.author = comment.author
                 newComment.text = comment.text
+                newComment.item = newItem
                 realm.add(newComment, update: .all)
             }
         }
@@ -81,7 +82,7 @@ final class RealmController {
                                       likesCount: item.likesCount,
                                       liked: item.liked,
                                       comments: [PhotoItem.Comment]())
-            let comments = try! Realm().objects(PhotoItemRealmComment.self).sorted(byKeyPath: "date", ascending: true).where{
+            let comments = try! Realm(configuration: config).objects(PhotoItemRealmComment.self).sorted(byKeyPath: "date", ascending: true).where{
                 $0.item == item
             }
             

@@ -22,6 +22,7 @@ class FireBaseController {
     }
     
     static func fetchPhotoItems(handler: @escaping ([PhotoItem]) -> Void) {
+        
         var photoItems = [PhotoItem]()
         
         let ref = Database.database().reference()
@@ -81,6 +82,8 @@ class FireBaseController {
             handler(photoItems)
         }) { error in
             print(error.localizedDescription)
+            handler(RealmController.fetchItems())
+            return
         }
     }
     
