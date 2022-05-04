@@ -26,7 +26,7 @@
 		C4BACD20280C731000A8D7C6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD1F280C731000A8D7C6 /* FirebaseAuth */; };
 		C4BACD24280C746600A8D7C6 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */; };
 		C4BACD25280C746600A8D7C6 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BACD23280C746600A8D7C6 /* UserProfileViewController.xib */; };
-		C4BACD27280D245200A8D7C6 /* FireBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD26280D245200A8D7C6 /* FireBaseController.swift */; };
+		C4BACD27280D245200A8D7C6 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD26280D245200A8D7C6 /* FireBaseService.swift */; };
 		C4BACD29280D269300A8D7C6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD28280D269300A8D7C6 /* DataProvider.swift */; };
 		C4BACD2E280E84E300A8D7C6 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD2D280E84E300A8D7C6 /* FirebaseDatabase */; };
 		C4BACD30280E84E300A8D7C6 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD2F280E84E300A8D7C6 /* FirebaseDatabaseSwift */; };
@@ -41,14 +41,14 @@
 		C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE027EDCECE00F3B30A /* Int.swift */; };
 		C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */; };
 		C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */; };
-		C4C7DA96281F91860088FA4F /* ImagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA95281F91860088FA4F /* ImagesController.swift */; };
-		C4C7DA98281FBC4F0088FA4F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA97281FBC4E0088FA4F /* DataController.swift */; };
+		C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA95281F91860088FA4F /* ImagesService.swift */; };
+		C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA97281FBC4E0088FA4F /* DataService.swift */; };
 		C4EA32D02818E5FA0068282A /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */; };
 		C4EA32D12818E5FA0068282A /* EditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */; };
 		C4EA32D4281A2B800068282A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D3281A2B800068282A /* Realm */; };
 		C4EA32D6281A2B800068282A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D5281A2B800068282A /* RealmSwift */; };
 		C4EA32D8281BB2BD0068282A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32D7281BB2BD0068282A /* Date.swift */; };
-		C4EA32DA281DBE9B0068282A /* RealmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32D9281DBE9B0068282A /* RealmController.swift */; };
+		C4EA32DA281DBE9B0068282A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32D9281DBE9B0068282A /* RealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,18 +91,18 @@
 		C4BACD1C280C6C5E00A8D7C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		C4BACD23280C746600A8D7C6 /* UserProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
-		C4BACD26280D245200A8D7C6 /* FireBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseController.swift; sourceTree = "<group>"; };
+		C4BACD26280D245200A8D7C6 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		C4BACD28280D269300A8D7C6 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 		C4BD2FE027EDCECE00F3B30A /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBezierView.swift; sourceTree = "<group>"; };
 		C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
-		C4C7DA95281F91860088FA4F /* ImagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesController.swift; sourceTree = "<group>"; };
-		C4C7DA97281FBC4E0088FA4F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		C4C7DA95281F91860088FA4F /* ImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesService.swift; sourceTree = "<group>"; };
+		C4C7DA97281FBC4E0088FA4F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemViewController.xib; sourceTree = "<group>"; };
 		C4EA32D7281BB2BD0068282A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		C4EA32D9281DBE9B0068282A /* RealmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmController.swift; sourceTree = "<group>"; };
+		C4EA32D9281DBE9B0068282A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,16 +191,16 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		C416046327F3A6640074FE36 /* Controllers */ = {
+		C416046327F3A6640074FE36 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C4BACD26280D245200A8D7C6 /* FireBaseController.swift */,
+				C4BACD26280D245200A8D7C6 /* FireBaseService.swift */,
 				C4BACD28280D269300A8D7C6 /* DataProvider.swift */,
-				C4EA32D9281DBE9B0068282A /* RealmController.swift */,
-				C4C7DA95281F91860088FA4F /* ImagesController.swift */,
-				C4C7DA97281FBC4E0088FA4F /* DataController.swift */,
+				C4EA32D9281DBE9B0068282A /* RealmService.swift */,
+				C4C7DA95281F91860088FA4F /* ImagesService.swift */,
+				C4C7DA97281FBC4E0088FA4F /* DataService.swift */,
 			);
-			path = Controllers;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		C499F64727E4472D00DB2F9B = {
@@ -226,7 +226,7 @@
 		C499F65227E4472D00DB2F9B /* EpicSchoolHomework */ = {
 			isa = PBXGroup;
 			children = (
-				C416046327F3A6640074FE36 /* Controllers */,
+				C416046327F3A6640074FE36 /* Services */,
 				C4BD2FDD27EDCE3800F3B30A /* Extensions */,
 				C4BD2FDC27EDCDEF00F3B30A /* CustomViews */,
 				C40A229B27EB06ED0007994C /* Views */,
@@ -456,19 +456,19 @@
 				C4EA32D8281BB2BD0068282A /* Date.swift in Sources */,
 				C4EA32D02818E5FA0068282A /* EditItemViewController.swift in Sources */,
 				C4092FAA27FEAA2C0087B8F9 /* CommentsListViewController.swift in Sources */,
-				C4EA32DA281DBE9B0068282A /* RealmController.swift in Sources */,
-				C4BACD27280D245200A8D7C6 /* FireBaseController.swift in Sources */,
+				C4EA32DA281DBE9B0068282A /* RealmService.swift in Sources */,
+				C4BACD27280D245200A8D7C6 /* FireBaseService.swift in Sources */,
 				C4092FB027FEAF4A0087B8F9 /* CommentCellView.swift in Sources */,
 				C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */,
 				C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */,
 				C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */,
 				C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */,
 				C4BACD29280D269300A8D7C6 /* DataProvider.swift in Sources */,
-				C4C7DA98281FBC4F0088FA4F /* DataController.swift in Sources */,
+				C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */,
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,
 				C4092FA627FD5EAB0087B8F9 /* MainScreenViewController.swift in Sources */,
-				C4C7DA96281F91860088FA4F /* ImagesController.swift in Sources */,
+				C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

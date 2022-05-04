@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import UIKit
 
-class FireBaseController {
+class FireBaseService {
     static var loadedImagesCash = [String: UIImage]()
     static var currentUserName: String {
         if let curUser = Auth.auth().currentUser {
@@ -86,7 +86,7 @@ class FireBaseController {
             handler(photoItems)
         }) { error in
             print(error.localizedDescription)
-            handler(RealmController.fetchItems())
+            handler(RealmService.fetchItems())
             return
         }
     }
@@ -103,7 +103,7 @@ class FireBaseController {
                 }
             } else {
                 let result = UIImage(data: data!)
-                ImagesController.loadedImagesCash[imageName] = result
+                ImagesService.loadedImagesCash[imageName] = result
                 DispatchQueue.main.async {
                     completion(result)
                 }
@@ -149,7 +149,7 @@ class FireBaseController {
                 print("Upload error")
                 return
             }
-            let post = ["author": FireBaseController.currentUserName,
+            let post = ["author": FireBaseService.currentUserName,
                         "description": description,
                         "addedDate": Date().toString,
                         "imageURL": imageURL,

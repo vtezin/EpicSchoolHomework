@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ImagesController {
+final class ImagesService {
     static var loadedImagesCash = [String: UIImage]()
     
     static func fetchImageForPhotoItem(photoItem: PhotoItem, completion: @escaping (UIImage?) -> Void) {
@@ -17,7 +17,7 @@ class ImagesController {
         //1. try get image from item and from item cash
         if let image = photoItem.image {
             foundedImage = image
-        } else if let image = ImagesController.loadedImagesCash[photoItem.imageURL] {
+        } else if let image = ImagesService.loadedImagesCash[photoItem.imageURL] {
             foundedImage = image
         }
         
@@ -29,6 +29,6 @@ class ImagesController {
         }
         
         //2. try get image from firebase
-        FireBaseController.getImage(imageName: photoItem.imageURL, completion: completion)
+        FireBaseService.getImage(imageName: photoItem.imageURL, completion: completion)
     }    
 }

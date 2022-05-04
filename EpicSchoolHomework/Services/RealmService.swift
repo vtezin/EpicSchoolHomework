@@ -36,7 +36,7 @@ final class PhotoItemRealmComment: Object {
     }
 }
 
-final class RealmController {
+final class RealmService {
     static let config = Realm.Configuration(schemaVersion: 1)
     
     static func saveItem(photoItem: PhotoItem) {

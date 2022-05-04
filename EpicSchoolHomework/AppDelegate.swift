@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
           if snapshot.value as? Bool ?? false {
-              FireBaseController.isConnected = true
+              FireBaseService.isConnected = true
           } else {
-              FireBaseController.isConnected = false
+              FireBaseService.isConnected = false
           }
         })
         

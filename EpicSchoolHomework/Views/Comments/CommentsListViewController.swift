@@ -36,7 +36,7 @@ final class CommentsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addCommentStackView.isHidden = !FireBaseController.isConnected
+        addCommentStackView.isHidden = !FireBaseService.isConnected
         setupTableView()
         addKeyboardNotifications()
     }
@@ -52,12 +52,12 @@ final class CommentsListViewController: UIViewController {
 extension CommentsListViewController {
     private func addComment() {
         let newComment = PhotoItem.Comment(id: UUID().uuidString,
-                                           author: FireBaseController.currentUserName,
+                                           author: FireBaseService.currentUserName,
                                            text: commentText.text,
                                            date: Date())
                 
         photoItem.comments.append(newComment)
-        FireBaseController.addComment(photoItem: photoItem,
+        FireBaseService.addComment(photoItem: photoItem,
                                       comment: newComment)
                 
         commentText.text = ""

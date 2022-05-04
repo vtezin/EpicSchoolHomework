@@ -60,7 +60,7 @@ extension PhotoItemTableViewCell {
             photoItem?.image = uiImage
             photoImageView.image = uiImage
             loadingActivityIndicator.isHidden = true
-            RealmController.saveItem(photoItem: self.photoItem!)
+            RealmService.saveItem(photoItem: self.photoItem!)
         }
     }
     
@@ -70,7 +70,7 @@ extension PhotoItemTableViewCell {
         photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
         
-        ImagesController.fetchImageForPhotoItem(photoItem: photoItem!,
+        ImagesService.fetchImageForPhotoItem(photoItem: photoItem!,
                                       completion: setImageToCell)
         
         authorLabel.text = photoItem!.author

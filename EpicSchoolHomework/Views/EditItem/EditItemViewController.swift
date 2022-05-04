@@ -62,7 +62,7 @@ extension EditItemViewController {
             return
         }
         
-        FireBaseController.postItem(image: uiImage, description: description)
+        FireBaseService.postItem(image: uiImage, description: description)
         _ = navigationController?.popViewController(animated: true)
     }
     

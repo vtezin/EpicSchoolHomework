@@ -31,15 +31,15 @@ final class MainScreenViewController: UIViewController {
               self.refreshLabel.textColor = .red
               self.navigationItem.rightBarButtonItem?.isEnabled = false
           }
-            DataController.fetchPhotoItems(handler: self.photoItemsFetched)
+            DataService.fetchPhotoItems(handler: self.photoItemsFetched)
         })
         
         let itemsRef = Database.database().reference().child("photos")
         itemsRef.observe(DataEventType.value, with: { snapshot in
-            DataController.fetchPhotoItems(handler: self.photoItemsFetched)
+            DataService.fetchPhotoItems(handler: self.photoItemsFetched)
         })
         
-        DataController.fetchPhotoItems(handler: self.photoItemsFetched)
+        DataService.fetchPhotoItems(handler: self.photoItemsFetched)
     }
 }
 
@@ -77,7 +77,7 @@ extension MainScreenViewController {
     }
     
     @objc private func callPullToRefresh(){
-        DataController.fetchPhotoItems(handler: photoItemsFetched)
+        DataService.fetchPhotoItems(handler: photoItemsFetched)
     }
     
     private func navigateToComments(photoItem: PhotoItem, cellIndex: Int) {

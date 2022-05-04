@@ -7,12 +7,12 @@
 
 import Foundation
 
-final class DataController {
+final class DataService {
     static func fetchPhotoItems(handler: @escaping ([PhotoItem]) -> Void) {
-        if FireBaseController.isConnected {
-            FireBaseController.fetchPhotoItems(handler: handler)
+        if FireBaseService.isConnected {
+            FireBaseService.fetchPhotoItems(handler: handler)
         } else {
-            let photoItems = RealmController.fetchItems()
+            let photoItems = RealmService.fetchItems()
             handler(photoItems)
         }
     }
