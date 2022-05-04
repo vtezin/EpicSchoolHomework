@@ -33,11 +33,13 @@ final class MainScreenViewController: UIViewController {
           }
             DataController.fetchPhotoItems(handler: self.photoItemsFetched)
         })
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        DataController.fetchPhotoItems(handler: photoItemsFetched)
+        
+        let itemsRef = Database.database().reference().child("photos")
+        itemsRef.observe(DataEventType.value, with: { snapshot in
+            DataController.fetchPhotoItems(handler: self.photoItemsFetched)
+        })
+        
+        DataController.fetchPhotoItems(handler: self.photoItemsFetched)
     }
 }
 

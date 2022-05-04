@@ -46,7 +46,7 @@ final class RealmController {
             let newItem = PhotoItemRealm()
             
             newItem.id = photoItem.id
-            newItem.imageData = (photoItem.image?.jpegData(compressionQuality: 5))!
+            newItem.imageData = (photoItem.image?.jpegData(compressionQuality: 0.5))!
             newItem.imageURL = photoItem.imageURL
             newItem.author = photoItem.author
             newItem.photoDescription = photoItem.description
@@ -54,7 +54,7 @@ final class RealmController {
             newItem.likesCount = photoItem.likesCount
             newItem.liked = photoItem.liked
             
-            realm.add(newItem, update: .all)
+            realm.add(newItem, update: .modified)
         }
         
         for comment in photoItem.comments{
@@ -77,7 +77,7 @@ final class RealmController {
             newComment.author = comment.author
             newComment.text = comment.text
             newComment.item = item
-            realm.add(newComment, update: .all)
+            realm.add(newComment, update: .modified)
         }
     }
     
