@@ -16,6 +16,8 @@
 		C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A229927EB030E0007994C /* PhotoItem.swift */; };
 		C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */; };
 		C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A22A127EB0BE70007994C /* PhotoItemTableViewCell.swift */; };
+		C45379BA282568E000A1BF55 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = C45379B9282568E000A1BF55 /* TinyConstraints */; };
+		C45379BD28256B1800A1BF55 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = C45379BC28256B1800A1BF55 /* Charts */; };
 		C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F65327E4472D00DB2F9B /* AppDelegate.swift */; };
 		C499F65D27E4472E00DB2F9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C499F65C27E4472E00DB2F9B /* Assets.xcassets */; };
 		C499F66027E4472E00DB2F9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */; };
@@ -119,7 +121,9 @@
 				C4BACD2E280E84E300A8D7C6 /* FirebaseDatabase in Frameworks */,
 				C4BACD20280C731000A8D7C6 /* FirebaseAuth in Frameworks */,
 				C4BACD3D280E85F400A8D7C6 /* FirebaseFirestore in Frameworks */,
+				C45379BD28256B1800A1BF55 /* Charts in Frameworks */,
 				C4BACD39280E85F400A8D7C6 /* FirebaseAuth in Frameworks */,
+				C45379BA282568E000A1BF55 /* TinyConstraints in Frameworks */,
 				C4BACD3B280E85F400A8D7C6 /* FirebaseDatabase in Frameworks */,
 				C4BACD36280E84E300A8D7C6 /* FirebaseStorage in Frameworks */,
 			);
@@ -323,6 +327,8 @@
 				C4BACD3E280E85F400A8D7C6 /* FirebaseStorage */,
 				C4EA32D3281A2B800068282A /* Realm */,
 				C4EA32D5281A2B800068282A /* RealmSwift */,
+				C45379B9282568E000A1BF55 /* TinyConstraints */,
+				C45379BC28256B1800A1BF55 /* Charts */,
 			);
 			productName = EpicSchoolHomework;
 			productReference = C499F65027E4472D00DB2F9B /* EpicSchoolHomework.app */;
@@ -401,6 +407,8 @@
 				C4BACD2C280E84E200A8D7C6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C4BACD37280E85F400A8D7C6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C4EA32D2281A2B800068282A /* XCRemoteSwiftPackageReference "realm-swift" */,
+				C45379B8282568E000A1BF55 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+				C45379BB28256B1800A1BF55 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = C499F65127E4472D00DB2F9B /* Products */;
 			projectDirPath = "";
@@ -806,6 +814,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C45379B8282568E000A1BF55 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roberthein/TinyConstraints.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		C45379BB28256B1800A1BF55 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		C4BACD1E280C731000A8D7C6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -841,6 +865,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C45379B9282568E000A1BF55 /* TinyConstraints */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C45379B8282568E000A1BF55 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			productName = TinyConstraints;
+		};
+		C45379BC28256B1800A1BF55 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C45379BB28256B1800A1BF55 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
 		C4BACD1F280C731000A8D7C6 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4BACD1E280C731000A8D7C6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

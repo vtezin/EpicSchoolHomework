@@ -44,8 +44,6 @@ class FireBaseService {
                 let description = photoValue["description"] as? String ?? ""
                 let addedDateString = photoValue["addedDate"] as? String ?? Date().toString
                 let imageURL = photoValue["imageURL"] as? String ?? ""
-                let likesCount = photoValue["likesCount"] as? Int ?? 0
-                let liked = photoValue["liked"] as! Bool
                 
                 var comments = [PhotoItem.Comment]()
                 
@@ -70,15 +68,33 @@ class FireBaseService {
                 
                 comments.sort{$0.date < $1.date}
                 
+                var likes = [PhotoItem.Like]()
+                
+                if let likesValueArray = photoValue["likes"] as? NSDictionary {
+                    for like in likesValueArray {
+                        
+                        if let likeValue = like.value as? NSDictionary {
+                            let likeUser = likeValue["user"] as? String ?? "??"
+                            let likeDateString = likeValue["date"] as? String ?? Date().toString
+                            
+                            let photoItemLike = PhotoItem.Like(user: likeUser,
+                                                               date: Date.fromString(likeDateString))
+                            
+                            likes.append(photoItemLike)
+                        }
+                    }
+                }
+                
+                likes.sort{$0.date < $1.date}
+                
                 let photoItem = PhotoItem(id: photo.key as! String,
                                           image: nil,
                                           imageURL: imageURL,
                                           author: author,
                                           description: description,
                                           addingDate: Date.fromString(addedDateString),
-                                          likesCount: likesCount,
-                                          liked: liked,
-                                          comments: comments)
+                                          comments: comments,
+                                          likes: likes)
                 
                 photoItems.append(photoItem)
             }
@@ -113,9 +129,18 @@ class FireBaseService {
     
     static func updateLikesInfo(photoItem: PhotoItem) {
         let ref = Database.database().reference()
-        let childUpdates = ["/photos/\(photoItem.id)/liked": photoItem.liked,
-                            "/photos/\(photoItem.id)/likesCount": photoItem.likesCount] as [String : Any]
-        ref.updateChildValues(childUpdates)
+        let key = currentUserName.filter{$0 != "@" && $0 != "."
+        }
+        
+        if photoItem.isLikedByUser(userName: currentUserName) {
+            let post = ["user": currentUserName,
+                        "date": Date().toString]
+            let childUpdates = ["/photos/\(photoItem.id)/likes/\(key)": post]
+            ref.updateChildValues(childUpdates)
+        } else {
+            let childUpdates = ["/photos/\(photoItem.id)/likes/\(key)": nil] as [String : Any?]
+            ref.updateChildValues(childUpdates as [AnyHashable : Any])
+        }
     }
     
     static func addComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {

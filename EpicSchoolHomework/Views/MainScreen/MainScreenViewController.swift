@@ -38,8 +38,6 @@ final class MainScreenViewController: UIViewController {
         itemsRef.observe(DataEventType.value, with: { snapshot in
             DataService.fetchPhotoItems(handler: self.photoItemsFetched)
         })
-        
-        DataService.fetchPhotoItems(handler: self.photoItemsFetched)
     }
 }
 

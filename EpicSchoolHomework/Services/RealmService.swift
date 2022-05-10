@@ -16,8 +16,6 @@ final class PhotoItemRealm: Object {
     @objc dynamic var author: String = ""
     @objc dynamic var photoDescription: String = ""
     @objc dynamic var addingDate: Date = Date()
-    @objc dynamic var likesCount: Int = 0
-    @objc dynamic var liked = false
     
     override static func primaryKey() -> String? {
       return "id"
@@ -36,11 +34,23 @@ final class PhotoItemRealmComment: Object {
     }
 }
 
+final class PhotoItemRealmLike: Object {
+    @objc dynamic var item: PhotoItemRealm!
+    @objc dynamic var user: String = ""
+    @objc dynamic var date: Date = Date()
+    @objc dynamic var id = UUID().uuidString
+    
+    override static func primaryKey() -> String? {
+      return "id"
+    }
+}
+
 final class RealmService {
-    static let config = Realm.Configuration(schemaVersion: 1)
+    static let config = Realm.Configuration(schemaVersion: 4)
     
     static func saveItem(photoItem: PhotoItem) {
         let realm = try! Realm(configuration: config)
+        //print("Realm is located at:", realm.configuration.fileURL!)
         
         try! realm.write {
             let newItem = PhotoItemRealm()
@@ -51,14 +61,25 @@ final class RealmService {
             newItem.author = photoItem.author
             newItem.photoDescription = photoItem.description
             newItem.addingDate = photoItem.addingDate
-            newItem.likesCount = photoItem.likesCount
-            newItem.liked = photoItem.liked
             
             realm.add(newItem, update: .modified)
+            
+            //clear likes info
+            let likes = realm.objects(PhotoItemRealmLike.self).where{
+                $0.item == newItem
+            }
+            for like in likes{
+                realm.delete(like)
+            }
         }
         
         for comment in photoItem.comments{
             saveComment(photoItem: photoItem, comment: comment)
+        }
+        
+        
+        for like in photoItem.likes{
+            saveLike(photoItem: photoItem, like: like)
         }
     }
     
@@ -77,7 +98,26 @@ final class RealmService {
             newComment.author = comment.author
             newComment.text = comment.text
             newComment.item = item
+            newComment.date = comment.date
             realm.add(newComment, update: .modified)
+        }
+    }
+    
+    static func saveLike(photoItem: PhotoItem, like: PhotoItem.Like) {
+        let realm = try! Realm(configuration: config)
+        
+        let items = try! Realm(configuration: config).objects(PhotoItemRealm.self).where{
+            $0.id == photoItem.id
+        }
+        
+        guard let item = items.first else {return}
+        
+        try! realm.write {
+            let newLike = PhotoItemRealmLike()
+            newLike.user = like.user
+            newLike.date = like.date
+            newLike.item = item
+            realm.add(newLike, update: .modified)
         }
     }
     
@@ -93,8 +133,6 @@ final class RealmService {
                                       author: item.author,
                                       description: item.photoDescription,
                                       addingDate: item.addingDate,
-                                      likesCount: item.likesCount,
-                                      liked: item.liked,
                                       comments: [PhotoItem.Comment]())
             let comments = try! Realm(configuration: config).objects(PhotoItemRealmComment.self).sorted(byKeyPath: "date", ascending: true).where{
                 $0.item == item
@@ -107,6 +145,16 @@ final class RealmService {
                     text: comment.text,
                     date: comment.date))
             }
+            
+            let likes = try! Realm(configuration: config).objects(PhotoItemRealmLike.self).sorted(byKeyPath: "date", ascending: true).where{
+                $0.item == item
+            }
+            
+            for like in likes {
+                photoItem.likes.append(PhotoItem.Like(user: like.user,
+                                                      date: like.date))
+            }
+            
             photoItems.append(photoItem)
             
         }

@@ -93,6 +93,7 @@ extension PhotoItemTableViewCell {
     
     @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
+        guard FireBaseService.isConnected else {return}
         heartView.alpha = 1
         PhotoItemTableViewCell.animate(withDuration: 1.0) {
             self.heartView.alpha = 0
@@ -102,11 +103,13 @@ extension PhotoItemTableViewCell {
     
     private func updateLikesInfo() {
         likesCountLabel.text = photoItem!.likesFormattedString
-        likeButton.alpha = photoItem!.liked ? 1 : 0.3
+        likeButton.alpha = photoItem!.isLikedByUser(userName: FireBaseService.currentUserName) ? 1 : 0.3
     }
     
     private func likedToggle() {
-        photoItem!.likedToggle()
+        guard FireBaseService.isConnected else {return}
+        photoItem!.toggleLikeByUser(userName: FireBaseService.currentUserName)
+        FireBaseService.updateLikesInfo(photoItem: photoItem!)
         updateLikesInfo()
     }
     
