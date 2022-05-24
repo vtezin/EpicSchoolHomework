@@ -6,19 +6,39 @@
 //
 
 import UIKit
+import MapKit
+import Photos
 
 final class EditItemViewController: UIViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var postItemButton: UIButton!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    var photoItem: PhotoItem?
+    var takeNewPhotoFromCamera = true
+    private let locationManager = CLLocationManager()
+    private var itemCoordinates: CLLocationCoordinate2D?
+    private var currentCoordinate: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         addKeyboardNotifications()
         configurePostButton()
+        configureMapView()
+        configureLocationServices()
+        
+        if photoItem == nil {
+            takeImage(fromCamera: takeNewPhotoFromCamera)
+        }        
     }
     
+}
+
+// MARK: -  IBActions
+extension EditItemViewController {
+  
     @IBAction func takeImageFromCameraTapped(_ sender: Any) {
         takeImage(fromCamera: true)
     }
@@ -28,9 +48,70 @@ final class EditItemViewController: UIViewController {
     }
 
     @IBAction func postItemButtonTapped(_ sender: Any) {
-        postItem()        
+        postItem()
+    }
+    
+}
+
+// MARK: -  CLLocationManagerDelegate, Map & Location
+extension EditItemViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let latestLocation = locations.first else { return }
+        
+        if currentCoordinate == nil {
+            let zoomRegion = MKCoordinateRegion(center: latestLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
+            mapView.setRegion(zoomRegion, animated: false)
+        }
+    
+        currentCoordinate = latestLocation.coordinate
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            beginLocationUpdates(locationManager: manager)
+        }
+    }
+    
+    private func setMapViewCenterByPhotoCoordinate() {
+        
+        var centerCoordinates = CLLocationCoordinate2D()
+        
+        if let itemCoordinates = itemCoordinates {
+            centerCoordinates = itemCoordinates
+        } else if let currentCoordinate = currentCoordinate {
+            centerCoordinates = currentCoordinate
+        }
+        
+        let mapRegion = MKCoordinateRegion(center: centerCoordinates, span: mapView.region.span)
+        mapView.setRegion(mapRegion, animated: false)
+    }
+    
+    private func configureLocationServices() {
+        locationManager.delegate = self
+        let status = locationManager.authorizationStatus
+        
+        if status == .notDetermined {
+            locationManager.requestAlwaysAuthorization()
+        } else if status == .authorizedAlways || status == .authorizedWhenInUse {
+           beginLocationUpdates(locationManager: locationManager)
+        }
+    }
+    
+    private func beginLocationUpdates(locationManager: CLLocationManager) {
+        mapView.showsUserLocation = true
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+    }
+    
+    private func configureMapView() {
+        mapView.mapType = .standard
+        mapView.userTrackingMode = .none
+        mapView.showsScale = true
+        mapView.showsCompass = true
+        mapView.showsBuildings = true
     }
 }
+
 
 // MARK: -  UINavigationControllerDelegate, UIImagePickerControllerDelegate
 extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -42,13 +123,34 @@ extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerC
             return
         }
         photoImageView.image = image
+        
         configurePostButton()
+        
+        //try to detect coordinate
+        
+        if let asset = info[.phAsset] as? PHAsset {
+            itemCoordinates = asset.location?.coordinate
+        } else {
+            itemCoordinates = nil
+        }
+        
+        setMapViewCenterByPhotoCoordinate()
     }
 }
 
 // MARK: -  functions
 extension EditItemViewController {
     private func takeImage(fromCamera: Bool) {
+        if !fromCamera {
+            let status = PHPhotoLibrary.authorizationStatus()
+            
+            if status == .notDetermined  {
+                PHPhotoLibrary.requestAuthorization({status in
+                    if status == .notDetermined {return}
+                })
+            }
+        }
+        
         let vc = UIImagePickerController()
         vc.sourceType = fromCamera ? .camera : .photoLibrary
         vc.allowsEditing = true

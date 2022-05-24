@@ -17,7 +17,20 @@ final class MainScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        
+        let addPhotoMenu = UIMenu(title: "", children: [
+            UIAction(title: "Камера", image: UIImage(systemName: "camera")){
+                action in
+                self.addNewItem(fromCamera: true)
+            },
+            UIAction(title: "Фотопленка", image: UIImage(systemName: "photo")){
+                action in
+                self.addNewItem(fromCamera: false)
+            }
+        ])
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: nil, menu: addPhotoMenu)
+        
         setupTableView()
         
         let connectedRef = Database.database().reference(withPath: ".info/connected")
@@ -43,8 +56,9 @@ final class MainScreenViewController: UIViewController {
 
 // MARK: -  Functions
 extension MainScreenViewController {
-    @objc func addTapped() {
+    private func addNewItem(fromCamera: Bool) {
         let vc = EditItemViewController()
+        vc.takeNewPhotoFromCamera = fromCamera
         navigationController?.pushViewController(vc, animated: true)
     }
     

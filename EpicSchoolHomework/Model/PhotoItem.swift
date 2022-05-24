@@ -15,6 +15,9 @@ struct PhotoItem {
     let author: String
     let description: String
     let addingDate: Date
+    //geo data
+    let latitude: Double
+    let longitude: Double
     
     var comments = [Comment]()
     var likes = [Like]()

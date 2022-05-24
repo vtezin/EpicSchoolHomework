@@ -16,6 +16,8 @@ final class PhotoItemRealm: Object {
     @objc dynamic var author: String = ""
     @objc dynamic var photoDescription: String = ""
     @objc dynamic var addingDate: Date = Date()
+    @objc dynamic var latitude: Double = 0
+    @objc dynamic var longitude: Double = 0
     
     override static func primaryKey() -> String? {
       return "id"
@@ -46,7 +48,7 @@ final class PhotoItemRealmLike: Object {
 }
 
 final class RealmService {
-    static let config = Realm.Configuration(schemaVersion: 4)
+    static let config = Realm.Configuration(schemaVersion: 5)
     
     static func saveItem(photoItem: PhotoItem) {
         let realm = try! Realm(configuration: config)
@@ -61,6 +63,8 @@ final class RealmService {
             newItem.author = photoItem.author
             newItem.photoDescription = photoItem.description
             newItem.addingDate = photoItem.addingDate
+            newItem.latitude = photoItem.latitude
+            newItem.longitude = photoItem.longitude
             
             realm.add(newItem, update: .modified)
             
@@ -133,7 +137,8 @@ final class RealmService {
                                       author: item.author,
                                       description: item.photoDescription,
                                       addingDate: item.addingDate,
-                                      comments: [PhotoItem.Comment]())
+                                      latitude: item.latitude,
+                                      longitude: item.longitude)
             let comments = try! Realm(configuration: config).objects(PhotoItemRealmComment.self).sorted(byKeyPath: "date", ascending: true).where{
                 $0.item == item
             }

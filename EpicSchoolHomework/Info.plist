@@ -2,9 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Требуется доступ к геопозиции</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Требуется доступ к геопозиции</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Для публикации фото из библиотеки к библиотеке нужен доступ.</string>
+	<string>Требуется доступ к фотопленке</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Для съемки фото приложению требуется доступ к камере. Без вариантов</string>
+	<string>Требуется доступ к камере</string>
 </dict>
 </plist>

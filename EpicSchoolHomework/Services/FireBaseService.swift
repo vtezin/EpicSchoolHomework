@@ -44,6 +44,8 @@ class FireBaseService {
                 let description = photoValue["description"] as? String ?? ""
                 let addedDateString = photoValue["addedDate"] as? String ?? Date().toString
                 let imageURL = photoValue["imageURL"] as? String ?? ""
+                let latitude = photoValue["latitude"] as? Double ?? 0
+                let longitude = photoValue["longitude"] as? Double ?? 0
                 
                 var comments = [PhotoItem.Comment]()
                 
@@ -93,6 +95,8 @@ class FireBaseService {
                                           author: author,
                                           description: description,
                                           addingDate: Date.fromString(addedDateString),
+                                          latitude: latitude,
+                                          longitude: longitude,
                                           comments: comments,
                                           likes: likes)
                 

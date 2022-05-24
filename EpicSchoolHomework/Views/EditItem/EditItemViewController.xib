@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditItemViewController" customModule="EpicSchoolHomework" customModuleProvider="target">
             <connections>
                 <outlet property="descriptionTextField" destination="0zm-qC-zi7" id="Z7K-IJ-qdf"/>
+                <outlet property="mapView" destination="Jme-On-CIZ" id="KFI-6o-qCS"/>
                 <outlet property="photoImageView" destination="eOP-M4-7A9" id="OOm-bL-Nrd"/>
                 <outlet property="postItemButton" destination="eco-st-wGK" id="ahN-fV-OEv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,9 +23,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eOP-M4-7A9">
-                    <rect key="frame" x="20" y="64" width="374" height="643"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eco-st-wGK">
                     <rect key="frame" x="147" y="825" width="120" height="31"/>
                     <state key="normal" title="Button"/>
@@ -34,60 +31,47 @@
                         <action selector="postItemButtonTapped:" destination="-1" eventType="touchUpInside" id="D8p-z3-Hs3"/>
                     </connections>
                 </button>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="135" translatesAutoresizingMaskIntoConstraints="NO" id="Y1k-vk-uWR">
-                    <rect key="frame" x="20" y="725" width="374" height="24"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHL-gM-QLl">
-                            <rect key="frame" x="0.0" y="0.0" width="119.5" height="24"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title=" Камера">
-                                <imageReference key="image" image="camera" catalog="system" symbolScale="default"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                            </state>
-                            <connections>
-                                <action selector="takeImageFromCameraTapped:" destination="-1" eventType="touchUpInside" id="hvv-9k-b8F"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9on-E9-abE">
-                            <rect key="frame" x="254.5" y="0.0" width="119.5" height="24"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title=" Галерея" image="photo" catalog="system">
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                            </state>
-                            <connections>
-                                <action selector="takeImageFromLibraryTapped:" destination="-1" eventType="touchUpInside" id="L6X-Xf-TDw"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                </stackView>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Описание" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0zm-qC-zi7">
                     <rect key="frame" x="20" y="777" width="374" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eOP-M4-7A9">
+                    <rect key="frame" x="20" y="44" width="374" height="389"/>
+                </imageView>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-On-CIZ">
+                    <rect key="frame" x="20" y="453" width="374" height="304"/>
+                </mapView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kl-yJ-A5V">
+                    <rect key="frame" x="198" y="587" width="18.5" height="36"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Y1k-vk-uWR" firstAttribute="top" secondItem="eOP-M4-7A9" secondAttribute="bottom" constant="18" id="0Q3-Yy-yfR"/>
                 <constraint firstItem="0zm-qC-zi7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="2Cn-05-Esh"/>
                 <constraint firstItem="eco-st-wGK" firstAttribute="top" secondItem="0zm-qC-zi7" secondAttribute="bottom" constant="14" id="2id-8d-jKG"/>
+                <constraint firstItem="9Kl-yJ-A5V" firstAttribute="centerX" secondItem="Jme-On-CIZ" secondAttribute="centerX" id="2rk-dF-TMO"/>
                 <constraint firstItem="eco-st-wGK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4bC-y0-bdl"/>
+                <constraint firstItem="Jme-On-CIZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="CYu-Td-wwG"/>
                 <constraint firstAttribute="bottom" secondItem="eco-st-wGK" secondAttribute="bottom" constant="40" id="Ljw-I5-xqH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Y1k-vk-uWR" secondAttribute="trailing" constant="20" id="MCC-jP-bbz"/>
-                <constraint firstItem="eOP-M4-7A9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="OwG-km-hfg"/>
+                <constraint firstItem="eOP-M4-7A9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Uf0-Lb-N03"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eOP-M4-7A9" secondAttribute="trailing" constant="20" id="Yc4-tW-6Jl"/>
+                <constraint firstItem="9Kl-yJ-A5V" firstAttribute="centerY" secondItem="Jme-On-CIZ" secondAttribute="centerY" id="ZGy-gi-rBL"/>
+                <constraint firstItem="eOP-M4-7A9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="dxd-y9-8JM"/>
+                <constraint firstItem="Jme-On-CIZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="fqM-CS-DPL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0zm-qC-zi7" secondAttribute="trailing" constant="20" id="fzP-vY-meq"/>
-                <constraint firstItem="Y1k-vk-uWR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="gUh-PI-GTT"/>
-                <constraint firstItem="eOP-M4-7A9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="n3M-9B-6dQ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eOP-M4-7A9" secondAttribute="trailing" constant="20" id="ndv-5b-Y1R"/>
-                <constraint firstItem="0zm-qC-zi7" firstAttribute="top" secondItem="Y1k-vk-uWR" secondAttribute="bottom" constant="28" id="spT-DX-csa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Jme-On-CIZ" secondAttribute="trailing" constant="20" id="oKa-Ia-fla"/>
+                <constraint firstItem="0zm-qC-zi7" firstAttribute="top" secondItem="Jme-On-CIZ" secondAttribute="bottom" constant="20" id="oPT-zt-pAR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="centerY" secondItem="eOP-M4-7A9" secondAttribute="bottom" constant="20" id="twT-ky-jUs"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
         </view>
     </objects>
     <resources>
-        <image name="camera" catalog="system" width="128" height="94"/>
-        <image name="photo" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

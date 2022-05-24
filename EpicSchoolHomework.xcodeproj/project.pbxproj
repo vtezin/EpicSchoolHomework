@@ -45,6 +45,8 @@
 		C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */; };
 		C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA95281F91860088FA4F /* ImagesService.swift */; };
 		C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA97281FBC4E0088FA4F /* DataService.swift */; };
+		C4DF9D29282D2CDD008C02DD /* LikesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DF9D27282D2CDC008C02DD /* LikesListViewController.swift */; };
+		C4DF9D2A282D2CDD008C02DD /* LikesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4DF9D28282D2CDD008C02DD /* LikesListViewController.xib */; };
 		C4EA32D02818E5FA0068282A /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */; };
 		C4EA32D12818E5FA0068282A /* EditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */; };
 		C4EA32D4281A2B800068282A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D3281A2B800068282A /* Realm */; };
@@ -101,6 +103,8 @@
 		C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		C4C7DA95281F91860088FA4F /* ImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesService.swift; sourceTree = "<group>"; };
 		C4C7DA97281FBC4E0088FA4F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		C4DF9D27282D2CDC008C02DD /* LikesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesListViewController.swift; sourceTree = "<group>"; };
+		C4DF9D28282D2CDD008C02DD /* LikesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikesListViewController.xib; sourceTree = "<group>"; };
 		C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemViewController.xib; sourceTree = "<group>"; };
 		C4EA32D7281BB2BD0068282A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				C40A229E27EB08750007994C /* Cells */,
 				C4092FAB27FEAA400087B8F9 /* MainScreen */,
 				C4092FAC27FEAA690087B8F9 /* Comments */,
+				C4DF9D26282D2C42008C02DD /* Likes */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +294,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C4DF9D26282D2C42008C02DD /* Likes */ = {
+			isa = PBXGroup;
+			children = (
+				C4DF9D27282D2CDC008C02DD /* LikesListViewController.swift */,
+				C4DF9D28282D2CDD008C02DD /* LikesListViewController.xib */,
+			);
+			path = Likes;
+			sourceTree = "<group>";
+		};
 		C4EA32CD2818E5910068282A /* EditItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +319,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C499F67A27E4472E00DB2F9B /* Build configuration list for PBXNativeTarget "EpicSchoolHomework" */;
 			buildPhases = (
+				C4DF9D25282D1913008C02DD /* ShellScript */,
 				C499F64C27E4472D00DB2F9B /* Sources */,
 				C499F64D27E4472D00DB2F9B /* Frameworks */,
 				C499F64E27E4472D00DB2F9B /* Resources */,
@@ -434,6 +449,7 @@
 				C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */,
 				C4092FA827FEA96E0087B8F9 /* CommentsListView.xib in Resources */,
 				C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */,
+				C4DF9D2A282D2CDD008C02DD /* LikesListViewController.xib in Resources */,
 				C4092FA427FD5D660087B8F9 /* MainScreenView.xib in Resources */,
 				C499F65D27E4472E00DB2F9B /* Assets.xcassets in Resources */,
 			);
@@ -455,6 +471,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C4DF9D25282D1913008C02DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#export PATH=\"$PATH:/opt/homebrew/bin\"\n#if which swiftlint > /dev/null; then\n#  swiftlint\n#else\n#  echo \"warning: SwiftLint not installed, download from #https://github.com/realm/SwiftLint\"\n#fi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C499F64C27E4472D00DB2F9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -475,6 +511,7 @@
 				C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */,
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,
+				C4DF9D29282D2CDD008C02DD /* LikesListViewController.swift in Sources */,
 				C4092FA627FD5EAB0087B8F9 /* MainScreenViewController.swift in Sources */,
 				C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */,
 			);
@@ -650,8 +687,13 @@
 				DEVELOPMENT_TEAM = 2X2VGHTNU5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EpicSchoolHomework/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Требуется доступ к камере";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location access required";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Location access required";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Требуется доступ для выбора фото из библиотеки";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -664,7 +706,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -678,8 +720,13 @@
 				DEVELOPMENT_TEAM = 2X2VGHTNU5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EpicSchoolHomework/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Требуется доступ к камере";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location access required";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Location access required";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Требуется доступ для выбора фото из библиотеки";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -692,7 +739,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
