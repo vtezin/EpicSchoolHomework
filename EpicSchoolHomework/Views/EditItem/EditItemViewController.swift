@@ -18,7 +18,7 @@ final class EditItemViewController: UIViewController {
     var photoItem: PhotoItem?
     var takeNewPhotoFromCamera = true
     private let locationManager = CLLocationManager()
-    private var itemCoordinates: CLLocationCoordinate2D?
+    private var itemCoordinate: CLLocationCoordinate2D?
     private var currentCoordinate: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
@@ -29,6 +29,8 @@ final class EditItemViewController: UIViewController {
         configureMapView()
         configureLocationServices()
         
+        descriptionTextField.delegate = self
+        
         if photoItem == nil {
             takeImage(fromCamera: takeNewPhotoFromCamera)
         }        
@@ -38,19 +40,17 @@ final class EditItemViewController: UIViewController {
 
 // MARK: -  IBActions
 extension EditItemViewController {
-  
-    @IBAction func takeImageFromCameraTapped(_ sender: Any) {
-        takeImage(fromCamera: true)
-    }
-
-    @IBAction func takeImageFromLibraryTapped(_ sender: Any) {
-        takeImage(fromCamera: false)
-    }
-
     @IBAction func postItemButtonTapped(_ sender: Any) {
         postItem()
     }
-    
+}
+
+// MARK: -  UITextFieldDelegate
+extension EditItemViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
+    }
 }
 
 // MARK: -  CLLocationManagerDelegate, Map & Location
@@ -76,7 +76,7 @@ extension EditItemViewController: CLLocationManagerDelegate {
         
         var centerCoordinates = CLLocationCoordinate2D()
         
-        if let itemCoordinates = itemCoordinates {
+        if let itemCoordinates = itemCoordinate {
             centerCoordinates = itemCoordinates
         } else if let currentCoordinate = currentCoordinate {
             centerCoordinates = currentCoordinate
@@ -129,9 +129,9 @@ extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerC
         //try to detect coordinate
         
         if let asset = info[.phAsset] as? PHAsset {
-            itemCoordinates = asset.location?.coordinate
+            itemCoordinate = asset.location?.coordinate
         } else {
-            itemCoordinates = nil
+            itemCoordinate = nil
         }
         
         setMapViewCenterByPhotoCoordinate()
