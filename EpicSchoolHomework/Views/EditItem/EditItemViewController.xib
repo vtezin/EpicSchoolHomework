@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditItemViewController" customModule="EpicSchoolHomework" customModuleProvider="target">
             <connections>
+                <outlet property="centerMapLabel" destination="9Kl-yJ-A5V" id="QAP-0E-2MJ"/>
                 <outlet property="descriptionTextField" destination="0zm-qC-zi7" id="Z7K-IJ-qdf"/>
                 <outlet property="mapView" destination="Jme-On-CIZ" id="KFI-6o-qCS"/>
                 <outlet property="photoImageView" destination="eOP-M4-7A9" id="OOm-bL-Nrd"/>
@@ -42,7 +43,7 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-On-CIZ">
                     <rect key="frame" x="20" y="453" width="374" height="304"/>
                 </mapView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kl-yJ-A5V">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kl-yJ-A5V" userLabel="center map">
                     <rect key="frame" x="198" y="587" width="18.5" height="36"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                     <nil key="textColor"/>

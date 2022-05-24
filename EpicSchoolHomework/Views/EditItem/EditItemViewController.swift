@@ -14,6 +14,7 @@ final class EditItemViewController: UIViewController {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var postItemButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var centerMapLabel: UILabel!
     
     var photoItem: PhotoItem?
     var takeNewPhotoFromCamera = true
@@ -21,10 +22,27 @@ final class EditItemViewController: UIViewController {
     private var itemCoordinate: CLLocationCoordinate2D?
     private var currentCoordinate: CLLocationCoordinate2D?
     
+    let delegate: canUpdatePhotoItemInArray
+    let indexPhotoItemInArray: Int?
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(photoItem: PhotoItem?,
+         indexPhotoItemInArray: Int?,
+         delegate: canUpdatePhotoItemInArray) {
+        self.photoItem = photoItem
+        self.indexPhotoItemInArray = indexPhotoItemInArray
+        self.delegate = delegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         addKeyboardNotifications()
+        configure()
         configurePostButton()
         configureMapView()
         configureLocationServices()
@@ -41,7 +59,16 @@ final class EditItemViewController: UIViewController {
 // MARK: -  IBActions
 extension EditItemViewController {
     @IBAction func postItemButtonTapped(_ sender: Any) {
-        postItem()
+        guard let uiImage = photoImageView.image,
+        let description = descriptionTextField.text else {
+            return
+        }
+        
+        FireBaseService.postItem(image: uiImage,
+                                 description: description,
+                                 latitude: itemCoordinate?.latitude,
+                                 longitude: itemCoordinate?.longitude)
+        dismissAndGoBack()
     }
 }
 
@@ -53,12 +80,19 @@ extension EditItemViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: -  MKMapViewDelegate
+extension EditItemViewController: MKMapViewDelegate {
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        itemCoordinate = mapView.centerCoordinate
+    }
+}
+
 // MARK: -  CLLocationManagerDelegate, Map & Location
 extension EditItemViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let latestLocation = locations.first else { return }
         
-        if currentCoordinate == nil {
+        if itemCoordinate == nil {
             let zoomRegion = MKCoordinateRegion(center: latestLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
             mapView.setRegion(zoomRegion, animated: false)
         }
@@ -82,7 +116,9 @@ extension EditItemViewController: CLLocationManagerDelegate {
             centerCoordinates = currentCoordinate
         }
         
-        let mapRegion = MKCoordinateRegion(center: centerCoordinates, span: mapView.region.span)
+        let mapRegion = MKCoordinateRegion(center: centerCoordinates,
+                                           latitudinalMeters: 100,
+                                           longitudinalMeters: 100)
         mapView.setRegion(mapRegion, animated: false)
     }
     
@@ -109,6 +145,7 @@ extension EditItemViewController: CLLocationManagerDelegate {
         mapView.showsScale = true
         mapView.showsCompass = true
         mapView.showsBuildings = true
+        mapView.delegate = self
     }
 }
 
@@ -119,7 +156,6 @@ extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerC
         picker.dismiss(animated: true)
 
         guard let image = info[.editedImage] as? UIImage else {
-            print("No image found")
             return
         }
         photoImageView.image = image
@@ -127,19 +163,44 @@ extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerC
         configurePostButton()
         
         //try to detect coordinate
+        itemCoordinate = nil
         
         if let asset = info[.phAsset] as? PHAsset {
             itemCoordinate = asset.location?.coordinate
         } else {
-            itemCoordinate = nil
+            if takeNewPhotoFromCamera {
+                itemCoordinate = currentCoordinate
+            }
         }
         
         setMapViewCenterByPhotoCoordinate()
     }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismissAndGoBack()
+    }    
 }
 
 // MARK: -  functions
 extension EditItemViewController {
+    private func configure() {
+        if let photoItem = photoItem {
+            photoImageView.image = photoItem.image
+            descriptionTextField.text = photoItem.description
+            if photoItem.latitude != 0 {
+                itemCoordinate = CLLocationCoordinate2D(latitude: photoItem.latitude,
+                                                        longitude: photoItem.longitude)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = itemCoordinate!
+                mapView.addAnnotation(annotation)
+                centerMapLabel.isHidden = true
+                
+                setMapViewCenterByPhotoCoordinate()
+            }
+            postItemButton.isHidden = true
+        }
+    }
+    
     private func takeImage(fromCamera: Bool) {
         if !fromCamera {
             let status = PHPhotoLibrary.authorizationStatus()
@@ -158,15 +219,6 @@ extension EditItemViewController {
         present(vc, animated: true)
     }
     
-    private func postItem() {
-        guard let uiImage = photoImageView.image,
-        let description = descriptionTextField.text else {
-            return
-        }
-        
-        FireBaseService.postItem(image: uiImage, description: description)
-        _ = navigationController?.popViewController(animated: true)
-    }
     
     private func configurePostButton() {
         postItemButton.isEnabled = photoImageView.image != nil && !(descriptionTextField.text?.isEmpty ?? false)
@@ -180,6 +232,10 @@ extension EditItemViewController {
     
     @objc private func textFieldDidChange() {
         configurePostButton()
+    }
+    
+    private func dismissAndGoBack() {
+        _ = navigationController?.popViewController(animated: true)
     }
 }
 

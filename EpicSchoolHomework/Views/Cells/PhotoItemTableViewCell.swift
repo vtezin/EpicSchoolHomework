@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: -  PhotoItemTableViewCell
-final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {    
+final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var authorLabel: UILabel!
@@ -23,12 +23,13 @@ final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
         likedToggle()
     }
     @IBAction func commentsButtonTapped(_ sender: Any) {
-        navigationHandler!(photoItem!, cellIndex)
+        navigationToCommentsHandler!(photoItem!, cellIndex)
     }
     
     var photoItem: PhotoItem?
     var cellIndex: Int = 0
-    var navigationHandler: ((PhotoItem, Int) -> Void)? = nil
+    var navigationToCommentsHandler: ((PhotoItem, Int) -> Void)? = nil
+    var navigationToPhotoItemHandler: ((PhotoItem, Int) -> Void)? = nil
     
     static let reuseIdentifier = String(describing: PhotoItemTableViewCell.self)
 }
@@ -79,11 +80,17 @@ extension PhotoItemTableViewCell {
         
         updateLikesInfo()
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        tapGestureRecognizer.numberOfTapsRequired = 2
+        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTappedSingle))
+        singleTapGesture.numberOfTapsRequired = 1
+        photoImageView.addGestureRecognizer(singleTapGesture)
+
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTappedDouble))
+        doubleTapGesture.numberOfTapsRequired = 2
+        photoImageView.addGestureRecognizer(doubleTapGesture)
+
+        singleTapGesture.require(toFail: doubleTapGesture)
         
         photoImageView.isUserInteractionEnabled = true
-        photoImageView.addGestureRecognizer(tapGestureRecognizer)
         
         photoScrollView.delegate = self
         photoScrollView.minimumZoomScale = 1.0
@@ -91,7 +98,12 @@ extension PhotoItemTableViewCell {
         
     }
     
-    @objc private func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    @objc private func imageTappedSingle()
+    {
+        navigationToPhotoItemHandler!(photoItem!, cellIndex)
+    }
+    
+    @objc private func imageTappedDouble()
     {
         guard FireBaseService.isConnected else {return}
         heartView.alpha = 1

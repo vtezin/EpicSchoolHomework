@@ -157,7 +157,10 @@ class FireBaseService {
         ref.updateChildValues(childUpdates)
     }
     
-    static func postItem(image: UIImage, description: String) {
+    static func postItem(image: UIImage,
+                         description: String,
+                         latitude: Double?,
+                         longitude: Double?) {
         guard let data = image.jpegData(compressionQuality: 1),
                 !description.isEmpty else {
             return
@@ -183,6 +186,8 @@ class FireBaseService {
                         "addedDate": Date().toString,
                         "imageURL": imageURL,
                         "liked": false,
+                        "latitude": latitude ?? 0,
+                        "longitude": longitude ?? 0,
                         "likesCount": 0] as [String : Any]
             let childUpdates = ["/photos/\(key)": post]
             ref.updateChildValues(childUpdates)

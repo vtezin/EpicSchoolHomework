@@ -57,7 +57,9 @@ final class MainScreenViewController: UIViewController {
 // MARK: -  Functions
 extension MainScreenViewController {
     private func addNewItem(fromCamera: Bool) {
-        let vc = EditItemViewController()
+        let vc = EditItemViewController(photoItem: nil,
+                                        indexPhotoItemInArray: nil,
+                                        delegate: self)
         vc.takeNewPhotoFromCamera = fromCamera
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -98,6 +100,14 @@ extension MainScreenViewController {
                                             delegate: self)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    private func navigateToPhotoItem(photoItem: PhotoItem, cellIndex: Int) {
+        let vc = EditItemViewController(photoItem: photoItem,
+                                            indexPhotoItemInArray: cellIndex,
+                                            delegate: self)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 // MARK: -  UITableViewDelegate, UITableViewDataSource
@@ -116,7 +126,8 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoItemTableViewCell.reuseIdentifier, for: indexPath) as! PhotoItemTableViewCell
         cell.photoItem = photoItem
         cell.cellIndex = indexPath.row
-        cell.navigationHandler = navigateToComments
+        cell.navigationToCommentsHandler = navigateToComments
+        cell.navigationToPhotoItemHandler = navigateToPhotoItem
         cell.configureCell()
         
         return cell
