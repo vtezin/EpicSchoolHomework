@@ -185,8 +185,9 @@ extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerC
 extension EditItemViewController {
     private func configure() {
         if let photoItem = photoItem {
-            photoImageView.image = photoItem.image
-            descriptionTextField.text = photoItem.description
+            navigationItem.title = photoItem.description
+            ImagesService.fetchImageForPhotoItem(photoItem: photoItem,
+                                          completion: setImage)
             if photoItem.latitude != 0 {
                 itemCoordinate = CLLocationCoordinate2D(latitude: photoItem.latitude,
                                                         longitude: photoItem.longitude)
@@ -198,6 +199,13 @@ extension EditItemViewController {
                 setMapViewCenterByPhotoCoordinate()
             }
             postItemButton.isHidden = true
+            descriptionTextField.isHidden = true
+        }
+    }
+    
+    func setImage(uiImage: UIImage?) {
+        if let uiImage = uiImage{
+            photoImageView.image = uiImage
         }
     }
     

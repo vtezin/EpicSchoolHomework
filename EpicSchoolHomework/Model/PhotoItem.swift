@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 // MARK: -  PhotoItem
 struct PhotoItem {
@@ -36,13 +37,16 @@ struct PhotoItem {
 }
 
 // MARK: -  computed props
-
 extension PhotoItem {
     var likesFormattedString: String {
         let formatString : String = NSLocalizedString("likes count",
                                                               comment: "Likes count string format to be found in Localized.stringsdict")
         let resultString : String = String.localizedStringWithFormat(formatString, likes.count)
         return resultString;
+    }
+    
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
 
@@ -60,6 +64,13 @@ extension PhotoItem {
     func isLikedByUser(userName: String) -> Bool {
         likes.contains {$0.user == userName}
     }
+}
+
+// MARK: -  MapKit
+extension PhotoItem {
+    
+
+    
 }
 
 

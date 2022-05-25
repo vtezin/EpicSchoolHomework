@@ -31,6 +31,12 @@ final class UserProfileViewController: UIViewController {
         navigateToPhotoList()
     }
     
+    @IBAction func navigateToAllItemsMapTapped(_ sender: Any) {
+        let vc = AllItemsMapViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
     @IBAction func enterButtonTapped(_ sender: Any) {
         if userLoggedIn {
             logoutUser()

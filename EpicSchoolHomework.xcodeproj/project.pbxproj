@@ -47,6 +47,9 @@
 		C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA97281FBC4E0088FA4F /* DataService.swift */; };
 		C4DF9D29282D2CDD008C02DD /* LikesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DF9D27282D2CDC008C02DD /* LikesListViewController.swift */; };
 		C4DF9D2A282D2CDD008C02DD /* LikesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4DF9D28282D2CDD008C02DD /* LikesListViewController.xib */; };
+		C4E0E4FE283D1D0E003E0CB3 /* AllItemsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E0E4FC283D1D0E003E0CB3 /* AllItemsMapViewController.swift */; };
+		C4E0E4FF283D1D0E003E0CB3 /* AllItemsMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4E0E4FD283D1D0E003E0CB3 /* AllItemsMapViewController.xib */; };
+		C4E0E502283D349D003E0CB3 /* PhotoItemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E0E501283D349C003E0CB3 /* PhotoItemAnnotation.swift */; };
 		C4EA32D02818E5FA0068282A /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */; };
 		C4EA32D12818E5FA0068282A /* EditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */; };
 		C4EA32D4281A2B800068282A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D3281A2B800068282A /* Realm */; };
@@ -105,6 +108,9 @@
 		C4C7DA97281FBC4E0088FA4F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		C4DF9D27282D2CDC008C02DD /* LikesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesListViewController.swift; sourceTree = "<group>"; };
 		C4DF9D28282D2CDD008C02DD /* LikesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikesListViewController.xib; sourceTree = "<group>"; };
+		C4E0E4FC283D1D0E003E0CB3 /* AllItemsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsMapViewController.swift; sourceTree = "<group>"; };
+		C4E0E4FD283D1D0E003E0CB3 /* AllItemsMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllItemsMapViewController.xib; sourceTree = "<group>"; };
+		C4E0E501283D349C003E0CB3 /* PhotoItemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemAnnotation.swift; sourceTree = "<group>"; };
 		C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemViewController.xib; sourceTree = "<group>"; };
 		C4EA32D7281BB2BD0068282A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -181,6 +187,8 @@
 		C40A229B27EB06ED0007994C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4E0E500283D3479003E0CB3 /* PhotoItemAnnotation */,
+				C4E0E4FB283D1CD2003E0CB3 /* AllItemsMapView */,
 				C4EA32CD2818E5910068282A /* EditItem */,
 				C4BACD21280C744900A8D7C6 /* Profile */,
 				C40A229E27EB08750007994C /* Cells */,
@@ -301,6 +309,23 @@
 				C4DF9D28282D2CDD008C02DD /* LikesListViewController.xib */,
 			);
 			path = Likes;
+			sourceTree = "<group>";
+		};
+		C4E0E4FB283D1CD2003E0CB3 /* AllItemsMapView */ = {
+			isa = PBXGroup;
+			children = (
+				C4E0E4FC283D1D0E003E0CB3 /* AllItemsMapViewController.swift */,
+				C4E0E4FD283D1D0E003E0CB3 /* AllItemsMapViewController.xib */,
+			);
+			path = AllItemsMapView;
+			sourceTree = "<group>";
+		};
+		C4E0E500283D3479003E0CB3 /* PhotoItemAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				C4E0E501283D349C003E0CB3 /* PhotoItemAnnotation.swift */,
+			);
+			path = PhotoItemAnnotation;
 			sourceTree = "<group>";
 		};
 		C4EA32CD2818E5910068282A /* EditItem */ = {
@@ -443,6 +468,7 @@
 			files = (
 				C499F66027E4472E00DB2F9B /* LaunchScreen.storyboard in Resources */,
 				C4EA32D12818E5FA0068282A /* EditItemViewController.xib in Resources */,
+				C4E0E4FF283D1D0E003E0CB3 /* AllItemsMapViewController.xib in Resources */,
 				C4BACD25280C746600A8D7C6 /* UserProfileViewController.xib in Resources */,
 				C4BACD1D280C6C5E00A8D7C6 /* GoogleService-Info.plist in Resources */,
 				C4092FAE27FEAD170087B8F9 /* CommentCellView.xib in Resources */,
@@ -502,11 +528,13 @@
 				C4092FAA27FEAA2C0087B8F9 /* CommentsListViewController.swift in Sources */,
 				C4EA32DA281DBE9B0068282A /* RealmService.swift in Sources */,
 				C4BACD27280D245200A8D7C6 /* FireBaseService.swift in Sources */,
+				C4E0E4FE283D1D0E003E0CB3 /* AllItemsMapViewController.swift in Sources */,
 				C4092FB027FEAF4A0087B8F9 /* CommentCellView.swift in Sources */,
 				C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */,
 				C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */,
 				C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */,
 				C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */,
+				C4E0E502283D349D003E0CB3 /* PhotoItemAnnotation.swift in Sources */,
 				C4BACD29280D269300A8D7C6 /* DataProvider.swift in Sources */,
 				C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */,
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
