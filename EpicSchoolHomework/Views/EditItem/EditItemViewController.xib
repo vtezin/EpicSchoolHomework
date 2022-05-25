@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="centerMapLabel" destination="9Kl-yJ-A5V" id="QAP-0E-2MJ"/>
                 <outlet property="descriptionTextField" destination="0zm-qC-zi7" id="Z7K-IJ-qdf"/>
+                <outlet property="distanceLabel" destination="xoU-qN-dSU" id="6zW-Nx-c2d"/>
                 <outlet property="imageLoadingIndicator" destination="6CY-Ar-b2d" id="4uK-ha-XZh"/>
                 <outlet property="mapView" destination="Jme-On-CIZ" id="KFI-6o-qCS"/>
                 <outlet property="photoImageView" destination="eOP-M4-7A9" id="OOm-bL-Nrd"/>
@@ -51,11 +52,17 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-gG-GmU">
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-gG-GmU">
                     <rect key="frame" x="20" y="751" width="374" height="31"/>
                     <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoU-qN-dSU" userLabel="Distance">
+                            <rect key="frame" x="0.0" y="0.0" width="215" height="31"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Посещено" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOR-UO-PzD">
-                            <rect key="frame" x="0.0" y="0.0" width="325" height="31"/>
+                            <rect key="frame" x="228" y="0.0" width="84" height="31"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -100,6 +107,9 @@
         </view>
     </objects>
     <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

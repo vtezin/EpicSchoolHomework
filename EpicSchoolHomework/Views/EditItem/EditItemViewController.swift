@@ -17,6 +17,7 @@ final class EditItemViewController: UIViewController {
     @IBOutlet weak var centerMapLabel: UILabel!
     @IBOutlet weak var visitedSwitch: UISwitch!
     @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     @IBAction func visitedSwitched(_ sender: Any) {
         guard let switchVisited = sender as? UISwitch else {return}
@@ -110,6 +111,11 @@ extension EditItemViewController: CLLocationManagerDelegate {
         }
     
         currentCoordinate = latestLocation.coordinate
+        
+        let distance = CLLocation(latitude: currentCoordinate!.latitude, longitude: currentCoordinate!.longitude).distance(from: CLLocation(latitude: itemCoordinate!.latitude, longitude: itemCoordinate!.longitude))
+        
+        distanceLabel.text = "-> " + localeDistanceString(distanceMeters: distance)
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

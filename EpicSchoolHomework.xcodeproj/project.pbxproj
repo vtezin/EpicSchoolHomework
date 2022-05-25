@@ -50,6 +50,7 @@
 		C4E0E4FE283D1D0E003E0CB3 /* AllItemsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E0E4FC283D1D0E003E0CB3 /* AllItemsMapViewController.swift */; };
 		C4E0E4FF283D1D0E003E0CB3 /* AllItemsMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4E0E4FD283D1D0E003E0CB3 /* AllItemsMapViewController.xib */; };
 		C4E0E502283D349D003E0CB3 /* PhotoItemAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E0E501283D349C003E0CB3 /* PhotoItemAnnotation.swift */; };
+		C4E0E504283ECB6E003E0CB3 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E0E503283ECB6D003E0CB3 /* Location.swift */; };
 		C4EA32D02818E5FA0068282A /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */; };
 		C4EA32D12818E5FA0068282A /* EditItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */; };
 		C4EA32D4281A2B800068282A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C4EA32D3281A2B800068282A /* Realm */; };
@@ -111,6 +112,7 @@
 		C4E0E4FC283D1D0E003E0CB3 /* AllItemsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllItemsMapViewController.swift; sourceTree = "<group>"; };
 		C4E0E4FD283D1D0E003E0CB3 /* AllItemsMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllItemsMapViewController.xib; sourceTree = "<group>"; };
 		C4E0E501283D349C003E0CB3 /* PhotoItemAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemAnnotation.swift; sourceTree = "<group>"; };
+		C4E0E503283ECB6D003E0CB3 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C4EA32CE2818E5FA0068282A /* EditItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		C4EA32CF2818E5FA0068282A /* EditItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditItemViewController.xib; sourceTree = "<group>"; };
 		C4EA32D7281BB2BD0068282A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */,
 				C4EA32D7281BB2BD0068282A /* Date.swift */,
 				C4BD2FE027EDCECE00F3B30A /* Int.swift */,
+				C4E0E503283ECB6D003E0CB3 /* Location.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				C4BD2FE127EDCECE00F3B30A /* Int.swift in Sources */,
 				C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */,
 				C4E0E502283D349D003E0CB3 /* PhotoItemAnnotation.swift in Sources */,
+				C4E0E504283ECB6E003E0CB3 /* Location.swift in Sources */,
 				C4BACD29280D269300A8D7C6 /* DataProvider.swift in Sources */,
 				C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */,
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
