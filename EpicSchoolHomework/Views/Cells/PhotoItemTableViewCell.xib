@@ -23,7 +23,7 @@
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-06-TJ6" userLabel="Photo">
                                 <rect key="frame" x="0.0" y="0.0" width="457" height="200"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nuK-J3-K9C">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nuK-J3-K9C">
                                 <rect key="frame" x="218.5" y="90" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>

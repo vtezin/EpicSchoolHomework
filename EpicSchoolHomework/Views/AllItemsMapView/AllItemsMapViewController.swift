@@ -110,7 +110,6 @@ extension AllItemsMapViewController: CLLocationManagerDelegate {
 extension AllItemsMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         if annotation.isKind(of: MKUserLocation.self) {
             return MKUserLocationView()
         }
@@ -124,16 +123,15 @@ extension AllItemsMapViewController: MKMapViewDelegate {
         }
         
         return annotationView
-        
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let placemark = view.annotation as? PhotoItemAnnotation {
+            mapView.deselectAnnotation(placemark, animated: false)
             let vc = EditItemViewController(photoItem: placemark.photoItem,
                                             indexPhotoItemInArray: 0,
                                             delegate: self)
             navigationController?.pushViewController(vc, animated: true)
-            
         }
     }
 }

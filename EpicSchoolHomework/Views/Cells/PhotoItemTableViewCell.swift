@@ -60,7 +60,7 @@ extension PhotoItemTableViewCell {
         if let uiImage = uiImage{
             photoItem?.image = uiImage
             photoImageView.image = uiImage
-            loadingActivityIndicator.isHidden = true
+            loadingActivityIndicator.startAnimating()
             RealmService.saveItem(photoItem: self.photoItem!)
         }
     }

@@ -16,6 +16,7 @@ final class EditItemViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var centerMapLabel: UILabel!
     @IBOutlet weak var visitedSwitch: UISwitch!
+    @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     
     @IBAction func visitedSwitched(_ sender: Any) {
         guard let switchVisited = sender as? UISwitch else {return}
@@ -218,6 +219,7 @@ extension EditItemViewController {
     func setImage(uiImage: UIImage?) {
         if let uiImage = uiImage{
             photoImageView.image = uiImage
+            imageLoadingIndicator.stopAnimating()
         }
     }
     

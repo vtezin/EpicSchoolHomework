@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="centerMapLabel" destination="9Kl-yJ-A5V" id="QAP-0E-2MJ"/>
                 <outlet property="descriptionTextField" destination="0zm-qC-zi7" id="Z7K-IJ-qdf"/>
+                <outlet property="imageLoadingIndicator" destination="6CY-Ar-b2d" id="4uK-ha-XZh"/>
                 <outlet property="mapView" destination="Jme-On-CIZ" id="KFI-6o-qCS"/>
                 <outlet property="photoImageView" destination="eOP-M4-7A9" id="OOm-bL-Nrd"/>
                 <outlet property="postItemButton" destination="eco-st-wGK" id="ahN-fV-OEv"/>
@@ -67,6 +68,9 @@
                         </switch>
                     </subviews>
                 </stackView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="6CY-Ar-b2d" userLabel="Loading Activity Indicator">
+                    <rect key="frame" x="188.5" y="225" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -79,10 +83,12 @@
                 <constraint firstItem="Jme-On-CIZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="CYu-Td-wwG"/>
                 <constraint firstAttribute="bottom" secondItem="eco-st-wGK" secondAttribute="bottom" constant="20" id="Ljw-I5-xqH"/>
                 <constraint firstItem="Wgo-gG-GmU" firstAttribute="top" secondItem="Jme-On-CIZ" secondAttribute="bottom" constant="8" symbolic="YES" id="MgE-AI-F30"/>
+                <constraint firstItem="6CY-Ar-b2d" firstAttribute="centerX" secondItem="eOP-M4-7A9" secondAttribute="centerX" id="QA2-a7-bKF"/>
                 <constraint firstItem="eOP-M4-7A9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Uf0-Lb-N03"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eOP-M4-7A9" secondAttribute="trailing" constant="20" id="Yc4-tW-6Jl"/>
                 <constraint firstItem="9Kl-yJ-A5V" firstAttribute="centerY" secondItem="Jme-On-CIZ" secondAttribute="centerY" id="ZGy-gi-rBL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Wgo-gG-GmU" secondAttribute="trailing" constant="20" id="ZTU-1b-NMc"/>
+                <constraint firstItem="6CY-Ar-b2d" firstAttribute="centerY" secondItem="eOP-M4-7A9" secondAttribute="centerY" id="aKd-aM-Gbs"/>
                 <constraint firstItem="0zm-qC-zi7" firstAttribute="top" secondItem="Wgo-gG-GmU" secondAttribute="bottom" constant="15" id="b17-O4-2w0"/>
                 <constraint firstItem="eOP-M4-7A9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="dxd-y9-8JM"/>
                 <constraint firstItem="Jme-On-CIZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="fqM-CS-DPL"/>
