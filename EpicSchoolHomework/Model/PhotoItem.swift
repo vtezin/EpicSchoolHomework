@@ -22,6 +22,7 @@ struct PhotoItem {
     
     var comments = [Comment]()
     var likes = [Like]()
+    var visits = [Visit]()
     
     struct Comment {
         let id: String
@@ -31,6 +32,11 @@ struct PhotoItem {
     }
     
     struct Like {
+        let user: String
+        let date: Date
+    }
+    
+    struct Visit {
         let user: String
         let date: Date
     }
@@ -48,6 +54,14 @@ extension PhotoItem {
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
+    
+    var isVisitedByCurrentUser: Bool {
+        isVisitedByUser(userName: FireBaseService.currentUserName)
+    }
+    
+    var isLikedByCurrentUser: Bool {
+        isLikedByUser(userName: FireBaseService.currentUserName)
+    }
 }
 
 // MARK: -  Functions
@@ -61,18 +75,27 @@ extension PhotoItem {
         }
     }
     
+    mutating func setVisitedByCurrentUser(_ visited: Bool) {
+        if !visited {
+            visits.removeAll {$0.user == FireBaseService.currentUserName}
+        } else {
+            let visit = Visit(user: FireBaseService.currentUserName, date: Date())
+            visits.append(visit)
+        }
+        
+        guard FireBaseService.isConnected else {return}
+        FireBaseService.updateVisitsInfo(photoItem: self)
+    }
+    
+    
     func isLikedByUser(userName: String) -> Bool {
         likes.contains {$0.user == userName}
     }
-}
-
-// MARK: -  MapKit
-extension PhotoItem {
     
-
-    
+    func isVisitedByUser(userName: String) -> Bool {
+        visits.contains {$0.user == userName}
+    }
 }
-
 
 protocol canUpdatePhotoItemInArray {
     func updatePhotoItemInArray(photoItem: PhotoItem, index: Int)

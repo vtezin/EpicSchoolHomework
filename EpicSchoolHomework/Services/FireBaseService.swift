@@ -72,15 +72,15 @@ class FireBaseService {
                 
                 var likes = [PhotoItem.Like]()
                 
-                if let likesValueArray = photoValue["likes"] as? NSDictionary {
-                    for like in likesValueArray {
+                if let itemsValueArray = photoValue["likes"] as? NSDictionary {
+                    for item in itemsValueArray {
                         
-                        if let likeValue = like.value as? NSDictionary {
-                            let likeUser = likeValue["user"] as? String ?? "??"
-                            let likeDateString = likeValue["date"] as? String ?? Date().toString
+                        if let itemValue = item.value as? NSDictionary {
+                            let itemUser = itemValue["user"] as? String ?? "??"
+                            let itemDateString = itemValue["date"] as? String ?? Date().toString
                             
-                            let photoItemLike = PhotoItem.Like(user: likeUser,
-                                                               date: Date.fromString(likeDateString))
+                            let photoItemLike = PhotoItem.Like(user: itemUser,
+                                                               date: Date.fromString(itemDateString))
                             
                             likes.append(photoItemLike)
                         }
@@ -88,6 +88,25 @@ class FireBaseService {
                 }
                 
                 likes.sort{$0.date < $1.date}
+                
+                var visits = [PhotoItem.Visit]()
+                
+                if let itemsValueArray = photoValue["visits"] as? NSDictionary {
+                    for item in itemsValueArray {
+                        
+                        if let itemValue = item.value as? NSDictionary {
+                            let itemUser = itemValue["user"] as? String ?? "??"
+                            let itemDateString = itemValue["date"] as? String ?? Date().toString
+                            
+                            let photoItemVisit = PhotoItem.Visit(user: itemUser,
+                                                               date: Date.fromString(itemDateString))
+                            
+                            visits.append(photoItemVisit)
+                        }
+                    }
+                }
+                
+                visits.sort{$0.date < $1.date}
                 
                 let photoItem = PhotoItem(id: photo.key as! String,
                                           image: nil,
@@ -98,7 +117,8 @@ class FireBaseService {
                                           latitude: latitude,
                                           longitude: longitude,
                                           comments: comments,
-                                          likes: likes)
+                                          likes: likes,
+                                          visits: visits)
                 
                 photoItems.append(photoItem)
             }
@@ -136,13 +156,29 @@ class FireBaseService {
         let key = currentUserName.filter{$0 != "@" && $0 != "."
         }
         
-        if photoItem.isLikedByUser(userName: currentUserName) {
+        if photoItem.isLikedByCurrentUser {
             let post = ["user": currentUserName,
                         "date": Date().toString]
             let childUpdates = ["/photos/\(photoItem.id)/likes/\(key)": post]
             ref.updateChildValues(childUpdates)
         } else {
             let childUpdates = ["/photos/\(photoItem.id)/likes/\(key)": nil] as [String : Any?]
+            ref.updateChildValues(childUpdates as [AnyHashable : Any])
+        }
+    }
+    
+    static func updateVisitsInfo(photoItem: PhotoItem) {
+        let ref = Database.database().reference()
+        let key = currentUserName.filter{$0 != "@" && $0 != "."
+        }
+        
+        if photoItem.isVisitedByCurrentUser {
+            let post = ["user": currentUserName,
+                        "date": Date().toString]
+            let childUpdates = ["/photos/\(photoItem.id)/visits/\(key)": post]
+            ref.updateChildValues(childUpdates)
+        } else {
+            let childUpdates = ["/photos/\(photoItem.id)/visits/\(key)": nil] as [String : Any?]
             ref.updateChildValues(childUpdates as [AnyHashable : Any])
         }
     }

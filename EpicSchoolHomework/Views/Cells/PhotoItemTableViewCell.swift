@@ -115,7 +115,7 @@ extension PhotoItemTableViewCell {
     
     private func updateLikesInfo() {
         likesCountLabel.text = photoItem!.likesFormattedString
-        likeButton.alpha = photoItem!.isLikedByUser(userName: FireBaseService.currentUserName) ? 1 : 0.3
+        likeButton.alpha = photoItem!.isLikedByCurrentUser ? 1 : 0.3
     }
     
     private func likedToggle() {

@@ -17,6 +17,7 @@
                 <outlet property="photoImageView" destination="eOP-M4-7A9" id="OOm-bL-Nrd"/>
                 <outlet property="postItemButton" destination="eco-st-wGK" id="ahN-fV-OEv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="visitedSwitch" destination="0W5-ae-ALU" id="NCj-uD-twj"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eco-st-wGK">
-                    <rect key="frame" x="147" y="825" width="120" height="31"/>
+                    <rect key="frame" x="147" y="845" width="120" height="31"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Опубликовать"/>
                     <connections>
@@ -33,22 +34,39 @@
                     </connections>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Описание" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0zm-qC-zi7">
-                    <rect key="frame" x="20" y="777" width="374" height="34"/>
+                    <rect key="frame" x="20" y="797" width="374" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eOP-M4-7A9">
-                    <rect key="frame" x="20" y="44" width="374" height="389"/>
+                    <rect key="frame" x="20" y="44" width="374" height="399"/>
                 </imageView>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-On-CIZ">
-                    <rect key="frame" x="20" y="453" width="374" height="304"/>
+                    <rect key="frame" x="20" y="453" width="374" height="290"/>
                 </mapView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kl-yJ-A5V" userLabel="center map">
-                    <rect key="frame" x="198" y="587" width="18.5" height="36"/>
+                    <rect key="frame" x="198" y="580" width="18.5" height="36"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-gG-GmU">
+                    <rect key="frame" x="20" y="751" width="374" height="31"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Посещено" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOR-UO-PzD">
+                            <rect key="frame" x="0.0" y="0.0" width="325" height="31"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" title="Посещено" translatesAutoresizingMaskIntoConstraints="NO" id="0W5-ae-ALU" userLabel="Visited">
+                            <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                            <connections>
+                                <action selector="visitedSwitched:" destination="-1" eventType="valueChanged" id="0Xt-Uc-ukh"/>
+                            </connections>
+                        </switch>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -57,17 +75,20 @@
                 <constraint firstItem="eco-st-wGK" firstAttribute="top" secondItem="0zm-qC-zi7" secondAttribute="bottom" constant="14" id="2id-8d-jKG"/>
                 <constraint firstItem="9Kl-yJ-A5V" firstAttribute="centerX" secondItem="Jme-On-CIZ" secondAttribute="centerX" id="2rk-dF-TMO"/>
                 <constraint firstItem="eco-st-wGK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4bC-y0-bdl"/>
+                <constraint firstItem="Wgo-gG-GmU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="AU4-8P-5HP"/>
                 <constraint firstItem="Jme-On-CIZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="CYu-Td-wwG"/>
-                <constraint firstAttribute="bottom" secondItem="eco-st-wGK" secondAttribute="bottom" constant="40" id="Ljw-I5-xqH"/>
+                <constraint firstAttribute="bottom" secondItem="eco-st-wGK" secondAttribute="bottom" constant="20" id="Ljw-I5-xqH"/>
+                <constraint firstItem="Wgo-gG-GmU" firstAttribute="top" secondItem="Jme-On-CIZ" secondAttribute="bottom" constant="8" symbolic="YES" id="MgE-AI-F30"/>
                 <constraint firstItem="eOP-M4-7A9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Uf0-Lb-N03"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eOP-M4-7A9" secondAttribute="trailing" constant="20" id="Yc4-tW-6Jl"/>
                 <constraint firstItem="9Kl-yJ-A5V" firstAttribute="centerY" secondItem="Jme-On-CIZ" secondAttribute="centerY" id="ZGy-gi-rBL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Wgo-gG-GmU" secondAttribute="trailing" constant="20" id="ZTU-1b-NMc"/>
+                <constraint firstItem="0zm-qC-zi7" firstAttribute="top" secondItem="Wgo-gG-GmU" secondAttribute="bottom" constant="15" id="b17-O4-2w0"/>
                 <constraint firstItem="eOP-M4-7A9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="dxd-y9-8JM"/>
                 <constraint firstItem="Jme-On-CIZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="fqM-CS-DPL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0zm-qC-zi7" secondAttribute="trailing" constant="20" id="fzP-vY-meq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Jme-On-CIZ" secondAttribute="trailing" constant="20" id="oKa-Ia-fla"/>
-                <constraint firstItem="0zm-qC-zi7" firstAttribute="top" secondItem="Jme-On-CIZ" secondAttribute="bottom" constant="20" id="oPT-zt-pAR"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="centerY" secondItem="eOP-M4-7A9" secondAttribute="bottom" constant="20" id="twT-ky-jUs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="centerY" secondItem="eOP-M4-7A9" secondAttribute="bottom" constant="10" id="twT-ky-jUs"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
         </view>

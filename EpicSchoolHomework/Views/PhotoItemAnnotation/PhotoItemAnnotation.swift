@@ -34,10 +34,12 @@ class PhotoItemAnnotation: NSObject, MKAnnotation {
             annotationView!.annotation = self
         }
         
-        let pointColor = UIColor.orange
+        let tintColor: UIColor = photoItem.isVisitedByCurrentUser ? .green : .orange
         
-        annotationView!.markerTintColor = pointColor
-        annotationView!.glyphImage = UIImage(systemName: "photo.circle.fill")
+        let glyphImageName = photoItem.isLikedByCurrentUser ? "heart.fill" : "photo.circle"
+        
+        annotationView!.markerTintColor = tintColor
+        annotationView!.glyphImage = UIImage(systemName: glyphImageName)
         
         // allow this to show pop up information
         annotationView?.canShowCallout = false

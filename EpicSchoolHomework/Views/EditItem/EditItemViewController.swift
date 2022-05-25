@@ -15,6 +15,15 @@ final class EditItemViewController: UIViewController {
     @IBOutlet weak var postItemButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var centerMapLabel: UILabel!
+    @IBOutlet weak var visitedSwitch: UISwitch!
+    
+    @IBAction func visitedSwitched(_ sender: Any) {
+        guard let switchVisited = sender as? UISwitch else {return}
+        if var photoItem = photoItem {
+            photoItem.setVisitedByCurrentUser(switchVisited.isOn)
+            self.photoItem = photoItem
+        }
+    }
     
     var photoItem: PhotoItem?
     var takeNewPhotoFromCamera = true
@@ -70,6 +79,8 @@ extension EditItemViewController {
                                  longitude: itemCoordinate?.longitude)
         dismissAndGoBack()
     }
+    
+    
 }
 
 // MARK: -  UITextFieldDelegate
@@ -200,6 +211,7 @@ extension EditItemViewController {
             }
             postItemButton.isHidden = true
             descriptionTextField.isHidden = true
+            visitedSwitch.isOn = photoItem.isVisitedByCurrentUser
         }
     }
     

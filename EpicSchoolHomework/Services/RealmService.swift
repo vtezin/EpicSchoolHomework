@@ -47,6 +47,17 @@ final class PhotoItemRealmLike: Object {
     }
 }
 
+final class PhotoItemRealmVisit: Object {
+    @objc dynamic var item: PhotoItemRealm!
+    @objc dynamic var user: String = ""
+    @objc dynamic var date: Date = Date()
+    @objc dynamic var id = UUID().uuidString
+    
+    override static func primaryKey() -> String? {
+      return "id"
+    }
+}
+
 final class RealmService {
     static let config = Realm.Configuration(schemaVersion: 5)
     
@@ -68,23 +79,36 @@ final class RealmService {
             
             realm.add(newItem, update: .modified)
             
-            //clear likes info
+            //clear likes
             let likes = realm.objects(PhotoItemRealmLike.self).where{
                 $0.item == newItem
             }
             for like in likes{
                 realm.delete(like)
             }
+            
+            //clear visits
+            let visits = realm.objects(PhotoItemRealmLike.self).where{
+                $0.item == newItem
+            }
+            for visit in visits{
+                realm.delete(visit)
+            }
+        
         }
         
         for comment in photoItem.comments{
             saveComment(photoItem: photoItem, comment: comment)
         }
         
-        
         for like in photoItem.likes{
             saveLike(photoItem: photoItem, like: like)
         }
+ 
+        for visit in photoItem.visits{
+            saveVisit(photoItem: photoItem, visit: visit)
+        }
+        
     }
     
     static func saveComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
@@ -122,6 +146,24 @@ final class RealmService {
             newLike.date = like.date
             newLike.item = item
             realm.add(newLike, update: .modified)
+        }
+    }
+    
+    static func saveVisit(photoItem: PhotoItem, visit: PhotoItem.Visit) {
+        let realm = try! Realm(configuration: config)
+        
+        let items = try! Realm(configuration: config).objects(PhotoItemRealm.self).where{
+            $0.id == photoItem.id
+        }
+        
+        guard let item = items.first else {return}
+        
+        try! realm.write {
+            let newVisit = PhotoItemRealmVisit()
+            newVisit.user = visit.user
+            newVisit.date = visit.date
+            newVisit.item = item
+            realm.add(newVisit, update: .modified)
         }
     }
     
