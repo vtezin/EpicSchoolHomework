@@ -19,6 +19,7 @@ final class EditItemViewController: UIViewController {
     @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var visitedInfoLabel: UILabel!
+    @IBOutlet weak var isVisitedStackView: UIStackView!
     
     var photoItem: PhotoItem?
     var takeNewPhotoFromCamera = true
@@ -46,7 +47,7 @@ final class EditItemViewController: UIViewController {
         super.viewDidLoad()
         descriptionTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Опубликовать", style: .plain, target: self, action: #selector(postItem))
-        addKeyboardNotifications()
+        //addKeyboardNotifications()
         configure()
         configurePostButton()
         configureMapView()
@@ -56,8 +57,11 @@ final class EditItemViewController: UIViewController {
         
         if photoItem == nil {
             distanceLabel.isHidden = true
+            isVisitedStackView.isHidden = true
             takeImage(fromCamera: takeNewPhotoFromCamera)
-        }        
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
     
 }

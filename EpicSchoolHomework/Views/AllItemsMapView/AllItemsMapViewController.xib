@@ -45,6 +45,11 @@
                     <buttonConfiguration key="configuration" style="gray" title=" Где я?">
                         <imageReference key="image" image="location.fill" catalog="system" symbolScale="medium"/>
                     </buttonConfiguration>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="moveToCurLocationButtonTapped:" destination="-1" eventType="touchUpInside" id="pBJ-RL-b7R"/>
                     </connections>
