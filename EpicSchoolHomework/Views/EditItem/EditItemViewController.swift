@@ -12,20 +12,13 @@ import Photos
 final class EditItemViewController: UIViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var descriptionTextField: UITextField!
-    @IBOutlet weak var postItemButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var centerMapLabel: UILabel!
     @IBOutlet weak var visitedSwitch: UISwitch!
+    @IBOutlet weak var visitedSwitchLabel: UILabel!
     @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var distanceLabel: UILabel!
-    
-    @IBAction func visitedSwitched(_ sender: Any) {
-        guard let switchVisited = sender as? UISwitch else {return}
-        if var photoItem = photoItem {
-            photoItem.setVisitedByCurrentUser(switchVisited.isOn)
-            self.photoItem = photoItem
-        }
-    }
+    @IBOutlet weak var visitedInfoLabel: UILabel!
     
     var photoItem: PhotoItem?
     var takeNewPhotoFromCamera = true
@@ -52,6 +45,7 @@ final class EditItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Опубликовать", style: .plain, target: self, action: #selector(postItem))
         addKeyboardNotifications()
         configure()
         configurePostButton()
@@ -61,6 +55,7 @@ final class EditItemViewController: UIViewController {
         descriptionTextField.delegate = self
         
         if photoItem == nil {
+            distanceLabel.isHidden = true
             takeImage(fromCamera: takeNewPhotoFromCamera)
         }        
     }
@@ -68,21 +63,14 @@ final class EditItemViewController: UIViewController {
 }
 
 // MARK: -  IBActions
-extension EditItemViewController {
-    @IBAction func postItemButtonTapped(_ sender: Any) {
-        guard let uiImage = photoImageView.image,
-        let description = descriptionTextField.text else {
-            return
+extension EditItemViewController {    
+    @IBAction func visitedSwitched(_ sender: Any) {
+        guard let switchVisited = sender as? UISwitch else {return}
+        if var photoItem = photoItem {
+            photoItem.setVisitedByCurrentUser(switchVisited.isOn)
+            self.photoItem = photoItem
         }
-        
-        FireBaseService.postItem(image: uiImage,
-                                 description: description,
-                                 latitude: itemCoordinate?.latitude,
-                                 longitude: itemCoordinate?.longitude)
-        dismissAndGoBack()
     }
-    
-    
 }
 
 // MARK: -  UITextFieldDelegate
@@ -116,6 +104,8 @@ extension EditItemViewController: CLLocationManagerDelegate {
         
         distanceLabel.text = "-> " + localeDistanceString(distanceMeters: distance)
         
+        visitedSwitch.isEnabled = visitedSwitch.isOn || distance <= 10
+        visitedSwitchLabel.isEnabled = visitedSwitch.isEnabled 
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -204,6 +194,7 @@ extension EditItemViewController {
     private func configure() {
         if let photoItem = photoItem {
             navigationItem.title = photoItem.description
+            imageLoadingIndicator.startAnimating()
             ImagesService.fetchImageForPhotoItem(photoItem: photoItem,
                                           completion: setImage)
             if photoItem.latitude != 0 {
@@ -216,7 +207,6 @@ extension EditItemViewController {
                 
                 setMapViewCenterByPhotoCoordinate()
             }
-            postItemButton.isHidden = true
             descriptionTextField.isHidden = true
             visitedSwitch.isOn = photoItem.isVisitedByCurrentUser
         }
@@ -249,13 +239,7 @@ extension EditItemViewController {
     
     
     private func configurePostButton() {
-        postItemButton.isEnabled = photoImageView.image != nil && !(descriptionTextField.text?.isEmpty ?? false)
-        
-        if postItemButton.isEnabled {
-            postItemButton.setTitle("Опубликовать", for: .normal)
-        } else {
-            postItemButton.setTitle("Выберите фото и введите описание", for: .normal)
-        }
+        navigationItem.rightBarButtonItem?.isEnabled = photoImageView.image != nil && !(descriptionTextField.text?.isEmpty ?? false)
     }
     
     @objc private func textFieldDidChange() {
@@ -264,6 +248,19 @@ extension EditItemViewController {
     
     private func dismissAndGoBack() {
         _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func postItem() {
+        guard let uiImage = photoImageView.image,
+        let description = descriptionTextField.text else {
+            return
+        }
+        
+        FireBaseService.postItem(image: uiImage,
+                                 description: description,
+                                 latitude: itemCoordinate?.latitude,
+                                 longitude: itemCoordinate?.longitude)
+        dismissAndGoBack()
     }
 }
 

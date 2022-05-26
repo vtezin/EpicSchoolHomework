@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AllItemsMapViewController" customModule="EpicSchoolHomework" customModuleProvider="target">
             <connections>
+                <outlet property="mapModeControl" destination="Wtf-8i-UQs" id="oNL-QK-HIN"/>
                 <outlet property="mapView" destination="h8f-zy-eEK" id="FXr-kL-s2m"/>
+                <outlet property="moveToCurLocationButton" destination="OW7-6K-5Jy" id="4w2-Og-Wyz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,19 +26,50 @@
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="h8f-zy-eEK">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                 </mapView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wtf-8i-UQs">
+                    <rect key="frame" x="137.5" y="64" width="139" height="32"/>
+                    <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                    <segments>
+                        <segment title="Карта"/>
+                        <segment title="Снимок"/>
+                    </segments>
+                    <connections>
+                        <action selector="mapModeChanged:" destination="-1" eventType="valueChanged" id="AXT-Ph-v5Q"/>
+                    </connections>
+                </segmentedControl>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW7-6K-5Jy">
+                    <rect key="frame" x="164" y="821" width="86" height="31"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Где я?" image="location.fill" catalog="system"/>
+                    <buttonConfiguration key="configuration" style="gray" title=" Где я?">
+                        <imageReference key="image" image="location.fill" catalog="system" symbolScale="medium"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="moveToCurLocationButtonTapped:" destination="-1" eventType="touchUpInside" id="pBJ-RL-b7R"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="h8f-zy-eEK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7Ir-oN-7pP"/>
                 <constraint firstItem="h8f-zy-eEK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="FqU-rR-fHb"/>
+                <constraint firstItem="Wtf-8i-UQs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="HoG-FG-nHK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="h8f-zy-eEK" secondAttribute="trailing" id="Lya-2L-Wlx"/>
+                <constraint firstItem="Wtf-8i-UQs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RwL-IT-dgL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="h8f-zy-eEK" secondAttribute="bottom" id="f4l-14-FoW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="OW7-6K-5Jy" secondAttribute="bottom" constant="10" id="q8E-dG-c5M"/>
+                <constraint firstItem="OW7-6K-5Jy" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="w05-f9-Aoj"/>
             </constraints>
             <point key="canvasLocation" x="139" y="115"/>
         </view>
     </objects>
     <resources>
+        <image name="location.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

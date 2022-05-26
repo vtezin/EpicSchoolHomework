@@ -15,7 +15,17 @@ class AllItemsMapViewController: UIViewController {
     private var currentCoordinate: CLLocationCoordinate2D?
     private var photoItems = [PhotoItem]()
     
+    @IBOutlet weak var mapModeControl: UISegmentedControl!
+    @IBOutlet weak var moveToCurLocationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+    
+    @IBAction func mapModeChanged(_ sender: UISegmentedControl) {
+        mapView.mapType = mapModeControl.selectedSegmentIndex == 0 ? .standard : .hybrid
+    }
+    
+    @IBAction func moveToCurLocationButtonTapped(_ sender: UIButton) {
+        setMapCenterToCurrentLocation()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,6 +144,23 @@ extension AllItemsMapViewController: MKMapViewDelegate {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        //moveToCurLocationButton.isHidden = mapView.isUserLocationVisible
+        
+        UIView.transition(with: moveToCurLocationButton, duration: 0.5,
+          options: [.curveEaseOut],
+          animations: {
+            self.moveToCurLocationButton.alpha = mapView.isUserLocationVisible ? 0 : 1
+          },
+          completion: { _ in
+            self.moveToCurLocationButton.isHidden = mapView.isUserLocationVisible
+          }
+        )
+        
+    }
+    
 }
     
 
