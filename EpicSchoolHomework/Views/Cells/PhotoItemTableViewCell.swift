@@ -60,7 +60,7 @@ extension PhotoItemTableViewCell {
         if let uiImage = uiImage{
             photoItem?.image = uiImage
             photoImageView.image = uiImage
-            loadingActivityIndicator.startAnimating()
+            loadingActivityIndicator.stopAnimating()
             RealmService.saveItem(photoItem: self.photoItem!)
         }
     }
@@ -71,6 +71,7 @@ extension PhotoItemTableViewCell {
         photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
         
+        loadingActivityIndicator.startAnimating()
         ImagesService.fetchImageForPhotoItem(photoItem: photoItem!,
                                       completion: setImageToCell)
         

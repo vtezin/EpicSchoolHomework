@@ -7,15 +7,19 @@
 
 import Foundation
 
-func localeDistanceString(distanceMeters: Double) -> String {
-    if distanceMeters < 1 {
-        return "0"
-    } else {
-        let formatter = MeasurementFormatter()
-        let distanceInMeters = Measurement(value: Double(Int(distanceMeters)), unit: UnitLength.meters)
-        formatter.unitStyle = MeasurementFormatter.UnitStyle.short
-        formatter.unitOptions = .naturalScale
-        
-        return formatter.string(from: distanceInMeters)
+func localeDistanceString(distanceMeters: Double) -> String {    
+    //round to meters
+    var distance = Int(distanceMeters)
+    
+    //round to kilimeters
+    if distance > 5000 {
+        distance = Int(Double(distance/1000).rounded()) * 1000
     }
+    
+    let formatter = MeasurementFormatter()
+    let distanceInMeters = Measurement(value: Double(Int(distance)), unit: UnitLength.meters)
+    formatter.unitStyle = MeasurementFormatter.UnitStyle.short
+    formatter.unitOptions = .naturalScale
+    
+    return formatter.string(from: distanceInMeters)
 }

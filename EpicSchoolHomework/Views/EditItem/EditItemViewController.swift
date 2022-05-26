@@ -61,6 +61,7 @@ final class EditItemViewController: UIViewController {
             takeImage(fromCamera: takeNewPhotoFromCamera)
         } else {
             navigationItem.rightBarButtonItem = nil
+            visitedInfoLabel.isHidden = photoItem!.isVisitedByCurrentUser
         }
     }
     
@@ -73,6 +74,7 @@ extension EditItemViewController {
         if var photoItem = photoItem {
             photoItem.setVisitedByCurrentUser(switchVisited.isOn)
             self.photoItem = photoItem
+            visitedInfoLabel.isHidden = photoItem.isVisitedByCurrentUser
         }
     }
 }
@@ -106,7 +108,7 @@ extension EditItemViewController: CLLocationManagerDelegate {
         
         let distance = CLLocation(latitude: currentCoordinate!.latitude, longitude: currentCoordinate!.longitude).distance(from: CLLocation(latitude: itemCoordinate!.latitude, longitude: itemCoordinate!.longitude))
         
-        distanceLabel.text = "-> " + localeDistanceString(distanceMeters: distance)
+        distanceLabel.text = "отсюда " + localeDistanceString(distanceMeters: distance)
         
         visitedSwitch.isEnabled = visitedSwitch.isOn || distance <= 10
         visitedSwitchLabel.isEnabled = visitedSwitch.isEnabled 
@@ -119,7 +121,6 @@ extension EditItemViewController: CLLocationManagerDelegate {
     }
     
     private func setMapViewCenterByPhotoCoordinate() {
-        
         var centerCoordinates = CLLocationCoordinate2D()
         
         if let itemCoordinates = itemCoordinate {
