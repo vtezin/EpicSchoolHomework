@@ -17,7 +17,6 @@
                 <outlet property="currentUserInfoStackView" destination="t1J-Gs-WZ2" id="1RC-sH-AH5"/>
                 <outlet property="emailTextField" destination="t1K-jP-0FY" id="cUQ-ia-wHt"/>
                 <outlet property="logInOutButton" destination="Ie3-0C-HxU" id="6CG-5k-Qiz"/>
-                <outlet property="navigateToPhotoListButton" destination="82e-mV-Hhb" id="Yvs-Gc-fps"/>
                 <outlet property="passwordTextField" destination="nQl-Th-Mpi" id="kpX-MT-e4L"/>
                 <outlet property="resultTextField" destination="jtt-q3-pom" id="58C-pT-dXM"/>
                 <outlet property="userDetailsStackView" destination="lmy-qO-hSw" id="l9M-ol-wTv"/>
@@ -29,28 +28,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82e-mV-Hhb">
-                    <rect key="frame" x="159.5" y="486.5" width="95.5" height="44"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Фотки">
-                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="navigateToPhotoListTapped:" destination="-1" eventType="touchUpInside" id="6Dt-OG-ATW"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wRv-vG-W8H">
-                    <rect key="frame" x="162" y="555" width="90.5" height="44"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Карта">
-                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="navigateToAllItemsMapTapped:" destination="-1" eventType="touchUpInside" id="0x9-UL-Icc"/>
-                    </connections>
-                </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="7H6-6a-3dV">
-                    <rect key="frame" x="20" y="144" width="374" height="292.5"/>
+                    <rect key="frame" x="20" y="294.5" width="374" height="317.5"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="lmy-qO-hSw" userLabel="EmailPassword">
                             <rect key="frame" x="68.5" y="0.0" width="237.5" height="150"/>
@@ -106,21 +85,18 @@
                                             <rect key="frame" x="188.5" y="0.0" width="51" height="31"/>
                                         </switch>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="BxH-oE-gtr" firstAttribute="leading" secondItem="CKy-Bn-9vW" secondAttribute="trailing" constant="50" id="hOO-2Z-bbn"/>
-                                    </constraints>
                                 </stackView>
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="t1J-Gs-WZ2" userLabel="CurrentUser">
-                            <rect key="frame" x="123.5" y="191" width="127" height="29.5"/>
+                            <rect key="frame" x="123.5" y="191" width="127" height="48.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lys-D9-FqB">
-                                    <rect key="frame" x="63" y="0.0" width="1" height="1"/>
+                                    <rect key="frame" x="54" y="1.5" width="19" height="17.5"/>
                                     <imageReference key="image" image="person" catalog="system" symbolScale="medium"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubq-8k-Jfm">
-                                    <rect key="frame" x="0.0" y="9" width="127" height="20.5"/>
+                                    <rect key="frame" x="0.0" y="28" width="127" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -128,9 +104,11 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ie3-0C-HxU">
-                            <rect key="frame" x="154.5" y="261.5" width="65" height="31"/>
+                            <rect key="frame" x="148" y="280.5" width="78" height="37"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Войти"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Войти">
+                                <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
+                            </buttonConfiguration>
                             <connections>
                                 <action selector="enterButtonTapped:" destination="-1" eventType="touchUpInside" id="1Vg-mr-Yx2"/>
                             </connections>
@@ -141,14 +119,10 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="82e-mV-Hhb" firstAttribute="top" secondItem="7H6-6a-3dV" secondAttribute="bottom" constant="50" id="IVh-qe-JUF"/>
                 <constraint firstItem="7H6-6a-3dV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Kvw-Bw-bTl"/>
-                <constraint firstItem="wRv-vG-W8H" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="NJb-bd-Fkp"/>
                 <constraint firstItem="7H6-6a-3dV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RUM-4D-N4Q"/>
-                <constraint firstItem="82e-mV-Hhb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UoB-JJ-VjM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7H6-6a-3dV" secondAttribute="trailing" constant="20" id="fWR-zJ-ghf"/>
-                <constraint firstItem="wRv-vG-W8H" firstAttribute="top" secondItem="82e-mV-Hhb" secondAttribute="bottom" constant="24.5" id="kfM-vy-RqY"/>
-                <constraint firstItem="7H6-6a-3dV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="wm5-Yg-m5T"/>
+                <constraint firstItem="7H6-6a-3dV" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="mJT-4u-WOZ"/>
             </constraints>
             <point key="canvasLocation" x="139" y="115"/>
         </view>

@@ -18,7 +18,6 @@ final class UserProfileViewController: UIViewController {
     @IBOutlet weak var logInOutButton: UIButton!
     @IBOutlet weak var currentUserEmailLabel: UILabel!
     @IBOutlet weak var currentUserInfoStackView: UIStackView!
-    @IBOutlet weak var navigateToPhotoListButton: UIButton!
     
     var handle: AuthStateDidChangeListenerHandle?
     var userLoggedIn = false {
@@ -26,16 +25,6 @@ final class UserProfileViewController: UIViewController {
             loginStateDidChanged()
         }
     }
-    
-    @IBAction func navigateToPhotoListTapped(_ sender: Any) {
-        navigateToPhotoList()
-    }
-    
-    @IBAction func navigateToAllItemsMapTapped(_ sender: Any) {
-        let vc = AllItemsMapViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     
     @IBAction func enterButtonTapped(_ sender: Any) {
         if userLoggedIn {
@@ -93,8 +82,6 @@ extension UserProfileViewController {
                 return
             }
             strongSelf.updateResultText("Вход выполнен")
-            
-            self?.navigateToPhotoList()
         }
     }
     
@@ -118,15 +105,9 @@ extension UserProfileViewController {
         self.resultTextField.textColor = withError ? .red : .green
     }
     
-    private func navigateToPhotoList() {
-        let vc = MainScreenViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     private func loginStateDidChanged() {
         logInOutButton.setTitle(userLoggedIn ? "Выйти" : "Войти", for: .normal)
         userDetailsStackView.isHidden = userLoggedIn
         currentUserInfoStackView.isHidden = !userLoggedIn
-        navigateToPhotoListButton.isHidden = !userLoggedIn
     }
 }

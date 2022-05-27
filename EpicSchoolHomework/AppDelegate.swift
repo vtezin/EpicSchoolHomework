@@ -28,10 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = .init(frame: UIScreen.main.bounds)
         
-        window?.rootViewController = UINavigationController(rootViewController: UserProfileViewController())
-        
+        window?.rootViewController = RootTabBarController()
         window?.makeKeyAndVisible()
-        
         return true
     }
 

@@ -38,13 +38,11 @@
                     </connections>
                 </segmentedControl>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW7-6K-5Jy">
-                    <rect key="frame" x="164" y="821" width="86" height="31"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <rect key="frame" x="174.5" y="834" width="65" height="18"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Где я?" image="location.fill" catalog="system"/>
-                    <buttonConfiguration key="configuration" style="gray" title=" Где я?">
+                    <state key="normal" title=" Где я?">
                         <imageReference key="image" image="location.fill" catalog="system" symbolScale="medium"/>
-                    </buttonConfiguration>
+                    </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="10"/>
