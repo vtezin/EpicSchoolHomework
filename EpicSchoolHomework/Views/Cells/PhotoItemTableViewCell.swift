@@ -75,7 +75,7 @@ extension PhotoItemTableViewCell {
         ImagesService.fetchImageForPhotoItem(photoItem: photoItem!,
                                       completion: setImageToCell)
         
-        authorLabel.text = photoItem!.author
+        authorLabel.text = "© \(photoItem!.author)"
         descriptionLabel.text = photoItem!.description
         commentsButton.setTitle("Комментарии (\(photoItem!.comments.count))", for: .normal)
         

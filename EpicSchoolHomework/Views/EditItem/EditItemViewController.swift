@@ -18,7 +18,6 @@ final class EditItemViewController: UIViewController {
     @IBOutlet weak var visitedSwitchLabel: UILabel!
     @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var visitedInfoLabel: UILabel!
     @IBOutlet weak var isVisitedStackView: UIStackView!
     
     var photoItem: PhotoItem?
@@ -26,6 +25,7 @@ final class EditItemViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private var itemCoordinate: CLLocationCoordinate2D?
     private var currentCoordinate: CLLocationCoordinate2D?
+    private var distanceFromHereMeters: Double?
     
     let delegate: canUpdatePhotoItemInArray
     let indexPhotoItemInArray: Int?
@@ -61,7 +61,6 @@ final class EditItemViewController: UIViewController {
             takeImage(fromCamera: takeNewPhotoFromCamera)
         } else {
             navigationItem.rightBarButtonItem = nil
-            visitedInfoLabel.isHidden = photoItem!.isVisitedByCurrentUser
         }
     }
     
@@ -71,10 +70,21 @@ final class EditItemViewController: UIViewController {
 extension EditItemViewController {    
     @IBAction func visitedSwitched(_ sender: Any) {
         guard let switchVisited = sender as? UISwitch else {return}
+        guard let distanceFromHereMeters = distanceFromHereMeters else {return}
+        
+        if switchVisited.isOn && distanceFromHereMeters > 10 {
+            let alertController = UIAlertController(title: "Далековато", message: "Для отметки посещения необходимо быть не дальше 10 метров от точки съемки. Такие правила. Движение - жизнь.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Понятно", style: .cancel)
+            alertController.addAction(action)
+            present(alertController, animated: true){
+                switchVisited.isOn = false
+            }
+            return
+        }
+        
         if var photoItem = photoItem {
             photoItem.setVisitedByCurrentUser(switchVisited.isOn)
             self.photoItem = photoItem
-            visitedInfoLabel.isHidden = photoItem.isVisitedByCurrentUser
         }
     }
 }
@@ -106,12 +116,9 @@ extension EditItemViewController: CLLocationManagerDelegate {
     
         currentCoordinate = latestLocation.coordinate
         
-        let distance = CLLocation(latitude: currentCoordinate!.latitude, longitude: currentCoordinate!.longitude).distance(from: CLLocation(latitude: itemCoordinate!.latitude, longitude: itemCoordinate!.longitude))
+        distanceFromHereMeters = CLLocation(latitude: currentCoordinate!.latitude, longitude: currentCoordinate!.longitude).distance(from: CLLocation(latitude: itemCoordinate!.latitude, longitude: itemCoordinate!.longitude))
         
-        distanceLabel.text = "отсюда " + localeDistanceString(distanceMeters: distance)
-        
-        visitedSwitch.isEnabled = visitedSwitch.isOn || distance <= 10
-        visitedSwitchLabel.isEnabled = visitedSwitch.isEnabled 
+        distanceLabel.text = "отсюда " + localeDistanceString(distanceMeters: distanceFromHereMeters!)
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

@@ -6,14 +6,61 @@
 //
 
 import UIKit
+import Firebase
 
-class RootTabBarController: UITabBarController {
+final class RootTabBarController: UITabBarController {
+    
+    private var photoItems = [PhotoItem]() {
+        didSet{
+            photoListVC.photoItemsFetched(photoItems: self.photoItems)
+            photoMapVC.photoItemsFetched(photoItems: self.photoItems)
+        }
+    }
+    
+    private var firebaseIsConnected: Bool = false {
+        didSet{
+            print("connected \(firebaseIsConnected)");
+            self.tabBar.items?[2].title = firebaseIsConnected ? "онлайн" : "офлайн"
+            self.tabBar.items?[2].badgeColor = firebaseIsConnected ? .green : .red        }
+    }
+    
+    private var photoListVC = MainScreenViewController()
+    private var photoMapVC = AllItemsMapViewController()
+    private var userProfileVC = UserProfileViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        UITabBar.appearance().barTintColor = .systemBackground
-        tabBar.tintColor = .label
+        configureDatabaseObservers()
         configure()
+    }
+}
+
+// MARK: -  work with database
+extension RootTabBarController {
+    fileprivate func configureDatabaseObservers() {
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
+        
+        connectedRef.observe(.value, with: { snapshot in
+          if snapshot.value as? Bool ?? false {
+              self.firebaseIsConnected = true
+              self.refetchPhotoItems()
+          } else {
+              self.firebaseIsConnected = false
+          }
+        })
+        
+        let itemsRef = Database.database().reference().child("photos")
+        itemsRef.observe(DataEventType.value, with: { snapshot in
+            self.refetchPhotoItems()
+        })
+    }
+    
+    private func refetchPhotoItems() {
+        DataService.fetchPhotoItems(handler: self.photoItemsFetched)
+    }
+    
+    private func photoItemsFetched(photoItems: [PhotoItem]) {
+        self.photoItems = photoItems
     }
 }
 
@@ -21,6 +68,9 @@ class RootTabBarController: UITabBarController {
 extension RootTabBarController {
     
     fileprivate func configure() {
+        view.backgroundColor = .systemBackground
+        UITabBar.appearance().barTintColor = .systemBackground
+        tabBar.tintColor = .label
         setupVCs()
     }
     
@@ -36,10 +86,9 @@ extension RootTabBarController {
     
     fileprivate func setupVCs() {
           viewControllers = [
-              createNavController(for: MainScreenViewController(), title: NSLocalizedString("Фотки", comment: ""), image: UIImage(systemName: "photo.on.rectangle.angled")!),
-              createNavController(for: AllItemsMapViewController(), title: NSLocalizedString("Карта", comment: ""), image: UIImage(systemName: "map")!),
-              createNavController(for: UserProfileViewController(), title: NSLocalizedString("Профиль", comment: ""), image: UIImage(systemName: "person")!)
+              createNavController(for: photoListVC, title: NSLocalizedString("Фотки", comment: ""), image: UIImage(systemName: "photo.on.rectangle.angled")!),
+              createNavController(for: photoMapVC, title: NSLocalizedString("Карта", comment: ""), image: UIImage(systemName: "map")!),
+              createNavController(for: userProfileVC, title: NSLocalizedString("Профиль", comment: ""), image: UIImage(systemName: "person")!)
           ]
       }
-    
 }

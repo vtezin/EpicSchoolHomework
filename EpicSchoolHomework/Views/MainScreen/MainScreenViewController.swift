@@ -8,8 +8,7 @@
 import UIKit
 import Firebase
 
-final class MainScreenViewController: UIViewController {    
-    @IBOutlet weak var refreshLabel: UILabel!
+final class MainScreenViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loadingActivityController: UIActivityIndicatorView!
     
@@ -32,25 +31,6 @@ final class MainScreenViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: nil, menu: addPhotoMenu)
         
         setupTableView()
-        
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value, with: { snapshot in
-          if snapshot.value as? Bool ?? false {
-              self.refreshLabel.text = "Онлайн"
-              self.refreshLabel.textColor = .green
-              self.navigationItem.rightBarButtonItem?.isEnabled = true
-          } else {
-              self.refreshLabel.text = "Оффлайн"
-              self.refreshLabel.textColor = .red
-              self.navigationItem.rightBarButtonItem?.isEnabled = false
-          }
-            DataService.fetchPhotoItems(handler: self.photoItemsFetched)
-        })
-        
-        let itemsRef = Database.database().reference().child("photos")
-        itemsRef.observe(DataEventType.value, with: { snapshot in
-            DataService.fetchPhotoItems(handler: self.photoItemsFetched)
-        })
     }
 }
 
@@ -68,7 +48,6 @@ extension MainScreenViewController {
         self.photoItems = photoItems
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
-            //self.refreshLabel.isHidden = true
             self.loadingActivityController.isHidden = true
             self.tableView.reloadData()
             self.tableView.refreshControl = UIRefreshControl()

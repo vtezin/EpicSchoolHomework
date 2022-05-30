@@ -18,46 +18,68 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThM-iM-jkB">
-                        <rect key="frame" x="20" y="20" width="457" height="200"/>
+                        <rect key="frame" x="20" y="10" width="457" height="250"/>
                         <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pe4-IE-LK3" customClass="HeartBezierView" customModule="EpicSchoolHomework" customModuleProvider="target">
+                                <rect key="frame" x="178.5" y="75" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Jfs-Hs-BLl"/>
+                                    <constraint firstAttribute="width" constant="100" id="q9d-bD-FCc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                        <color key="value" systemColor="systemPinkColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-06-TJ6" userLabel="Photo">
-                                <rect key="frame" x="0.0" y="0.0" width="457" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="455" height="250"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nuK-J3-K9C">
-                                <rect key="frame" x="218.5" y="90" width="20" height="20"/>
+                                <rect key="frame" x="218.5" y="115" width="20" height="20"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birdy Sinichka" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0d-fa-h89" userLabel="Description label">
+                                <rect key="frame" x="247" y="10" width="200" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="HzB-XO-7ZI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birdman" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTe-Fm-lKg" userLabel="Author label">
+                                <rect key="frame" x="8" y="225.5" width="47" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="E0d-fa-h89" firstAttribute="top" secondItem="LUb-GN-XfT" secondAttribute="top" constant="10" id="6Ba-tJ-BBS"/>
+                            <constraint firstItem="gTe-Fm-lKg" firstAttribute="leading" secondItem="ThM-iM-jkB" secondAttribute="leading" constant="8" id="7XH-WB-RB6"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="top" secondItem="ThM-iM-jkB" secondAttribute="top" id="7b4-M6-u8U"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="leading" secondItem="ThM-iM-jkB" secondAttribute="leading" id="976-Ql-cjZ"/>
                             <constraint firstItem="nuK-J3-K9C" firstAttribute="centerY" secondItem="ThM-iM-jkB" secondAttribute="centerY" id="ATn-2k-Fpr"/>
+                            <constraint firstItem="pe4-IE-LK3" firstAttribute="centerX" secondItem="ThM-iM-jkB" secondAttribute="centerX" id="E9M-km-kdy"/>
                             <constraint firstItem="nuK-J3-K9C" firstAttribute="centerX" secondItem="ThM-iM-jkB" secondAttribute="centerX" id="L8v-r0-Lym"/>
+                            <constraint firstAttribute="bottom" secondItem="gTe-Fm-lKg" secondAttribute="bottom" constant="10" id="ZLq-5K-Hzk"/>
+                            <constraint firstItem="LUb-GN-XfT" firstAttribute="trailing" secondItem="E0d-fa-h89" secondAttribute="trailing" constant="10" id="egi-9u-qY7"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="centerX" secondItem="ThM-iM-jkB" secondAttribute="centerX" id="fS3-c8-B9Z"/>
+                            <constraint firstAttribute="trailing" secondItem="E0d-fa-h89" secondAttribute="trailing" constant="8" id="flc-1S-hqN"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="centerY" secondItem="ThM-iM-jkB" secondAttribute="centerY" id="p4y-Tq-TLD"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="trailing" secondItem="ThM-iM-jkB" secondAttribute="trailing" id="sF2-42-sp8"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="bottom" secondItem="ThM-iM-jkB" secondAttribute="bottom" id="ssr-UN-AAN"/>
-                            <constraint firstAttribute="height" constant="200" id="y2n-8t-Ly6"/>
+                            <constraint firstItem="pe4-IE-LK3" firstAttribute="centerY" secondItem="ThM-iM-jkB" secondAttribute="centerY" id="zuB-hx-Vmb"/>
                         </constraints>
                         <viewLayoutGuide key="contentLayoutGuide" id="eLJ-oP-28V"/>
                         <viewLayoutGuide key="frameLayoutGuide" id="LUb-GN-XfT"/>
                     </scrollView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birdman" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTe-Fm-lKg" userLabel="Author label">
-                        <rect key="frame" x="20" y="230" width="47" height="14.5"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birdy Sinichka" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0d-fa-h89" userLabel="Description label">
-                        <rect key="frame" x="277" y="230" width="200" height="20.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="200" id="HzB-XO-7ZI"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="PCb-sN-pAp">
-                        <rect key="frame" x="20" y="250" width="91" height="30"/>
+                        <rect key="frame" x="20" y="260" width="91" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9N-Lx-b8d" userLabel="Likes count label">
                                 <rect key="frame" x="0.0" y="0.0" width="63.5" height="30"/>
@@ -82,24 +104,8 @@
                             <constraint firstAttribute="height" constant="30" id="cv0-fv-UDf"/>
                         </constraints>
                     </stackView>
-                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pe4-IE-LK3" customClass="HeartBezierView" customModule="EpicSchoolHomework" customModuleProvider="target">
-                        <rect key="frame" x="198.5" y="50" width="100" height="100"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="100" id="Jfs-Hs-BLl"/>
-                            <constraint firstAttribute="width" constant="100" id="q9d-bD-FCc"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="NO"/>
-                            <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
-                                <real key="value" value="4"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
-                                <color key="value" systemColor="systemPinkColor"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM8-hv-y61">
-                        <rect key="frame" x="374" y="250" width="103" height="30"/>
+                        <rect key="frame" x="374" y="260" width="103" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="IM4-xY-x0V"/>
                         </constraints>
@@ -113,19 +119,14 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gTe-Fm-lKg" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" constant="20" id="NI0-O4-Bdo"/>
                     <constraint firstItem="ThM-iM-jkB" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" constant="20" id="PEN-sc-OCW"/>
-                    <constraint firstAttribute="bottom" secondItem="PCb-sN-pAp" secondAttribute="bottom" constant="20" id="RtP-SH-EYJ"/>
-                    <constraint firstItem="E0d-fa-h89" firstAttribute="top" secondItem="ThM-iM-jkB" secondAttribute="bottom" constant="10" id="TVu-W0-FPL"/>
+                    <constraint firstAttribute="bottom" secondItem="PCb-sN-pAp" secondAttribute="bottom" constant="10" id="RtP-SH-EYJ"/>
                     <constraint firstAttribute="trailing" secondItem="IM8-hv-y61" secondAttribute="trailing" constant="20" id="WhP-2n-K4b"/>
                     <constraint firstAttribute="trailing" secondItem="ThM-iM-jkB" secondAttribute="trailing" constant="20" id="cJe-sq-cL2"/>
-                    <constraint firstAttribute="trailing" secondItem="E0d-fa-h89" secondAttribute="trailing" constant="20" id="d9K-EU-EfU"/>
-                    <constraint firstAttribute="bottom" secondItem="IM8-hv-y61" secondAttribute="bottom" constant="20" id="fo7-fM-Big"/>
-                    <constraint firstItem="pe4-IE-LK3" firstAttribute="centerX" secondItem="bdf-bY-Ml0" secondAttribute="centerX" id="hjE-Pm-2pP"/>
-                    <constraint firstItem="pe4-IE-LK3" firstAttribute="top" secondItem="bdf-bY-Ml0" secondAttribute="top" constant="50" id="kMP-jU-wGq"/>
-                    <constraint firstItem="gTe-Fm-lKg" firstAttribute="top" secondItem="ThM-iM-jkB" secondAttribute="bottom" constant="10" id="o7i-ou-Bhy"/>
+                    <constraint firstAttribute="bottom" secondItem="IM8-hv-y61" secondAttribute="bottom" constant="10" id="fo7-fM-Big"/>
                     <constraint firstItem="PCb-sN-pAp" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" constant="20" id="oJB-fZ-FCa"/>
-                    <constraint firstItem="ThM-iM-jkB" firstAttribute="top" secondItem="bdf-bY-Ml0" secondAttribute="top" constant="20" id="ohP-JL-Bny"/>
+                    <constraint firstItem="ThM-iM-jkB" firstAttribute="top" secondItem="bdf-bY-Ml0" secondAttribute="top" constant="10" id="ohP-JL-Bny"/>
+                    <constraint firstAttribute="bottom" secondItem="ThM-iM-jkB" secondAttribute="bottom" constant="40" id="yuY-8t-nKD"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -12,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainScreenViewController" customModule="EpicSchoolHomework" customModuleProvider="target">
             <connections>
                 <outlet property="loadingActivityController" destination="ovA-QD-lsI" id="VwC-J5-lAZ"/>
-                <outlet property="refreshLabel" destination="nov-zS-2qY" id="0us-1Y-3wE"/>
                 <outlet property="tableView" destination="KM0-cN-hC5" id="h4s-9d-dQK"/>
                 <outlet property="view" destination="lTJ-0s-SIb" id="jfp-9A-0P8"/>
             </connections>
@@ -22,14 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nov-zS-2qY">
-                    <rect key="frame" x="10" y="54" width="394" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KM0-cN-hC5">
-                    <rect key="frame" x="10" y="90" width="394" height="752"/>
+                    <rect key="frame" x="10" y="64" width="394" height="778"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ovA-QD-lsI">
@@ -39,15 +32,12 @@
             <viewLayoutGuide key="safeArea" id="cLh-5j-02S"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="nov-zS-2qY" firstAttribute="leading" secondItem="cLh-5j-02S" secondAttribute="leading" constant="10" id="1Ck-zF-6ow"/>
                 <constraint firstItem="cLh-5j-02S" firstAttribute="bottom" secondItem="KM0-cN-hC5" secondAttribute="bottom" constant="20" id="43g-Rc-BF9"/>
                 <constraint firstItem="ovA-QD-lsI" firstAttribute="centerX" secondItem="lTJ-0s-SIb" secondAttribute="centerX" id="NET-Ya-bBH"/>
                 <constraint firstItem="cLh-5j-02S" firstAttribute="trailing" secondItem="KM0-cN-hC5" secondAttribute="trailing" constant="10" id="NQg-L6-hfg"/>
-                <constraint firstItem="nov-zS-2qY" firstAttribute="top" secondItem="cLh-5j-02S" secondAttribute="top" constant="10" id="Ysa-GO-NTD"/>
-                <constraint firstItem="cLh-5j-02S" firstAttribute="trailing" secondItem="nov-zS-2qY" secondAttribute="trailing" constant="10" id="cKk-pX-mNR"/>
                 <constraint firstItem="ovA-QD-lsI" firstAttribute="centerY" secondItem="lTJ-0s-SIb" secondAttribute="centerY" id="nfT-hX-UsO"/>
-                <constraint firstItem="KM0-cN-hC5" firstAttribute="top" secondItem="nov-zS-2qY" secondAttribute="bottom" constant="15" id="oyR-SJ-fMs"/>
                 <constraint firstItem="KM0-cN-hC5" firstAttribute="leading" secondItem="cLh-5j-02S" secondAttribute="leading" constant="10" id="tHg-wq-CXa"/>
+                <constraint firstItem="KM0-cN-hC5" firstAttribute="top" secondItem="cLh-5j-02S" secondAttribute="top" constant="20" id="vVv-dP-rG3"/>
             </constraints>
             <point key="canvasLocation" x="-589.85507246376812" y="40.848214285714285"/>
         </view>

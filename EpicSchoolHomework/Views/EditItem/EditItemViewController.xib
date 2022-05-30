@@ -19,7 +19,6 @@
                 <outlet property="mapView" destination="Jme-On-CIZ" id="KFI-6o-qCS"/>
                 <outlet property="photoImageView" destination="eOP-M4-7A9" id="OOm-bL-Nrd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="visitedInfoLabel" destination="jQO-y6-6eW" id="bdx-BB-Kkc"/>
                 <outlet property="visitedSwitch" destination="0W5-ae-ALU" id="NCj-uD-twj"/>
                 <outlet property="visitedSwitchLabel" destination="LOR-UO-PzD" id="Dvc-mC-wI0"/>
             </connections>
@@ -36,16 +35,16 @@
                     <rect key="frame" x="188.5" y="205.5" width="37" height="37"/>
                 </activityIndicatorView>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-On-CIZ">
-                    <rect key="frame" x="20" y="453" width="374" height="321.5"/>
+                    <rect key="frame" x="20" y="453" width="374" height="360"/>
                 </mapView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kl-yJ-A5V" userLabel="center map">
-                    <rect key="frame" x="198" y="596" width="18.5" height="36"/>
+                    <rect key="frame" x="198" y="615" width="18.5" height="36"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="WIj-ZB-ts9">
-                    <rect key="frame" x="20" y="782.5" width="374" height="69.5"/>
+                    <rect key="frame" x="20" y="821" width="374" height="31"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-gG-GmU">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="31"/>
@@ -70,12 +69,6 @@
                                 </switch>
                             </subviews>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Для отметки посещения необходимо быть не дальше 10 метров от точки съемки. Такие правила. Движение - жизнь." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-y6-6eW">
-                            <rect key="frame" x="0.0" y="39" width="374" height="30.5"/>
-                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                            <color key="textColor" systemColor="secondaryLabelColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                 </stackView>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название (обязательно)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0zm-qC-zi7">

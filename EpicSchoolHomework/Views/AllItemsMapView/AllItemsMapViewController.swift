@@ -32,11 +32,12 @@ class AllItemsMapViewController: UIViewController {
         navigationItem.title = "Карта"
         configureMapView()
         configureLocationServices()
-        
-        let itemsRef = Database.database().reference().child("photos")
-        itemsRef.observe(DataEventType.value, with: { snapshot in
-            DataService.fetchPhotoItems(handler: self.photoItemsFetched)
-        })
+        addItemsAnnotationsToMap()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        moveToCurLocationButtonSetVisible()
     }
 }
 
@@ -49,11 +50,35 @@ extension AllItemsMapViewController {
         }
     }
     
-    func addItemsAnnotationsToMap() {
+    private func addItemsAnnotationsToMap() {
+        guard mapView != nil else {return}
+        
+        //remove all anotations
+        for annotation in mapView.annotations {
+            if annotation is PhotoItemAnnotation {
+                mapView.removeAnnotation(annotation)
+            }
+        }
+        
+        //add annotations
         for photoItem in photoItems {
             let annotation = PhotoItemAnnotation(photoItem: photoItem)
             mapView.addAnnotation(annotation)
         }
+    }
+    
+    private func moveToCurLocationButtonSetVisible() {
+        
+        UIView.transition(with: moveToCurLocationButton, duration: 0.5,
+          options: [.curveEaseOut],
+          animations: {
+            self.moveToCurLocationButton.alpha = self.mapView.isUserLocationVisible ? 0 : 1
+          },
+          completion: { _ in
+            self.moveToCurLocationButton.isHidden = self.mapView.isUserLocationVisible
+          }
+        )
+        
     }
     
 }
@@ -147,18 +172,7 @@ extension AllItemsMapViewController: MKMapViewDelegate {
     
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        //moveToCurLocationButton.isHidden = mapView.isUserLocationVisible
-        
-        UIView.transition(with: moveToCurLocationButton, duration: 0.5,
-          options: [.curveEaseOut],
-          animations: {
-            self.moveToCurLocationButton.alpha = mapView.isUserLocationVisible ? 0 : 1
-          },
-          completion: { _ in
-            self.moveToCurLocationButton.isHidden = mapView.isUserLocationVisible
-          }
-        )
-        
+        moveToCurLocationButtonSetVisible()
     }
     
 }
