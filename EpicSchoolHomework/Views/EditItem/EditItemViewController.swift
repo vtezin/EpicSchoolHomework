@@ -14,11 +14,13 @@ final class EditItemViewController: UIViewController {
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var centerMapLabel: UILabel!
-    @IBOutlet weak var visitedSwitch: UISwitch!
-    @IBOutlet weak var visitedSwitchLabel: UILabel!
     @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var isVisitedStackView: UIStackView!
+    
+    @IBOutlet weak var likedImageView: UIImageView!
+    @IBOutlet weak var favoriteImageView: UIImageView!
+    @IBOutlet weak var visitedImageView: UIImageView!
     
     var photoItem: PhotoItem?
     var takeNewPhotoFromCamera = true
@@ -49,6 +51,7 @@ final class EditItemViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Опубликовать", style: .plain, target: self, action: #selector(postItem))
         //addKeyboardNotifications()
         configure()
+        redrawFastActionsViews() 
         configurePostButton()
         configureMapView()
         configureLocationServices()
@@ -61,30 +64,6 @@ final class EditItemViewController: UIViewController {
             takeImage(fromCamera: takeNewPhotoFromCamera)
         } else {
             navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
-}
-
-// MARK: -  IBActions
-extension EditItemViewController {    
-    @IBAction func visitedSwitched(_ sender: Any) {
-        guard let switchVisited = sender as? UISwitch else {return}
-        guard let distanceFromHereMeters = distanceFromHereMeters else {return}
-        
-        if switchVisited.isOn && distanceFromHereMeters > 10 {
-            let alertController = UIAlertController(title: "Далековато", message: "Для отметки посещения необходимо быть не дальше 10 метров от точки съемки. Такие правила. Движение - жизнь.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Понятно", style: .cancel)
-            alertController.addAction(action)
-            present(alertController, animated: true){
-                switchVisited.isOn = false
-            }
-            return
-        }
-        
-        if var photoItem = photoItem {
-            photoItem.setVisitedByCurrentUser(switchVisited.isOn)
-            self.photoItem = photoItem
         }
     }
 }
@@ -169,7 +148,6 @@ extension EditItemViewController: CLLocationManagerDelegate {
     }
 }
 
-
 // MARK: -  UINavigationControllerDelegate, UIImagePickerControllerDelegate
 extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -201,6 +179,54 @@ extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerC
     }    
 }
 
+// MARK: -  fast actions
+extension EditItemViewController {
+    private func addGesturesToFastActionsViews() {
+        let likedTapGesture = UITapGestureRecognizer(target: self, action: #selector(likedTapped))
+        likedTapGesture.numberOfTapsRequired = 1
+        likedImageView.addGestureRecognizer(likedTapGesture)
+        
+        let visitedTapGesture = UITapGestureRecognizer(target: self, action: #selector(visitedTapped))
+        visitedTapGesture.numberOfTapsRequired = 1
+        visitedImageView.addGestureRecognizer(visitedTapGesture)
+    }
+    
+    private func redrawFastActionsViews() {
+        guard let photoItem = photoItem else {
+            return
+        }
+        
+        likedImageView.image = UIImage(systemName: photoItem.isLikedByCurrentUser ? "heart.fill" : "heart")
+        visitedImageView.image = UIImage(systemName: photoItem.isVisitedByCurrentUser ? "eye.fill" : "eye")
+    }
+    
+    @objc private func likedTapped()
+    {
+        guard var photoItem = photoItem else {return}
+        photoItem.setLikedByCurrentUser(!photoItem.isLikedByCurrentUser)
+        self.photoItem = photoItem
+        redrawFastActionsViews()
+    }
+    
+    @objc private func visitedTapped()
+    {
+        guard var photoItem = photoItem else {return}
+        guard let distanceFromHereMeters = distanceFromHereMeters else {return}
+        
+        if !photoItem.isVisitedByCurrentUser && distanceFromHereMeters > 10 {
+            let alertController = UIAlertController(title: "Далековато отсюда \(localeDistanceString(distanceMeters: distanceFromHereMeters))", message: "Для отметки посещения необходимо быть не дальше 10 метров от точки съемки. Такие правила. Движение - жизнь.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Понятно", style: .cancel)
+            alertController.addAction(action)
+            present(alertController, animated: true)
+            return
+        }
+        
+        photoItem.setVisitedByCurrentUser(!photoItem.isVisitedByCurrentUser)
+        self.photoItem = photoItem
+        redrawFastActionsViews()
+    }
+}
+
 // MARK: -  functions
 extension EditItemViewController {
     private func configure() {
@@ -220,7 +246,8 @@ extension EditItemViewController {
                 setMapViewCenterByPhotoCoordinate()
             }
             descriptionTextField.isHidden = true
-            visitedSwitch.isOn = photoItem.isVisitedByCurrentUser
+            
+            addGesturesToFastActionsViews()
         }
     }
     
