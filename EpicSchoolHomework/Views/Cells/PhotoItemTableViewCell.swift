@@ -121,8 +121,7 @@ extension PhotoItemTableViewCell {
     
     private func likedToggle() {
         guard FireBaseService.isConnected else {return}
-        photoItem!.toggleLikeByUser(userName: FireBaseService.currentUserName)
-        FireBaseService.updateLikesInfo(photoItem: photoItem!)
+        photoItem!.setLikedByCurrentUser(!photoItem!.isLikedByCurrentUser)
         updateLikesInfo()
     }
     

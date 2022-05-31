@@ -65,16 +65,7 @@ extension PhotoItem {
 }
 
 // MARK: -  Functions
-extension PhotoItem {    
-    mutating func toggleLikeByUser(userName: String) {
-        if isLikedByUser(userName: userName) {
-            likes.removeAll {$0.user == userName}
-        } else {
-            let like = Like(user: userName, date: Date())
-            likes.append(like)
-        }
-    }
-    
+extension PhotoItem {
     mutating func setVisitedByCurrentUser(_ visited: Bool) {
         if !visited {
             visits.removeAll {$0.user == FireBaseService.currentUserName}
@@ -87,6 +78,17 @@ extension PhotoItem {
         FireBaseService.updateVisitsInfo(photoItem: self)
     }
     
+    mutating func setLikedByCurrentUser(_ liked: Bool) {
+        if !liked {
+            likes.removeAll {$0.user == FireBaseService.currentUserName}
+        } else {
+            let like = Like(user: FireBaseService.currentUserName, date: Date())
+            likes.append(like)
+        }
+        
+        guard FireBaseService.isConnected else {return}
+        FireBaseService.updateLikesInfo(photoItem: self)
+    }
     
     func isLikedByUser(userName: String) -> Bool {
         likes.contains {$0.user == userName}
