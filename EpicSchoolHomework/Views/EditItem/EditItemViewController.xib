@@ -15,6 +15,7 @@
                 <outlet property="centerMapLabel" destination="9Kl-yJ-A5V" id="QAP-0E-2MJ"/>
                 <outlet property="descriptionTextField" destination="0zm-qC-zi7" id="Z7K-IJ-qdf"/>
                 <outlet property="distanceLabel" destination="xoU-qN-dSU" id="6zW-Nx-c2d"/>
+                <outlet property="fastActionsStackView" destination="Wgo-gG-GmU" id="Ak7-DK-Khg"/>
                 <outlet property="favoriteImageView" destination="dM3-Ui-Lbk" id="ssS-Vx-id1"/>
                 <outlet property="imageLoadingIndicator" destination="6CY-Ar-b2d" id="4uK-ha-XZh"/>
                 <outlet property="likedImageView" destination="S43-W1-pyV" id="h8U-Be-lDp"/>

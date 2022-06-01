@@ -81,9 +81,11 @@ extension PhotoItem {
     mutating func setLikedByCurrentUser(_ liked: Bool) {
         if !liked {
             likes.removeAll {$0.user == FireBaseService.currentUserName}
+            NotificationService.shared.deleteNotificationForPhotoItem(self)
         } else {
             let like = Like(user: FireBaseService.currentUserName, date: Date())
             likes.append(like)
+            NotificationService.shared.addNotificationForPhotoItem(self)
         }
         
         guard FireBaseService.isConnected else {return}

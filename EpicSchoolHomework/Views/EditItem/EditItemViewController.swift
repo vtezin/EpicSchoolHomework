@@ -16,7 +16,7 @@ final class EditItemViewController: UIViewController {
     @IBOutlet weak var centerMapLabel: UILabel!
     @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var isVisitedStackView: UIStackView!
+    @IBOutlet weak var fastActionsStackView: UIStackView!
     
     @IBOutlet weak var likedImageView: UIImageView!
     @IBOutlet weak var favoriteImageView: UIImageView!
@@ -60,7 +60,7 @@ final class EditItemViewController: UIViewController {
         
         if photoItem == nil {
             distanceLabel.isHidden = true
-            isVisitedStackView.isHidden = true
+            fastActionsStackView.isHidden = true
             takeImage(fromCamera: takeNewPhotoFromCamera)
         } else {
             navigationItem.rightBarButtonItem = nil

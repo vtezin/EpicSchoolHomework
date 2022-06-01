@@ -56,6 +56,7 @@ final class UserProfileViewController: UIViewController {
                 self.userLoggedIn = false
             }
         }
+        NotificationService.shared.printAllNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

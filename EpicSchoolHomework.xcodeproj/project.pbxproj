@@ -16,6 +16,8 @@
 		C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A229927EB030E0007994C /* PhotoItem.swift */; };
 		C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */; };
 		C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A22A127EB0BE70007994C /* PhotoItemTableViewCell.swift */; };
+		C4350427284754F1009AEE0E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4350426284754F1009AEE0E /* NotificationService.swift */; };
+		C435042928475B15009AEE0E /* notificationSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = C435042828475B15009AEE0E /* notificationSound.wav */; };
 		C45379BA282568E000A1BF55 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = C45379B9282568E000A1BF55 /* TinyConstraints */; };
 		C45379BD28256B1800A1BF55 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = C45379BC28256B1800A1BF55 /* Charts */; };
 		C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F65327E4472D00DB2F9B /* AppDelegate.swift */; };
@@ -87,6 +89,8 @@
 		C40A229927EB030E0007994C /* PhotoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItem.swift; sourceTree = "<group>"; };
 		C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoItemTableViewCell.xib; sourceTree = "<group>"; };
 		C40A22A127EB0BE70007994C /* PhotoItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemTableViewCell.swift; sourceTree = "<group>"; };
+		C4350426284754F1009AEE0E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		C435042828475B15009AEE0E /* notificationSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notificationSound.wav; sourceTree = "<group>"; };
 		C499F65027E4472D00DB2F9B /* EpicSchoolHomework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpicSchoolHomework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C499F65327E4472D00DB2F9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C499F65C27E4472E00DB2F9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				C4EA32D9281DBE9B0068282A /* RealmService.swift */,
 				C4C7DA95281F91860088FA4F /* ImagesService.swift */,
 				C4C7DA97281FBC4E0088FA4F /* DataService.swift */,
+				C4350426284754F1009AEE0E /* NotificationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 				C40A229B27EB06ED0007994C /* Views */,
 				C40A229827EB02ED0007994C /* Model */,
 				C499F65327E4472D00DB2F9B /* AppDelegate.swift */,
+				C435042828475B15009AEE0E /* notificationSound.wav */,
 				C499F65C27E4472E00DB2F9B /* Assets.xcassets */,
 				C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */,
 				C499F66127E4472E00DB2F9B /* Info.plist */,
@@ -489,6 +495,7 @@
 				C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */,
 				C4092FA827FEA96E0087B8F9 /* CommentsListView.xib in Resources */,
 				C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */,
+				C435042928475B15009AEE0E /* notificationSound.wav in Resources */,
 				C4DF9D2A282D2CDD008C02DD /* LikesListViewController.xib in Resources */,
 				C4092FA427FD5D660087B8F9 /* MainScreenView.xib in Resources */,
 				C499F65D27E4472E00DB2F9B /* Assets.xcassets in Resources */,
@@ -555,6 +562,7 @@
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,
 				C4DF9D29282D2CDD008C02DD /* LikesListViewController.swift in Sources */,
+				C4350427284754F1009AEE0E /* NotificationService.swift in Sources */,
 				C4092FA627FD5EAB0087B8F9 /* MainScreenViewController.swift in Sources */,
 				C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */,
 				C4A8B2012840B81B0072E670 /* RootTabBarController.swift in Sources */,
