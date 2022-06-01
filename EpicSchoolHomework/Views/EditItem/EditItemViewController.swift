@@ -179,7 +179,7 @@ extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerC
     }    
 }
 
-// MARK: -  fast actions
+// MARK: -  Fast actions
 extension EditItemViewController {
     private func addGesturesToFastActionsViews() {
         let likedTapGesture = UITapGestureRecognizer(target: self, action: #selector(likedTapped))
@@ -210,17 +210,37 @@ extension EditItemViewController {
     
     @objc private func visitedTapped()
     {
-        guard var photoItem = photoItem else {return}
+        guard let photoItem = photoItem else {return}
         guard let distanceFromHereMeters = distanceFromHereMeters else {return}
         
-        if !photoItem.isVisitedByCurrentUser && distanceFromHereMeters > 10 {
-            let alertController = UIAlertController(title: "Далековато отсюда \(localeDistanceString(distanceMeters: distanceFromHereMeters))", message: "Для отметки посещения необходимо быть не дальше 10 метров от точки съемки. Такие правила. Движение - жизнь.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Понятно", style: .cancel)
-            alertController.addAction(action)
-            present(alertController, animated: true)
-            return
+        if distanceFromHereMeters > 10 {
+            let alertTitle = "Далековато отсюда \(localeDistanceString(distanceMeters: distanceFromHereMeters))"
+            
+            if photoItem.isVisitedByCurrentUser {
+                let alertController = UIAlertController(title: alertTitle , message: "Для новой отметки посещения необходимо будет снова посетить место съемки.", preferredStyle: .alert)
+                let action1 = UIAlertAction(title: "Ненене!", style: .cancel) { _ in
+                    return
+                }
+                alertController.addAction(action1)
+                let action2 = UIAlertAction(title: "Схожу не развалюсь", style: .default) {_ in
+                    self.toggleVisited()
+                }
+                alertController.addAction(action2)
+                present(alertController, animated: true)
+            } else {
+                let alertController = UIAlertController(title: alertTitle, message: "Для отметки посещения необходимо быть не дальше 10 метров от точки съемки. Такие правила. Движение - жизнь.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Понятно", style: .cancel)
+                alertController.addAction(action)
+                present(alertController, animated: true)
+                return
+            }
+        } else {
+            toggleVisited()
         }
-        
+    }
+    
+    private func toggleVisited() {
+        guard var photoItem = photoItem else {return}
         photoItem.setVisitedByCurrentUser(!photoItem.isVisitedByCurrentUser)
         self.photoItem = photoItem
         redrawFastActionsViews()
