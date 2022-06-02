@@ -195,7 +195,7 @@ extension EditItemViewController {
             return
         }
         
-        likedImageView.image = UIImage(systemName: photoItem.isLikedByCurrentUser ? "heart.fill" : "heart")
+        likedImageView.image = UIImage(systemName: photoItem.isLikedByCurrentUser ? "hand.thumbsup.fill" : "hand.thumbsup")
         visitedImageView.image = UIImage(systemName: photoItem.isVisitedByCurrentUser ? "eye.fill" : "eye")
     }
     

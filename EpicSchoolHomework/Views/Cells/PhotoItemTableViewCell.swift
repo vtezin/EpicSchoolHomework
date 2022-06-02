@@ -13,18 +13,21 @@ final class PhotoItemTableViewCell: UITableViewCell, UIScrollViewDelegate {
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var likesCountLabel: UILabel!
-    @IBOutlet private weak var likeButton: UIButton!
     @IBOutlet private weak var heartView: HeartBezierView!
-    @IBOutlet weak var photoScrollView: UIScrollView!
+    @IBOutlet private weak var photoScrollView: UIScrollView!
+
+    @IBOutlet private weak var infoStackView: UIStackView!
+    @IBOutlet private weak var likesStackView: UIStackView!
+    @IBOutlet private weak var likesCountLabel: UILabel!
+    @IBOutlet private weak var likesImageView: UIImageView!
     
-    @IBOutlet weak var commentsButton: UIButton!
-    @IBAction func likeButtonTapped(_ sender: Any) {
-        likedToggle()
-    }
-    @IBAction func commentsButtonTapped(_ sender: Any) {
-        navigationToCommentsHandler!(photoItem!, cellIndex)
-    }
+    @IBOutlet private weak var commentsStackView: UIStackView!
+    @IBOutlet private weak var commentsCountLabel: UILabel!
+    @IBOutlet weak var commentsImageView: UIImageView!
+    
+    @IBOutlet private weak var visitsStackView: UIStackView!
+    @IBOutlet private weak var visitsCountLabel: UILabel!
+    @IBOutlet private weak var visitsImageView: UIImageView!
     
     var photoItem: PhotoItem?
     var cellIndex: Int = 0
@@ -53,6 +56,44 @@ extension PhotoItemTableViewCell{
     }
 }
 
+// MARK: -  Gestures
+extension PhotoItemTableViewCell {
+    private func setGestures() {
+        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTappedSingle))
+        singleTapGesture.numberOfTapsRequired = 1
+        photoImageView.addGestureRecognizer(singleTapGesture)
+        
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTappedDouble))
+        doubleTapGesture.numberOfTapsRequired = 2
+        photoImageView.addGestureRecognizer(doubleTapGesture)
+        
+        singleTapGesture.require(toFail: doubleTapGesture)
+        
+        let infoSingleTapGesture = UITapGestureRecognizer(target: self, action: #selector(infoStackViewTapped))
+        infoSingleTapGesture.numberOfTapsRequired = 1
+        infoStackView.addGestureRecognizer(infoSingleTapGesture)
+    }
+    
+    @objc private func imageTappedSingle()
+    {
+        navigationToPhotoItemHandler!(photoItem!, cellIndex)
+    }
+    
+    @objc private func imageTappedDouble()
+    {
+        guard FireBaseService.isConnected else {return}
+        heartView.alpha = 1
+        PhotoItemTableViewCell.animate(withDuration: 1.0) {
+            self.heartView.alpha = 0
+        }
+        likedToggle()
+    }
+    
+    @objc private func infoStackViewTapped()
+    {
+        navigationToCommentsHandler!(photoItem!, cellIndex)
+    }
+}
 
 // MARK: -  Functions
 extension PhotoItemTableViewCell {
@@ -77,21 +118,10 @@ extension PhotoItemTableViewCell {
         
         authorLabel.text = "© \(photoItem!.author)"
         descriptionLabel.text = photoItem!.description
-        commentsButton.setTitle("Комментарии (\(photoItem!.comments.count))", for: .normal)
         
-        updateLikesInfo()
+        updateInfo()
         
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTappedSingle))
-        singleTapGesture.numberOfTapsRequired = 1
-        photoImageView.addGestureRecognizer(singleTapGesture)
-
-        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTappedDouble))
-        doubleTapGesture.numberOfTapsRequired = 2
-        photoImageView.addGestureRecognizer(doubleTapGesture)
-
-        singleTapGesture.require(toFail: doubleTapGesture)
-        
-        photoImageView.isUserInteractionEnabled = true
+        setGestures()
         
         photoScrollView.delegate = self
         photoScrollView.minimumZoomScale = 1.0
@@ -99,30 +129,23 @@ extension PhotoItemTableViewCell {
         
     }
     
-    @objc private func imageTappedSingle()
-    {
-        navigationToPhotoItemHandler!(photoItem!, cellIndex)
-    }
-    
-    @objc private func imageTappedDouble()
-    {
-        guard FireBaseService.isConnected else {return}
-        heartView.alpha = 1
-        PhotoItemTableViewCell.animate(withDuration: 1.0) {
-            self.heartView.alpha = 0
+    private func updateInfo() {
+        guard let photoItem = photoItem else {
+            return
         }
-        likedToggle()
-    }
-    
-    private func updateLikesInfo() {
-        likesCountLabel.text = photoItem!.likesFormattedString
-        likeButton.alpha = photoItem!.isLikedByCurrentUser ? 1 : 0.3
+        
+        likesCountLabel.text = String("\(photoItem.likes.count)");
+        commentsCountLabel.text = String("\(photoItem.comments.count)");
+        visitsCountLabel.text = String("\(photoItem.visits.count)");
+        
+        likesImageView.image = UIImage(systemName: photoItem.isLikedByCurrentUser ? "hand.thumbsup.fill" : "hand.thumbsup" )
+        visitsImageView.image = UIImage(systemName: photoItem.isVisitedByCurrentUser ? "eye.fill" : "eye" )
     }
     
     private func likedToggle() {
         guard FireBaseService.isConnected else {return}
         photoItem!.setLikedByCurrentUser(!photoItem!.isLikedByCurrentUser)
-        updateLikesInfo()
+        updateInfo()
     }
     
 }

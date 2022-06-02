@@ -54,8 +54,8 @@
                     <rect key="frame" x="20" y="414" width="374" height="20"/>
                     <subviews>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S43-W1-pyV" userLabel="liked">
-                            <rect key="frame" x="0.0" y="-1.5" width="180.5" height="23.5"/>
-                            <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                            <rect key="frame" x="0.0" y="-4.5" width="180.5" height="28"/>
+                            <imageReference key="image" image="hand.thumbsup" catalog="system" symbolScale="large"/>
                         </imageView>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TBr-rc-aa3" userLabel="visited">
                             <rect key="frame" x="193.5" y="-1.5" width="180.5" height="22.5"/>
@@ -101,7 +101,7 @@
     </objects>
     <resources>
         <image name="eye" catalog="system" width="128" height="81"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
