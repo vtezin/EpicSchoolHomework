@@ -19,7 +19,6 @@ final class EditItemViewController: UIViewController {
     @IBOutlet weak var fastActionsStackView: UIStackView!
     
     @IBOutlet weak var likedImageView: UIImageView!
-    @IBOutlet weak var favoriteImageView: UIImageView!
     @IBOutlet weak var visitedImageView: UIImageView!
     
     var photoItem: PhotoItem?
@@ -153,7 +152,7 @@ extension EditItemViewController: UINavigationControllerDelegate, UIImagePickerC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
 
-        guard let image = info[.editedImage] as? UIImage else {
+        guard let image = info[.originalImage] as? UIImage else {
             return
         }
         photoImageView.image = image
@@ -213,7 +212,7 @@ extension EditItemViewController {
         guard let photoItem = photoItem else {return}
         guard let distanceFromHereMeters = distanceFromHereMeters else {return}
         
-        if distanceFromHereMeters > 10 {
+        if distanceFromHereMeters > 11 {
             let alertTitle = "Далековато отсюда \(localeDistanceString(distanceMeters: distanceFromHereMeters))"
             
             if photoItem.isVisitedByCurrentUser {
@@ -291,7 +290,7 @@ extension EditItemViewController {
         
         let vc = UIImagePickerController()
         vc.sourceType = fromCamera ? .camera : .photoLibrary
-        vc.allowsEditing = true
+        vc.allowsEditing = false
         vc.delegate = self
         present(vc, animated: true)
     }

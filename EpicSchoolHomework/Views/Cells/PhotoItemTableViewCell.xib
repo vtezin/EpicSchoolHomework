@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThM-iM-jkB">
-                        <rect key="frame" x="20" y="10" width="457" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="497" height="300"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pe4-IE-LK3" customClass="HeartBezierView" customModule="EpicSchoolHomework" customModuleProvider="target">
-                                <rect key="frame" x="178.5" y="75" width="100" height="100"/>
+                                <rect key="frame" x="198.5" y="100" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Jfs-Hs-BLl"/>
                                     <constraint firstAttribute="width" constant="100" id="q9d-bD-FCc"/>
@@ -37,96 +37,86 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z0h-06-TJ6" userLabel="Photo">
-                                <rect key="frame" x="0.0" y="0.0" width="455" height="250"/>
+                                <rect key="frame" x="0.0" y="0.0" width="497" height="300"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nuK-J3-K9C">
-                                <rect key="frame" x="218.5" y="115" width="20" height="20"/>
+                                <rect key="frame" x="238.5" y="140" width="20" height="20"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birdy Sinichka" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0d-fa-h89" userLabel="Description label">
-                                <rect key="frame" x="247" y="10" width="200" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="HzB-XO-7ZI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM8-hv-y61">
+                                <rect key="frame" x="384" y="256.5" width="103" height="33.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Comments">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="commentsButtonTapped:" destination="rvE-zY-Kya" eventType="touchUpInside" id="EyZ-uA-lQ8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="autor@mail.test" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTe-Fm-lKg" userLabel="Author label">
+                                <rect key="frame" x="10" y="275.5" width="79.5" height="14.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" systemColor="systemGray3Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birdman" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTe-Fm-lKg" userLabel="Author label">
-                                <rect key="frame" x="8" y="225.5" width="47" height="14.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="PCb-sN-pAp">
+                                <rect key="frame" x="410" y="224.5" width="77" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9N-Lx-b8d" userLabel="Likes count label">
+                                        <rect key="frame" x="0.0" y="0.0" width="49.5" height="22"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" systemColor="systemGray6Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6P-zb-j7E" userLabel="Like Button">
+                                        <rect key="frame" x="56.5" y="0.0" width="20.5" height="22"/>
+                                        <color key="tintColor" systemColor="systemGray6Color"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="heart.fill" catalog="system"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="likeButtonTapped:" destination="rvE-zY-Kya" eventType="touchUpInside" id="ciT-6H-paK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birdy Sinichka" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0d-fa-h89" userLabel="Description label">
+                                <rect key="frame" x="10" y="253.5" width="96" height="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <color key="textColor" systemColor="systemGray6Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="E0d-fa-h89" firstAttribute="top" secondItem="LUb-GN-XfT" secondAttribute="top" constant="10" id="6Ba-tJ-BBS"/>
-                            <constraint firstItem="gTe-Fm-lKg" firstAttribute="leading" secondItem="ThM-iM-jkB" secondAttribute="leading" constant="8" id="7XH-WB-RB6"/>
+                            <constraint firstItem="LUb-GN-XfT" firstAttribute="bottom" secondItem="IM8-hv-y61" secondAttribute="bottom" constant="10" id="4Yk-YB-G8M"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="top" secondItem="ThM-iM-jkB" secondAttribute="top" id="7b4-M6-u8U"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="leading" secondItem="ThM-iM-jkB" secondAttribute="leading" id="976-Ql-cjZ"/>
                             <constraint firstItem="nuK-J3-K9C" firstAttribute="centerY" secondItem="ThM-iM-jkB" secondAttribute="centerY" id="ATn-2k-Fpr"/>
                             <constraint firstItem="pe4-IE-LK3" firstAttribute="centerX" secondItem="ThM-iM-jkB" secondAttribute="centerX" id="E9M-km-kdy"/>
                             <constraint firstItem="nuK-J3-K9C" firstAttribute="centerX" secondItem="ThM-iM-jkB" secondAttribute="centerX" id="L8v-r0-Lym"/>
-                            <constraint firstAttribute="bottom" secondItem="gTe-Fm-lKg" secondAttribute="bottom" constant="10" id="ZLq-5K-Hzk"/>
-                            <constraint firstItem="LUb-GN-XfT" firstAttribute="trailing" secondItem="E0d-fa-h89" secondAttribute="trailing" constant="10" id="egi-9u-qY7"/>
+                            <constraint firstItem="gTe-Fm-lKg" firstAttribute="leading" secondItem="LUb-GN-XfT" secondAttribute="leading" constant="10" id="M8m-hP-7t9"/>
+                            <constraint firstItem="LUb-GN-XfT" firstAttribute="trailing" secondItem="IM8-hv-y61" secondAttribute="trailing" constant="10" id="NII-XV-X6T"/>
+                            <constraint firstItem="LUb-GN-XfT" firstAttribute="bottom" secondItem="gTe-Fm-lKg" secondAttribute="bottom" constant="10" id="OeL-tY-HlT"/>
+                            <constraint firstItem="LUb-GN-XfT" firstAttribute="trailing" secondItem="PCb-sN-pAp" secondAttribute="trailing" constant="10" id="Vqq-TE-GV2"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="centerX" secondItem="ThM-iM-jkB" secondAttribute="centerX" id="fS3-c8-B9Z"/>
-                            <constraint firstAttribute="trailing" secondItem="E0d-fa-h89" secondAttribute="trailing" constant="8" id="flc-1S-hqN"/>
+                            <constraint firstItem="gTe-Fm-lKg" firstAttribute="top" secondItem="E0d-fa-h89" secondAttribute="bottom" constant="5" id="mdb-e1-1fO"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="centerY" secondItem="ThM-iM-jkB" secondAttribute="centerY" id="p4y-Tq-TLD"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="trailing" secondItem="ThM-iM-jkB" secondAttribute="trailing" id="sF2-42-sp8"/>
+                            <constraint firstItem="IM8-hv-y61" firstAttribute="top" secondItem="PCb-sN-pAp" secondAttribute="bottom" constant="10" id="sem-5h-fXh"/>
                             <constraint firstItem="z0h-06-TJ6" firstAttribute="bottom" secondItem="ThM-iM-jkB" secondAttribute="bottom" id="ssr-UN-AAN"/>
+                            <constraint firstItem="E0d-fa-h89" firstAttribute="leading" secondItem="LUb-GN-XfT" secondAttribute="leading" constant="10" id="ybe-iO-tve"/>
                             <constraint firstItem="pe4-IE-LK3" firstAttribute="centerY" secondItem="ThM-iM-jkB" secondAttribute="centerY" id="zuB-hx-Vmb"/>
                         </constraints>
                         <viewLayoutGuide key="contentLayoutGuide" id="eLJ-oP-28V"/>
                         <viewLayoutGuide key="frameLayoutGuide" id="LUb-GN-XfT"/>
                     </scrollView>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="PCb-sN-pAp">
-                        <rect key="frame" x="20" y="260" width="91" height="30"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9N-Lx-b8d" userLabel="Likes count label">
-                                <rect key="frame" x="0.0" y="0.0" width="63.5" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6P-zb-j7E" userLabel="Like Button">
-                                <rect key="frame" x="70.5" y="0.0" width="20.5" height="30"/>
-                                <color key="tintColor" systemColor="systemPinkColor"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="heart.fill" catalog="system"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="filled" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="likeButtonTapped:" destination="rvE-zY-Kya" eventType="touchUpInside" id="ciT-6H-paK"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="cv0-fv-UDf"/>
-                        </constraints>
-                    </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM8-hv-y61">
-                        <rect key="frame" x="374" y="260" width="103" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="IM4-xY-x0V"/>
-                        </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Comments">
-                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                        </buttonConfiguration>
-                        <connections>
-                            <action selector="commentsButtonTapped:" destination="rvE-zY-Kya" eventType="touchUpInside" id="EyZ-uA-lQ8"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ThM-iM-jkB" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" constant="20" id="PEN-sc-OCW"/>
-                    <constraint firstAttribute="bottom" secondItem="PCb-sN-pAp" secondAttribute="bottom" constant="10" id="RtP-SH-EYJ"/>
-                    <constraint firstAttribute="trailing" secondItem="IM8-hv-y61" secondAttribute="trailing" constant="20" id="WhP-2n-K4b"/>
-                    <constraint firstAttribute="trailing" secondItem="ThM-iM-jkB" secondAttribute="trailing" constant="20" id="cJe-sq-cL2"/>
-                    <constraint firstAttribute="bottom" secondItem="IM8-hv-y61" secondAttribute="bottom" constant="10" id="fo7-fM-Big"/>
-                    <constraint firstItem="PCb-sN-pAp" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" constant="20" id="oJB-fZ-FCa"/>
-                    <constraint firstItem="ThM-iM-jkB" firstAttribute="top" secondItem="bdf-bY-Ml0" secondAttribute="top" constant="10" id="ohP-JL-Bny"/>
-                    <constraint firstAttribute="bottom" secondItem="ThM-iM-jkB" secondAttribute="bottom" constant="40" id="yuY-8t-nKD"/>
+                    <constraint firstItem="ThM-iM-jkB" firstAttribute="leading" secondItem="bdf-bY-Ml0" secondAttribute="leading" id="PEN-sc-OCW"/>
+                    <constraint firstAttribute="trailing" secondItem="ThM-iM-jkB" secondAttribute="trailing" id="cJe-sq-cL2"/>
+                    <constraint firstItem="ThM-iM-jkB" firstAttribute="top" secondItem="bdf-bY-Ml0" secondAttribute="top" id="ohP-JL-Bny"/>
+                    <constraint firstAttribute="bottom" secondItem="ThM-iM-jkB" secondAttribute="bottom" id="yuY-8t-nKD"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -145,8 +135,11 @@
     </objects>
     <resources>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

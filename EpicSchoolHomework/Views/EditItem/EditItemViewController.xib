@@ -16,7 +16,6 @@
                 <outlet property="descriptionTextField" destination="0zm-qC-zi7" id="Z7K-IJ-qdf"/>
                 <outlet property="distanceLabel" destination="xoU-qN-dSU" id="6zW-Nx-c2d"/>
                 <outlet property="fastActionsStackView" destination="Wgo-gG-GmU" id="Ak7-DK-Khg"/>
-                <outlet property="favoriteImageView" destination="dM3-Ui-Lbk" id="ssS-Vx-id1"/>
                 <outlet property="imageLoadingIndicator" destination="6CY-Ar-b2d" id="4uK-ha-XZh"/>
                 <outlet property="likedImageView" destination="S43-W1-pyV" id="h8U-Be-lDp"/>
                 <outlet property="mapView" destination="Jme-On-CIZ" id="KFI-6o-qCS"/>
@@ -55,15 +54,11 @@
                     <rect key="frame" x="20" y="414" width="374" height="20"/>
                     <subviews>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S43-W1-pyV" userLabel="liked">
-                            <rect key="frame" x="0.0" y="-1.5" width="116" height="23.5"/>
+                            <rect key="frame" x="0.0" y="-1.5" width="180.5" height="23.5"/>
                             <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dM3-Ui-Lbk" userLabel="favorite">
-                            <rect key="frame" x="129" y="-4.5" width="116" height="27"/>
-                            <imageReference key="image" image="star" catalog="system" symbolScale="large"/>
-                        </imageView>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TBr-rc-aa3" userLabel="visited">
-                            <rect key="frame" x="258" y="-1.5" width="116" height="22.5"/>
+                            <rect key="frame" x="193.5" y="-1.5" width="180.5" height="22.5"/>
                             <imageReference key="image" image="eye" catalog="system" symbolScale="large"/>
                         </imageView>
                     </subviews>
@@ -107,7 +102,6 @@
     <resources>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

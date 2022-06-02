@@ -68,7 +68,7 @@ extension PhotoItemTableViewCell {
     func configureCell() {
         selectionStyle = .none
         photoScrollView.clipsToBounds = true
-        photoScrollView.layer.cornerRadius = 8
+        //photoScrollView.layer.cornerRadius = 8
         self.heartView.alpha = 0
         
         loadingActivityIndicator.startAnimating()

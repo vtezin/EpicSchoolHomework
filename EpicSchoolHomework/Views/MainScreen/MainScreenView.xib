@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KM0-cN-hC5">
-                    <rect key="frame" x="10" y="64" width="394" height="778"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ovA-QD-lsI">
@@ -32,12 +32,12 @@
             <viewLayoutGuide key="safeArea" id="cLh-5j-02S"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="cLh-5j-02S" firstAttribute="bottom" secondItem="KM0-cN-hC5" secondAttribute="bottom" constant="20" id="43g-Rc-BF9"/>
+                <constraint firstItem="cLh-5j-02S" firstAttribute="bottom" secondItem="KM0-cN-hC5" secondAttribute="bottom" id="43g-Rc-BF9"/>
                 <constraint firstItem="ovA-QD-lsI" firstAttribute="centerX" secondItem="lTJ-0s-SIb" secondAttribute="centerX" id="NET-Ya-bBH"/>
-                <constraint firstItem="cLh-5j-02S" firstAttribute="trailing" secondItem="KM0-cN-hC5" secondAttribute="trailing" constant="10" id="NQg-L6-hfg"/>
+                <constraint firstItem="cLh-5j-02S" firstAttribute="trailing" secondItem="KM0-cN-hC5" secondAttribute="trailing" id="NQg-L6-hfg"/>
                 <constraint firstItem="ovA-QD-lsI" firstAttribute="centerY" secondItem="lTJ-0s-SIb" secondAttribute="centerY" id="nfT-hX-UsO"/>
-                <constraint firstItem="KM0-cN-hC5" firstAttribute="leading" secondItem="cLh-5j-02S" secondAttribute="leading" constant="10" id="tHg-wq-CXa"/>
-                <constraint firstItem="KM0-cN-hC5" firstAttribute="top" secondItem="cLh-5j-02S" secondAttribute="top" constant="20" id="vVv-dP-rG3"/>
+                <constraint firstItem="KM0-cN-hC5" firstAttribute="leading" secondItem="cLh-5j-02S" secondAttribute="leading" id="tHg-wq-CXa"/>
+                <constraint firstItem="KM0-cN-hC5" firstAttribute="top" secondItem="cLh-5j-02S" secondAttribute="top" id="vVv-dP-rG3"/>
             </constraints>
             <point key="canvasLocation" x="-589.85507246376812" y="40.848214285714285"/>
         </view>
