@@ -72,7 +72,7 @@ final class RealmService {
             newItem.imageData = (photoItem.image?.jpegData(compressionQuality: 0.5))!
             newItem.imageURL = photoItem.imageURL
             newItem.author = photoItem.author
-            newItem.photoDescription = photoItem.description
+            newItem.photoDescription = photoItem.description ?? ""
             newItem.addingDate = photoItem.addingDate
             newItem.latitude = photoItem.latitude
             newItem.longitude = photoItem.longitude

@@ -9,16 +9,19 @@ import UIKit
 import MapKit
 
 // MARK: -  PhotoItem
-struct PhotoItem {
+struct PhotoItem: PhotoContainer {
+    
     let id: String
     var image: UIImage?
     let imageURL: String
     let author: String
-    let description: String
+    var description: String?
     let addingDate: Date
     //geo data
     let latitude: Double
     let longitude: Double
+    var mapType: MKMapType = .standard
+    var mapSpan: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
     
     var comments = [Comment]()
     var likes = [Like]()

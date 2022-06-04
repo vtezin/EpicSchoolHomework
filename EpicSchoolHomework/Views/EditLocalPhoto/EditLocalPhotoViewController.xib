@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditLocalPhotoViewController" customModule="EpicSchoolHomework" customModuleProvider="target">
+            <connections>
+                <outlet property="answerTextField" destination="WlQ-JF-7sn" id="Ctx-ij-pDf"/>
+                <outlet property="descriptionTextField" destination="rN5-np-eol" id="PCM-h0-Q35"/>
+                <outlet property="mapView" destination="pwa-zc-IE8" id="Vz1-pn-ZZf"/>
+                <outlet property="photoItemImageView" destination="jUq-n2-y4v" id="kNJ-2g-AGp"/>
+                <outlet property="questionTextField" destination="wZT-dI-dx6" id="54J-tY-fFG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jUq-n2-y4v">
+                    <rect key="frame" x="0.0" y="44" width="414" height="300"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="300" id="jpX-l8-sp1"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5ua-R9-X7I">
+                    <rect key="frame" x="10" y="354" width="394" height="118"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Описание" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rN5-np-eol">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Загадка" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wZT-dI-dx6">
+                            <rect key="frame" x="0.0" y="42" width="394" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Отгадка" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WlQ-JF-7sn">
+                            <rect key="frame" x="0.0" y="84" width="394" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                </stackView>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pwa-zc-IE8">
+                    <rect key="frame" x="0.0" y="482" width="414" height="339"/>
+                </mapView>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5J-dk-JHd">
+                    <rect key="frame" x="10" y="831" width="394" height="31"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7VG-Qs-qc7">
+                            <rect key="frame" x="0.0" y="0.0" width="131.5" height="31"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Опубликовать"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FF7-LD-c31">
+                            <rect key="frame" x="131.5" y="0.0" width="131" height="31"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Сохранить"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCC-V6-hyA">
+                            <rect key="frame" x="262.5" y="0.0" width="131.5" height="31"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Удалить"/>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="pwa-zc-IE8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2iy-lC-GIj"/>
+                <constraint firstItem="d5J-dk-JHd" firstAttribute="top" secondItem="pwa-zc-IE8" secondAttribute="bottom" constant="10" id="4D8-1O-CIc"/>
+                <constraint firstItem="5ua-R9-X7I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="7at-h0-HYE"/>
+                <constraint firstItem="5ua-R9-X7I" firstAttribute="top" secondItem="jUq-n2-y4v" secondAttribute="bottom" constant="10" id="DdR-Hc-hVw"/>
+                <constraint firstItem="pwa-zc-IE8" firstAttribute="top" secondItem="5ua-R9-X7I" secondAttribute="bottom" constant="10" id="E0P-HW-LcR"/>
+                <constraint firstItem="d5J-dk-JHd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Jty-2a-9Gh"/>
+                <constraint firstItem="jUq-n2-y4v" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="M4d-QP-QOi"/>
+                <constraint firstItem="d5J-dk-JHd" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Wat-b6-CgA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5ua-R9-X7I" secondAttribute="trailing" constant="10" id="aw7-xr-utl"/>
+                <constraint firstItem="jUq-n2-y4v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hIz-zM-lww"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pwa-zc-IE8" secondAttribute="trailing" id="lBq-6M-OzU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d5J-dk-JHd" secondAttribute="trailing" constant="10" id="pGv-6e-Dvy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jUq-n2-y4v" secondAttribute="trailing" id="qlo-cz-QlK"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="153.34821428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
