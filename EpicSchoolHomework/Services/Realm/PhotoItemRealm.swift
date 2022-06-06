@@ -1,13 +1,12 @@
 //
-//  RealmController.swift
+//  PhotoItemRealm.swift
 //  EpicSchoolHomework
 //
-//  Created by Vladimir Tezin on 30.04.2022.
+//  Created by Vladimir Tezin on 06.06.2022.
 //
 
-import Foundation
-import RealmSwift
 import UIKit
+import RealmSwift
 
 final class PhotoItemRealm: Object {
     @objc dynamic var id: String = ""
@@ -58,12 +57,11 @@ final class PhotoItemRealmVisit: Object {
     }
 }
 
-final class RealmService {
-    static let config = Realm.Configuration(schemaVersion: 5)
+// MARK: -  Functions
+extension PhotoItemRealm {
+    static let realm = try! Realm(configuration: RealmService.config)
     
     static func saveItem(photoItem: PhotoItem) {
-        let realm = try! Realm(configuration: config)
-        //print("Realm is located at:", realm.configuration.fileURL!)
         
         try! realm.write {
             let newItem = PhotoItemRealm()
@@ -108,13 +106,11 @@ final class RealmService {
         for visit in photoItem.visits{
             saveVisit(photoItem: photoItem, visit: visit)
         }
-        
     }
     
     static func saveComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
-        let realm = try! Realm(configuration: config)
         
-        let items = try! Realm(configuration: config).objects(PhotoItemRealm.self).where{
+        let items = realm.objects(PhotoItemRealm.self).where{
             $0.id == photoItem.id
         }
         
@@ -132,9 +128,8 @@ final class RealmService {
     }
     
     static func saveLike(photoItem: PhotoItem, like: PhotoItem.Like) {
-        let realm = try! Realm(configuration: config)
         
-        let items = try! Realm(configuration: config).objects(PhotoItemRealm.self).where{
+        let items = realm.objects(PhotoItemRealm.self).where{
             $0.id == photoItem.id
         }
         
@@ -150,9 +145,8 @@ final class RealmService {
     }
     
     static func saveVisit(photoItem: PhotoItem, visit: PhotoItem.Visit) {
-        let realm = try! Realm(configuration: config)
         
-        let items = try! Realm(configuration: config).objects(PhotoItemRealm.self).where{
+        let items = realm.objects(PhotoItemRealm.self).where{
             $0.id == photoItem.id
         }
         
@@ -170,7 +164,7 @@ final class RealmService {
     static func fetchItems() -> [PhotoItem] {
         var photoItems = [PhotoItem]()
         
-        let items = try! Realm(configuration: config).objects(PhotoItemRealm.self).sorted(byKeyPath: "addingDate", ascending: false)
+        let items = realm.objects(PhotoItemRealm.self).sorted(byKeyPath: "addingDate", ascending: false)
         
         for item in items {
             var photoItem = PhotoItem(id: item.id,
@@ -181,7 +175,7 @@ final class RealmService {
                                       addingDate: item.addingDate,
                                       latitude: item.latitude,
                                       longitude: item.longitude)
-            let comments = try! Realm(configuration: config).objects(PhotoItemRealmComment.self).sorted(byKeyPath: "date", ascending: true).where{
+            let comments = realm.objects(PhotoItemRealmComment.self).sorted(byKeyPath: "date", ascending: true).where{
                 $0.item == item
             }
             
@@ -193,7 +187,7 @@ final class RealmService {
                     date: comment.date))
             }
             
-            let likes = try! Realm(configuration: config).objects(PhotoItemRealmLike.self).sorted(byKeyPath: "date", ascending: true).where{
+            let likes = realm.objects(PhotoItemRealmLike.self).sorted(byKeyPath: "date", ascending: true).where{
                 $0.item == item
             }
             
@@ -206,5 +200,5 @@ final class RealmService {
             
         }
         return photoItems
-    }
+    }    
 }

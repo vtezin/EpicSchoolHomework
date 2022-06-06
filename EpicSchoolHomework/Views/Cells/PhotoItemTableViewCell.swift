@@ -102,7 +102,7 @@ extension PhotoItemTableViewCell {
             photoItem?.image = uiImage
             photoImageView.image = uiImage
             loadingActivityIndicator.stopAnimating()
-            RealmService.saveItem(photoItem: self.photoItem!)
+            PhotoItemRealm.saveItem(photoItem: self.photoItem!)
         }
     }
     

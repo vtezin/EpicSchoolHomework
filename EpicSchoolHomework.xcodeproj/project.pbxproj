@@ -25,6 +25,11 @@
 		C4849A542849D0C40043717B /* EditLocalPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4849A522849D0C40043717B /* EditLocalPhotoViewController.swift */; };
 		C4849A552849D0C40043717B /* EditLocalPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4849A532849D0C40043717B /* EditLocalPhotoViewController.xib */; };
 		C4849A59284B0C1B0043717B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4849A58284B0C1B0043717B /* LocationService.swift */; };
+		C4849A5B284B16C50043717B /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4849A5A284B16C50043717B /* AppState.swift */; };
+		C4849A5F284B28940043717B /* LocalPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4849A5D284B28940043717B /* LocalPhotosViewController.swift */; };
+		C4849A60284B28940043717B /* LocalPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4849A5E284B28940043717B /* LocalPhotosViewController.xib */; };
+		C4849A63284CC0E10043717B /* LocalPhotoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4849A62284CC0E10043717B /* LocalPhotoRealm.swift */; };
+		C4849A65284DD6320043717B /* PhotoItemRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4849A64284DD6320043717B /* PhotoItemRealm.swift */; };
 		C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F65327E4472D00DB2F9B /* AppDelegate.swift */; };
 		C499F65D27E4472E00DB2F9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C499F65C27E4472E00DB2F9B /* Assets.xcassets */; };
 		C499F66027E4472E00DB2F9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */; };
@@ -101,6 +106,11 @@
 		C4849A522849D0C40043717B /* EditLocalPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocalPhotoViewController.swift; sourceTree = "<group>"; };
 		C4849A532849D0C40043717B /* EditLocalPhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditLocalPhotoViewController.xib; sourceTree = "<group>"; };
 		C4849A58284B0C1B0043717B /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		C4849A5A284B16C50043717B /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		C4849A5D284B28940043717B /* LocalPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotosViewController.swift; sourceTree = "<group>"; };
+		C4849A5E284B28940043717B /* LocalPhotosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocalPhotosViewController.xib; sourceTree = "<group>"; };
+		C4849A62284CC0E10043717B /* LocalPhotoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotoRealm.swift; sourceTree = "<group>"; };
+		C4849A64284DD6320043717B /* PhotoItemRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemRealm.swift; sourceTree = "<group>"; };
 		C499F65027E4472D00DB2F9B /* EpicSchoolHomework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpicSchoolHomework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C499F65327E4472D00DB2F9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C499F65C27E4472E00DB2F9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,6 +217,7 @@
 		C40A229B27EB06ED0007994C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4849A5C284B28610043717B /* LocalPhotoList */,
 				C4849A512849D0510043717B /* EditLocalPhoto */,
 				C4A8B1FF2840B7F00072E670 /* RootTabBar */,
 				C4E0E500283D3479003E0CB3 /* PhotoItemAnnotation */,
@@ -235,7 +246,7 @@
 			children = (
 				C4BACD26280D245200A8D7C6 /* FireBaseService.swift */,
 				C4BACD28280D269300A8D7C6 /* DataProvider.swift */,
-				C4EA32D9281DBE9B0068282A /* RealmService.swift */,
+				C4849A61284CC0C80043717B /* Realm */,
 				C4C7DA95281F91860088FA4F /* ImagesService.swift */,
 				C4C7DA97281FBC4E0088FA4F /* DataService.swift */,
 				C4350426284754F1009AEE0E /* NotificationService.swift */,
@@ -251,6 +262,25 @@
 				C4849A532849D0C40043717B /* EditLocalPhotoViewController.xib */,
 			);
 			path = EditLocalPhoto;
+			sourceTree = "<group>";
+		};
+		C4849A5C284B28610043717B /* LocalPhotoList */ = {
+			isa = PBXGroup;
+			children = (
+				C4849A5D284B28940043717B /* LocalPhotosViewController.swift */,
+				C4849A5E284B28940043717B /* LocalPhotosViewController.xib */,
+			);
+			path = LocalPhotoList;
+			sourceTree = "<group>";
+		};
+		C4849A61284CC0C80043717B /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				C4EA32D9281DBE9B0068282A /* RealmService.swift */,
+				C4849A64284DD6320043717B /* PhotoItemRealm.swift */,
+				C4849A62284CC0E10043717B /* LocalPhotoRealm.swift */,
+			);
+			path = Realm;
 			sourceTree = "<group>";
 		};
 		C499F64727E4472D00DB2F9B = {
@@ -282,6 +312,7 @@
 				C40A229B27EB06ED0007994C /* Views */,
 				C40A229827EB02ED0007994C /* Model */,
 				C499F65327E4472D00DB2F9B /* AppDelegate.swift */,
+				C4849A5A284B16C50043717B /* AppState.swift */,
 				C435042828475B15009AEE0E /* notificationSound.wav */,
 				C499F65C27E4472E00DB2F9B /* Assets.xcassets */,
 				C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */,
@@ -516,6 +547,7 @@
 				C4BACD25280C746600A8D7C6 /* UserProfileViewController.xib in Resources */,
 				C4BACD1D280C6C5E00A8D7C6 /* GoogleService-Info.plist in Resources */,
 				C4092FAE27FEAD170087B8F9 /* CommentCellView.xib in Resources */,
+				C4849A60284B28940043717B /* LocalPhotosViewController.xib in Resources */,
 				C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */,
 				C4092FA827FEA96E0087B8F9 /* CommentsListView.xib in Resources */,
 				C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */,
@@ -575,7 +607,9 @@
 				C4BACD27280D245200A8D7C6 /* FireBaseService.swift in Sources */,
 				C4E0E4FE283D1D0E003E0CB3 /* AllItemsMapViewController.swift in Sources */,
 				C4092FB027FEAF4A0087B8F9 /* CommentCellView.swift in Sources */,
+				C4849A65284DD6320043717B /* PhotoItemRealm.swift in Sources */,
 				C4849A4E2849C9800043717B /* LocalPhoto.swift in Sources */,
+				C4849A5F284B28940043717B /* LocalPhotosViewController.swift in Sources */,
 				C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */,
 				C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */,
 				C4849A542849D0C40043717B /* EditLocalPhotoViewController.swift in Sources */,
@@ -590,9 +624,11 @@
 				C4DF9D29282D2CDD008C02DD /* LikesListViewController.swift in Sources */,
 				C4350427284754F1009AEE0E /* NotificationService.swift in Sources */,
 				C4849A59284B0C1B0043717B /* LocationService.swift in Sources */,
+				C4849A5B284B16C50043717B /* AppState.swift in Sources */,
 				C4849A502849CA960043717B /* PhotoContainer.swift in Sources */,
 				C4092FA627FD5EAB0087B8F9 /* MainScreenViewController.swift in Sources */,
 				C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */,
+				C4849A63284CC0E10043717B /* LocalPhotoRealm.swift in Sources */,
 				C4A8B2012840B81B0072E670 /* RootTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

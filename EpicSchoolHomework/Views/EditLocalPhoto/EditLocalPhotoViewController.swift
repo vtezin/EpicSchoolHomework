@@ -10,21 +10,29 @@ import MapKit
 import Photos
 
 final class EditLocalPhotoViewController: UIViewController {
-
     @IBOutlet private weak var photoItemImageView: UIImageView!
     @IBOutlet private weak var descriptionTextField: UITextField!
     @IBOutlet private weak var questionTextField: UITextField!
     @IBOutlet private weak var answerTextField: UITextField!
     
-    @IBOutlet private  weak var mapView: MKMapView!
+    @IBOutlet private weak var photoStackView: UIStackView!
+    @IBOutlet private weak var centerMapImageView: UIImageView!
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var mapModeControl: UISegmentedControl!
+    
+    @IBOutlet weak var viewMode: UISegmentedControl!
+    @IBAction func viewModeChanged(_ sender: Any) {
+        setMapPhotoVisible()
+    }
+    @IBAction func mapModeChanged(_ sender: Any) {
+        mapView.mapType = mapModeControl.selectedSegmentIndex == 0 ? .standard : .hybrid
+    }
     
     var photoItem: LocalPhoto?
     
     var takeNewPhotoFromCamera = true
     
-    private let locationManager = CLLocationManager()
-    private var itemCoordinate: CLLocationCoordinate2D?
-    private var currentCoordinate: CLLocationCoordinate2D?
+    private var photoCoordinate: CLLocationCoordinate2D?
     
     let delegate: canUpdatePhotoItemInArray
     let indexPhotoItemInArray: Int?
@@ -44,41 +52,101 @@ final class EditLocalPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setMapPhotoVisible()
+        
+        addKeyboardNotifications()
+        descriptionTextField.delegate = self
+        questionTextField.delegate = self
+        answerTextField.delegate = self
+        
+        let saveMenu = UIMenu(title: "", children: [
+            UIAction(title: "В Фотки", image: UIImage(systemName: "photo.on.rectangle.angled")){
+                action in
+                self.save()
+            },
+            UIAction(title: "Опубликовать", image: UIImage(systemName: "cloud")){
+                action in
+                self.share()
+            }
+        ])
+        
+        let saveMenuItem = UIBarButtonItem(title: "Сохранить", menu: saveMenu)
         
         if photoItem == nil {
+            let _ = appState.locationService.$lastLocation.sink(receiveValue: { [weak self]  newLocation in
+                guard let newLocation = newLocation else {return}
+                self?.locationDidChanged(newLocation: newLocation)
+            })
+            appState.locationService.startUpdating()
             takeImage(fromCamera: takeNewPhotoFromCamera)
+            navigationItem.rightBarButtonItem = saveMenuItem
+        } else {
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: Selector(("delete")))
+            navigationItem.rightBarButtonItems = [deleteButton, saveMenuItem]
         }
+        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        appState.locationService.stopUpdating()
+    }
 }
 
 // MARK: -  Functions
 extension EditLocalPhotoViewController {
-    
     private func dismissAndGoBack() {
         _ = navigationController?.popViewController(animated: true)
+    }
+    
+    private func setMapPhotoVisible() {
+        mapView.isHidden = viewMode.selectedSegmentIndex == 0
+        centerMapImageView.isHidden = mapView.isHidden
+        mapModeControl.isHidden = mapView.isHidden
+        photoStackView.isHidden = !mapView.isHidden
+    }
+    
+    private func save() {
+//        var localPhotoForSave = photoItem ?? LocalPhoto()
+//        localPhotoForSave.image = photoItemImageView.image
+//        localPhotoForSave.addingDate = Date()
+//        localPhotoForSave.mapType = mapView.mapType
+        dismissAndGoBack()
+    }
+    
+    private func share() {
+        dismissAndGoBack()
     }
 }
 
 
-// MARK: -  CLLocationManagerDelegate, Map & Location
-extension EditLocalPhotoViewController: CLLocationManagerDelegate {
+// MARK: - Map & Location
+extension EditLocalPhotoViewController: MKMapViewDelegate {
+    private func locationDidChanged(newLocation: CLLocation) {
+
+    }
     
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        photoCoordinate = mapView.centerCoordinate
+    }
+        
     private func setMapViewCenterByPhotoCoordinate() {
-        var centerCoordinates = CLLocationCoordinate2D()
+        guard let photoCoordinate = photoCoordinate else {return}
         
-        if let itemCoordinates = itemCoordinate {
-            centerCoordinates = itemCoordinates
-        } else if let currentCoordinate = currentCoordinate {
-            centerCoordinates = currentCoordinate
-        }
-        
-        let mapRegion = MKCoordinateRegion(center: centerCoordinates,
+        let mapRegion = MKCoordinateRegion(center: photoCoordinate,
                                            latitudinalMeters: 100,
                                            longitudinalMeters: 100)
         mapView.setRegion(mapRegion, animated: false)
     }
     
+    private func configureMapView() {
+        mapView.mapType = .standard
+        mapView.userTrackingMode = .none
+        mapView.showsScale = true
+        mapView.showsCompass = true
+        mapView.showsBuildings = true
+        mapView.delegate = self
+    }
 }
 
 
@@ -110,15 +178,10 @@ extension EditLocalPhotoViewController: UINavigationControllerDelegate, UIImageP
         }
         photoItemImageView.image = image
         
-        //try to detect coordinate
-        itemCoordinate = nil
+        photoCoordinate = appState.locationService.lastLocation?.coordinate
         
         if let asset = info[.phAsset] as? PHAsset {
-            itemCoordinate = asset.location?.coordinate
-        } else {
-            if takeNewPhotoFromCamera {
-                itemCoordinate = currentCoordinate
-            }
+            photoCoordinate = asset.location?.coordinate
         }
         
         setMapViewCenterByPhotoCoordinate()
@@ -126,5 +189,39 @@ extension EditLocalPhotoViewController: UINavigationControllerDelegate, UIImageP
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismissAndGoBack()
+    }
+}
+
+// MARK: -  UITextFieldDelegate
+extension EditLocalPhotoViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
+    }
+}
+
+// MARK: - Keyboard support
+extension EditLocalPhotoViewController {
+    private func addKeyboardNotifications() {
+        // call the 'keyboardWillShow' function when the view controller receive notification that keyboard is going to be shown
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        // call the 'keyboardWillHide' function when the view controlelr receive notification that keyboard is going to be hidden
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+           // if keyboard size is not available for some reason, dont do anything
+           return
+        }
+      
+      // move the root view up by the distance of keyboard height
+      self.view.frame.origin.y = 0 - keyboardSize.height
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        // move back the root view origin to zero
+        self.view.frame.origin.y = 0
     }
 }

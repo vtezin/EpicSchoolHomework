@@ -10,17 +10,9 @@ import CoreLocation
 import Combine
 
 class LocationService: NSObject {
-    var lastLocation: CLLocation?
-    {
-        didSet {
-            if let delegate = delegate, let lastLocation = lastLocation {
-                delegate.lastLocationDidChange(lastLocation: lastLocation)
-            }
-        }
-    }
+    @Published private(set) var lastLocation: CLLocation?
     
     private let locationManager = CLLocationManager()
-    var delegate: LocationServiceDelegate?
     var isHearingLocationChanges = false
     
     override init() {
@@ -28,10 +20,6 @@ class LocationService: NSObject {
         configure()
     }
     
-}
-
-protocol LocationServiceDelegate {
-    func lastLocationDidChange(lastLocation: CLLocation)
 }
 
 extension LocationService: CLLocationManagerDelegate {
@@ -52,6 +40,7 @@ extension LocationService: CLLocationManagerDelegate {
 extension LocationService {
     private func configure() {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
         
         let status = locationManager.authorizationStatus
         if status == .notDetermined {

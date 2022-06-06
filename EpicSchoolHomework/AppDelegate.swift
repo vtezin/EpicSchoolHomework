@@ -30,8 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = RootTabBarController()
         window?.makeKeyAndVisible()
+        
+        RealmService.printRealmLocation()
+        
         return true
     }
 
 }
 
+let appState = AppState()

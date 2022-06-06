@@ -126,7 +126,7 @@ class FireBaseService {
             handler(photoItems)
         }) { error in
             print(error.localizedDescription)
-            handler(RealmService.fetchItems())
+            handler(PhotoItemRealm.fetchItems())
             return
         }
     }
