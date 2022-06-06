@@ -39,13 +39,13 @@ extension LocalPhotoRealm {
         
         for realmPhoto in realmPhotos {
             let newLocalPhoto = LocalPhoto(id: realmPhoto.id,
-                                       image: UIImage(data: realmPhoto.imageData),
-                                       addingDate: realmPhoto.addingDate,
-                                       latitude: realmPhoto.latitude,
-                                       longitude: realmPhoto.longitude,
-                                       description: realmPhoto.title,
-                                       mapType: realmPhoto.mapType == "standart" ? .standard : .satellite,
-                                       mapSpan: MKCoordinateSpan(latitudeDelta: realmPhoto.mapSpanDelta, longitudeDelta: realmPhoto.mapSpanDelta))
+                                           image: UIImage(data: realmPhoto.imageData) ?? UIImage(),
+                                           addingDate: realmPhoto.addingDate,
+                                           latitude: realmPhoto.latitude,
+                                           longitude: realmPhoto.longitude,
+                                           description: realmPhoto.title,
+                                           mapType: realmPhoto.mapType == "standart" ? .standard : .satellite,
+                                           mapSpan: MKCoordinateSpan(latitudeDelta: realmPhoto.mapSpanDelta, longitudeDelta: realmPhoto.mapSpanDelta))
             localPhotos.append(newLocalPhoto)
         }
         return localPhotos
@@ -61,8 +61,8 @@ extension LocalPhotoRealm {
             }
             
             realmPhoto.id = photo.id
-            realmPhoto.imageData = (photo.image?.jpegData(compressionQuality: 0.5))!
-            realmPhoto.title = photo.description ?? ""
+            realmPhoto.imageData = (photo.image.jpegData(compressionQuality: 0.5))!
+            realmPhoto.title = photo.description
             realmPhoto.addingDate = photo.addingDate
             realmPhoto.latitude = photo.latitude
             realmPhoto.longitude = photo.longitude

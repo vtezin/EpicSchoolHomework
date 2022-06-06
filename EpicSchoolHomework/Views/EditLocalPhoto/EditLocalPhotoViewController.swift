@@ -107,10 +107,15 @@ extension EditLocalPhotoViewController {
     }
     
     private func save() {
-//        var localPhotoForSave = photoItem ?? LocalPhoto()
-//        localPhotoForSave.image = photoItemImageView.image
-//        localPhotoForSave.addingDate = Date()
-//        localPhotoForSave.mapType = mapView.mapType
+        let localPhotoForSave = LocalPhoto(id: photoItem == nil ? UUID().uuidString : photoItem!.id,
+                                           image: photoItemImageView.image!,
+                                           addingDate: photoItem == nil ? Date() : photoItem!.addingDate,
+                                           latitude: photoCoordinate!.latitude,
+                                           longitude: photoCoordinate!.longitude,
+                                           description: descriptionTextField.text ?? "",
+                                           mapType: mapView.mapType,
+                                           mapSpan: mapView.region.span)
+        LocalPhotoRealm.savePhotoToRealm(photo: localPhotoForSave)
         dismissAndGoBack()
     }
     

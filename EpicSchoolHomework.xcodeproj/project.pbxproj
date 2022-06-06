@@ -30,6 +30,8 @@
 		C4849A60284B28940043717B /* LocalPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4849A5E284B28940043717B /* LocalPhotosViewController.xib */; };
 		C4849A63284CC0E10043717B /* LocalPhotoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4849A62284CC0E10043717B /* LocalPhotoRealm.swift */; };
 		C4849A65284DD6320043717B /* PhotoItemRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4849A64284DD6320043717B /* PhotoItemRealm.swift */; };
+		C4849A6E284E1A2A0043717B /* LocalPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4849A6C284E1A2A0043717B /* LocalPhotoCollectionViewCell.swift */; };
+		C4849A6F284E1A2A0043717B /* LocalPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4849A6D284E1A2A0043717B /* LocalPhotoCollectionViewCell.xib */; };
 		C499F65427E4472D00DB2F9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F65327E4472D00DB2F9B /* AppDelegate.swift */; };
 		C499F65D27E4472E00DB2F9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C499F65C27E4472E00DB2F9B /* Assets.xcassets */; };
 		C499F66027E4472E00DB2F9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */; };
@@ -111,6 +113,8 @@
 		C4849A5E284B28940043717B /* LocalPhotosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocalPhotosViewController.xib; sourceTree = "<group>"; };
 		C4849A62284CC0E10043717B /* LocalPhotoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotoRealm.swift; sourceTree = "<group>"; };
 		C4849A64284DD6320043717B /* PhotoItemRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemRealm.swift; sourceTree = "<group>"; };
+		C4849A6C284E1A2A0043717B /* LocalPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		C4849A6D284E1A2A0043717B /* LocalPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocalPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		C499F65027E4472D00DB2F9B /* EpicSchoolHomework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EpicSchoolHomework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C499F65327E4472D00DB2F9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C499F65C27E4472E00DB2F9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 			isa = PBXGroup;
 			children = (
 				C4849A5D284B28940043717B /* LocalPhotosViewController.swift */,
+				C4849A6C284E1A2A0043717B /* LocalPhotoCollectionViewCell.swift */,
+				C4849A6D284E1A2A0043717B /* LocalPhotoCollectionViewCell.xib */,
 				C4849A5E284B28940043717B /* LocalPhotosViewController.xib */,
 			);
 			path = LocalPhotoList;
@@ -550,6 +556,7 @@
 				C4849A60284B28940043717B /* LocalPhotosViewController.xib in Resources */,
 				C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */,
 				C4092FA827FEA96E0087B8F9 /* CommentsListView.xib in Resources */,
+				C4849A6F284E1A2A0043717B /* LocalPhotoCollectionViewCell.xib in Resources */,
 				C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */,
 				C435042928475B15009AEE0E /* notificationSound.wav in Resources */,
 				C4DF9D2A282D2CDD008C02DD /* LikesListViewController.xib in Resources */,
@@ -628,6 +635,7 @@
 				C4849A502849CA960043717B /* PhotoContainer.swift in Sources */,
 				C4092FA627FD5EAB0087B8F9 /* MainScreenViewController.swift in Sources */,
 				C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */,
+				C4849A6E284E1A2A0043717B /* LocalPhotoCollectionViewCell.swift in Sources */,
 				C4849A63284CC0E10043717B /* LocalPhotoRealm.swift in Sources */,
 				C4A8B2012840B81B0072E670 /* RootTabBarController.swift in Sources */,
 			);
