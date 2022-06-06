@@ -31,3 +31,10 @@ struct LocalPhoto {
     var mapType: MKMapType
     var mapSpan: MKCoordinateSpan
 }
+
+// MARK: -  computed properties
+extension LocalPhoto {
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+}

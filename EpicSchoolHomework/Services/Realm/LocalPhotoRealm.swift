@@ -52,15 +52,15 @@ extension LocalPhotoRealm {
     }
     
     static func savePhotoToRealm(photo: LocalPhoto) {
-        try! realm.write {
-            
+        try! realm.write {            
             var realmPhoto = LocalPhotoRealm()
             
             if let foundedRealmPhoto = findPhoto(photo: photo) {
                 realmPhoto = foundedRealmPhoto
+            } else {
+                realmPhoto.id = photo.id
             }
             
-            realmPhoto.id = photo.id
             realmPhoto.imageData = (photo.image.jpegData(compressionQuality: 0.5))!
             realmPhoto.title = photo.description
             realmPhoto.addingDate = photo.addingDate

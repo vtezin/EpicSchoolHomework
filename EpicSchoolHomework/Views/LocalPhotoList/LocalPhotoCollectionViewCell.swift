@@ -22,7 +22,11 @@ final class LocalPhotoCollectionViewCell: UICollectionViewCell {
         imageView.image = nil
     }
     
-    func configureCell() {
+}
+
+// MARK: -  Functions
+extension LocalPhotoCollectionViewCell{
+    func configure() {
         if let localPhoto = localPhoto {
             imageView.image = localPhoto.image
         }

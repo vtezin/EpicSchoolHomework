@@ -28,7 +28,7 @@ final class EditLocalPhotoViewController: UIViewController {
         mapView.mapType = mapModeControl.selectedSegmentIndex == 0 ? .standard : .hybrid
     }
     
-    var photoItem: LocalPhoto?
+    var localPhoto: LocalPhoto?
     
     var takeNewPhotoFromCamera = true
     
@@ -44,7 +44,7 @@ final class EditLocalPhotoViewController: UIViewController {
     init(photoItem: LocalPhoto?,
          indexPhotoItemInArray: Int?,
          delegate: canUpdatePhotoItemInArray) {
-        self.photoItem = photoItem
+        self.localPhoto = photoItem
         self.indexPhotoItemInArray = indexPhotoItemInArray
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
@@ -59,32 +59,11 @@ final class EditLocalPhotoViewController: UIViewController {
         questionTextField.delegate = self
         answerTextField.delegate = self
         
-        let saveMenu = UIMenu(title: "", children: [
-            UIAction(title: "В Фотки", image: UIImage(systemName: "photo.on.rectangle.angled")){
-                action in
-                self.save()
-            },
-            UIAction(title: "Опубликовать", image: UIImage(systemName: "cloud")){
-                action in
-                self.share()
-            }
-        ])
-        
-        let saveMenuItem = UIBarButtonItem(title: "Сохранить", menu: saveMenu)
-        
-        if photoItem == nil {
-            let _ = appState.locationService.$lastLocation.sink(receiveValue: { [weak self]  newLocation in
-                guard let newLocation = newLocation else {return}
-                self?.locationDidChanged(newLocation: newLocation)
-            })
-            appState.locationService.startUpdating()
-            takeImage(fromCamera: takeNewPhotoFromCamera)
-            navigationItem.rightBarButtonItem = saveMenuItem
-        } else {
-            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: Selector(("delete")))
-            navigationItem.rightBarButtonItems = [deleteButton, saveMenuItem]
+        if let localPhoto = localPhoto {
+            configureByPhoto(localPhoto)
         }
         
+        configureBarMenu()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,9 +86,9 @@ extension EditLocalPhotoViewController {
     }
     
     private func save() {
-        let localPhotoForSave = LocalPhoto(id: photoItem == nil ? UUID().uuidString : photoItem!.id,
+        let localPhotoForSave = LocalPhoto(id: localPhoto == nil ? UUID().uuidString : localPhoto!.id,
                                            image: photoItemImageView.image!,
-                                           addingDate: photoItem == nil ? Date() : photoItem!.addingDate,
+                                           addingDate: localPhoto == nil ? Date() : localPhoto!.addingDate,
                                            latitude: photoCoordinate!.latitude,
                                            longitude: photoCoordinate!.longitude,
                                            description: descriptionTextField.text ?? "",
@@ -121,6 +100,44 @@ extension EditLocalPhotoViewController {
     
     private func share() {
         dismissAndGoBack()
+    }
+    
+    fileprivate func configureBarMenu() {
+        let saveMenu = UIMenu(title: "", children: [
+            UIAction(title: "В Фотки", image: UIImage(systemName: "photo.on.rectangle.angled")){
+                action in
+                self.save()
+            },
+            UIAction(title: "Опубликовать", image: UIImage(systemName: "cloud")){
+                action in
+                self.share()
+            }
+        ])
+        
+        let saveMenuItem = UIBarButtonItem(title: "Сохранить", menu: saveMenu)
+        
+        if localPhoto == nil {
+            let _ = appState.locationService.$lastLocation.sink(receiveValue: { [weak self]  newLocation in
+                guard let newLocation = newLocation else {return}
+                self?.locationDidChanged(newLocation: newLocation)
+            })
+            appState.locationService.startUpdating()
+            takeImage(fromCamera: takeNewPhotoFromCamera)
+            navigationItem.rightBarButtonItem = saveMenuItem
+        } else {
+            let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: Selector(("delete")))
+            navigationItem.rightBarButtonItems = [deleteButton, saveMenuItem]
+        }
+    }
+    
+    func configureByPhoto(_ localPhoto: LocalPhoto) {
+        photoItemImageView.image = localPhoto.image
+        descriptionTextField.text = localPhoto.description
+        
+        photoCoordinate = localPhoto.coordinate
+        mapView.mapType = localPhoto.mapType
+        let mapRegion = MKCoordinateRegion(center: localPhoto.coordinate, span: localPhoto.mapSpan)
+        mapView.setRegion(mapRegion, animated: false)
     }
 }
 

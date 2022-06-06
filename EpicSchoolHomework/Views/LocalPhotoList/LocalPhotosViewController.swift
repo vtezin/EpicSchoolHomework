@@ -17,11 +17,6 @@ final class LocalPhotosViewController: UIViewController, canUpdatePhotoItemInArr
         setupCollectionView()
         fetchPhotos()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        fetchPhotos()
-    }
 }
 
 // MARK: -  UICollectionViewDataSource,
@@ -34,7 +29,7 @@ extension LocalPhotosViewController: UICollectionViewDataSource, UICollectionVie
         let photo = photos[indexPath.row]
         let cell = photosCollectionView.dequeueReusableCell(withReuseIdentifier: LocalPhotoCollectionViewCell.reuseIdentifier, for: indexPath) as! LocalPhotoCollectionViewCell
         cell.localPhoto = photo
-        cell.configureCell()
+        cell.configure()
         return cell
     }
     
@@ -43,6 +38,12 @@ extension LocalPhotosViewController: UICollectionViewDataSource, UICollectionVie
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = EditLocalPhotoViewController(photoItem: photos[indexPath.row],
+                                              indexPhotoItemInArray: indexPath.row,
+                                              delegate: self)
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     private func setupCollectionView() {
         photosCollectionView.dataSource = self
@@ -77,7 +78,7 @@ extension LocalPhotosViewController {
     }
     
     func updatePhotoItemInArray(photoItem: PhotoItem, index: Int) {
-        
+        fetchPhotos()
     }
 }
 
