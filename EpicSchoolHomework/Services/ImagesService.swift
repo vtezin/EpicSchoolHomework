@@ -28,6 +28,14 @@ final class ImagesService {
             return
         }
         
+        //2. try get image from Realm
+        if let photoItemRealm = PhotoItemRealm.findItem(photoItem: photoItem) {
+            DispatchQueue.main.async {
+                completion(UIImage(data: photoItemRealm.imageData))
+            }
+            return
+        }
+        
         //2. try get image from firebase
         FireBaseService.getImage(imageName: photoItem.imageURL, completion: completion)
     }    

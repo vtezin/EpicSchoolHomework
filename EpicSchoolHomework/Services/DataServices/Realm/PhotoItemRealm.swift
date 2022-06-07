@@ -108,6 +108,12 @@ extension PhotoItemRealm {
         }
     }
     
+    static func findItem(photoItem: PhotoItem) -> PhotoItemRealm? {
+        return realm.objects(PhotoItemRealm.self).where{
+            $0.id == photoItem.id
+        }.first
+    }
+    
     static func saveComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
         
         let items = realm.objects(PhotoItemRealm.self).where{
@@ -161,7 +167,7 @@ extension PhotoItemRealm {
         }
     }
     
-    static func fetchItems() -> [PhotoItem] {
+    static func fetchPhotoItems() -> [PhotoItem] {
         var photoItems = [PhotoItem]()
         
         let items = realm.objects(PhotoItemRealm.self).sorted(byKeyPath: "addingDate", ascending: false)

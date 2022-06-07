@@ -12,7 +12,7 @@ final class DataService {
         if FireBaseService.isConnected {
             FireBaseService.fetchPhotoItems(handler: handler)
         } else {
-            let photoItems = PhotoItemRealm.fetchItems()
+            let photoItems = PhotoItemRealm.fetchPhotoItems()
             handler(photoItems)
         }
     }

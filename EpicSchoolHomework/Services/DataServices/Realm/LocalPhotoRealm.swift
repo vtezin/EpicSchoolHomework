@@ -52,7 +52,7 @@ extension LocalPhotoRealm {
     }
     
     static func savePhotoToRealm(photo: LocalPhoto) {
-        try! realm.write {            
+        try! realm.write {
             var realmPhoto = LocalPhotoRealm()
             
             if let foundedRealmPhoto = findPhoto(photo: photo) {
@@ -75,8 +75,18 @@ extension LocalPhotoRealm {
     
     static func deletePhoto(photo: LocalPhoto) {
         if let photoRealm = findPhoto(photo: photo) {
-            realm.delete(photoRealm)
+            try! realm.write {
+                realm.delete(photoRealm)
+            }
         }
+    }
+    
+    static func publishPhotoToFirebase(photo: LocalPhoto) {
+        FireBaseService.postItem(image: photo.image,
+                                 description: photo.description,
+                                 latitude: photo.latitude,
+                                 longitude: photo.longitude)
+        deletePhoto(photo: photo)
     }
     
     static private func findPhoto(photo: LocalPhoto) -> LocalPhotoRealm? {
@@ -84,5 +94,4 @@ extension LocalPhotoRealm {
             $0.id == photo.id
         }.first
     }
-    
 }

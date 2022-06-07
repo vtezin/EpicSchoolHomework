@@ -80,6 +80,7 @@
                 </segmentedControl>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wjj-0z-60W">
                     <rect key="frame" x="118" y="626" width="139" height="32"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <segments>
                         <segment title="Карта"/>
                         <segment title="Снимок"/>

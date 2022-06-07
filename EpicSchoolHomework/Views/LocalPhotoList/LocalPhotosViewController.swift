@@ -7,50 +7,116 @@
 
 import UIKit
 
-final class LocalPhotosViewController: UIViewController, canUpdatePhotoItemInArray {
+protocol LocalPhotoCollectionViewer {
+    func photoAdded(localPhoto: LocalPhoto)
+    func photoChanged(localPhoto: LocalPhoto, index: Int)
+    func photoDeleted(index: Int)
+}
+
+final class LocalPhotosViewController: UIViewController, LocalPhotoCollectionViewer {
     @IBOutlet weak var photosCollectionView: UICollectionView!
     
+    private lazy var dataSource = makeDataSource()
     private var photos = [LocalPhoto]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
         fetchPhotos()
+        applySnapshot(animatingDifferences: false)
+        title = "Черновики"
     }
 }
 
-// MARK: -  UICollectionViewDataSource,
-extension LocalPhotosViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photos.count
+extension LocalPhotosViewController{
+    func photoAdded(localPhoto: LocalPhoto) {
+        photos.append(localPhoto)
+        applySnapshot()
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let photo = photos[indexPath.row]
-        let cell = photosCollectionView.dequeueReusableCell(withReuseIdentifier: LocalPhotoCollectionViewCell.reuseIdentifier, for: indexPath) as! LocalPhotoCollectionViewCell
-        cell.localPhoto = photo
-        cell.configure()
-        return cell
+    func photoChanged(localPhoto: LocalPhoto, index: Int) {
+        if 0...photos.count - 1 ~= index {
+            photos[index] = localPhoto
+            applySnapshot()
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let widthPerItem = view.frame.width / 4
-        return CGSize(width: widthPerItem, height: widthPerItem)
+    func photoDeleted(index: Int) {
+        photos.remove(at: index)
+        applySnapshot()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = EditLocalPhotoViewController(photoItem: photos[indexPath.row],
-                                              indexPhotoItemInArray: indexPath.row,
-                                              delegate: self)
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
+}
+
+extension LocalPhotosViewController {
     private func setupCollectionView() {
-        photosCollectionView.dataSource = self
         photosCollectionView.delegate = self
         
         let nib = UINib(nibName: LocalPhotoCollectionViewCell.reuseIdentifier, bundle: nil)
         photosCollectionView.register(nib, forCellWithReuseIdentifier: LocalPhotoCollectionViewCell.reuseIdentifier)
+    }
+    
+    enum Section {
+        case main
+    }
+    
+    fileprivate typealias DataSource = UICollectionViewDiffableDataSource<Section, LocalPhoto>
+    
+    private func makeDataSource() -> DataSource {
+        let dataSource = DataSource(collectionView: photosCollectionView, cellProvider: { (collectionView, indexPath, localPhoto) ->
+            UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LocalPhotoCollectionViewCell.reuseIdentifier, for: indexPath) as! LocalPhotoCollectionViewCell
+            cell.localPhoto = localPhoto
+            cell.configure()
+            return cell
+        })
+        return dataSource
+    }
+    
+    
+    fileprivate typealias Snapshot = NSDiffableDataSourceSnapshot<Section, LocalPhoto>
+
+    private func applySnapshot(animatingDifferences: Bool = true) {
+      var snapshot = Snapshot()
+      snapshot.appendSections([.main])
+      snapshot.appendItems(photos)
+      dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+}
+
+// MARK: -  UICollectionViewDelegate
+extension LocalPhotosViewController {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let localPhoto = dataSource.itemIdentifier(for: indexPath) else {
+          return
+        }
+        let vc = EditLocalPhotoViewController(photoItem: localPhoto,
+                                              indexPhotoItemInArray: indexPath.row,
+                                              delegate: self)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: -  UICollectionViewDelegateFlowLayout
+extension LocalPhotosViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let widthPerItem = photosCollectionView.frame.width / 3 - 4
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(
+          top: 0,
+          left: 2,
+          bottom: 0,
+          right: 2)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
     }
 }
 

@@ -248,11 +248,8 @@
 		C416046327F3A6640074FE36 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C4BACD26280D245200A8D7C6 /* FireBaseService.swift */,
-				C4BACD28280D269300A8D7C6 /* DataProvider.swift */,
-				C4849A61284CC0C80043717B /* Realm */,
+				C4DD0DD8284F1F4C00EC7D9D /* DataServices */,
 				C4C7DA95281F91860088FA4F /* ImagesService.swift */,
-				C4C7DA97281FBC4E0088FA4F /* DataService.swift */,
 				C4350426284754F1009AEE0E /* NotificationService.swift */,
 				C4849A58284B0C1B0043717B /* LocationService.swift */,
 			);
@@ -380,6 +377,17 @@
 				C4E0E503283ECB6D003E0CB3 /* Location.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C4DD0DD8284F1F4C00EC7D9D /* DataServices */ = {
+			isa = PBXGroup;
+			children = (
+				C4849A61284CC0C80043717B /* Realm */,
+				C4BACD28280D269300A8D7C6 /* DataProvider.swift */,
+				C4C7DA97281FBC4E0088FA4F /* DataService.swift */,
+				C4BACD26280D245200A8D7C6 /* FireBaseService.swift */,
+			);
+			path = DataServices;
 			sourceTree = "<group>";
 		};
 		C4DF9D26282D2C42008C02DD /* Likes */ = {
@@ -811,13 +819,15 @@
 				DEVELOPMENT_TEAM = 2X2VGHTNU5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EpicSchoolHomework/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Photo Go";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Требуется доступ к камере";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location access required";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Требуется доступ к геопозиции";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Location access required";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Требуется доступ для выбора фото из библиотеки";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Требуется доступ к геопозиции";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Требуется доступ к фотопленке";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -844,13 +854,15 @@
 				DEVELOPMENT_TEAM = 2X2VGHTNU5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EpicSchoolHomework/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Photo Go";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Требуется доступ к камере";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Location access required";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Требуется доступ к геопозиции";
 				INFOPLIST_KEY_NSLocationUsageDescription = "Location access required";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Требуется доступ для выбора фото из библиотеки";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Требуется доступ к геопозиции";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Требуется доступ к фотопленке";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
