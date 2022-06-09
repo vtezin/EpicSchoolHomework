@@ -28,6 +28,7 @@ final class LocalPhotosViewController: UIViewController, LocalPhotoCollectionVie
     }
 }
 
+// MARK: -  collection actions
 extension LocalPhotosViewController{
     func photoAdded(localPhoto: LocalPhoto) {
         photos.append(localPhoto)
@@ -47,6 +48,7 @@ extension LocalPhotosViewController{
     }
 }
 
+// MARK: -  DiffableDataSource
 extension LocalPhotosViewController {
     private func setupCollectionView() {
         photosCollectionView.delegate = self
@@ -71,7 +73,6 @@ extension LocalPhotosViewController {
         })
         return dataSource
     }
-    
     
     fileprivate typealias Snapshot = NSDiffableDataSourceSnapshot<Section, LocalPhoto>
 
@@ -99,16 +100,16 @@ extension LocalPhotosViewController {
 // MARK: -  UICollectionViewDelegateFlowLayout
 extension LocalPhotosViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let widthPerItem = photosCollectionView.frame.width / 3 - 4
+        let widthPerItem = photosCollectionView.frame.width / 3 - 2
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         UIEdgeInsets(
           top: 0,
-          left: 2,
+          left: 1,
           bottom: 0,
-          right: 2)
+          right: 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

@@ -45,6 +45,17 @@ struct PhotoItem: PhotoContainer {
     }
 }
 
+// MARK: -  Hashable
+extension PhotoItem: Hashable {
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(id)
+    }
+    
+    static func == (lhs: PhotoItem, rhs: PhotoItem) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
 // MARK: -  computed props
 extension PhotoItem {
     var likesFormattedString: String {
@@ -95,6 +106,10 @@ extension PhotoItem {
         FireBaseService.updateLikesInfo(photoItem: self)
     }
     
+    mutating func setImage(image: UIImage) {
+        self.image = image
+    }
+    
     func isLikedByUser(userName: String) -> Bool {
         likes.contains {$0.user == userName}
     }
@@ -102,8 +117,4 @@ extension PhotoItem {
     func isVisitedByUser(userName: String) -> Bool {
         visits.contains {$0.user == userName}
     }
-}
-
-protocol canUpdatePhotoItemInArray {
-    func updatePhotoItemInArray(photoItem: PhotoItem, index: Int)
 }

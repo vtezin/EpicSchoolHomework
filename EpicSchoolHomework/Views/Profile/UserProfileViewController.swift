@@ -25,6 +25,9 @@ final class UserProfileViewController: UIViewController {
             loginStateDidChanged()
         }
     }
+    @IBAction func clearCashButtonTapped(_ sender: Any) {
+        PhotoItemRealm.deleteAllItems()
+    }
     
     @IBAction func enterButtonTapped(_ sender: Any) {
         if userLoggedIn {
@@ -67,7 +70,6 @@ final class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Профиль"
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
 }

@@ -29,13 +29,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="8G0-Z7-ibJ" userLabel="photo">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="657"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="601"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jUq-n2-y4v">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="510"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="454"/>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5ua-R9-X7I">
-                            <rect key="frame" x="0.0" y="535" width="375" height="122"/>
+                            <rect key="frame" x="0.0" y="479" width="375" height="122"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Описание" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rN5-np-eol">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
@@ -61,25 +61,15 @@
                 </mapView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus.viewfinder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xHV-ic-EPd">
                     <rect key="frame" x="172.5" y="321" width="30" height="25"/>
+                    <color key="tintColor" systemColor="systemOrangeColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="PwM-3a-ZLc"/>
                         <constraint firstAttribute="height" constant="30" id="j8X-NV-3GN"/>
                     </constraints>
                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
                 </imageView>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5W1-Fd-mso">
-                    <rect key="frame" x="128" y="20" width="119" height="32"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <segments>
-                        <segment title="Фото"/>
-                        <segment title="Место"/>
-                    </segments>
-                    <connections>
-                        <action selector="viewModeChanged:" destination="-1" eventType="valueChanged" id="lvX-hg-W42"/>
-                    </connections>
-                </segmentedControl>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wjj-0z-60W">
-                    <rect key="frame" x="118" y="626" width="139" height="32"/>
+                    <rect key="frame" x="118" y="10" width="139" height="32"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <segments>
                         <segment title="Карта"/>
@@ -89,21 +79,32 @@
                         <action selector="mapModeChanged:" destination="-1" eventType="valueChanged" id="q3H-Hu-hs5"/>
                     </connections>
                 </segmentedControl>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5W1-Fd-mso">
+                    <rect key="frame" x="128" y="621" width="119" height="27"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <segments>
+                        <segment title="Фото"/>
+                        <segment title="Место"/>
+                    </segments>
+                    <connections>
+                        <action selector="viewModeChanged:" destination="-1" eventType="valueChanged" id="lvX-hg-W42"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="8G0-Z7-ibJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="218-q0-R0b"/>
                 <constraint firstItem="pwa-zc-IE8" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="78B-C1-2o4"/>
+                <constraint firstItem="5W1-Fd-mso" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DIL-3L-ag0"/>
                 <constraint firstItem="xHV-ic-EPd" firstAttribute="centerX" secondItem="pwa-zc-IE8" secondAttribute="centerX" id="E7k-Lc-jxJ"/>
-                <constraint firstItem="5W1-Fd-mso" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="M1O-7Y-SeW"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8G0-Z7-ibJ" secondAttribute="bottom" constant="10" id="NQS-Fs-ACT"/>
+                <constraint firstItem="wjj-0z-60W" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="JsT-jR-vLp"/>
+                <constraint firstItem="5W1-Fd-mso" firstAttribute="top" secondItem="8G0-Z7-ibJ" secondAttribute="bottom" constant="20" id="LPi-lS-cef"/>
                 <constraint firstItem="wjj-0z-60W" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nkz-4g-cL2"/>
                 <constraint firstItem="pwa-zc-IE8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Opf-MM-Qng"/>
                 <constraint firstItem="pwa-zc-IE8" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="RqR-Bf-jKz"/>
-                <constraint firstItem="5W1-Fd-mso" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="VJm-tR-VLc"/>
-                <constraint firstItem="8G0-Z7-ibJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="mdE-rY-dcD"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="wjj-0z-60W" secondAttribute="bottom" constant="10" id="rb6-td-O6A"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5W1-Fd-mso" secondAttribute="bottom" constant="20" id="irS-0r-6F3"/>
+                <constraint firstItem="8G0-Z7-ibJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="jFQ-1C-9Mn"/>
                 <constraint firstItem="xHV-ic-EPd" firstAttribute="centerY" secondItem="pwa-zc-IE8" secondAttribute="centerY" id="vh7-t4-csd"/>
                 <constraint firstItem="pwa-zc-IE8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="wNx-6G-xnO"/>
                 <constraint firstItem="8G0-Z7-ibJ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="yio-oV-Tu6"/>
@@ -115,6 +116,9 @@
         <image name="plus.viewfinder" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

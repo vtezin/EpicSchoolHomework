@@ -14,8 +14,6 @@ final class CommentsListViewController: UIViewController {
     @IBOutlet weak var addCommentStackView: UIStackView!
     
     var photoItem: PhotoItem
-    let indexPhotoItemInArray: Int
-    let delegate: canUpdatePhotoItemInArray
     
     @IBAction func buttonAddCommenttapped(_ sender: Any) {
         addComment()
@@ -25,12 +23,8 @@ final class CommentsListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(photoItem: PhotoItem,
-         indexPhotoItemInArray: Int,
-         delegate: canUpdatePhotoItemInArray) {
+    init(photoItem: PhotoItem) {
         self.photoItem = photoItem
-        self.indexPhotoItemInArray = indexPhotoItemInArray
-        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,12 +33,6 @@ final class CommentsListViewController: UIViewController {
         addCommentStackView.isHidden = !FireBaseService.isConnected
         setupTableView()
         addKeyboardNotifications()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        delegate.updatePhotoItemInArray(photoItem: photoItem,
-                                        index: indexPhotoItemInArray)
     }
 }
 

@@ -16,34 +16,12 @@ final class MainScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let addPhotoMenu = UIMenu(title: "", children: [
-            UIAction(title: "Камера", image: UIImage(systemName: "camera")){
-                action in
-                self.addNewItem(fromCamera: true)
-            },
-            UIAction(title: "Фотопленка", image: UIImage(systemName: "photo")){
-                action in
-                self.addNewItem(fromCamera: false)
-            }
-        ])
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: nil, menu: addPhotoMenu)
-        
         setupTableView()
     }
 }
 
 // MARK: -  Functions
 extension MainScreenViewController {
-    private func addNewItem(fromCamera: Bool) {
-        let vc = EditItemViewController(photoItem: nil,
-                                        indexPhotoItemInArray: nil,
-                                        delegate: self)
-        vc.takeNewPhotoFromCamera = fromCamera
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func photoItemsFetched(photoItems: [PhotoItem]) {
         self.photoItems = photoItems
         DispatchQueue.main.async {
@@ -74,16 +52,12 @@ extension MainScreenViewController {
     }
     
     private func navigateToComments(photoItem: PhotoItem, cellIndex: Int) {
-        let vc = CommentsListViewController(photoItem: photoItem,
-                                            indexPhotoItemInArray: cellIndex,
-                                            delegate: self)
+        let vc = CommentsListViewController(photoItem: photoItem)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     private func navigateToPhotoItem(photoItem: PhotoItem, cellIndex: Int) {
-        let vc = EditItemViewController(photoItem: photoItem,
-                                            indexPhotoItemInArray: cellIndex,
-                                            delegate: self)
+        let vc = EditItemViewController(photoItem: photoItem)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -111,14 +85,4 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }    
-}
-
-// MARK: -  canUpdatePhotoItemInArray
-extension MainScreenViewController: canUpdatePhotoItemInArray {
-    func updatePhotoItemInArray(photoItem: PhotoItem, index: Int) {
-        if 0...photoItems.count - 1 ~= index {
-            photoItems[index] = photoItem
-            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-        }
-    }
 }

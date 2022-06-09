@@ -57,10 +57,71 @@ final class PhotoItemRealmVisit: Object {
     }
 }
 
-// MARK: -  Functions
+// MARK: -  Fetching
 extension PhotoItemRealm {
     static let realm = try! Realm(configuration: RealmService.config)
+
+    static func findItem(photoItem: PhotoItem) -> PhotoItemRealm? {
+        return realm.objects(PhotoItemRealm.self).where{
+            $0.id == photoItem.id
+        }.first
+    }
     
+    static func fetchPhotoItems() -> [PhotoItem] {
+        var photoItems = [PhotoItem]()
+        
+        let items = realm.objects(PhotoItemRealm.self).sorted(byKeyPath: "addingDate", ascending: false)
+        
+        for item in items {
+            var photoItem = PhotoItem(id: item.id,
+                                      image: UIImage(data: item.imageData),
+                                      imageURL: item.imageURL,
+                                      author: item.author,
+                                      description: item.photoDescription,
+                                      addingDate: item.addingDate,
+                                      latitude: item.latitude,
+                                      longitude: item.longitude)
+            let comments = realm.objects(PhotoItemRealmComment.self).sorted(byKeyPath: "date", ascending: true).where{
+                $0.item == item
+            }
+            
+            for comment in comments {
+                photoItem.comments.append(PhotoItem.Comment(
+                    id: comment.id,
+                    author: comment.author,
+                    text: comment.text,
+                    date: comment.date))
+            }
+            
+            let likes = realm.objects(PhotoItemRealmLike.self).sorted(byKeyPath: "date", ascending: true).where{
+                $0.item == item
+            }
+            
+            for like in likes {
+                photoItem.likes.append(PhotoItem.Like(user: like.user,
+                                                      date: like.date))
+            }
+            
+            photoItems.append(photoItem)
+            
+        }
+        return photoItems
+    }
+    
+    static func fetchImageForItem(itemID: String) -> UIImage? {
+        let foundedItem = realm.objects(PhotoItemRealm.self).where{
+            $0.id == itemID
+        }.first
+        
+        if let foundedItem = foundedItem {
+            return UIImage(data: foundedItem.imageData)
+        }
+        return nil
+    }
+}
+
+// MARK: -  Saving
+extension PhotoItemRealm {
     static func saveItem(photoItem: PhotoItem) {
         
         try! realm.write {
@@ -106,12 +167,6 @@ extension PhotoItemRealm {
         for visit in photoItem.visits{
             saveVisit(photoItem: photoItem, visit: visit)
         }
-    }
-    
-    static func findItem(photoItem: PhotoItem) -> PhotoItemRealm? {
-        return realm.objects(PhotoItemRealm.self).where{
-            $0.id == photoItem.id
-        }.first
     }
     
     static func saveComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
@@ -166,45 +221,59 @@ extension PhotoItemRealm {
             realm.add(newVisit, update: .modified)
         }
     }
+}
+
+// MARK: -  Delete
+extension PhotoItemRealm{
     
-    static func fetchPhotoItems() -> [PhotoItem] {
-        var photoItems = [PhotoItem]()
-        
-        let items = realm.objects(PhotoItemRealm.self).sorted(byKeyPath: "addingDate", ascending: false)
-        
+    static func deleteAllItems() {
+        let items = realm.objects(PhotoItemRealm.self)
         for item in items {
-            var photoItem = PhotoItem(id: item.id,
-                                      image: UIImage(data: item.imageData),
-                                      imageURL: item.imageURL,
-                                      author: item.author,
-                                      description: item.photoDescription,
-                                      addingDate: item.addingDate,
-                                      latitude: item.latitude,
-                                      longitude: item.longitude)
-            let comments = realm.objects(PhotoItemRealmComment.self).sorted(byKeyPath: "date", ascending: true).where{
-                $0.item == item
-            }
-            
-            for comment in comments {
-                photoItem.comments.append(PhotoItem.Comment(
-                    id: comment.id,
-                    author: comment.author,
-                    text: comment.text,
-                    date: comment.date))
-            }
-            
-            let likes = realm.objects(PhotoItemRealmLike.self).sorted(byKeyPath: "date", ascending: true).where{
-                $0.item == item
-            }
-            
-            for like in likes {
-                photoItem.likes.append(PhotoItem.Like(user: like.user,
-                                                      date: like.date))
-            }
-            
-            photoItems.append(photoItem)
-            
+            deleteItem(item)
         }
-        return photoItems
-    }    
+    }
+    
+    static func deleteItem(_ item: PhotoItemRealm) {
+        deleteItemLikes(item: item)
+        deleteItemComments(item: item)
+        deleteItemVisits(item: item)
+        
+        try! realm.write {
+            realm.delete(item)
+        }
+    }
+    
+    static private func deleteItemLikes(item: PhotoItemRealm) {
+        try! realm.write {
+            let records = realm.objects(PhotoItemRealmLike.self).where{
+                $0.item == item
+            }
+            for record in records{
+                realm.delete(record)
+            }
+        }
+    }
+    
+    static private func deleteItemComments(item: PhotoItemRealm) {
+        try! realm.write {
+            let records = realm.objects(PhotoItemRealmComment.self).where{
+                $0.item == item
+            }
+            for record in records{
+                realm.delete(record)
+            }
+        }
+    }
+ 
+    static private func deleteItemVisits(item: PhotoItemRealm) {
+        try! realm.write {
+            let records = realm.objects(PhotoItemRealmVisit.self).where{
+                $0.item == item
+            }
+            for record in records{
+                realm.delete(record)
+            }
+        }
+    }
+    
 }

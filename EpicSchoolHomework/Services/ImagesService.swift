@@ -38,5 +38,18 @@ final class ImagesService {
         
         //2. try get image from firebase
         FireBaseService.getImage(imageName: photoItem.imageURL, completion: completion)
-    }    
+    }
+    
+    static func getLocalImageForPhotoItem(photoItem: PhotoItem) -> UIImage? {
+        if let image = loadedImagesCash[photoItem.imageURL] {
+            return image
+        }
+        
+        if let image = PhotoItemRealm.fetchImageForItem(itemID: photoItem.id) {
+            return image
+        }
+        
+        return nil
+    }
+    
 }

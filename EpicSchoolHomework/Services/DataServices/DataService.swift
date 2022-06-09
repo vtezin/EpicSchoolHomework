@@ -6,11 +6,16 @@
 //
 
 import Foundation
+import Combine
 
-final class DataService {
+//TODO: delete it
+final class DataService: NSObject {
+    
+    @Published private(set) var photoItems = [PhotoItem]()
+    
     static func fetchPhotoItems(handler: @escaping ([PhotoItem]) -> Void) {
         if FireBaseService.isConnected {
-            FireBaseService.fetchPhotoItems(handler: handler)
+            //FireBaseService.fetchPhotoItems(handler: handler)
         } else {
             let photoItems = PhotoItemRealm.fetchPhotoItems()
             handler(photoItems)

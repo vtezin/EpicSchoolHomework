@@ -8,16 +8,18 @@
 import UIKit
 import MapKit
 import Firebase
+import Combine
 
 class AllItemsMapViewController: UIViewController {
+    @IBOutlet weak var mapModeControl: UISegmentedControl!
+    @IBOutlet weak var moveToCurLocationButton: UIButton!
+    @IBOutlet weak var mapView: MKMapView!
     
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     private var photoItems = [PhotoItem]()
     
-    @IBOutlet weak var mapModeControl: UISegmentedControl!
-    @IBOutlet weak var moveToCurLocationButton: UIButton!
-    @IBOutlet weak var mapView: MKMapView!
+    private var photoItemsSubscription: AnyCancellable?
     
     @IBAction func mapModeChanged(_ sender: UISegmentedControl) {
         mapView.mapType = mapModeControl.selectedSegmentIndex == 0 ? .standard : .hybrid
@@ -30,9 +32,15 @@ class AllItemsMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Карта"
+        
         configureMapView()
         configureLocationServices()
-        addItemsAnnotationsToMap()
+        
+        photoItems = appState.photoItems
+        photoItemsSubscription = appState.$photoItems.sink(receiveValue: {[weak self] photoItems in
+            self?.photoItems = photoItems
+            self?.addItemsAnnotationsToMap()
+        })
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -163,9 +171,7 @@ extension AllItemsMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let placemark = view.annotation as? PhotoItemAnnotation {
             mapView.deselectAnnotation(placemark, animated: false)
-            let vc = EditItemViewController(photoItem: placemark.photoItem,
-                                            indexPhotoItemInArray: 0,
-                                            delegate: self)
+            let vc = EditItemViewController(photoItem: placemark.photoItem)
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -175,12 +181,4 @@ extension AllItemsMapViewController: MKMapViewDelegate {
         moveToCurLocationButtonSetVisible()
     }
     
-}
-    
-
-// MARK: -  canUpdatePhotoItemInArray
-extension AllItemsMapViewController: canUpdatePhotoItemInArray {
-    func updatePhotoItemInArray(photoItem: PhotoItem, index: Int) {
-        //TODO
-    }
 }

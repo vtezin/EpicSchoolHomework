@@ -7,64 +7,24 @@
 
 import UIKit
 import Firebase
+import Combine
 
 final class RootTabBarController: UITabBarController {
     
-    private var photoItems = [PhotoItem]() {
-        didSet{
-            photoListVC.photoItemsFetched(photoItems: self.photoItems)
-            photoMapVC.photoItemsFetched(photoItems: self.photoItems)
-        }
-    }
-    
-    private var firebaseIsConnected: Bool = false {
-        didSet{
-            print("connected \(firebaseIsConnected)");
-            self.tabBar.items?[0].title = firebaseIsConnected ? "онлайн" : "офлайн"
-            self.tabBar.items?[0].badgeColor = firebaseIsConnected ? .green : .red        }
-    }
-    
     private var localPhotosVC = LocalPhotosViewController()
-    private var photoListVC = MainScreenViewController()
+    private var photoListVC = PhotoItemListViewController()
     private var photoMapVC = AllItemsMapViewController()
     private var userProfileVC = UserProfileViewController()
+    
+    private var firebaseIsConnectedSubscription: AnyCancellable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        configureDatabaseObservers()
-        if photoItems.isEmpty {
-            refetchPhotoItems()
-        }
-    }
-}
-
-// MARK: -  work with database
-extension RootTabBarController {
-    fileprivate func configureDatabaseObservers() {
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        
-        connectedRef.observe(.value, with: { snapshot in
-          if snapshot.value as? Bool ?? false {
-              self.firebaseIsConnected = true
-              self.refetchPhotoItems()
-          } else {
-              self.firebaseIsConnected = false
-          }
+        firebaseIsConnectedSubscription = appState.$firebaseIsConnected.sink(receiveValue: {[weak self] firebaseIsConnected in
+            self?.tabBar.items?[0].title = firebaseIsConnected ? "онлайн" : "офлайн"
+            self?.tabBar.items?[0].badgeColor = firebaseIsConnected ? .green : .red
         })
-        
-        let itemsRef = Database.database().reference().child("photos")
-        itemsRef.observe(DataEventType.value, with: { snapshot in
-            self.refetchPhotoItems()
-        })
-    }
-    
-    private func refetchPhotoItems() {
-        DataService.fetchPhotoItems(handler: self.photoItemsFetched)
-    }
-    
-    private func photoItemsFetched(photoItems: [PhotoItem]) {
-        self.photoItems = photoItems
     }
 }
 
