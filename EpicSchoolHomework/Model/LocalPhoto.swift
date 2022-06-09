@@ -38,3 +38,29 @@ extension LocalPhoto {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
+
+// MARK: -  Functions
+extension LocalPhoto {
+    static func publishPhoto(_ localPhoto: LocalPhoto) {
+        guard appState.firebaseIsConnected else {return}
+        PhotoItemRealm.saveItem(photoItem: localPhoto.convertToPhotoItem())
+        FireBaseService.postItem(image: localPhoto.image,
+                                 description: localPhoto.description,
+                                 latitude: localPhoto.latitude,
+                                 longitude: localPhoto.longitude)
+        LocalPhotoRealm.deletePhoto(photo: localPhoto)
+    }
+    
+    func convertToPhotoItem() -> PhotoItem {
+        return PhotoItem(id: id,
+                         image: image,
+                         imageURL: "",
+                         author: FireBaseService.currentUserName,
+                         description: description,
+                         addingDate: addingDate,
+                         latitude: latitude,
+                         longitude: longitude,
+                         mapType: mapType,
+                         mapSpan: mapSpan)
+    }
+}

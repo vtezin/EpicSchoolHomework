@@ -81,14 +81,6 @@ extension LocalPhotoRealm {
         }
     }
     
-    static func publishPhotoToFirebase(photo: LocalPhoto) {
-        FireBaseService.postItem(image: photo.image,
-                                 description: photo.description,
-                                 latitude: photo.latitude,
-                                 longitude: photo.longitude)
-        deletePhoto(photo: photo)
-    }
-    
     static private func findPhoto(photo: LocalPhoto) -> LocalPhotoRealm? {
         return realm.objects(LocalPhotoRealm.self).where{
             $0.id == photo.id

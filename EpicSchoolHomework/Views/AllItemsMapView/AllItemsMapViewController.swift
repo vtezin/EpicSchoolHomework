@@ -15,11 +15,10 @@ class AllItemsMapViewController: UIViewController {
     @IBOutlet weak var moveToCurLocationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     
-    private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     private var photoItems = [PhotoItem]()
     
-    private var photoItemsSubscription: AnyCancellable?
+    private var subscriptions = Set<AnyCancellable>()
     
     @IBAction func mapModeChanged(_ sender: UISegmentedControl) {
         mapView.mapType = mapModeControl.selectedSegmentIndex == 0 ? .standard : .hybrid
@@ -37,15 +36,22 @@ class AllItemsMapViewController: UIViewController {
         configureLocationServices()
         
         photoItems = appState.photoItems
-        photoItemsSubscription = appState.$photoItems.sink(receiveValue: {[weak self] photoItems in
+        appState.$photoItems.sink(receiveValue: {[weak self] photoItems in
             self?.photoItems = photoItems
             self?.addItemsAnnotationsToMap()
         })
+        .store(in: &subscriptions)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        appState.locationService.startUpdating()
         moveToCurLocationButtonSetVisible()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        appState.locationService.stopUpdating()
     }
 }
 
@@ -76,7 +82,6 @@ extension AllItemsMapViewController {
     }
     
     private func moveToCurLocationButtonSetVisible() {
-        
         UIView.transition(with: moveToCurLocationButton, duration: 0.5,
           options: [.curveEaseOut],
           animations: {
@@ -86,31 +91,30 @@ extension AllItemsMapViewController {
             self.moveToCurLocationButton.isHidden = self.mapView.isUserLocationVisible
           }
         )
-        
     }
-    
 }
 
 // MARK: -  Functions Locations
 extension AllItemsMapViewController {
     private func configureLocationServices() {
-        locationManager.delegate = self
-        let status = locationManager.authorizationStatus
-        
-        if status == .notDetermined {
-            locationManager.requestAlwaysAuthorization()
-        } else if status == .authorizedAlways || status == .authorizedWhenInUse {
-           beginLocationUpdates(locationManager: locationManager)
-        }
+        appState.locationService.$lastLocation.sink(receiveValue: { [weak self]  newLocation in
+            guard let newLocation = newLocation else {return}
+            self?.receivedNewLocation(newLocation)
+        })
+        .store(in: &subscriptions)
+        appState.locationService.startUpdating()
     }
     
-    private func beginLocationUpdates(locationManager: CLLocationManager) {
-        mapView.showsUserLocation = true
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
+    private func receivedNewLocation(_ newLocation: CLLocation) {
+        if currentCoordinate == nil {
+            let zoomRegion = MKCoordinateRegion(center: newLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+            mapView.setRegion(zoomRegion, animated: true)
+        }
+        currentCoordinate = newLocation.coordinate
     }
     
     private func configureMapView() {
+        mapView.showsUserLocation = true
         mapView.mapType = .standard
         mapView.userTrackingMode = .none
         mapView.showsScale = true
@@ -126,26 +130,6 @@ extension AllItemsMapViewController {
         
         let mapRegion = MKCoordinateRegion(center: currentCoordinate, span: mapView.region.span)
         mapView.setRegion(mapRegion, animated: true)
-    }
-}
-
-// MARK: -  CLLocationManagerDelegate
-extension AllItemsMapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let latestLocation = locations.first else { return }
-        
-        if currentCoordinate == nil {
-            let zoomRegion = MKCoordinateRegion(center: latestLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-            mapView.setRegion(zoomRegion, animated: true)
-        }
-    
-        currentCoordinate = latestLocation.coordinate
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
-            beginLocationUpdates(locationManager: manager)
-        }
     }
 }
 

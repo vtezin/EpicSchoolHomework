@@ -16,15 +16,9 @@ final class RootTabBarController: UITabBarController {
     private var photoMapVC = AllItemsMapViewController()
     private var userProfileVC = UserProfileViewController()
     
-    private var firebaseIsConnectedSubscription: AnyCancellable?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        firebaseIsConnectedSubscription = appState.$firebaseIsConnected.sink(receiveValue: {[weak self] firebaseIsConnected in
-            self?.tabBar.items?[0].title = firebaseIsConnected ? "онлайн" : "офлайн"
-            self?.tabBar.items?[0].badgeColor = firebaseIsConnected ? .green : .red
-        })
     }
 }
 
@@ -50,7 +44,7 @@ extension RootTabBarController {
     
     fileprivate func setupVCs() {
           viewControllers = [
-            createNavController(for: photoListVC, title: NSLocalizedString("Лента", comment: ""), image: UIImage(systemName: "photo.on.rectangle.angled")!),
+            createNavController(for: photoListVC, title: NSLocalizedString("Фотки", comment: ""), image: UIImage(systemName: "photo.on.rectangle.angled")!),
               createNavController(for: photoMapVC, title: NSLocalizedString("Карта", comment: ""), image: UIImage(systemName: "map")!),
             createNavController(for: localPhotosVC, title: NSLocalizedString("Черновики", comment: ""), image: UIImage(systemName: "tray.full")!),
               createNavController(for: userProfileVC, title: NSLocalizedString("Профиль", comment: ""), image: UIImage(systemName: "person")!)

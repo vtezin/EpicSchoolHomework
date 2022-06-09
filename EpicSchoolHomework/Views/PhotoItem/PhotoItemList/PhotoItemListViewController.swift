@@ -10,11 +10,13 @@ import Combine
 
 final class PhotoItemListViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
     
     private lazy var dataSource = makeDataSource()
     private var photoItems = [PhotoItem]()
+    private var subscriptions = Set<AnyCancellable>()
     
-    private var photoItemsSubscription: AnyCancellable?
+    private let firebaseStatusBarItem = UIBarButtonItem(title: "Оффлайн", style: .plain, target: nil, action: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,18 +24,31 @@ final class PhotoItemListViewController: UIViewController {
         setupCollectionView()
         
         photoItems = appState.photoItems
-        photoItemsSubscription = appState.$photoItems.sink(receiveValue: {[weak self] photoItems in
+        appState.$photoItems.sink(receiveValue: {[weak self] photoItems in
             self?.photoItemsReceived(newPhotoItems: photoItems)
         })
+        .store(in: &subscriptions)
+        
+        navigationItem.leftBarButtonItem = firebaseStatusBarItem
+        appState.$firebaseIsConnected.sink(receiveValue: {[weak self] firebaseIsConnected in
+            self?.firebaseStatusBarItem.title = firebaseIsConnected ? "Онлайн" : "Оффлайн"
+            self?.firebaseStatusBarItem.tintColor = firebaseIsConnected ? UIColor.green : UIColor.red
+        })
+        .store(in: &subscriptions)
     }    
 }
 
 // MARK: -  DiffableDataSource
 extension PhotoItemListViewController {
     private func photoItemsReceived(newPhotoItems: [PhotoItem]) {
+        if newPhotoItems.count > 0 {
+            loadingIndicator.stopAnimating()
+        }
         photoItems = newPhotoItems
         applySnapshot(animatingDifferences: true)
-        collectionView.reloadData()
+        if newPhotoItems.count != photoItems.count {
+            collectionView.reloadData()
+        }
         print("received \(newPhotoItems.count) photoItems")
     }
     

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoItemListViewController" customModule="EpicSchoolHomework" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="Pki-oi-ZAA" id="oZG-4x-BNf"/>
+                <outlet property="loadingIndicator" destination="c5Z-jD-eqX" id="cbp-DD-7MH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,7 +23,7 @@
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Pki-oi-ZAA">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="systemGray4Color"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zKo-k2-Eth">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -30,12 +31,17 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="c5Z-jD-eqX">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Pki-oi-ZAA" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="9FA-MN-EjT"/>
+                <constraint firstItem="c5Z-jD-eqX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="F4m-JM-9xq"/>
                 <constraint firstItem="Pki-oi-ZAA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="LIl-nV-7H1"/>
+                <constraint firstItem="c5Z-jD-eqX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="PZJ-qp-cI6"/>
                 <constraint firstItem="Pki-oi-ZAA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qea-Fd-nGO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Pki-oi-ZAA" secondAttribute="bottom" id="qiP-GU-aFL"/>
             </constraints>
@@ -45,6 +51,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

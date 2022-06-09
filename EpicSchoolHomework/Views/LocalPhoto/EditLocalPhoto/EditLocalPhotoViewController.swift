@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import Photos
+import Combine
 
 final class EditLocalPhotoViewController: UIViewController {
     @IBOutlet private weak var photoItemImageView: UIImageView!
@@ -33,6 +34,7 @@ final class EditLocalPhotoViewController: UIViewController {
     var takeNewPhotoFromCamera = true
     
     private var photoCoordinate: CLLocationCoordinate2D?
+    private var subscriptions = Set<AnyCancellable>()
     
     let delegate: LocalPhotoCollectionViewer
     let indexPhotoItemInArray: Int?
@@ -116,6 +118,17 @@ extension EditLocalPhotoViewController {
     }
     
     @objc private func publish() {
+        
+        if !appState.firebaseIsConnected {
+            let alertController = UIAlertController(title: "Нет связи ((" , message: "Отсутствует соединение с сервером. Публикация невозможна", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Отмена", style: .cancel) { _ in
+                return
+            }
+            alertController.addAction(action)
+            present(alertController, animated: true)
+            return
+        }
+        
         let alertController = UIAlertController(title: "Опубликовать фото?" , message: "Фото будет удалено из Черновиков. После публикации фото нельзя редактировать", preferredStyle: .alert)
         let action1 = UIAlertAction(title: "Отмена", style: .cancel) { _ in
             return
@@ -125,7 +138,7 @@ extension EditLocalPhotoViewController {
             if let _ = self.localPhoto,
                 let indexPhotoItemInArray = self.indexPhotoItemInArray {
                 let localPhotoForPublish = self.getLocalPhotoForSave()
-                LocalPhotoRealm.publishPhotoToFirebase(photo: localPhotoForPublish)
+                LocalPhoto.publishPhoto(localPhotoForPublish)
                 self.delegate.photoDeleted(index: indexPhotoItemInArray)
             }
             self.dismissAndGoBack()
@@ -158,10 +171,11 @@ extension EditLocalPhotoViewController {
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(publish))
         
         if localPhoto == nil {
-            let _ = appState.locationService.$lastLocation.sink(receiveValue: { [weak self]  newLocation in
+            appState.locationService.$lastLocation.sink(receiveValue: { [weak self]  newLocation in
                 guard let newLocation = newLocation else {return}
                 self?.locationDidChanged(newLocation: newLocation)
             })
+            .store(in: &subscriptions)
             appState.locationService.startUpdating()
             takeImage(fromCamera: takeNewPhotoFromCamera)
             navigationItem.rightBarButtonItems = [saveButton, shareButton]
