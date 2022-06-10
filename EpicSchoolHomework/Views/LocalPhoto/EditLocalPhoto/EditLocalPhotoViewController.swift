@@ -94,11 +94,15 @@ extension EditLocalPhotoViewController {
         let localPhotoForSave = LocalPhoto(id: localPhoto == nil ? UUID().uuidString : localPhoto!.id,
                                            image: photoItemImageView.image!,
                                            addingDate: localPhoto == nil ? Date() : localPhoto!.addingDate,
+                                           description: descriptionTextField.text,
+                                           question: questionTextField.text,
+                                           answer: answerTextField.text,
+                                           answerDescription: answerTextField.text, //TODO: it
                                            latitude: photoCoordinate?.latitude ?? 0,
                                            longitude: photoCoordinate?.longitude ?? 0,
-                                           description: descriptionTextField.text ?? "",
                                            mapType: mapView.mapType,
                                            mapSpan: mapView.region.span)
+        
         return localPhotoForSave
         
     }
@@ -220,9 +224,10 @@ extension EditLocalPhotoViewController: MKMapViewDelegate {
     private func configureMapView() {
         mapView.mapType = .standard
         mapView.userTrackingMode = .none
-        mapView.showsScale = true
+        mapView.showsScale = false
         mapView.showsCompass = true
         mapView.showsBuildings = true
+        mapView.showsUserLocation = true
         mapView.delegate = self
     }
 }

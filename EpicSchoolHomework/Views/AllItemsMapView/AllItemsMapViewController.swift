@@ -102,7 +102,6 @@ extension AllItemsMapViewController {
             self?.receivedNewLocation(newLocation)
         })
         .store(in: &subscriptions)
-        appState.locationService.startUpdating()
     }
     
     private func receivedNewLocation(_ newLocation: CLLocation) {

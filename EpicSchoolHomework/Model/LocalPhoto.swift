@@ -14,11 +14,14 @@ struct LocalPhoto {
     let image: UIImage
     let addingDate: Date
     //geo data
+    let description: String?
+    let question: String?
+    let answer: String?
+    let answerDescription: String?
     let latitude: Double
     let longitude: Double
-    var description: String
-    var mapType: MKMapType
-    var mapSpan: MKCoordinateSpan
+    let mapType: MKMapType
+    let mapSpan: MKCoordinateSpan
 }
 
 // MARK: -  Hashable
@@ -37,6 +40,9 @@ extension LocalPhoto {
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
+    var unwrappedDescription: String{
+        return description ?? ""
+    }
 }
 
 // MARK: -  Functions
@@ -45,7 +51,7 @@ extension LocalPhoto {
         guard appState.firebaseIsConnected else {return}
         PhotoItemRealm.saveItem(photoItem: localPhoto.convertToPhotoItem())
         FireBaseService.postItem(image: localPhoto.image,
-                                 description: localPhoto.description,
+                                 description: localPhoto.unwrappedDescription,
                                  latitude: localPhoto.latitude,
                                  longitude: localPhoto.longitude)
         LocalPhotoRealm.deletePhoto(photo: localPhoto)

@@ -123,10 +123,10 @@ extension LocalPhotosViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: -  @IBActions
 extension LocalPhotosViewController{
-    @IBAction func takePhotoFromCamera(_ sender: Any) {
+    @IBAction func takePhotoFromCameraTapped(_ sender: Any) {
         addNewPhoto(fromCamera: true)
     }
-    @IBAction func takePhotoFromGallery(_ sender: Any) {
+    @IBAction func addPhotoFromGalleryTapped(_ sender: Any) {
         addNewPhoto(fromCamera: false)
     }
 }

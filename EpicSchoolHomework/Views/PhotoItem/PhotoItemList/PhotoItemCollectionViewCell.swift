@@ -14,6 +14,18 @@ final class PhotoItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var descriptionLabel: UILabel!
     
+    @IBOutlet private weak var likesStackView: UIStackView!
+    @IBOutlet private weak var likesCountLabel: UILabel!
+    @IBOutlet private weak var likesImageView: UIImageView!
+    
+    @IBOutlet private weak var commentsStackView: UIStackView!
+    @IBOutlet private weak var commentsCountLabel: UILabel!
+    @IBOutlet private weak var commentsImageView: UIImageView!
+    
+    @IBOutlet private weak var visitsStackView: UIStackView!
+    @IBOutlet private weak var visitsCountLabel: UILabel!
+    @IBOutlet private weak var visitsImageView: UIImageView!
+    
     var photoItem: PhotoItem?
     
     override func awakeFromNib() {
@@ -40,5 +52,15 @@ extension PhotoItemCollectionViewCell{
             loadingIndicator.startAnimating()
         }
             
+        likesStackView.isHidden = photoItem.likes.count == 0
+        commentsStackView.isHidden = photoItem.comments.count == 0
+        visitsStackView.isHidden = photoItem.visits.count == 0
+        
+        likesCountLabel.text = String("\(photoItem.likes.count)");
+        commentsCountLabel.text = String("\(photoItem.comments.count)");
+        visitsCountLabel.text = String("\(photoItem.visits.count)");
+        
+        likesImageView.image = UIImage(systemName: photoItem.isLikedByCurrentUser ? "hand.thumbsup.fill" : "hand.thumbsup" )
+        visitsImageView.image = UIImage(systemName: photoItem.isVisitedByCurrentUser ? "eye.fill" : "eye" )
     }
 }

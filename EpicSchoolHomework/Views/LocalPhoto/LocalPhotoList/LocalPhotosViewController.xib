@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VnL-e4-b5F">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="616"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c4w-Sr-KLK">
                         <size key="itemSize" width="128" height="128"/>
@@ -30,23 +31,39 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="q4O-O1-M5v">
-                    <rect key="frame" x="10" y="626" width="355" height="31"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="DGp-nM-Wzo">
+                    <rect key="frame" x="10" y="607" width="355" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhd-dz-bfe">
-                            <rect key="frame" x="0.0" y="0.0" width="177.5" height="31"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwm-Kt-bjO">
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="0sT-Mf-eFX"/>
+                                <constraint firstAttribute="width" constant="100" id="hwu-Kg-ZQG"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="camera" catalog="system" title="Камера"/>
+                            <buttonConfiguration key="configuration" style="plain" title=" ">
+                                <imageReference key="image" image="camera" catalog="system" symbolScale="large" renderingMode="template"/>
+                                <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                            </buttonConfiguration>
                             <connections>
-                                <action selector="takePhotoFromCamera:" destination="-1" eventType="touchUpInside" id="F2Y-n8-fYA"/>
+                                <action selector="takePhotoFromCameraTapped:" destination="-1" eventType="touchUpInside" id="YBA-Yh-kGO"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="of8-be-r2R">
-                            <rect key="frame" x="177.5" y="0.0" width="177.5" height="31"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6c1-kG-JH3">
+                            <rect key="frame" x="255" y="0.0" width="100" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="VUd-GL-17e"/>
+                                <constraint firstAttribute="height" constant="50" id="xvc-ca-gBe"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="photo.on.rectangle.angled" catalog="system" title="Галерея"/>
+                            <buttonConfiguration key="configuration" style="plain" title=" ">
+                                <imageReference key="image" image="photo.on.rectangle.angled" catalog="system" symbolScale="large" renderingMode="template"/>
+                                <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                            </buttonConfiguration>
                             <connections>
-                                <action selector="takePhotoFromGallery:" destination="-1" eventType="touchUpInside" id="87q-5z-Qbd"/>
+                                <action selector="addPhotoFromGalleryTapped:" destination="-1" eventType="touchUpInside" id="TFM-xz-0qp"/>
                             </connections>
                         </button>
                     </subviews>
@@ -56,21 +73,27 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="VnL-e4-b5F" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8oN-eD-LS6"/>
-                <constraint firstItem="q4O-O1-M5v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="9rp-ZC-dNE"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="q4O-O1-M5v" secondAttribute="bottom" constant="10" id="XpO-f7-cG7"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="q4O-O1-M5v" secondAttribute="trailing" constant="10" id="aD9-vb-YWx"/>
+                <constraint firstItem="DGp-nM-Wzo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="XDY-W4-DRa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DGp-nM-Wzo" secondAttribute="trailing" constant="10" id="bkP-1I-fHd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VnL-e4-b5F" secondAttribute="trailing" id="cgl-vG-QC2"/>
-                <constraint firstItem="q4O-O1-M5v" firstAttribute="top" secondItem="VnL-e4-b5F" secondAttribute="bottom" constant="10" id="pvU-Ul-ZxK"/>
+                <constraint firstItem="DGp-nM-Wzo" firstAttribute="top" secondItem="VnL-e4-b5F" secondAttribute="bottom" constant="10" id="cp6-lb-jXC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DGp-nM-Wzo" secondAttribute="bottom" constant="10" id="reD-AJ-vcA"/>
                 <constraint firstItem="VnL-e4-b5F" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rqc-Bt-Coh"/>
             </constraints>
-            <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
+            <point key="canvasLocation" x="136.80000000000001" y="113.79310344827587"/>
         </view>
     </objects>
     <resources>
         <image name="camera" catalog="system" width="128" height="94"/>
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="100"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -8,9 +8,8 @@
 import UIKit
 import RealmSwift
 
-
 final class RealmService {
-    static let config = Realm.Configuration(schemaVersion: 6)
+    static let config = Realm.Configuration(schemaVersion: 7)
     
     static func printRealmLocation(){
         print("Realm is located at:", try! Realm(configuration: RealmService.config).configuration.fileURL!)

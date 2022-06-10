@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,11 +23,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                     </imageView>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="i2N-vK-pX2">
-                        <rect key="frame" x="131.5" y="131.5" width="37" height="37"/>
-                    </activityIndicatorView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Суперфотка" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="173-eY-8Nz">
-                        <rect key="frame" x="10" y="275.5" width="72" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Суперфотка" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="173-eY-8Nz">
+                        <rect key="frame" x="10" y="275.5" width="140" height="14.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -45,34 +43,101 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="i2N-vK-pX2">
+                        <rect key="frame" x="131.5" y="131.5" width="37" height="37"/>
+                    </activityIndicatorView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-E9-wi7" userLabel="Info">
+                        <rect key="frame" x="243" y="220" width="47" height="70"/>
+                        <subviews>
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xrk-lp-5SY" userLabel="likes">
+                                <rect key="frame" x="0.0" y="0.0" width="47" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mG5-Wz-nSv" userLabel="count">
+                                        <rect key="frame" x="0.0" y="0.0" width="25.5" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y45-R8-oS6">
+                                        <rect key="frame" x="30.5" y="1.5" width="16.5" height="17"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <imageReference key="image" image="hand.thumbsup" catalog="system" symbolScale="small" renderingMode="template"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dJm-MB-Mkg" userLabel="comments">
+                                <rect key="frame" x="0.0" y="25" width="47" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0F-hm-0Nz" userLabel="count">
+                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IhP-K7-vii">
+                                        <rect key="frame" x="29.5" y="2.5" width="17.5" height="16"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <imageReference key="image" image="bubble.left" catalog="system" symbolScale="small" renderingMode="template"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="t5v-re-u2y" userLabel="visits">
+                                <rect key="frame" x="0.0" y="50" width="47" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xh-Tq-wg9" userLabel="count">
+                                        <rect key="frame" x="0.0" y="0.0" width="21" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ygQ-f7-pN6">
+                                        <rect key="frame" x="26" y="3" width="21" height="13.5"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <imageReference key="image" image="eye" catalog="system" symbolScale="small" renderingMode="template"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="Hrs-E9-wi7" secondAttribute="bottom" constant="10" id="4iG-bG-ufp"/>
+                <constraint firstAttribute="trailing" secondItem="Hrs-E9-wi7" secondAttribute="trailing" constant="10" id="4mq-3C-huB"/>
                 <constraint firstItem="0GG-Lw-zV4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="FTn-Ln-VQO"/>
                 <constraint firstAttribute="bottom" secondItem="173-eY-8Nz" secondAttribute="bottom" constant="10" id="GdA-6n-fQS"/>
                 <constraint firstAttribute="bottom" secondItem="0GG-Lw-zV4" secondAttribute="bottom" id="GoG-dg-ngw"/>
                 <constraint firstItem="173-eY-8Nz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="IxS-2R-ZWn"/>
                 <constraint firstItem="0GG-Lw-zV4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SSG-Sv-Vlc"/>
+                <constraint firstAttribute="centerX" secondItem="173-eY-8Nz" secondAttribute="trailing" id="akj-Qn-Dcj"/>
                 <constraint firstAttribute="trailing" secondItem="0GG-Lw-zV4" secondAttribute="trailing" id="c1Z-b6-kKt"/>
                 <constraint firstItem="i2N-vK-pX2" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="gAG-GT-Wga"/>
                 <constraint firstItem="i2N-vK-pX2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="tcH-x8-mdT"/>
             </constraints>
             <size key="customSize" width="291" height="259"/>
             <connections>
+                <outlet property="commentsCountLabel" destination="E0F-hm-0Nz" id="XeH-4z-Ijm"/>
+                <outlet property="commentsImageView" destination="IhP-K7-vii" id="yXG-ZB-xU1"/>
+                <outlet property="commentsStackView" destination="dJm-MB-Mkg" id="qdf-vR-7oa"/>
                 <outlet property="descriptionLabel" destination="173-eY-8Nz" id="kHj-Y8-jMN"/>
                 <outlet property="imageView" destination="0GG-Lw-zV4" id="9Zc-HM-g8d"/>
+                <outlet property="likesCountLabel" destination="mG5-Wz-nSv" id="b6h-BG-oZb"/>
+                <outlet property="likesImageView" destination="y45-R8-oS6" id="pEg-Nx-jnU"/>
+                <outlet property="likesStackView" destination="xrk-lp-5SY" id="Txm-1b-EPM"/>
                 <outlet property="loadingIndicator" destination="i2N-vK-pX2" id="3n8-CJ-8Ba"/>
+                <outlet property="visitsCountLabel" destination="4Xh-Tq-wg9" id="zoh-Sb-hbD"/>
+                <outlet property="visitsImageView" destination="ygQ-f7-pN6" id="8ao-lu-Ro8"/>
+                <outlet property="visitsStackView" destination="t5v-re-u2y" id="iE6-KX-Xje"/>
             </connections>
             <point key="canvasLocation" x="310.14492753623193" y="183.48214285714286"/>
         </collectionViewCell>
     </objects>
-    <designables>
-        <designable name="173-eY-8Nz">
-            <size key="intrinsicContentSize" width="72" height="14.5"/>
-        </designable>
-    </designables>
     <resources>
+        <image name="bubble.left" catalog="system" width="128" height="110"/>
+        <image name="eye" catalog="system" width="128" height="81"/>
+        <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

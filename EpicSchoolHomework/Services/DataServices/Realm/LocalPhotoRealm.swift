@@ -12,9 +12,10 @@ import MapKit
 final class LocalPhotoRealm: Object {
     @objc dynamic var id: String = ""
     @objc dynamic var imageData: Data = Data()
-    @objc dynamic var title: String = ""
-    @objc dynamic var question: String = ""
-    @objc dynamic var answer: String = ""
+    @objc dynamic var title: String?
+    @objc dynamic var question: String?
+    @objc dynamic var answer: String?
+    @objc dynamic var answerDescription: String?
     @objc dynamic var addingDate: Date = Date()
     
     @objc dynamic var latitude: Double = 0
@@ -24,6 +25,19 @@ final class LocalPhotoRealm: Object {
     
     override static func primaryKey() -> String? {
       return "id"
+    }
+}
+
+//Computed properties
+extension LocalPhotoRealm {
+    var image: UIImage {
+        return UIImage(data: imageData) ?? UIImage()
+    }
+    var mkMapType: MKMapType {
+        return mapType == "standart" ? .standard : .satellite
+    }
+    var mapSpan: MKCoordinateSpan {
+        return MKCoordinateSpan(latitudeDelta: mapSpanDelta, longitudeDelta: mapSpanDelta)
     }
 }
 
@@ -38,15 +52,20 @@ extension LocalPhotoRealm {
         let realmPhotos = realm.objects(LocalPhotoRealm.self)
         
         for realmPhoto in realmPhotos {
-            let newLocalPhoto = LocalPhoto(id: realmPhoto.id,
-                                           image: UIImage(data: realmPhoto.imageData) ?? UIImage(),
+            let localPhoto = LocalPhoto(id: realmPhoto.id,
+                                           image: realmPhoto.image,
                                            addingDate: realmPhoto.addingDate,
+                                           description: realmPhoto.title,
+                                           question: realmPhoto.question,
+                                           answer: realmPhoto.answer,
+                                           answerDescription: realmPhoto.answerDescription,
                                            latitude: realmPhoto.latitude,
                                            longitude: realmPhoto.longitude,
-                                           description: realmPhoto.title,
-                                           mapType: realmPhoto.mapType == "standart" ? .standard : .satellite,
-                                           mapSpan: MKCoordinateSpan(latitudeDelta: realmPhoto.mapSpanDelta, longitudeDelta: realmPhoto.mapSpanDelta))
-            localPhotos.append(newLocalPhoto)
+                                           mapType: realmPhoto.mkMapType,
+                                           mapSpan: realmPhoto.mapSpan)
+            
+            
+            localPhotos.append(localPhoto)
         }
         return localPhotos
     }
