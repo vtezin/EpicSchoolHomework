@@ -44,9 +44,9 @@ extension RootTabBarController {
     
     fileprivate func setupVCs() {
           viewControllers = [
+            createNavController(for: localPhotosVC, title: NSLocalizedString("Черновики", comment: ""), image: UIImage(systemName: "tray.full")!),
             createNavController(for: photoListVC, title: NSLocalizedString("Фотки", comment: ""), image: UIImage(systemName: "photo.on.rectangle.angled")!),
               createNavController(for: photoMapVC, title: NSLocalizedString("Карта", comment: ""), image: UIImage(systemName: "map")!),
-            createNavController(for: localPhotosVC, title: NSLocalizedString("Черновики", comment: ""), image: UIImage(systemName: "tray.full")!),
               createNavController(for: userProfileVC, title: NSLocalizedString("Профиль", comment: ""), image: UIImage(systemName: "person")!)
           ]
       }

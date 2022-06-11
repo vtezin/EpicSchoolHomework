@@ -21,18 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VnL-e4-b5F">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c4w-Sr-KLK">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="DGp-nM-Wzo">
-                    <rect key="frame" x="10" y="607" width="355" height="50"/>
+                    <rect key="frame" x="10" y="0.0" width="355" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwm-Kt-bjO">
                             <rect key="frame" x="0.0" y="0.0" width="100" height="50"/>
@@ -68,17 +58,27 @@
                         </button>
                     </subviews>
                 </stackView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VnL-e4-b5F">
+                    <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c4w-Sr-KLK">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="VnL-e4-b5F" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8oN-eD-LS6"/>
+                <constraint firstItem="VnL-e4-b5F" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Uqd-DP-mqr"/>
                 <constraint firstItem="DGp-nM-Wzo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="XDY-W4-DRa"/>
+                <constraint firstItem="VnL-e4-b5F" firstAttribute="top" secondItem="DGp-nM-Wzo" secondAttribute="bottom" constant="10" id="ZYe-wg-dDe"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DGp-nM-Wzo" secondAttribute="trailing" constant="10" id="bkP-1I-fHd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VnL-e4-b5F" secondAttribute="trailing" id="cgl-vG-QC2"/>
-                <constraint firstItem="DGp-nM-Wzo" firstAttribute="top" secondItem="VnL-e4-b5F" secondAttribute="bottom" constant="10" id="cp6-lb-jXC"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="DGp-nM-Wzo" secondAttribute="bottom" constant="10" id="reD-AJ-vcA"/>
                 <constraint firstItem="VnL-e4-b5F" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rqc-Bt-Coh"/>
+                <constraint firstItem="DGp-nM-Wzo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="teZ-VA-CkE"/>
             </constraints>
             <point key="canvasLocation" x="136.80000000000001" y="113.79310344827587"/>
         </view>

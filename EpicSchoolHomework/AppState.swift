@@ -17,7 +17,7 @@ final class AppState: NSObject {
     let firebaseService = FireBaseService()
     
     override init() {
-        photoItems = [PhotoItem]()
+        photoItems = PhotoItemRealm.fetchPhotoItems()
         super.init()
         firebaseService.delegate = self
         configureDatabaseObservers() 
@@ -63,7 +63,7 @@ extension AppState: FireBaseServiceDelegate {
         photoItems[changedItemIndex] = newItem
         
         PhotoItemRealm.saveItem(photoItem: newItem)
-        print("photoItemImageFetched \(changedItem.description)")
+        //print("photoItemImageFetched \(changedItem.description)")
     }
 }
 
