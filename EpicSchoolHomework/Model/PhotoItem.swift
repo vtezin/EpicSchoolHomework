@@ -9,13 +9,16 @@ import UIKit
 import MapKit
 
 // MARK: -  PhotoItem
-struct PhotoItem: PhotoContainer {
+struct PhotoItem {
     
     let id: String
     var image: UIImage?
     let imageURL: String
     let author: String
-    var description: String?
+    let description: String? //TODO: rename to title everywhere
+    let question: String?
+    let answer: String?
+    let answerDescription: String?
     let addingDate: Date
     //geo data
     let latitude: Double
@@ -26,6 +29,7 @@ struct PhotoItem: PhotoContainer {
     var comments = [Comment]()
     var likes = [Like]()
     var visits = [Visit]()
+    var answers = [Answer]()
     
     struct Comment {
         let id: String
@@ -43,6 +47,11 @@ struct PhotoItem: PhotoContainer {
         let user: String
         let date: Date
     }
+    
+    struct Answer {
+        let user: String
+        let date: Date
+    }
 }
 
 // MARK: -  Hashable
@@ -56,7 +65,7 @@ extension PhotoItem: Hashable {
     }
 }
 
-// MARK: -  computed props
+// MARK: -  Computed props
 extension PhotoItem {
     var likesFormattedString: String {
         let formatString : String = NSLocalizedString("likes count",
@@ -70,11 +79,15 @@ extension PhotoItem {
     }
     
     var isVisitedByCurrentUser: Bool {
-        isVisitedByUser(userName: FireBaseService.currentUserName)
+        isVisitedByUser(userName: appState.currentUserName)
     }
     
     var isLikedByCurrentUser: Bool {
-        isLikedByUser(userName: FireBaseService.currentUserName)
+        isLikedByUser(userName: appState.currentUserName)
+    }
+    
+    var isAnsweredByCurrentUser: Bool {
+        isLikedByUser(userName: appState.currentUserName)
     }
 }
 
@@ -82,9 +95,9 @@ extension PhotoItem {
 extension PhotoItem {
     mutating func setVisitedByCurrentUser(_ visited: Bool) {
         if !visited {
-            visits.removeAll {$0.user == FireBaseService.currentUserName}
+            visits.removeAll {$0.user == appState.currentUserName}
         } else {
-            let visit = Visit(user: FireBaseService.currentUserName, date: Date())
+            let visit = Visit(user: appState.currentUserName, date: Date())
             visits.append(visit)
         }
         
@@ -94,16 +107,25 @@ extension PhotoItem {
     
     mutating func setLikedByCurrentUser(_ liked: Bool) {
         if !liked {
-            likes.removeAll {$0.user == FireBaseService.currentUserName}
+            likes.removeAll {$0.user == appState.currentUserName}
             NotificationService.shared.deleteNotificationForPhotoItem(self)
         } else {
-            let like = Like(user: FireBaseService.currentUserName, date: Date())
+            let like = Like(user: appState.currentUserName, date: Date())
             likes.append(like)
             NotificationService.shared.addNotificationForPhotoItem(self)
         }
         
         guard FireBaseService.isConnected else {return}
         FireBaseService.updateLikesInfo(photoItem: self)
+    }
+    
+    mutating func setAnsweredByCurrentUser() {
+        if !answers.contains(where: {$0.user == appState.currentUserName}) {
+            let answer = Answer(user: appState.currentUserName, date: Date())
+            answers.append(answer)
+        }
+        guard FireBaseService.isConnected else {return}
+        FireBaseService.updateAnswersInfo(photoItem: self)
     }
     
     mutating func setImage(image: UIImage) {
@@ -116,5 +138,14 @@ extension PhotoItem {
     
     func isVisitedByUser(userName: String) -> Bool {
         visits.contains {$0.user == userName}
+    }
+    
+    func isAnsweredByUser(userName: String) -> Bool {
+        answers.contains {$0.user == userName}
+    }
+    
+    func answerIsCorrect(answer: String) -> Bool {
+        answer == self.answer
+        //TODO capitalization e.t.c.
     }
 }

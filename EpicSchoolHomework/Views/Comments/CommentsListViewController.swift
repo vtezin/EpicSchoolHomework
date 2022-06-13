@@ -40,7 +40,7 @@ final class CommentsListViewController: UIViewController {
 extension CommentsListViewController {
     private func addComment() {
         let newComment = PhotoItem.Comment(id: UUID().uuidString,
-                                           author: FireBaseService.currentUserName,
+                                           author: appState.currentUserName,
                                            text: commentText.text,
                                            date: Date())
                 

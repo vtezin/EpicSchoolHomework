@@ -73,7 +73,7 @@ extension FireBaseService {
                 //print("Upload error")
                 return
             }
-            let post = ["author": FireBaseService.currentUserName,
+            let post = ["author": appState.currentUserName,
                         "description": description,
                         "addedDate": Date().toString,
                         "imageURL": imageURL,
@@ -98,6 +98,22 @@ extension FireBaseService {
             ref.updateChildValues(childUpdates)
         } else {
             let childUpdates = ["/photos/\(photoItem.id)/visits/\(key)": nil] as [String : Any?]
+            ref.updateChildValues(childUpdates as [AnyHashable : Any])
+        }
+    }
+    
+    static func updateAnswersInfo(photoItem: PhotoItem) {
+        let ref = Database.database().reference()
+        let key = currentUserName.filter{$0 != "@" && $0 != "."
+        }
+        
+        if photoItem.isAnsweredByCurrentUser {
+            let post = ["user": currentUserName,
+                        "date": Date().toString]
+            let childUpdates = ["/photos/\(photoItem.id)/answers/\(key)": post]
+            ref.updateChildValues(childUpdates)
+        } else {
+            let childUpdates = ["/photos/\(photoItem.id)/answers/\(key)": nil] as [String : Any?]
             ref.updateChildValues(childUpdates as [AnyHashable : Any])
         }
     }
@@ -150,7 +166,10 @@ extension FireBaseService {
                 let photoValue = photo.value as! NSDictionary
                 
                 let author = photoValue["author"] as? String ?? ""
-                let description = photoValue["description"] as? String ?? ""
+                let description = photoValue["description"] as? String ?? nil
+                let question = photoValue["question"] as? String? ?? nil
+                let answer = photoValue["answer"] as? String? ?? nil
+                let answerDescription = photoValue["answerDescription"] as? String? ?? nil
                 let addedDateString = photoValue["addedDate"] as? String ?? Date().toString
                 let imageURL = photoValue["imageURL"] as? String ?? ""
                 let latitude = photoValue["latitude"] as? Double ?? 0
@@ -222,6 +241,9 @@ extension FireBaseService {
                                           imageURL: imageURL,
                                           author: author,
                                           description: description,
+                                          question: question,
+                                          answer: answer,
+                                          answerDescription: answerDescription,
                                           addingDate: Date.fromString(addedDateString),
                                           latitude: latitude,
                                           longitude: longitude,

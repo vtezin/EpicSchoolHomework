@@ -13,7 +13,10 @@ final class PhotoItemRealm: Object {
     @objc dynamic var imageData: Data = Data()
     @objc dynamic var imageURL: String = ""
     @objc dynamic var author: String = ""
-    @objc dynamic var photoDescription: String = ""
+    @objc dynamic var photoDescription: String?
+    @objc dynamic var question: String?
+    @objc dynamic var answer: String?
+    @objc dynamic var answerDescription: String?
     @objc dynamic var addingDate: Date = Date()
     @objc dynamic var latitude: Double = 0
     @objc dynamic var longitude: Double = 0
@@ -78,6 +81,9 @@ extension PhotoItemRealm {
                                       imageURL: item.imageURL,
                                       author: item.author,
                                       description: item.photoDescription,
+                                      question: item.question,
+                                      answer: item.answer,
+                                      answerDescription: item.answerDescription,
                                       addingDate: item.addingDate,
                                       latitude: item.latitude,
                                       longitude: item.longitude)

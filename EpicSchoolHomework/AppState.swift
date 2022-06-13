@@ -13,6 +13,10 @@ final class AppState: NSObject {
     @Published var photoItems: [PhotoItem]
     @Published var firebaseIsConnected: Bool = false
     
+    var currentUserName: String {
+        FireBaseService.currentUserName
+    }
+    
     let locationService = LocationService()
     let firebaseService = FireBaseService()
     

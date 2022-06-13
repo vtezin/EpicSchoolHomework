@@ -12,18 +12,20 @@ import Combine
 
 final class EditLocalPhotoViewController: UIViewController {
     @IBOutlet private weak var photoItemImageView: UIImageView!
+    
+    @IBOutlet private weak var descriptionStackView: UIStackView!
     @IBOutlet private weak var descriptionTextField: UITextField!
     @IBOutlet private weak var questionTextField: UITextField!
     @IBOutlet private weak var answerTextField: UITextField!
+    @IBOutlet private weak var answerDescriptionTextView: UITextView!
     
-    @IBOutlet private weak var photoStackView: UIStackView!
     @IBOutlet private weak var centerMapImageView: UIImageView!
     @IBOutlet private weak var mapView: MKMapView!
     @IBOutlet private weak var mapModeControl: UISegmentedControl!
     
     @IBOutlet weak var viewMode: UISegmentedControl!
     @IBAction func viewModeChanged(_ sender: Any) {
-        setMapPhotoVisible()
+        setVisibleLayer()
     }
     @IBAction func mapModeChanged(_ sender: Any) {
         mapView.mapType = mapModeControl.selectedSegmentIndex == 0 ? .standard : .hybrid
@@ -54,7 +56,7 @@ final class EditLocalPhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setMapPhotoVisible()
+        setVisibleLayer()
         
         addKeyboardNotifications()
         descriptionTextField.delegate = self
@@ -82,11 +84,26 @@ extension EditLocalPhotoViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    private func setMapPhotoVisible() {
-        mapView.isHidden = viewMode.selectedSegmentIndex == 0
+    private func setVisibleLayer() {
+        
+        switch viewMode.selectedSegmentIndex {
+        case 0:
+            photoItemImageView.isHidden = false
+            mapView.isHidden = true
+            descriptionStackView.isHidden = true
+        case 1:
+            photoItemImageView.isHidden = true
+            mapView.isHidden = false
+            descriptionStackView.isHidden = true
+        case 2:
+            photoItemImageView.isHidden = true
+            mapView.isHidden = true
+            descriptionStackView.isHidden = false
+        default:
+            return
+        }
         centerMapImageView.isHidden = mapView.isHidden
         mapModeControl.isHidden = mapView.isHidden
-        photoStackView.isHidden = !mapView.isHidden
     }
     
     private func getLocalPhotoForSave() -> LocalPhoto {
@@ -97,7 +114,7 @@ extension EditLocalPhotoViewController {
                                            description: descriptionTextField.text,
                                            question: questionTextField.text,
                                            answer: answerTextField.text,
-                                           answerDescription: answerTextField.text, //TODO: it
+                                           answerDescription: answerDescriptionTextView.text,
                                            latitude: photoCoordinate?.latitude ?? 0,
                                            longitude: photoCoordinate?.longitude ?? 0,
                                            mapType: mapView.mapType,
@@ -192,6 +209,7 @@ extension EditLocalPhotoViewController {
     func configureByPhoto(_ localPhoto: LocalPhoto) {
         photoItemImageView.image = localPhoto.image
         descriptionTextField.text = localPhoto.description
+        answerDescriptionTextView.text = localPhoto.answerDescription
         
         photoCoordinate = localPhoto.coordinate
         mapView.mapType = localPhoto.mapType

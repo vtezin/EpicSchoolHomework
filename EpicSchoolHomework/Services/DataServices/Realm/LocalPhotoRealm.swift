@@ -82,6 +82,9 @@ extension LocalPhotoRealm {
             
             realmPhoto.imageData = (photo.image.jpegData(compressionQuality: 0.5))!
             realmPhoto.title = photo.description
+            realmPhoto.question = photo.question
+            realmPhoto.answer = photo.answer
+            realmPhoto.answerDescription = photo.answerDescription
             realmPhoto.addingDate = photo.addingDate
             realmPhoto.latitude = photo.latitude
             realmPhoto.longitude = photo.longitude
