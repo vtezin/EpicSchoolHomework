@@ -50,11 +50,7 @@ extension LocalPhoto {
     static func publishPhoto(_ localPhoto: LocalPhoto) {
         guard appState.firebaseIsConnected else {return}
         PhotoItemRealm.saveItem(photoItem: localPhoto.convertToPhotoItem())
-        FireBaseService.postItem(image: localPhoto.image,
-                                 description: localPhoto.unwrappedDescription,
-                                 latitude: localPhoto.latitude,
-                                 longitude: localPhoto.longitude)
-        LocalPhotoRealm.deletePhoto(photo: localPhoto)
+        FireBaseService.postNewPhotoItem(photoItem: localPhoto.convertToPhotoItem())
     }
     
     func convertToPhotoItem() -> PhotoItem {

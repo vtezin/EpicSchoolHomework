@@ -35,32 +35,35 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="5ua-R9-X7I">
-                    <rect key="frame" x="20" y="231.5" width="335" height="204"/>
+                    <rect key="frame" x="20" y="134" width="335" height="199"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Название" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rN5-np-eol">
                             <rect key="frame" x="10" y="0.0" width="315" height="34"/>
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Загадка" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wZT-dI-dx6">
                             <rect key="frame" x="10" y="41" width="315" height="34"/>
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Отгадка" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WlQ-JF-7sn">
                             <rect key="frame" x="10" y="82" width="315" height="34"/>
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пояснение к отгадке (отображается при правильном ответе):" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z14-ff-0eh">
-                            <rect key="frame" x="3.5" y="123" width="328" height="41"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="28.5" y="123" width="278" height="36"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Yki-o9-QXe">
-                            <rect key="frame" x="10" y="171" width="315" height="33"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <rect key="frame" x="10" y="166" width="315" height="33"/>
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
                             <color key="textColor" systemColor="labelColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -120,7 +123,7 @@
                 <constraint firstItem="5W1-Fd-mso" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="DIL-3L-ag0"/>
                 <constraint firstItem="xHV-ic-EPd" firstAttribute="centerX" secondItem="pwa-zc-IE8" secondAttribute="centerX" id="E7k-Lc-jxJ"/>
                 <constraint firstItem="wjj-0z-60W" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="JsT-jR-vLp"/>
-                <constraint firstItem="5ua-R9-X7I" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="NUp-c6-q3O"/>
+                <constraint firstItem="5ua-R9-X7I" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-100" id="NUp-c6-q3O"/>
                 <constraint firstItem="wjj-0z-60W" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Nkz-4g-cL2"/>
                 <constraint firstItem="pwa-zc-IE8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Opf-MM-Qng"/>
                 <constraint firstItem="pwa-zc-IE8" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="RqR-Bf-jKz"/>
@@ -140,6 +143,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

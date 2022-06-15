@@ -48,23 +48,18 @@ final class FireBaseService {
 }
 
 // MARK: -  Saving
-extension FireBaseService {
-    static func postItem(image: UIImage,
-                         description: String,
-                         latitude: Double?,
-                         longitude: Double?) {
-        guard let data = image.compressedData,
-                !description.isEmpty else {
+extension FireBaseService {    
+    static func postNewPhotoItem(photoItem: PhotoItem) {
+        guard let data = photoItem.image?.compressedData else {
             return
         }
-
-        let imageURL = UUID().uuidString + ".jpg"
         
+        let imageURL = UUID().uuidString + ".jpg"
         let photoRef = Storage.storage().reference().child(imageURL)
-
-        let uploadTask = photoRef.putData(data, metadata: nil) { (metadata, error) in
+        
+        let _ = photoRef.putData(data, metadata: nil) { (metadata, error) in
             if let error = error {
-                print(error.localizedDescription)
+                printDebug(error.localizedDescription)
                 return
             }
             
@@ -74,12 +69,15 @@ extension FireBaseService {
                 return
             }
             let post = ["author": appState.currentUserName,
-                        "description": description,
+                        "description": photoItem.wrappedDescription,
+                        "question": photoItem.question ?? "",
+                        "answer": photoItem.answer ?? "",
+                        "answerDescription": photoItem.answerDescription ?? "",
                         "addedDate": Date().toString,
                         "imageURL": imageURL,
                         "liked": false,
-                        "latitude": latitude ?? 0,
-                        "longitude": longitude ?? 0,
+                        "latitude": photoItem.latitude,
+                        "longitude": photoItem.longitude,
                         "likesCount": 0] as [String : Any]
             let childUpdates = ["/photos/\(key)": post]
             ref.updateChildValues(childUpdates)

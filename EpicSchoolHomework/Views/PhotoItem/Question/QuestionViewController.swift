@@ -52,9 +52,8 @@ extension QuestionViewController: UITextViewDelegate{
             photoItem.setAnsweredByCurrentUser()
             resultLabel.text = "Верный ответ 🙂"
         } else {
-            resultLabel.text = "Пока не правильно 😕. Не сдаемся!"
+            resultLabel.text = "Чет не то 😕. Не сдаемся!"
         }
-        
-        resultLabel.isHidden = false
+        setVisible()
     }
 }

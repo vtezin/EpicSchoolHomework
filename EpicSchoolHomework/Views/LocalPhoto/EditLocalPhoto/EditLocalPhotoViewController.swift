@@ -58,11 +58,6 @@ final class EditLocalPhotoViewController: UIViewController {
         super.viewDidLoad()
         setVisibleLayer()
         
-        addKeyboardNotifications()
-        descriptionTextField.delegate = self
-        questionTextField.delegate = self
-        answerTextField.delegate = self
-        
         answerDescriptionTextView.layer.borderWidth = 1
         answerDescriptionTextView.layer.borderColor = UIColor.systemBackground.cgColor
         answerDescriptionTextView.layer.cornerRadius = 8
@@ -82,14 +77,88 @@ final class EditLocalPhotoViewController: UIViewController {
     }
 }
 
-// MARK: -  Functions
+// MARK: -  Data actions
+extension EditLocalPhotoViewController {
+    private func getLocalPhotoForSave() -> LocalPhoto {
+        return LocalPhoto(id: localPhoto == nil ? UUID().uuidString : localPhoto!.id,
+                          image: photoItemImageView.image!,
+                          addingDate: localPhoto == nil ? Date() : localPhoto!.addingDate,
+                          description: descriptionTextField.text,
+                          question: questionTextField.text,
+                          answer: answerTextField.text,
+                          answerDescription: answerDescriptionTextView.text,
+                          latitude: photoCoordinate?.latitude ?? 0,
+                          longitude: photoCoordinate?.longitude ?? 0,
+                          mapType: mapView.mapType,
+                          mapSpan: mapView.region.span)
+    }
+    
+    @objc private func save() {
+        let localPhotoForSave = getLocalPhotoForSave()
+        LocalPhotoRealm.savePhotoToRealm(photo: localPhotoForSave)
+        
+        if let _ = localPhoto, let indexPhotoItemInArray = indexPhotoItemInArray {
+            delegate.photoChanged(localPhoto: localPhotoForSave, index: indexPhotoItemInArray)
+        } else {
+            delegate.photoAdded(localPhoto: localPhotoForSave)
+        }
+        
+        dismissAndGoBack()
+    }
+    
+    @objc private func publish() {
+        if !appState.firebaseIsConnected {
+            let alertController = UIAlertController(title: "Нет связи ((" , message: "Отсутствует соединение с сервером. Публикация невозможна. Можно забраться куда то повыше или спросить пароль от вайфая. Должны дать по идее.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Отмена", style: .cancel) { _ in
+                return
+            }
+            alertController.addAction(action)
+            present(alertController, animated: true)
+            return
+        }
+        
+        let alertController = UIAlertController(title: "Опубликовать фото?" , message: "После публикации фото нельзя редактировать. Оно принадлежит Вселенной.", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Отмена, еще подумаю", style: .cancel) { _ in
+            return
+        }
+        alertController.addAction(action1)
+        let action2 = UIAlertAction(title: "Опубликовать", style: .default) {_ in
+            if let _ = self.localPhoto,
+                let indexPhotoItemInArray = self.indexPhotoItemInArray {
+                let localPhotoForPublish = self.getLocalPhotoForSave()
+                LocalPhoto.publishPhoto(localPhotoForPublish)
+            }
+            self.dismissAndGoBack()
+        }
+        alertController.addAction(action2)
+        present(alertController, animated: true)
+    }
+    
+    @objc private func deletePhoto() {
+        let alertController = UIAlertController(title: "Удалить фото?" , message: "это навсегда, совсем", preferredStyle: .alert)
+        let action1 = UIAlertAction(title: "Не-не-не! Отмена", style: .cancel) { _ in
+            return
+        }
+        alertController.addAction(action1)
+        let action2 = UIAlertAction(title: "Удалить", style: .destructive) {_ in
+            if let localPhoto = self.localPhoto, let indexPhotoItemInArray = self.indexPhotoItemInArray {
+                LocalPhotoRealm.deletePhoto(photo: localPhoto)
+                self.delegate.photoDeleted(index: indexPhotoItemInArray)
+            }
+            self.dismissAndGoBack()
+        }
+        alertController.addAction(action2)
+        present(alertController, animated: true)
+    }
+}
+
+// MARK: -  Configure view
 extension EditLocalPhotoViewController {
     private func dismissAndGoBack() {
         _ = navigationController?.popViewController(animated: true)
     }
     
     private func setVisibleLayer() {
-        
         switch viewMode.selectedSegmentIndex {
         case 0:
             photoItemImageView.isHidden = false
@@ -110,87 +179,7 @@ extension EditLocalPhotoViewController {
         mapModeControl.isHidden = mapView.isHidden
     }
     
-    private func getLocalPhotoForSave() -> LocalPhoto {
-        
-        let localPhotoForSave = LocalPhoto(id: localPhoto == nil ? UUID().uuidString : localPhoto!.id,
-                                           image: photoItemImageView.image!,
-                                           addingDate: localPhoto == nil ? Date() : localPhoto!.addingDate,
-                                           description: descriptionTextField.text,
-                                           question: questionTextField.text,
-                                           answer: answerTextField.text,
-                                           answerDescription: answerDescriptionTextView.text,
-                                           latitude: photoCoordinate?.latitude ?? 0,
-                                           longitude: photoCoordinate?.longitude ?? 0,
-                                           mapType: mapView.mapType,
-                                           mapSpan: mapView.region.span)
-        
-        return localPhotoForSave
-        
-    }
-    
-    @objc private func save() {
-        let localPhotoForSave = getLocalPhotoForSave()
-        
-        LocalPhotoRealm.savePhotoToRealm(photo: localPhotoForSave)
-        
-        if let _ = localPhoto, let indexPhotoItemInArray = indexPhotoItemInArray {
-            delegate.photoChanged(localPhoto: localPhotoForSave, index: indexPhotoItemInArray)
-        } else {
-            delegate.photoAdded(localPhoto: localPhotoForSave)
-        }
-        
-        dismissAndGoBack()
-    }
-    
-    @objc private func publish() {
-        
-        if !appState.firebaseIsConnected {
-            let alertController = UIAlertController(title: "Нет связи ((" , message: "Отсутствует соединение с сервером. Публикация невозможна", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Отмена", style: .cancel) { _ in
-                return
-            }
-            alertController.addAction(action)
-            present(alertController, animated: true)
-            return
-        }
-        
-        let alertController = UIAlertController(title: "Опубликовать фото?" , message: "Фото будет удалено из Черновиков. После публикации фото нельзя редактировать", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Отмена", style: .cancel) { _ in
-            return
-        }
-        alertController.addAction(action1)
-        let action2 = UIAlertAction(title: "Опубликовать", style: .default) {_ in
-            if let _ = self.localPhoto,
-                let indexPhotoItemInArray = self.indexPhotoItemInArray {
-                let localPhotoForPublish = self.getLocalPhotoForSave()
-                LocalPhoto.publishPhoto(localPhotoForPublish)
-                self.delegate.photoDeleted(index: indexPhotoItemInArray)
-            }
-            self.dismissAndGoBack()
-        }
-        alertController.addAction(action2)
-        present(alertController, animated: true)
-    }
-    
-    @objc private func deletePhoto() {
-        let alertController = UIAlertController(title: "Удалить фото?" , message: "это навсегда", preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Отмена", style: .cancel) { _ in
-            return
-        }
-        alertController.addAction(action1)
-        let action2 = UIAlertAction(title: "Удалить", style: .destructive) {_ in
-            if let localPhoto = self.localPhoto, let indexPhotoItemInArray = self.indexPhotoItemInArray {
-                LocalPhotoRealm.deletePhoto(photo: localPhoto)
-                self.delegate.photoDeleted(index: indexPhotoItemInArray)
-            }
-            self.dismissAndGoBack()
-        }
-        alertController.addAction(action2)
-        present(alertController, animated: true)
-    }
-    
     private func configureBarMenu() {
-        
         let saveButton = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(save))
         
         let shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(publish))
@@ -216,7 +205,6 @@ extension EditLocalPhotoViewController {
         questionTextField.text = localPhoto.question
         answerTextField.text = localPhoto.answer
         answerDescriptionTextView.text = localPhoto.answerDescription
-        answerDescriptionTextView.text = "tetetete"
         
         photoCoordinate = localPhoto.coordinate
         mapView.mapType = localPhoto.mapType
@@ -300,36 +288,3 @@ extension EditLocalPhotoViewController: UINavigationControllerDelegate, UIImageP
     }
 }
 
-// MARK: -  UITextFieldDelegate
-extension EditLocalPhotoViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return false
-    }
-}
-
-// MARK: - Keyboard support
-extension EditLocalPhotoViewController {
-    private func addKeyboardNotifications() {
-        // call the 'keyboardWillShow' function when the view controller receive notification that keyboard is going to be shown
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        // call the 'keyboardWillHide' function when the view controlelr receive notification that keyboard is going to be hidden
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-           // if keyboard size is not available for some reason, dont do anything
-           return
-        }
-      
-      // move the root view up by the distance of keyboard height
-      self.view.frame.origin.y = 0 - keyboardSize.height
-    }
-    
-    @objc private func keyboardWillHide(notification: NSNotification) {
-        // move back the root view origin to zero
-        self.view.frame.origin.y = 0
-    }
-}
