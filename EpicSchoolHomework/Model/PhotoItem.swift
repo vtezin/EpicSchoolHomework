@@ -117,8 +117,8 @@ extension PhotoItem {
     
     var answeredImage: UIImage {
         UIImage(systemName: isAnsweredByCurrentUser ?
-                "questionmark.square.fill" :
-                    "questionmark.square") ?? UIImage()
+                "questionmark.circle.fill" :
+                    "questionmark.circle") ?? UIImage()
     }
 }
 
@@ -176,7 +176,6 @@ extension PhotoItem {
     }
     
     func answerIsCorrect(answer: String) -> Bool {
-        answer == self.answer
-        //TODO: capitalization e.t.c.
+        answer.capitalized == self.answer?.capitalized
     }
 }

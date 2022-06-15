@@ -87,7 +87,8 @@ extension PhotoItemListViewController {
 // MARK: -  UICollectionViewDelegate
 extension PhotoItemListViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let photoItem = dataSource.itemIdentifier(for: indexPath) else {
+        guard let photoItem = dataSource.itemIdentifier(for: indexPath),
+        let _ = photoItem.image else {
           return
         }
         let vc = EditItemViewController(photoItem: photoItem)

@@ -57,8 +57,8 @@
                             <imageReference key="image" image="bubble.left" catalog="system" symbolScale="large"/>
                         </imageView>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wLo-Rw-dd3" userLabel="question">
-                            <rect key="frame" x="290.5" y="-1.5" width="83.5" height="23.5"/>
-                            <imageReference key="image" image="questionmark.app" catalog="system" symbolScale="large"/>
+                            <rect key="frame" x="290.5" y="-3" width="83.5" height="26"/>
+                            <imageReference key="image" image="questionmark.circle" catalog="system" symbolScale="large"/>
                         </imageView>
                     </subviews>
                     <constraints>
@@ -98,7 +98,7 @@
         <image name="bubble.left" catalog="system" width="128" height="110"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
-        <image name="questionmark.app" catalog="system" width="128" height="114"/>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

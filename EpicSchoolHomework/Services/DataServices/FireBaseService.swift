@@ -147,7 +147,17 @@ extension FireBaseService {
 
 // MARK: -  Fetching items
 extension FireBaseService {
+    static var dateOfLastFetching: Date?
+    
     func fetchPhotoItemsWithPhotos() {
+        if let dateOfLastFetching = FireBaseService.dateOfLastFetching {
+            let elapsedSeconds = Int(Date().timeIntervalSince(dateOfLastFetching))
+            if elapsedSeconds <= 1 {
+                return
+            }
+        }
+        printDebug(#function)
+        FireBaseService.dateOfLastFetching = Date()
         fetchPhotoItems(handler: photoItemsFetched(photoItems:))
     }
     
@@ -236,6 +246,26 @@ extension FireBaseService {
                 
                 visits.sort{$0.date < $1.date}
                 
+                var answers = [PhotoItem.Answer]()
+                
+                if let itemsValueArray = photoValue["answers"] as? NSDictionary {
+                    for item in itemsValueArray {
+                        
+                        if let itemValue = item.value as? NSDictionary {
+                            let itemUser = itemValue["user"] as? String ?? "??"
+                            let itemDateString = itemValue["date"] as? String ?? Date().toString
+                            
+                            let photoItemAnswer = PhotoItem.Answer(user: itemUser,
+                                                                 date: Date.fromString(itemDateString))
+                            
+                            answers.append(photoItemAnswer)
+                        }
+                    }
+                }
+                
+                answers.sort{$0.date < $1.date}
+                
+                
                 let photoItem = PhotoItem(id: photo.key as! String,
                                           image: nil,
                                           imageURL: imageURL,
@@ -249,7 +279,8 @@ extension FireBaseService {
                                           longitude: longitude,
                                           comments: comments,
                                           likes: likes,
-                                          visits: visits)
+                                          visits: visits,
+                                          answers: answers)
                 
                 photoItems.append(photoItem)
             }

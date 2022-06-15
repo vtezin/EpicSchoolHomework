@@ -27,7 +27,7 @@ final class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        questionLabel.text = photoItem.question
+        questionLabel.text = "Загадка: " + (photoItem.question ?? "")
         answerDescriptionTextView.text = photoItem.answerDescription
         if photoItem.isAnsweredByCurrentUser {
             answerTextField.text = photoItem.answer
@@ -50,9 +50,9 @@ extension QuestionViewController: UITextViewDelegate{
     @IBAction func checkAnswerTapped(_ sender: Any) {
         if photoItem.answerIsCorrect(answer: answerTextField.text ?? "") {
             photoItem.setAnsweredByCurrentUser()
-            resultLabel.text = "🙂"
+            resultLabel.text = "Верный ответ 🙂"
         } else {
-            resultLabel.text = "😕"
+            resultLabel.text = "Пока не правильно 😕. Не сдаемся!"
         }
         
         resultLabel.isHidden = false
