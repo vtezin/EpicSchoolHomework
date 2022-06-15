@@ -47,7 +47,7 @@
                         <rect key="frame" x="131.5" y="131.5" width="37" height="37"/>
                     </activityIndicatorView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Hrs-E9-wi7" userLabel="Info">
-                        <rect key="frame" x="248" y="220" width="42" height="70"/>
+                        <rect key="frame" x="248" y="195" width="42" height="95"/>
                         <subviews>
                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrk-lp-5SY" userLabel="likes">
                                 <rect key="frame" x="0.0" y="0.0" width="42" height="20"/>
@@ -65,8 +65,24 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJm-MB-Mkg" userLabel="comments">
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIv-Vz-6i9" userLabel="answers">
                                 <rect key="frame" x="0.0" y="25" width="42" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEo-EB-OPI" userLabel="count">
+                                        <rect key="frame" x="0.0" y="0.0" width="26.5" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vl9-US-Ebu">
+                                        <rect key="frame" x="26.5" y="2.5" width="15.5" height="14.5"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <imageReference key="image" image="questionmark.square" catalog="system" symbolScale="small" renderingMode="template"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJm-MB-Mkg" userLabel="comments">
+                                <rect key="frame" x="0.0" y="50" width="42" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0F-hm-0Nz" userLabel="count">
                                         <rect key="frame" x="0.0" y="0.0" width="24.5" height="20"/>
@@ -82,7 +98,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t5v-re-u2y" userLabel="visits">
-                                <rect key="frame" x="0.0" y="50" width="42" height="20"/>
+                                <rect key="frame" x="0.0" y="75" width="42" height="20"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Xh-Tq-wg9" userLabel="count">
                                         <rect key="frame" x="0.0" y="0.0" width="21" height="20"/>
@@ -118,6 +134,9 @@
             </constraints>
             <size key="customSize" width="291" height="259"/>
             <connections>
+                <outlet property="answersCountLabel" destination="TEo-EB-OPI" id="oLQ-Oq-GV0"/>
+                <outlet property="answersImageView" destination="Vl9-US-Ebu" id="aP8-0L-mVo"/>
+                <outlet property="answersStackView" destination="LIv-Vz-6i9" id="MsE-8C-Osx"/>
                 <outlet property="commentsCountLabel" destination="E0F-hm-0Nz" id="XeH-4z-Ijm"/>
                 <outlet property="commentsImageView" destination="IhP-K7-vii" id="yXG-ZB-xU1"/>
                 <outlet property="commentsStackView" destination="dJm-MB-Mkg" id="qdf-vR-7oa"/>
@@ -138,6 +157,7 @@
         <image name="bubble.left" catalog="system" width="128" height="110"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
+        <image name="questionmark.square" catalog="system" width="128" height="114"/>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

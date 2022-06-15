@@ -16,6 +16,9 @@
 		C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A229927EB030E0007994C /* PhotoItem.swift */; };
 		C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */; };
 		C40A22A227EB0BE70007994C /* PhotoItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A22A127EB0BE70007994C /* PhotoItemTableViewCell.swift */; };
+		C40DE9A9285843C600951AC0 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40DE9A7285843C600951AC0 /* QuestionViewController.swift */; };
+		C40DE9AA285843C600951AC0 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40DE9A8285843C600951AC0 /* QuestionViewController.xib */; };
+		C40DE9AD2859A21000951AC0 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40DE9AC2859A21000951AC0 /* UIImage.swift */; };
 		C4350427284754F1009AEE0E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4350426284754F1009AEE0E /* NotificationService.swift */; };
 		C435042928475B15009AEE0E /* notificationSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = C435042828475B15009AEE0E /* notificationSound.wav */; };
 		C45379BA282568E000A1BF55 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = C45379B9282568E000A1BF55 /* TinyConstraints */; };
@@ -108,6 +111,9 @@
 		C40A229927EB030E0007994C /* PhotoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItem.swift; sourceTree = "<group>"; };
 		C40A229F27EB08F80007994C /* PhotoItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoItemTableViewCell.xib; sourceTree = "<group>"; };
 		C40A22A127EB0BE70007994C /* PhotoItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemTableViewCell.swift; sourceTree = "<group>"; };
+		C40DE9A7285843C600951AC0 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		C40DE9A8285843C600951AC0 /* QuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
+		C40DE9AC2859A21000951AC0 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		C4350426284754F1009AEE0E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		C435042828475B15009AEE0E /* notificationSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notificationSound.wav; sourceTree = "<group>"; };
 		C4849A4D2849C9800043717B /* LocalPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhoto.swift; sourceTree = "<group>"; };
@@ -257,6 +263,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		C40DE9AB285843D500951AC0 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				C40DE9A7285843C600951AC0 /* QuestionViewController.swift */,
+				C40DE9A8285843C600951AC0 /* QuestionViewController.xib */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
 		C416046327F3A6640074FE36 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +403,7 @@
 				C4EA32D7281BB2BD0068282A /* Date.swift */,
 				C4BD2FE027EDCECE00F3B30A /* Int.swift */,
 				C4E0E503283ECB6D003E0CB3 /* Location.swift */,
+				C40DE9AC2859A21000951AC0 /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,6 +446,7 @@
 				C40A229E27EB08750007994C /* Cells */,
 				C4E0E500283D3479003E0CB3 /* PhotoItemAnnotation */,
 				C4EA32CD2818E5910068282A /* EditItem */,
+				C40DE9AB285843D500951AC0 /* Question */,
 			);
 			path = PhotoItem;
 			sourceTree = "<group>";
@@ -622,6 +639,7 @@
 				C4092FA827FEA96E0087B8F9 /* CommentsListView.xib in Resources */,
 				C4849A6F284E1A2A0043717B /* LocalPhotoCollectionViewCell.xib in Resources */,
 				C40A22A027EB08F80007994C /* PhotoItemTableViewCell.xib in Resources */,
+				C40DE9AA285843C600951AC0 /* QuestionViewController.xib in Resources */,
 				C435042928475B15009AEE0E /* notificationSound.wav in Resources */,
 				C4DF9D2A282D2CDD008C02DD /* LikesListViewController.xib in Resources */,
 				C4092FA427FD5D660087B8F9 /* MainScreenView.xib in Resources */,
@@ -711,6 +729,7 @@
 				C4BACD29280D269300A8D7C6 /* DataProvider.swift in Sources */,
 				C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */,
 				C4DD0DEB28507AB000EC7D9D /* PhotoItemCollectionViewCell.swift in Sources */,
+				C40DE9A9285843C600951AC0 /* QuestionViewController.swift in Sources */,
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
 				C4DD0DEF2851E1AF00EC7D9D /* PaddingLabel.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,
@@ -722,6 +741,7 @@
 				C4092FA627FD5EAB0087B8F9 /* MainScreenViewController.swift in Sources */,
 				C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */,
 				C4849A6E284E1A2A0043717B /* LocalPhotoCollectionViewCell.swift in Sources */,
+				C40DE9AD2859A21000951AC0 /* UIImage.swift in Sources */,
 				C4849A63284CC0E10043717B /* LocalPhotoRealm.swift in Sources */,
 				C4A8B2012840B81B0072E670 /* RootTabBarController.swift in Sources */,
 			);

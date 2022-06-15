@@ -53,7 +53,7 @@ extension FireBaseService {
                          description: String,
                          latitude: Double?,
                          longitude: Double?) {
-        guard let data = image.jpegData(compressionQuality: 0.25),
+        guard let data = image.compressedData,
                 !description.isEmpty else {
             return
         }
@@ -107,15 +107,15 @@ extension FireBaseService {
         let key = currentUserName.filter{$0 != "@" && $0 != "."
         }
         
-        if photoItem.isAnsweredByCurrentUser {
+//        if photoItem.isAnsweredByCurrentUser {
             let post = ["user": currentUserName,
                         "date": Date().toString]
             let childUpdates = ["/photos/\(photoItem.id)/answers/\(key)": post]
             ref.updateChildValues(childUpdates)
-        } else {
-            let childUpdates = ["/photos/\(photoItem.id)/answers/\(key)": nil] as [String : Any?]
-            ref.updateChildValues(childUpdates as [AnyHashable : Any])
-        }
+//        } else {
+//            let childUpdates = ["/photos/\(photoItem.id)/answers/\(key)": nil] as [String : Any?]
+//            ref.updateChildValues(childUpdates as [AnyHashable : Any])
+//        }
     }
     
     static func addComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {

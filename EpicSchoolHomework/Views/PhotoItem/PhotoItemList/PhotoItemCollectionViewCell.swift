@@ -26,6 +26,10 @@ final class PhotoItemCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var visitsCountLabel: UILabel!
     @IBOutlet private weak var visitsImageView: UIImageView!
     
+    @IBOutlet private weak var answersStackView: UIStackView!
+    @IBOutlet private weak var answersCountLabel: UILabel!
+    @IBOutlet private weak var answersImageView: UIImageView!
+    
     var photoItem: PhotoItem?
     
     override func awakeFromNib() {
@@ -55,12 +59,15 @@ extension PhotoItemCollectionViewCell{
         likesStackView.isHidden = photoItem.likes.count == 0
         commentsStackView.isHidden = photoItem.comments.count == 0
         visitsStackView.isHidden = photoItem.visits.count == 0
+        answersStackView.isHidden = !photoItem.hasQuestion
         
         likesCountLabel.text = String("\(photoItem.likes.count)");
         commentsCountLabel.text = String("\(photoItem.comments.count)");
         visitsCountLabel.text = String("\(photoItem.visits.count)");
+        answersCountLabel.text = String("\(photoItem.answers.count)");
         
-        likesImageView.image = UIImage(systemName: photoItem.isLikedByCurrentUser ? "hand.thumbsup.fill" : "hand.thumbsup" )
-        visitsImageView.image = UIImage(systemName: photoItem.isVisitedByCurrentUser ? "eye.fill" : "eye" )
+        likesImageView.image = photoItem.likedImage
+        visitsImageView.image = photoItem.visitedImage
+        answersImageView.image = photoItem.answeredImage
     }
 }

@@ -12,13 +12,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditItemViewController" customModule="EpicSchoolHomework" customModuleProvider="target">
             <connections>
-                <outlet property="centerMapLabel" destination="9Kl-yJ-A5V" id="QAP-0E-2MJ"/>
+                <outlet property="commentsImageView" destination="ZLp-fR-Mhw" id="Gh8-OW-OQB"/>
                 <outlet property="descriptionTextField" destination="0zm-qC-zi7" id="Z7K-IJ-qdf"/>
                 <outlet property="distanceLabel" destination="xoU-qN-dSU" id="6zW-Nx-c2d"/>
                 <outlet property="fastActionsStackView" destination="Wgo-gG-GmU" id="Ak7-DK-Khg"/>
                 <outlet property="likedImageView" destination="S43-W1-pyV" id="h8U-Be-lDp"/>
                 <outlet property="mapView" destination="Jme-On-CIZ" id="KFI-6o-qCS"/>
                 <outlet property="photoImageView" destination="eOP-M4-7A9" id="OOm-bL-Nrd"/>
+                <outlet property="questionImageView" destination="wLo-Rw-dd3" id="hQV-XK-8LQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="visitedImageView" destination="TBr-rc-aa3" id="Kyg-MN-EcO"/>
             </connections>
@@ -28,7 +29,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eOP-M4-7A9">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eOP-M4-7A9">
                     <rect key="frame" x="20" y="44" width="374" height="360"/>
                 </imageView>
                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jme-On-CIZ">
@@ -40,22 +41,24 @@
                     <color key="textColor" systemColor="secondaryLabelColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kl-yJ-A5V" userLabel="center map">
-                    <rect key="frame" x="198" y="629.5" width="18.5" height="36"/>
-                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-gG-GmU">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="Wgo-gG-GmU">
                     <rect key="frame" x="20" y="414" width="374" height="20"/>
                     <subviews>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S43-W1-pyV" userLabel="liked">
-                            <rect key="frame" x="0.0" y="-4.5" width="180.5" height="28"/>
+                            <rect key="frame" x="0.0" y="-4.5" width="84" height="28"/>
                             <imageReference key="image" image="hand.thumbsup" catalog="system" symbolScale="large"/>
                         </imageView>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TBr-rc-aa3" userLabel="visited">
-                            <rect key="frame" x="193.5" y="-1.5" width="180.5" height="22.5"/>
+                            <rect key="frame" x="97" y="-1.5" width="83.5" height="22.5"/>
                             <imageReference key="image" image="eye" catalog="system" symbolScale="large"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZLp-fR-Mhw" userLabel="comments">
+                            <rect key="frame" x="193.5" y="-2.5" width="84" height="26"/>
+                            <imageReference key="image" image="bubble.left" catalog="system" symbolScale="large"/>
+                        </imageView>
+                        <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wLo-Rw-dd3" userLabel="question">
+                            <rect key="frame" x="290.5" y="-1.5" width="83.5" height="23.5"/>
+                            <imageReference key="image" image="questionmark.app" catalog="system" symbolScale="large"/>
                         </imageView>
                     </subviews>
                     <constraints>
@@ -74,13 +77,11 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Jme-On-CIZ" secondAttribute="bottom" constant="20" id="245-HM-KwT"/>
                 <constraint firstItem="0zm-qC-zi7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="2Cn-05-Esh"/>
                 <constraint firstItem="0zm-qC-zi7" firstAttribute="top" secondItem="eOP-M4-7A9" secondAttribute="bottom" constant="8" symbolic="YES" id="2Nf-by-JHU"/>
-                <constraint firstItem="9Kl-yJ-A5V" firstAttribute="centerX" secondItem="Jme-On-CIZ" secondAttribute="centerX" id="2rk-dF-TMO"/>
                 <constraint firstItem="Jme-On-CIZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="CYu-Td-wwG"/>
                 <constraint firstItem="Wgo-gG-GmU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="D8P-oJ-BYX"/>
                 <constraint firstItem="eOP-M4-7A9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Uf0-Lb-N03"/>
                 <constraint firstItem="Wgo-gG-GmU" firstAttribute="top" secondItem="eOP-M4-7A9" secondAttribute="bottom" constant="10" id="Vnk-x9-cgs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eOP-M4-7A9" secondAttribute="trailing" constant="20" id="Yc4-tW-6Jl"/>
-                <constraint firstItem="9Kl-yJ-A5V" firstAttribute="centerY" secondItem="Jme-On-CIZ" secondAttribute="centerY" id="ZGy-gi-rBL"/>
                 <constraint firstItem="xoU-qN-dSU" firstAttribute="top" secondItem="Jme-On-CIZ" secondAttribute="top" constant="10" id="d3V-pG-Ojb"/>
                 <constraint firstItem="eOP-M4-7A9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="dxd-y9-8JM"/>
                 <constraint firstItem="Jme-On-CIZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="fqM-CS-DPL"/>
@@ -90,17 +91,14 @@
                 <constraint firstItem="xoU-qN-dSU" firstAttribute="leading" secondItem="Jme-On-CIZ" secondAttribute="leading" constant="10" id="qmo-F9-AII"/>
                 <constraint firstItem="Jme-On-CIZ" firstAttribute="top" secondItem="0zm-qC-zi7" secondAttribute="bottom" constant="7" id="t4C-To-G2X"/>
             </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="0zm-qC-zi7"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
         </view>
     </objects>
     <resources>
+        <image name="bubble.left" catalog="system" width="128" height="110"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
+        <image name="questionmark.app" catalog="system" width="128" height="114"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -57,16 +57,21 @@ struct PhotoItem {
 // MARK: -  Hashable
 extension PhotoItem: Hashable {
     func hash(into hasher: inout Hasher) {
-      hasher.combine(id)
+        hasher.combine(id)
     }
     
     static func == (lhs: PhotoItem, rhs: PhotoItem) -> Bool {
         lhs.id == rhs.id
+        && lhs.image == rhs.image
     }
 }
 
 // MARK: -  Computed props
 extension PhotoItem {
+    var wrappedDescription: String {
+        description ?? ""
+    }
+    
     var likesFormattedString: String {
         let formatString : String = NSLocalizedString("likes count",
                                                               comment: "Likes count string format to be found in Localized.stringsdict")
@@ -78,6 +83,14 @@ extension PhotoItem {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
+    var hasQuestion: Bool {
+        if let question = question {
+            return !question.isEmpty
+        } else {
+            return false
+        }
+    }
+    
     var isVisitedByCurrentUser: Bool {
         isVisitedByUser(userName: appState.currentUserName)
     }
@@ -87,7 +100,25 @@ extension PhotoItem {
     }
     
     var isAnsweredByCurrentUser: Bool {
-        isLikedByUser(userName: appState.currentUserName)
+        isAnsweredByUser(userName: appState.currentUserName)
+    }
+    
+    var likedImage: UIImage {
+        UIImage(systemName: isLikedByCurrentUser ?
+                "hand.thumbsup.fill" :
+                    "hand.thumbsup") ?? UIImage()
+    }
+    
+    var visitedImage: UIImage {
+        UIImage(systemName: isVisitedByCurrentUser ?
+                "eye.fill" :
+                    "eye") ?? UIImage()
+    }
+    
+    var answeredImage: UIImage {
+        UIImage(systemName: isAnsweredByCurrentUser ?
+                "questionmark.square.fill" :
+                    "questionmark.square") ?? UIImage()
     }
 }
 
@@ -146,6 +177,6 @@ extension PhotoItem {
     
     func answerIsCorrect(answer: String) -> Bool {
         answer == self.answer
-        //TODO capitalization e.t.c.
+        //TODO: capitalization e.t.c.
     }
 }

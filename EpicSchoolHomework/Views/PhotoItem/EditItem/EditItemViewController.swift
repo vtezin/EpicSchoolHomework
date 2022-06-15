@@ -10,15 +10,16 @@ import MapKit
 import Photos
 
 final class EditItemViewController: UIViewController {
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var descriptionTextField: UITextField!
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var centerMapLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var fastActionsStackView: UIStackView!
+    @IBOutlet private weak var photoImageView: UIImageView!
+    @IBOutlet private weak var descriptionTextField: UITextField!
+    @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var distanceLabel: UILabel!
+    @IBOutlet private weak var fastActionsStackView: UIStackView!
     
-    @IBOutlet weak var likedImageView: UIImageView!
-    @IBOutlet weak var visitedImageView: UIImageView!
+    @IBOutlet private weak var likedImageView: UIImageView!
+    @IBOutlet private weak var visitedImageView: UIImageView!
+    @IBOutlet private weak var commentsImageView: UIImageView!
+    @IBOutlet private weak var questionImageView: UIImageView!
     
     var photoItem: PhotoItem
 
@@ -40,7 +41,7 @@ final class EditItemViewController: UIViewController {
         super.viewDidLoad()
         //addKeyboardNotifications()
         configure()
-        redrawFastActionsViews()
+        configureFastActionsViews()
         configureMapView()
         configureLocationServices()
     }
@@ -115,6 +116,14 @@ extension EditItemViewController: CLLocationManagerDelegate {
         mapView.showsCompass = true
         mapView.showsBuildings = true
         mapView.delegate = self
+        
+        itemCoordinate = CLLocationCoordinate2D(latitude: photoItem.latitude,
+                                                longitude: photoItem.longitude)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = itemCoordinate!
+        mapView.addAnnotation(annotation)
+        
+        setMapViewCenterByPhotoCoordinate()
     }
 }
 
@@ -128,17 +137,39 @@ extension EditItemViewController {
         let visitedTapGesture = UITapGestureRecognizer(target: self, action: #selector(visitedTapped))
         visitedTapGesture.numberOfTapsRequired = 1
         visitedImageView.addGestureRecognizer(visitedTapGesture)
+        
+        let commentsTapGesture = UITapGestureRecognizer(target: self, action: #selector(commentsTapped))
+        commentsTapGesture.numberOfTapsRequired = 1
+        commentsImageView.addGestureRecognizer(commentsTapGesture)
+        
+        let questionTapGesture = UITapGestureRecognizer(target: self, action: #selector(questionTapped))
+        questionTapGesture.numberOfTapsRequired = 1
+        questionImageView.addGestureRecognizer(questionTapGesture)
     }
     
-    private func redrawFastActionsViews() {
-        likedImageView.image = UIImage(systemName: photoItem.isLikedByCurrentUser ? "hand.thumbsup.fill" : "hand.thumbsup")
-        visitedImageView.image = UIImage(systemName: photoItem.isVisitedByCurrentUser ? "eye.fill" : "eye")
+    private func configureFastActionsViews() {
+        likedImageView.image = photoItem.likedImage
+        visitedImageView.image = photoItem.visitedImage
+        questionImageView.image = photoItem.answeredImage
+        questionImageView.isHidden = !photoItem.hasQuestion
+    }
+    
+    @objc private func questionTapped()
+    {
+        let vc = QuestionViewController(photoItem: photoItem)
+        present(vc, animated: true)
+    }
+    
+    @objc private func commentsTapped()
+    {
+        let vc = CommentsListViewController(photoItem: photoItem)
+        present(vc, animated: true)
     }
     
     @objc private func likedTapped()
     {
         photoItem.setLikedByCurrentUser(!photoItem.isLikedByCurrentUser)
-        redrawFastActionsViews()
+        configureFastActionsViews()
     }
     
     @objc private func visitedTapped()
@@ -173,7 +204,7 @@ extension EditItemViewController {
     
     private func toggleVisited() {
         photoItem.setVisitedByCurrentUser(!photoItem.isVisitedByCurrentUser)
-        redrawFastActionsViews()
+        configureFastActionsViews()
     }
 }
 
@@ -182,16 +213,7 @@ extension EditItemViewController {
     private func configure() {
         navigationItem.title = photoItem.description
         photoImageView.image = photoItem.image
-        if photoItem.latitude != 0 {
-            itemCoordinate = CLLocationCoordinate2D(latitude: photoItem.latitude,
-                                                    longitude: photoItem.longitude)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = itemCoordinate!
-            mapView.addAnnotation(annotation)
-            centerMapLabel.isHidden = true
-            
-            setMapViewCenterByPhotoCoordinate()
-        }
+        
         descriptionTextField.isHidden = true
         
         addGesturesToFastActionsViews()

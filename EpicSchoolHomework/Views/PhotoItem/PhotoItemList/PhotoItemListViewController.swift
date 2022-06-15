@@ -46,10 +46,6 @@ extension PhotoItemListViewController {
         }
         photoItems = newPhotoItems
         applySnapshot(animatingDifferences: true)
-       // if newPhotoItems.count != photoItems.count {
-            collectionView.reloadData()
-       // }
-        print("received \(newPhotoItems.count) photoItems")
     }
     
     private func setupCollectionView() {

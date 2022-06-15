@@ -9,9 +9,9 @@ import UIKit
 import Foundation
 
 final class CommentsListViewController: UIViewController {
-    @IBOutlet weak var commentText: UITextView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addCommentStackView: UIStackView!
+    @IBOutlet private weak var commentText: UITextView!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var addCommentStackView: UIStackView!
     
     var photoItem: PhotoItem
     
@@ -30,6 +30,7 @@ final class CommentsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Комментарии"
         addCommentStackView.isHidden = !FireBaseService.isConnected
         setupTableView()
         addKeyboardNotifications()

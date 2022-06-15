@@ -60,6 +60,17 @@ final class PhotoItemRealmVisit: Object {
     }
 }
 
+final class PhotoItemRealmAnswer: Object {
+    @objc dynamic var item: PhotoItemRealm!
+    @objc dynamic var user: String = ""
+    @objc dynamic var date: Date = Date()
+    @objc dynamic var id = UUID().uuidString
+    
+    override static func primaryKey() -> String? {
+      return "id"
+    }
+}
+
 // MARK: -  Fetching
 extension PhotoItemRealm {
     static let realm = try! Realm(configuration: RealmService.config)
@@ -108,6 +119,24 @@ extension PhotoItemRealm {
                                                       date: like.date))
             }
             
+            let visits = realm.objects(PhotoItemRealmVisit.self).sorted(byKeyPath: "date", ascending: true).where{
+                $0.item == item
+            }
+            
+            for visit in visits {
+                photoItem.visits.append(PhotoItem.Visit(user: visit.user,
+                                                      date: visit.date))
+            }
+            
+            let answers = realm.objects(PhotoItemRealmAnswer.self).sorted(byKeyPath: "date", ascending: true).where{
+                $0.item == item
+            }
+            
+            for answer in answers {
+                photoItem.answers.append(PhotoItem.Answer(user: answer.user,
+                                                      date: answer.date))
+            }
+            
             photoItems.append(photoItem)
             
         }
@@ -129,7 +158,6 @@ extension PhotoItemRealm {
 // MARK: -  Saving
 extension PhotoItemRealm {
     static func saveItem(photoItem: PhotoItem) {
-        
         try! realm.write {
             let newItem = PhotoItemRealm()
             
@@ -138,11 +166,22 @@ extension PhotoItemRealm {
             newItem.imageURL = photoItem.imageURL
             newItem.author = photoItem.author
             newItem.photoDescription = photoItem.description ?? ""
+            newItem.question = photoItem.question
+            newItem.answer = photoItem.answer
+            newItem.answerDescription = photoItem.answerDescription
             newItem.addingDate = photoItem.addingDate
             newItem.latitude = photoItem.latitude
             newItem.longitude = photoItem.longitude
             
             realm.add(newItem, update: .modified)
+            
+            //clear comments
+            let comments = realm.objects(PhotoItemRealmComment.self).where{
+                $0.item == newItem
+            }
+            for comment in comments{
+                realm.delete(comment)
+            }
             
             //clear likes
             let likes = realm.objects(PhotoItemRealmLike.self).where{
@@ -160,6 +199,13 @@ extension PhotoItemRealm {
                 realm.delete(visit)
             }
         
+            //clear answers
+            let answers = realm.objects(PhotoItemRealmAnswer.self).where{
+                $0.item == newItem
+            }
+            for answer in answers{
+                realm.delete(answer)
+            }
         }
         
         for comment in photoItem.comments{
@@ -173,10 +219,13 @@ extension PhotoItemRealm {
         for visit in photoItem.visits{
             saveVisit(photoItem: photoItem, visit: visit)
         }
+        
+        for answer in photoItem.answers {
+            saveAnswer(photoItem: photoItem, answer: answer)
+        }
     }
     
     static func saveComment(photoItem: PhotoItem, comment: PhotoItem.Comment) {
-        
         let items = realm.objects(PhotoItemRealm.self).where{
             $0.id == photoItem.id
         }
@@ -195,7 +244,6 @@ extension PhotoItemRealm {
     }
     
     static func saveLike(photoItem: PhotoItem, like: PhotoItem.Like) {
-        
         let items = realm.objects(PhotoItemRealm.self).where{
             $0.id == photoItem.id
         }
@@ -212,7 +260,6 @@ extension PhotoItemRealm {
     }
     
     static func saveVisit(photoItem: PhotoItem, visit: PhotoItem.Visit) {
-        
         let items = realm.objects(PhotoItemRealm.self).where{
             $0.id == photoItem.id
         }
@@ -225,6 +272,22 @@ extension PhotoItemRealm {
             newVisit.date = visit.date
             newVisit.item = item
             realm.add(newVisit, update: .modified)
+        }
+    }
+    
+    static func saveAnswer(photoItem: PhotoItem, answer: PhotoItem.Answer) {
+        let items = realm.objects(PhotoItemRealm.self).where{
+            $0.id == photoItem.id
+        }
+        
+        guard let item = items.first else {return}
+        
+        try! realm.write {
+            let newAnswer = PhotoItemRealmAnswer()
+            newAnswer.user = answer.user
+            newAnswer.date = answer.date
+            newAnswer.item = item
+            realm.add(newAnswer, update: .modified)
         }
     }
 }
@@ -243,9 +306,21 @@ extension PhotoItemRealm{
         deleteItemLikes(item: item)
         deleteItemComments(item: item)
         deleteItemVisits(item: item)
+        deleteItemAnswers(item: item)
         
         try! realm.write {
             realm.delete(item)
+        }
+    }
+    
+    static private func deleteItemAnswers(item: PhotoItemRealm) {
+        try! realm.write {
+            let records = realm.objects(PhotoItemRealmAnswer.self).where{
+                $0.item == item
+            }
+            for record in records{
+                realm.delete(record)
+            }
         }
     }
     

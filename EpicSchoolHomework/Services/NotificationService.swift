@@ -54,12 +54,15 @@ extension NotificationService {
         
         let content = UNMutableNotificationContent()
         content.title = "Рядом снято лайкнутое фото"
-        content.subtitle = "\(photoItem.description) от \(photoItem.author)"
+        content.subtitle = "'\(photoItem.wrappedDescription)' от \(photoItem.author)"
         //content.userInfo = ["id": photoItem.id]
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "notificationSound.wav"))
         let identifier = ProcessInfo.processInfo.globallyUniqueString
-        if let image = photoItem.image, let attachment = UNNotificationAttachment.create(identifier: identifier, image: image, options: nil) {
-            content.attachments = [attachment]
+        if let image = photoItem.image, let compressionImage = image.compressedImage {
+            if let attachment = UNNotificationAttachment.create(identifier: identifier, image: compressionImage, options: nil) {
+                content.attachments = [attachment]
+            }
+            
         }
         
         let request = UNNotificationRequest(identifier: photoItem.id,
@@ -96,10 +99,10 @@ extension UNNotificationAttachment {
         let tmpSubFolderURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(tmpSubFolderName, isDirectory: true)
         do {
             try fileManager.createDirectory(at: tmpSubFolderURL, withIntermediateDirectories: true, attributes: nil)
-            let imageFileIdentifier = identifier+".png"
+            let imageFileIdentifier = identifier+".jpg"
             let fileURL = tmpSubFolderURL.appendingPathComponent(imageFileIdentifier)
-            let imageData = UIImage.pngData(image)
-            try imageData()?.write(to: fileURL)
+            let imageData = UIImage.jpegData(image)
+            try imageData(1)?.write(to: fileURL)
             let imageAttachment = try UNNotificationAttachment.init(identifier: imageFileIdentifier, url: fileURL, options: options)
             return imageAttachment
         } catch {

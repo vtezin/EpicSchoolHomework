@@ -63,6 +63,10 @@ final class EditLocalPhotoViewController: UIViewController {
         questionTextField.delegate = self
         answerTextField.delegate = self
         
+        answerDescriptionTextView.layer.borderWidth = 1
+        answerDescriptionTextView.layer.borderColor = UIColor.systemBackground.cgColor
+        answerDescriptionTextView.layer.cornerRadius = 8
+        
         configureMapView()
         
         if let localPhoto = localPhoto {
@@ -209,7 +213,10 @@ extension EditLocalPhotoViewController {
     func configureByPhoto(_ localPhoto: LocalPhoto) {
         photoItemImageView.image = localPhoto.image
         descriptionTextField.text = localPhoto.description
+        questionTextField.text = localPhoto.question
+        answerTextField.text = localPhoto.answer
         answerDescriptionTextView.text = localPhoto.answerDescription
+        answerDescriptionTextView.text = "tetetete"
         
         photoCoordinate = localPhoto.coordinate
         mapView.mapType = localPhoto.mapType
