@@ -1,7 +1,8 @@
 # PhotoGo
-![launch](https://user-images.githubusercontent.com/48822607/174023282-e37bb234-1c19-4338-83ea-e7b11a68ffcf.jpg)
+![launch](https://user-images.githubusercontent.com/48822607/174029417-028322be-ff36-4b75-b53c-fba7930b68cf.jpg)
 
 Социалочка. Еще одна. 
+
 Фото мест и геоквесты.
 
 ## Добавление фото.
