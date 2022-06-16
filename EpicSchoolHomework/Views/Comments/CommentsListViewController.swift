@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Foundation
 
 final class CommentsListViewController: UIViewController {
     @IBOutlet private weak var commentText: UITextView!

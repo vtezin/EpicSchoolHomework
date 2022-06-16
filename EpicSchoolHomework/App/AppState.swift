@@ -71,7 +71,3 @@ extension AppState: FireBaseServiceDelegate {
     }
 }
 
-// MARK: -  global function
-func printDebug(_ string: String) {
-    print("debug | " + string)
-}

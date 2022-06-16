@@ -42,6 +42,7 @@
 		C499F67527E4472E00DB2F9B /* EpicSchoolHomeworkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F67427E4472E00DB2F9B /* EpicSchoolHomeworkUITests.swift */; };
 		C499F67727E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499F67627E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift */; };
 		C4A8B2012840B81B0072E670 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8B2002840B81B0072E670 /* RootTabBarController.swift */; };
+		C4A98448285ADED50035DB0A /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A98447285ADED50035DB0A /* Common.swift */; };
 		C4BACD1D280C6C5E00A8D7C6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4BACD1C280C6C5E00A8D7C6 /* GoogleService-Info.plist */; };
 		C4BACD20280C731000A8D7C6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD1F280C731000A8D7C6 /* FirebaseAuth */; };
 		C4BACD24280C746600A8D7C6 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */; };
@@ -139,6 +140,7 @@
 		C499F67427E4472E00DB2F9B /* EpicSchoolHomeworkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpicSchoolHomeworkUITests.swift; sourceTree = "<group>"; };
 		C499F67627E4472E00DB2F9B /* EpicSchoolHomeworkUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpicSchoolHomeworkUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C4A8B2002840B81B0072E670 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
+		C4A98447285ADED50035DB0A /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		C4BACD1C280C6C5E00A8D7C6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		C4BACD23280C746600A8D7C6 /* UserProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		C40A229B27EB06ED0007994C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4BD2FDC27EDCDEF00F3B30A /* CustomViews */,
 				C4DD0DE32850785B00EC7D9D /* PhotoItem */,
 				C4DD0DE42850787E00EC7D9D /* LocalPhoto */,
 				C4DD0DDD284FAE1D00EC7D9D /* SimpleItemMap */,
@@ -336,13 +339,12 @@
 		C499F65227E4472D00DB2F9B /* EpicSchoolHomework */ = {
 			isa = PBXGroup;
 			children = (
-				C416046327F3A6640074FE36 /* Services */,
+				C4A98446285ADEAF0035DB0A /* App */,
+				C499F65327E4472D00DB2F9B /* AppDelegate.swift */,
 				C4BD2FDD27EDCE3800F3B30A /* Extensions */,
-				C4BD2FDC27EDCDEF00F3B30A /* CustomViews */,
+				C416046327F3A6640074FE36 /* Services */,
 				C40A229B27EB06ED0007994C /* Views */,
 				C40A229827EB02ED0007994C /* Model */,
-				C499F65327E4472D00DB2F9B /* AppDelegate.swift */,
-				C4849A5A284B16C50043717B /* AppState.swift */,
 				C435042828475B15009AEE0E /* notificationSound.wav */,
 				C499F65C27E4472E00DB2F9B /* Assets.xcassets */,
 				C499F65E27E4472E00DB2F9B /* LaunchScreen.storyboard */,
@@ -376,6 +378,15 @@
 				C4A8B2002840B81B0072E670 /* RootTabBarController.swift */,
 			);
 			path = RootTabBar;
+			sourceTree = "<group>";
+		};
+		C4A98446285ADEAF0035DB0A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C4849A5A284B16C50043717B /* AppState.swift */,
+				C4A98447285ADED50035DB0A /* Common.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		C4BACD21280C744900A8D7C6 /* Profile */ = {
@@ -734,6 +745,7 @@
 				C4DD0DEF2851E1AF00EC7D9D /* PaddingLabel.swift in Sources */,
 				C40A229A27EB030E0007994C /* PhotoItem.swift in Sources */,
 				C4DF9D29282D2CDD008C02DD /* LikesListViewController.swift in Sources */,
+				C4A98448285ADED50035DB0A /* Common.swift in Sources */,
 				C4350427284754F1009AEE0E /* NotificationService.swift in Sources */,
 				C4849A59284B0C1B0043717B /* LocationService.swift in Sources */,
 				C4849A5B284B16C50043717B /* AppState.swift in Sources */,

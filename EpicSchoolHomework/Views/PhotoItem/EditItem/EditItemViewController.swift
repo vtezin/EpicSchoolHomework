@@ -191,9 +191,7 @@ extension EditItemViewController {
                 alertController.addAction(action2)
                 present(alertController, animated: true)
             } else {
-                let alertController = UIAlertController(title: alertTitle, message: "Для отметки посещения необходимо быть не дальше 10 метров от точки съемки. Такие правила. Движение - жизнь.", preferredStyle: .alert)
-                let action = UIAlertAction(title: "Понятно", style: .cancel)
-                alertController.addAction(action)
+                let alertController = simpleAlert(title: alertTitle, message: "Для отметки посещения необходимо быть не дальше 10 метров от точки съемки. Такие правила. Движение - жизнь.", closeButtonTitle: "Понятно")                
                 present(alertController, animated: true)
                 return
             }

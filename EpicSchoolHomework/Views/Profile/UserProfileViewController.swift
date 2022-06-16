@@ -27,6 +27,8 @@ final class UserProfileViewController: UIViewController {
     }
     @IBAction func clearCashButtonTapped(_ sender: Any) {
         PhotoItemRealm.deleteAllItems()
+        let alertController = simpleAlert(title: "Очистка локального кэша", message: "Готово")
+        present(alertController, animated: true)
     }
     
     @IBAction func enterButtonTapped(_ sender: Any) {

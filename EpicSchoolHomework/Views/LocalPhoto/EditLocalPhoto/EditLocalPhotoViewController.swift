@@ -15,7 +15,8 @@ final class EditLocalPhotoViewController: UIViewController {
     
     @IBOutlet private weak var descriptionStackView: UIStackView!
     @IBOutlet private weak var descriptionTextField: UITextField!
-    @IBOutlet private weak var questionTextField: UITextField!
+    @IBOutlet private weak var questionTextView: UITextView!
+    
     @IBOutlet private weak var answerTextField: UITextField!
     @IBOutlet private weak var answerDescriptionTextView: UITextView!
     
@@ -38,6 +39,7 @@ final class EditLocalPhotoViewController: UIViewController {
     private var photoCoordinate: CLLocationCoordinate2D?
     private var subscriptions = Set<AnyCancellable>()
     
+    //TODO: remove delegate
     let delegate: LocalPhotoCollectionViewer
     let indexPhotoItemInArray: Int?
 
@@ -84,7 +86,7 @@ extension EditLocalPhotoViewController {
                           image: photoItemImageView.image!,
                           addingDate: localPhoto == nil ? Date() : localPhoto!.addingDate,
                           description: descriptionTextField.text,
-                          question: questionTextField.text,
+                          question: questionTextView.text,
                           answer: answerTextField.text,
                           answerDescription: answerDescriptionTextView.text,
                           latitude: photoCoordinate?.latitude ?? 0,
@@ -108,11 +110,7 @@ extension EditLocalPhotoViewController {
     
     @objc private func publish() {
         if !appState.firebaseIsConnected {
-            let alertController = UIAlertController(title: "Нет связи ((" , message: "Отсутствует соединение с сервером. Публикация невозможна. Можно забраться куда то повыше или спросить пароль от вайфая. Должны дать по идее.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Отмена", style: .cancel) { _ in
-                return
-            }
-            alertController.addAction(action)
+            let alertController = simpleAlert(title: "Нет связи ((", message: "Отсутствует соединение с сервером. Публикация невозможна. Можно забраться куда то повыше или спросить пароль от вайфая. Должны дать по идее.")
             present(alertController, animated: true)
             return
         }
@@ -202,7 +200,7 @@ extension EditLocalPhotoViewController {
     func configureByPhoto(_ localPhoto: LocalPhoto) {
         photoItemImageView.image = localPhoto.image
         descriptionTextField.text = localPhoto.description
-        questionTextField.text = localPhoto.question
+        questionTextView.text = localPhoto.question
         answerTextField.text = localPhoto.answer
         answerDescriptionTextView.text = localPhoto.answerDescription
         
