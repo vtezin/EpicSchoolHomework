@@ -32,7 +32,7 @@ final class PhotoItemListViewController: UIViewController {
         navigationItem.leftBarButtonItem = firebaseStatusBarItem
         appState.$firebaseIsConnected.sink(receiveValue: {[weak self] firebaseIsConnected in
             self?.firebaseStatusBarItem.title = firebaseIsConnected ? "Онлайн" : "Оффлайн"
-            self?.firebaseStatusBarItem.tintColor = firebaseIsConnected ? UIColor.green : UIColor.red
+            self?.firebaseStatusBarItem.tintColor = firebaseIsConnected ? UIColor.systemTeal : UIColor.red
         })
         .store(in: &subscriptions)
     }    

@@ -27,7 +27,7 @@ final class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        questionLabel.text = "Загадка: " + (photoItem.question ?? "")
+        questionLabel.text = photoItem.question
         answerDescriptionTextView.text = photoItem.answerDescription
         if photoItem.isAnsweredByCurrentUser {
             answerTextField.text = photoItem.answer

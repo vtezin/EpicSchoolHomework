@@ -46,18 +46,22 @@
                     <subviews>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S43-W1-pyV" userLabel="liked">
                             <rect key="frame" x="0.0" y="-4.5" width="84" height="28"/>
+                            <color key="tintColor" systemColor="systemTealColor"/>
                             <imageReference key="image" image="hand.thumbsup" catalog="system" symbolScale="large"/>
                         </imageView>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TBr-rc-aa3" userLabel="visited">
                             <rect key="frame" x="97" y="-1.5" width="83.5" height="22.5"/>
+                            <color key="tintColor" systemColor="systemTealColor"/>
                             <imageReference key="image" image="eye" catalog="system" symbolScale="large"/>
                         </imageView>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZLp-fR-Mhw" userLabel="comments">
                             <rect key="frame" x="193.5" y="-2.5" width="84" height="26"/>
+                            <color key="tintColor" systemColor="systemTealColor"/>
                             <imageReference key="image" image="bubble.left" catalog="system" symbolScale="large"/>
                         </imageView>
                         <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wLo-Rw-dd3" userLabel="question">
                             <rect key="frame" x="290.5" y="-3" width="83.5" height="26"/>
+                            <color key="tintColor" systemColor="systemTealColor"/>
                             <imageReference key="image" image="questionmark.circle" catalog="system" symbolScale="large"/>
                         </imageView>
                     </subviews>
@@ -104,6 +108,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

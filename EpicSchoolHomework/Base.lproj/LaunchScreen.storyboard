@@ -48,6 +48,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Background"/>
+                        <color key="tintColor" systemColor="systemTealColor"/>
                         <constraints>
                             <constraint firstItem="dYf-zk-46f" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="I0u-GW-fXD"/>
                             <constraint firstItem="dYf-zk-46f" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="QBY-HF-ugN"/>

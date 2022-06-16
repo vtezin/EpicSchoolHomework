@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,19 +25,19 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftr-eh-guh">
-                    <rect key="frame" x="20" y="64" width="374" height="23"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загадка" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftr-eh-guh">
+                    <rect key="frame" x="70" y="64" width="324" height="20.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                     <color key="textColor" systemColor="systemTealColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ваш ответ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mkE-i9-6Sa">
-                    <rect key="frame" x="20" y="127" width="374" height="34"/>
+                    <rect key="frame" x="20" y="124.5" width="374" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zip-Wu-Jl5">
-                    <rect key="frame" x="20" y="269" width="374" height="573"/>
+                    <rect key="frame" x="20" y="266.5" width="374" height="575.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <color key="textColor" systemColor="labelColor"/>
@@ -44,7 +45,8 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngE-nv-Odm">
-                    <rect key="frame" x="138" y="181" width="138" height="31"/>
+                    <rect key="frame" x="138" y="178.5" width="138" height="31"/>
+                    <color key="tintColor" systemColor="systemTealColor"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Проверить ответ"/>
                     <connections>
@@ -52,20 +54,31 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Верный ответ 🙂" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4z-we-STp">
-                    <rect key="frame" x="149" y="232" width="116.5" height="17"/>
+                    <rect key="frame" x="149" y="229.5" width="116.5" height="17"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zVW-Mg-c4w">
+                    <rect key="frame" x="20" y="64.5" width="30" height="29"/>
+                    <color key="tintColor" systemColor="systemTealColor"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="7uw-b1-uXS"/>
+                        <constraint firstAttribute="height" constant="30" id="hxQ-Ug-dsV"/>
+                    </constraints>
+                    <imageReference key="image" image="questionmark.circle" catalog="system" symbolScale="medium" renderingMode="template"/>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="ftr-eh-guh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="BSf-fC-9FP"/>
                 <constraint firstItem="mkE-i9-6Sa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="CTr-Me-cbs"/>
+                <constraint firstItem="ftr-eh-guh" firstAttribute="leading" secondItem="zVW-Mg-c4w" secondAttribute="trailing" constant="20" id="Eh3-nr-dsl"/>
                 <constraint firstItem="mkE-i9-6Sa" firstAttribute="top" secondItem="ftr-eh-guh" secondAttribute="bottom" constant="40" id="JWq-aC-zi0"/>
-                <constraint firstItem="ftr-eh-guh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="OXI-It-jvM"/>
+                <constraint firstItem="zVW-Mg-c4w" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="LWb-9N-lg7"/>
                 <constraint firstItem="v4z-we-STp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="PDr-py-Dg7"/>
+                <constraint firstItem="zVW-Mg-c4w" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Zs7-LN-EqC"/>
                 <constraint firstItem="ngE-nv-Odm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aHG-aX-JUO"/>
                 <constraint firstItem="Zip-Wu-Jl5" firstAttribute="top" secondItem="v4z-we-STp" secondAttribute="bottom" constant="20" id="c4W-f8-baj"/>
                 <constraint firstItem="v4z-we-STp" firstAttribute="top" secondItem="ngE-nv-Odm" secondAttribute="bottom" constant="20" id="eD5-JY-G9A"/>
@@ -80,6 +93,7 @@
         </view>
     </objects>
     <resources>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
