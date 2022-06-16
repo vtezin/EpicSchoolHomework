@@ -41,9 +41,7 @@ final class PhotoItemListViewController: UIViewController {
 // MARK: -  DiffableDataSource
 extension PhotoItemListViewController {
     private func photoItemsReceived(newPhotoItems: [PhotoItem]) {
-        if newPhotoItems.count > 0 {
-            loadingIndicator.stopAnimating()
-        }
+        loadingIndicator.stopAnimating()
         photoItems = newPhotoItems
         applySnapshot(animatingDifferences: true)
     }

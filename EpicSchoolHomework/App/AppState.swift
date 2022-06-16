@@ -63,7 +63,6 @@ extension AppState: FireBaseServiceDelegate {
         
         var newItem = changedItem
         newItem.setImage(image: image)
-
         photoItems[changedItemIndex] = newItem
         
         PhotoItemRealm.saveItem(photoItem: newItem)

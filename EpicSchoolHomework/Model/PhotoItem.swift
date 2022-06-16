@@ -143,7 +143,10 @@ extension PhotoItem {
         } else {
             let like = Like(user: appState.currentUserName, date: Date())
             likes.append(like)
-            NotificationService.shared.addNotificationForPhotoItem(self)
+            let item = self
+            DispatchQueue.global(qos: .background).async {
+                NotificationService.shared.addNotificationForPhotoItem(item)
+            }
         }
         
         guard FireBaseService.isConnected else {return}

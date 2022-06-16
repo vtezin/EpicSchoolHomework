@@ -61,10 +61,15 @@ final class EditLocalPhotoViewController: UIViewController {
         setVisibleLayer()
         
         answerDescriptionTextView.layer.borderWidth = 1
-        answerDescriptionTextView.layer.borderColor = UIColor.systemBackground.cgColor
+        answerDescriptionTextView.layer.borderColor = UIColor.systemGray5.cgColor
         answerDescriptionTextView.layer.cornerRadius = 8
         
+        questionTextView.layer.borderWidth = 1
+        questionTextView.layer.borderColor = UIColor.systemGray5.cgColor
+        questionTextView.layer.cornerRadius = 8
+        
         configureMapView()
+        configureImageView()
         
         if let localPhoto = localPhoto {
             configureByPhoto(localPhoto)
@@ -209,6 +214,18 @@ extension EditLocalPhotoViewController {
         mapModeControl.selectedSegmentIndex = mapView.mapType == .standard ? 0 : 1
         let mapRegion = MKCoordinateRegion(center: localPhoto.coordinate, span: localPhoto.mapSpan)
         mapView.setRegion(mapRegion, animated: false)
+    }
+    
+    func configureImageView() {
+        let photoImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(photoImageTapped))
+        photoImageTapGesture.numberOfTapsRequired = 1
+        photoItemImageView.addGestureRecognizer(photoImageTapGesture)
+    }
+    
+    @objc private func photoImageTapped()
+    {
+        let vc = ImageViewerViewController(image: photoItemImageView.image!)
+        present(vc, animated: true)
     }
 }
 

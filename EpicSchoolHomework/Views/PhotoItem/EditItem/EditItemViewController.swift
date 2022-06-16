@@ -212,9 +212,18 @@ extension EditItemViewController {
         navigationItem.title = photoItem.description
         photoImageView.image = photoItem.image
         
-        descriptionTextField.isHidden = true
+        let photoImageTapGesture = UITapGestureRecognizer(target: self, action: #selector(photoImageTapped))
+        photoImageTapGesture.numberOfTapsRequired = 1
+        photoImageView.addGestureRecognizer(photoImageTapGesture)
         
+        descriptionTextField.isHidden = true
         addGesturesToFastActionsViews()
+    }
+    
+    @objc private func photoImageTapped()
+    {
+        let vc = ImageViewerViewController(image: photoImageView.image!)
+        present(vc, animated: true)
     }
 }
 
