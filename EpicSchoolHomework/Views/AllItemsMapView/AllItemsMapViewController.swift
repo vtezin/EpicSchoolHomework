@@ -15,6 +15,13 @@ class AllItemsMapViewController: UIViewController {
     @IBOutlet weak var moveToCurLocationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBAction func buttonZoomInTapped(_ sender: Any) {
+        mapZoomIn()
+    }
+    @IBAction func buttonZoomOutTapped(_ sender: Any) {
+        mapZoomOut()
+    }
+    
     private var currentCoordinate: CLLocationCoordinate2D?
     private var photoItems = [PhotoItem]()
     
@@ -111,7 +118,10 @@ extension AllItemsMapViewController {
         }
         currentCoordinate = newLocation.coordinate
     }
-    
+}
+
+// MARK: -  MapView
+extension AllItemsMapViewController {
     private func configureMapView() {
         mapView.showsUserLocation = true
         mapView.mapType = .standard
@@ -130,11 +140,38 @@ extension AllItemsMapViewController {
         let mapRegion = MKCoordinateRegion(center: currentCoordinate, span: mapView.region.span)
         mapView.setRegion(mapRegion, animated: true)
     }
+    
+    private func mapZoomIn() {
+        setMapSpan(delta: mapView.region.span.latitudeDelta.rounded(toPlaces: 4)/zoomMultiplikator())
+    }
+    
+    private func mapZoomOut() {
+        setMapSpan(delta: mapView.region.span.latitudeDelta * zoomMultiplikator())
+    }
+    
+    private func zoomMultiplikator() -> Double {
+        if mapView.region.span.latitudeDelta < 0.05 {
+            return 3
+        } else {
+            return 4
+        }
+    }
+    
+    private func setMapSpan(delta: Double) {
+        var deltaToSet: Double
+        deltaToSet = min(delta, 108)
+        deltaToSet = max(deltaToSet, 0.0008)
+        
+        let newSpan = MKCoordinateSpan(latitudeDelta: deltaToSet,
+                                longitudeDelta: deltaToSet)
+        
+        let mapRegion = MKCoordinateRegion(center: mapView.region.center, span: newSpan)
+        mapView.setRegion(mapRegion, animated: true)
+    }
 }
 
 // MARK: -  MKMapViewDelegate
 extension AllItemsMapViewController: MKMapViewDelegate {
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isKind(of: MKUserLocation.self) {
             return MKUserLocationView()

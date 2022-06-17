@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C4092FA427FD5D660087B8F9 /* MainScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4092FA327FD5D660087B8F9 /* MainScreenView.xib */; };
-		C4092FA627FD5EAB0087B8F9 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4092FA527FD5EAB0087B8F9 /* MainScreenViewController.swift */; };
 		C4092FA827FEA96E0087B8F9 /* CommentsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4092FA727FEA96D0087B8F9 /* CommentsListView.xib */; };
 		C4092FAA27FEAA2C0087B8F9 /* CommentsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4092FA927FEAA2C0087B8F9 /* CommentsListViewController.swift */; };
 		C4092FAE27FEAD170087B8F9 /* CommentCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4092FAD27FEAD170087B8F9 /* CommentCellView.xib */; };
@@ -19,6 +17,7 @@
 		C40DE9A9285843C600951AC0 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40DE9A7285843C600951AC0 /* QuestionViewController.swift */; };
 		C40DE9AA285843C600951AC0 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40DE9A8285843C600951AC0 /* QuestionViewController.xib */; };
 		C40DE9AD2859A21000951AC0 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40DE9AC2859A21000951AC0 /* UIImage.swift */; };
+		C431F38E285C5F5C00BA28F6 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C431F38D285C5F5C00BA28F6 /* Double.swift */; };
 		C4350427284754F1009AEE0E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4350426284754F1009AEE0E /* NotificationService.swift */; };
 		C435042928475B15009AEE0E /* notificationSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = C435042828475B15009AEE0E /* notificationSound.wav */; };
 		C45379BA282568E000A1BF55 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = C45379B9282568E000A1BF55 /* TinyConstraints */; };
@@ -105,8 +104,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C4092FA327FD5D660087B8F9 /* MainScreenView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainScreenView.xib; sourceTree = "<group>"; };
-		C4092FA527FD5EAB0087B8F9 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		C4092FA727FEA96D0087B8F9 /* CommentsListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsListView.xib; sourceTree = "<group>"; };
 		C4092FA927FEAA2C0087B8F9 /* CommentsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsListViewController.swift; sourceTree = "<group>"; };
 		C4092FAD27FEAD170087B8F9 /* CommentCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCellView.xib; sourceTree = "<group>"; };
@@ -117,6 +114,7 @@
 		C40DE9A7285843C600951AC0 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		C40DE9A8285843C600951AC0 /* QuestionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionViewController.xib; sourceTree = "<group>"; };
 		C40DE9AC2859A21000951AC0 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		C431F38D285C5F5C00BA28F6 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		C4350426284754F1009AEE0E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		C435042828475B15009AEE0E /* notificationSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = notificationSound.wav; sourceTree = "<group>"; };
 		C4849A4D2849C9800043717B /* LocalPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPhoto.swift; sourceTree = "<group>"; };
@@ -214,15 +212,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C4092FAB27FEAA400087B8F9 /* MainScreen */ = {
-			isa = PBXGroup;
-			children = (
-				C4092FA327FD5D660087B8F9 /* MainScreenView.xib */,
-				C4092FA527FD5EAB0087B8F9 /* MainScreenViewController.swift */,
-			);
-			path = MainScreen;
-			sourceTree = "<group>";
-		};
 		C4092FAC27FEAA690087B8F9 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +244,6 @@
 				C4A8B1FF2840B7F00072E670 /* RootTabBar */,
 				C4E0E4FB283D1CD2003E0CB3 /* AllItemsMapView */,
 				C4BACD21280C744900A8D7C6 /* Profile */,
-				C4092FAB27FEAA400087B8F9 /* MainScreen */,
 				C4092FAC27FEAA690087B8F9 /* Comments */,
 				C4DF9D26282D2C42008C02DD /* Likes */,
 			);
@@ -429,6 +417,7 @@
 				C4BD2FE027EDCECE00F3B30A /* Int.swift */,
 				C4E0E503283ECB6D003E0CB3 /* Location.swift */,
 				C40DE9AC2859A21000951AC0 /* UIImage.swift */,
+				C431F38D285C5F5C00BA28F6 /* Double.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -667,7 +656,6 @@
 				C40DE9AA285843C600951AC0 /* QuestionViewController.xib in Resources */,
 				C435042928475B15009AEE0E /* notificationSound.wav in Resources */,
 				C4DF9D2A282D2CDD008C02DD /* LikesListViewController.xib in Resources */,
-				C4092FA427FD5D660087B8F9 /* MainScreenView.xib in Resources */,
 				C499F65D27E4472E00DB2F9B /* Assets.xcassets in Resources */,
 				C4DD0DE1284FAE5300EC7D9D /* SimpleItemMapViewController.xib in Resources */,
 			);
@@ -765,9 +753,9 @@
 				C4849A59284B0C1B0043717B /* LocationService.swift in Sources */,
 				C4849A5B284B16C50043717B /* AppState.swift in Sources */,
 				C4849A502849CA960043717B /* PhotoContainer.swift in Sources */,
-				C4092FA627FD5EAB0087B8F9 /* MainScreenViewController.swift in Sources */,
 				C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */,
 				C4849A6E284E1A2A0043717B /* LocalPhotoCollectionViewCell.swift in Sources */,
+				C431F38E285C5F5C00BA28F6 /* Double.swift in Sources */,
 				C40DE9AD2859A21000951AC0 /* UIImage.swift in Sources */,
 				C4A9844B285BC15A0035DB0A /* ImageScrollView.swift in Sources */,
 				C4849A63284CC0E10043717B /* LocalPhotoRealm.swift in Sources */,
