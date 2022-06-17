@@ -39,8 +39,10 @@
                 </segmentedControl>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW7-6K-5Jy">
                     <rect key="frame" x="155" y="639" width="65" height="18"/>
+                    <color key="tintColor" systemColor="systemTealColor"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title=" Где я?">
+                        <color key="titleColor" systemColor="systemTealColor"/>
                         <imageReference key="image" image="location.fill" catalog="system" symbolScale="medium"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -52,35 +54,51 @@
                         <action selector="moveToCurLocationButtonTapped:" destination="-1" eventType="touchUpInside" id="pBJ-RL-b7R"/>
                     </connections>
                 </button>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kWH-pJ-feF">
-                    <rect key="frame" x="305" y="273.5" width="50" height="120"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kWH-pJ-feF">
+                    <rect key="frame" x="295" y="258.5" width="60" height="150"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDw-xL-GPh">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDw-xL-GPh">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                            <color key="backgroundColor" white="1" alpha="0.49487138605442177" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="m0P-hi-28Z"/>
-                                <constraint firstAttribute="height" constant="50" id="pFF-Oe-wvS"/>
+                                <constraint firstAttribute="width" constant="60" id="m0P-hi-28Z"/>
+                                <constraint firstAttribute="height" constant="60" id="pFF-Oe-wvS"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="gray" title="+">
-                                <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="baseForegroundColor" systemColor="systemTealColor"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" systemColor="systemTealColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="plus" catalog="system">
+                                <color key="titleColor" systemColor="systemTealColor"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="buttonZoomInTapped:" destination="-1" eventType="touchUpInside" id="CHC-Js-5Me"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ur-Ya-at7">
-                            <rect key="frame" x="0.0" y="70" width="50" height="50"/>
+                            <rect key="frame" x="0.0" y="90" width="60" height="60"/>
+                            <color key="backgroundColor" white="1" alpha="0.49487138605442177" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="1KJ-Dk-guq"/>
-                                <constraint firstAttribute="width" constant="50" id="p2M-Sc-gqc"/>
+                                <constraint firstAttribute="height" constant="60" id="1KJ-Dk-guq"/>
+                                <constraint firstAttribute="width" constant="60" id="p2M-Sc-gqc"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="gray" title="-">
-                                <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="baseForegroundColor" systemColor="systemTealColor"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" systemColor="systemTealColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="minus" catalog="system"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="buttonZoomOutTapped:" destination="-1" eventType="touchUpInside" id="qYD-me-ZSG"/>
                             </connections>
@@ -107,6 +125,8 @@
     </objects>
     <resources>
         <image name="location.fill" catalog="system" width="128" height="121"/>
+        <image name="minus" catalog="system" width="128" height="24"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

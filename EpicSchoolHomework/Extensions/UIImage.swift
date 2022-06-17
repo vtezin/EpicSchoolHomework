@@ -9,7 +9,7 @@ import UIKit
 
 extension UIImage {
     var compressedData: Data? {
-        self.jpegData(compressionQuality: 0.25)
+        self.jpegData(compressionQuality: 0.1)
     }
     
     var compressedImage: UIImage? {

@@ -49,7 +49,6 @@
 		C4BACD24280C746600A8D7C6 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */; };
 		C4BACD25280C746600A8D7C6 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4BACD23280C746600A8D7C6 /* UserProfileViewController.xib */; };
 		C4BACD27280D245200A8D7C6 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD26280D245200A8D7C6 /* FireBaseService.swift */; };
-		C4BACD29280D269300A8D7C6 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BACD28280D269300A8D7C6 /* DataProvider.swift */; };
 		C4BACD2E280E84E300A8D7C6 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD2D280E84E300A8D7C6 /* FirebaseDatabase */; };
 		C4BACD30280E84E300A8D7C6 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD2F280E84E300A8D7C6 /* FirebaseDatabaseSwift */; };
 		C4BACD32280E84E300A8D7C6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C4BACD31280E84E300A8D7C6 /* FirebaseFirestore */; };
@@ -64,7 +63,6 @@
 		C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */; };
 		C4BD2FE727EE365700F3B30A /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */; };
 		C4C7DA96281F91860088FA4F /* ImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA95281F91860088FA4F /* ImagesService.swift */; };
-		C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C7DA97281FBC4E0088FA4F /* DataService.swift */; };
 		C4DD0DE0284FAE5300EC7D9D /* SimpleItemMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DD0DDE284FAE5300EC7D9D /* SimpleItemMapViewController.swift */; };
 		C4DD0DE1284FAE5300EC7D9D /* SimpleItemMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4DD0DDF284FAE5300EC7D9D /* SimpleItemMapViewController.xib */; };
 		C4DD0DE7285078E100EC7D9D /* PhotoItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DD0DE5285078E100EC7D9D /* PhotoItemListViewController.swift */; };
@@ -147,13 +145,11 @@
 		C4BACD22280C746600A8D7C6 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		C4BACD23280C746600A8D7C6 /* UserProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
 		C4BACD26280D245200A8D7C6 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
-		C4BACD28280D269300A8D7C6 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		C4BD2FDE27EDCE8600F3B30A /* UIBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 		C4BD2FE027EDCECE00F3B30A /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		C4BD2FE427EDDDC600F3B30A /* HeartBezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBezierView.swift; sourceTree = "<group>"; };
 		C4BD2FE627EE365700F3B30A /* Localizable.stringsdict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; path = Localizable.stringsdict; sourceTree = "<group>"; };
 		C4C7DA95281F91860088FA4F /* ImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesService.swift; sourceTree = "<group>"; };
-		C4C7DA97281FBC4E0088FA4F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		C4DD0DDE284FAE5300EC7D9D /* SimpleItemMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleItemMapViewController.swift; sourceTree = "<group>"; };
 		C4DD0DDF284FAE5300EC7D9D /* SimpleItemMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleItemMapViewController.xib; sourceTree = "<group>"; };
 		C4DD0DE5285078E100EC7D9D /* PhotoItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemListViewController.swift; sourceTree = "<group>"; };
@@ -236,12 +232,12 @@
 		C40A229B27EB06ED0007994C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C4A8B1FF2840B7F00072E670 /* RootTabBar */,
 				C4A98449285BC1330035DB0A /* ImageViewer */,
 				C4BD2FDC27EDCDEF00F3B30A /* CustomViews */,
 				C4DD0DE32850785B00EC7D9D /* PhotoItem */,
 				C4DD0DE42850787E00EC7D9D /* LocalPhoto */,
 				C4DD0DDD284FAE1D00EC7D9D /* SimpleItemMap */,
-				C4A8B1FF2840B7F00072E670 /* RootTabBar */,
 				C4E0E4FB283D1CD2003E0CB3 /* AllItemsMapView */,
 				C4BACD21280C744900A8D7C6 /* Profile */,
 				C4092FAC27FEAA690087B8F9 /* Comments */,
@@ -426,8 +422,6 @@
 			isa = PBXGroup;
 			children = (
 				C4849A61284CC0C80043717B /* Realm */,
-				C4BACD28280D269300A8D7C6 /* DataProvider.swift */,
-				C4C7DA97281FBC4E0088FA4F /* DataService.swift */,
 				C4BACD26280D245200A8D7C6 /* FireBaseService.swift */,
 			);
 			path = DataServices;
@@ -739,8 +733,6 @@
 				C4BD2FE527EDDDC600F3B30A /* HeartBezierView.swift in Sources */,
 				C4E0E502283D349D003E0CB3 /* PhotoItemAnnotation.swift in Sources */,
 				C4E0E504283ECB6E003E0CB3 /* Location.swift in Sources */,
-				C4BACD29280D269300A8D7C6 /* DataProvider.swift in Sources */,
-				C4C7DA98281FBC4F0088FA4F /* DataService.swift in Sources */,
 				C4DD0DEB28507AB000EC7D9D /* PhotoItemCollectionViewCell.swift in Sources */,
 				C40DE9A9285843C600951AC0 /* QuestionViewController.swift in Sources */,
 				C4BD2FDF27EDCE8600F3B30A /* UIBezierPath.swift in Sources */,
